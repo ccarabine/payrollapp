@@ -19,23 +19,51 @@ data = employeedetail.get_all_values()
 def get_main_menu_option():
     """
     Get Main menu option input from user
+    Run function related to input
     """
+   
     while True:
         print("-------------- Main Menu -------------- ")
-        print("1 View payroll")
+        print("1 Display payroll")
         print("2 Process / Amend payroll")
         print("3 Run payroll")
         print("4 Add / Amend employee details\n")
         
         print("Example:  1\n")
 
-        main_menu_data = input("Please enter number option from the menu : ")
+        main_menu_option_data = input("Please enter number option from the menu : ")
+        
+        if validate_data(main_menu_option_data):
+            if main_menu_option_data == "1":
+                get_display_payroll_option()
+            if main_menu_option_data == "2":
+                get_process_payroll_option()
+            if main_menu_option_data == "3":
+                get_run_payroll_option()
+            if main_menu_option_data == "4":
+                get_add_amend_employee_option()
+                
+def get_display_payroll_option():
+    """
+    Get view payroll option input from user
+    Run function related to input
+    """
+    while True:
+        print("-------------- Display Payroll -------------- ")
+        print("1 All employees pay for week")
+        print("2 employee pay for week")
+        print("3 Employers summary for week")
+        print("4 Main menu\n")
+        
+        print("Example:  1\n")
+
+        display_payroll_option_data = input("Please enter number option from the menu : ")
     
-        if validate_data(main_menu_data):
+        if validate_data(display_payroll_option_data):
             print("Data is valid")
             break
-        return main_menu_data
-        
+        return display_payroll_option_data
+
 def validate_data(value):
     """
     Inside the try, converts value to integer
