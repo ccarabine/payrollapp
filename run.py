@@ -16,23 +16,21 @@ employeedetail = SHEET.worksheet('employeedetail')
 
 data = employeedetail.get_all_values()
 
+
 def get_main_menu_option():
     """
     Get Main menu option input from user
     Run function related to input
     """
-   
     while True:
         print("-------------- Main Menu -------------- ")
         print("1 Display payroll")
         print("2 Process / Amend payroll")
         print("3 Run payroll")
         print("4 Add / Amend employee details\n")
-        
         print("Example:  1\n")
 
         main_menu_option_data = input("Please enter number option from the menu : ")
-        
         if validate_data(main_menu_option_data):
             if main_menu_option_data == "1":
                 get_display_payroll_option()
@@ -43,6 +41,7 @@ def get_main_menu_option():
             if main_menu_option_data == "4":
                 get_add_amend_employee_option()
                 
+
 def get_display_payroll_option():
     """
     Get display payroll option input from user
@@ -54,15 +53,13 @@ def get_display_payroll_option():
         print("2 employee pay for week")
         print("3 Employers summary for week")
         print("4 Main menu\n")
-        
         print("Example:  1\n")
-
         display_payroll_option_data = input("Please enter number option from the menu : ")
-    
         if validate_data(display_payroll_option_data):
             print("Data is valid")
             break
         return display_payroll_option_data
+
 
 def get_process_payroll_option():
     """
@@ -84,6 +81,19 @@ def get_process_payroll_option():
             break
         return process_payroll_option_data
 
+
+def get_add_amend_employee_option():
+    """
+    Get add / amend employee option input from user
+    Run function related to input
+
+    Future feature
+    """
+    while True:
+        print("\n Feature in next update, returning to main menu \n")
+        get_main_menu_option()
+        
+       
 def validate_data(value):
     """
     Inside the try, converts value to integer
@@ -100,5 +110,6 @@ def validate_data(value):
         return False
 
     return True
+
 
 main_menu_option = get_main_menu_option()
