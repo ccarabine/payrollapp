@@ -16,4 +16,16 @@ employeedetail = SHEET.worksheet('employeedetail')
 
 data = employeedetail.get_all_values()
 
-print(data)
+def get_main_menu_option():
+    """
+    Get Main menu option input from user
+    """
+    print("-------------- Main Menu -------------- ")
+    print("1 View payroll")
+    print("2 Process / Amend payroll")
+    print("3 Run payroll")
+    print("4 Add / Amend employee details\n")
+    print("Please enter number option from the main menu")
+    print("Example:  1\n")
+
+get_main_menu_option()
