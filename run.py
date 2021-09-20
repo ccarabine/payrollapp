@@ -50,16 +50,23 @@ def get_display_payroll_option():
     while True:
         print("-------------- Display Payroll -------------- ")
         print("1 All employees pay for week")
-        print("2 employee pay for week")
+        print("2 Employee pay for week")
         print("3 Employers summary for week")
         print("4 Main menu\n")
         print("Example:  1\n")
         display_payroll_option_data = input("Please enter number option from the menu : ")
         if validate_data(display_payroll_option_data):
-            print("Data is valid")
-            break
-        return display_payroll_option_data
+            if display_payroll_option_data == "1":
+                get_allemployeepay_option()
+            if display_payroll_option_data == "2":
+                get_employeepay_option()
+            if display_payroll_option_data == "3":
+                get_employerssummaryay_option()
+            if display_payroll_option_data == "4":
+                get_main_menu_option()
 
+
+        
 
 def get_process_payroll_option():
     """
