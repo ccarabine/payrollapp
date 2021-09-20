@@ -20,21 +20,26 @@ def get_main_menu_option():
     """
     Get Main menu option input from user
     """
-    print("-------------- Main Menu -------------- ")
-    print("1 View payroll")
-    print("2 Process / Amend payroll")
-    print("3 Run payroll")
-    print("4 Add / Amend employee details\n")
+    while True:
+        print("-------------- Main Menu -------------- ")
+        print("1 View payroll")
+        print("2 Process / Amend payroll")
+        print("3 Run payroll")
+        print("4 Add / Amend employee details\n")
+        
+        print("Example:  1\n")
+
+        main_menu_data = input("Please enter number option from the menu : ")
     
-    print("Example:  1\n")
-
-    main_menu_data = input("Please enter number option from the menu : ")
-   
-    validate_data(main_menu_data)
-
+        if validate_data(main_menu_data):
+            print("Data is valid")
+            break
+        return main_menu_data
+        
 def validate_data(value):
     """
-
+    Inside the try, converts value to integer
+    raise ValueError if strings cannot be converted into int or less than 1 or greater than 4
     """
     try:
        
@@ -44,5 +49,8 @@ def validate_data(value):
         )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
 
-get_main_menu_option()
+    return True
+
+main_menu_option = get_main_menu_option()
