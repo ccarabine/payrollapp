@@ -45,7 +45,7 @@ def get_main_menu_option():
                 
 def get_display_payroll_option():
     """
-    Get view payroll option input from user
+    Get display payroll option input from user
     Run function related to input
     """
     while True:
@@ -63,6 +63,26 @@ def get_display_payroll_option():
             print("Data is valid")
             break
         return display_payroll_option_data
+
+def get_process_payroll_option():
+    """
+    Get process / Amend payroll option input from user
+    Run function related to input
+    """
+    while True:
+        print("-------------- Process / Amend Payroll -------------- ")
+        print("1 Add Employees hours")
+        print("2 Amend employees hours")
+        print("3 Main menu\n")
+        
+        print("Example:  1\n")
+
+        process_payroll_option_data = input("Please enter number option from the menu : ")
+    
+        if validate_data(process_payroll_option_data):
+            print("Data is valid")
+            break
+        return process_payroll_option_data
 
 def validate_data(value):
     """
