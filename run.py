@@ -118,5 +118,11 @@ def validate_data(value):
 
     return True
 
-
+def main():
+    """
+    Run all program functions
+    """
 main_menu_option = get_main_menu_option()
+
+Print("Welcome to Payroll application")
+main()
