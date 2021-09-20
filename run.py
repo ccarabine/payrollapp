@@ -25,7 +25,24 @@ def get_main_menu_option():
     print("2 Process / Amend payroll")
     print("3 Run payroll")
     print("4 Add / Amend employee details\n")
-    print("Please enter number option from the main menu")
+    
     print("Example:  1\n")
+
+    main_menu_data = input("Please enter number option from the menu : ")
+   
+    validate_data(main_menu_data)
+
+def validate_data(value):
+    """
+
+    """
+    try:
+       
+        if int(value) < 1 or int(value) > 4:
+            raise ValueError(
+               f"Number between 1 and 4 required, you typed {value}"
+        )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
 
 get_main_menu_option()
