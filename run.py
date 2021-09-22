@@ -21,6 +21,7 @@ EMPLOYEES_NI_AMOUNT=156
 
 EMPLOYERS_PENSION_PC =0.03
 EMPLOYERS_NI_PC = 0.1
+#main_menu_option = get_main_menu_option()
 
 def get_payroll_week():
     """
@@ -216,16 +217,48 @@ def validate_employee_num(num):
         return employee_rateofpay.value,employee_pension.value,
     except AttributeError as e:
         print(f"\nInvalid employee number, please try again.\n")
-        decision = input('Do you want to try again? type y or n : ')
-        if decision =="y":
-            get_employee_num()
-        elif decision == "n":
-            main_menu_option = get_main_menu_option()
+        #decision = input('Do you want to try again? type y or n : ')
+        #while true:
+        yesorno("Do you want to try again? type y or n :  ") 
+       
+           
+            
+def yesorno(question):
+    answer = input(f'{question}') 
+    try:
+        if answer[0] == 'y':
+            return True
+        elif answer[0] == 'n':
+            return False
+        else:
+            print('Invalid entry')
+            return yesorno(question)
+    except Exception as error:
+        print("Please enter valid entry")
+        print(error)
+        return yesorno()
+   
+"""
+    try:       
+        if decision_input =="y":
+            raise ValueError(
+               f"Number between {minvalue} and {maxvalue} required, you typed {value}"
+        )
+    except ValueError as e:
+        print(f"Invalid data, please try again.\n")
         return False
-        
-        
 
     return True
+
+        if decision =="y":
+            break
+        elif decision == "n":
+            n_function()
+    except ValueError as e:
+        print(f"Invalid data, please try again.\n")
+        return False
+    return True
+"""
 def main():
     """
     Run all program functions
@@ -234,6 +267,9 @@ def main():
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
 calculate_employee_payslip_data=calculate_employee_payslip_data()
+
+#yesorno=yesorno(question)
+
 #get_employee_num=get_employee_num()
     
 print("Welcome to Payroll application")
