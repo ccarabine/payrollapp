@@ -35,9 +35,7 @@ def get_employee_num():
         input_employee_num = input("Enter Employee number e.g. 100014  : ")
         if validate_employee_num(input_employee_num):
             return(input_employee_num)
-            ri=validate_employee_num
-            print(ri)
-        
+                    
       
 def get_employee_hours():
     """
@@ -53,7 +51,7 @@ def get_employee_hours():
 
 def get_payroll_data():
     """
-    Get payroll week, employee's payroll, number, number of hour from user and rate of pay from spreadsheet
+    Get payroll week, employee's payroll, number, number of hour from user and rate of pay for employee from spreadsheet
     """
     employee_entered_payroll_week = get_payroll_week()
     employee_num=get_employee_num()
@@ -61,14 +59,18 @@ def get_payroll_data():
     employee_hours = get_employee_hours()
     return (employee_entered_payroll_week,employee_num,employee_rate_of_pay,employee_hours)
    
- 
-"""
+def calculate_employee_payslip_data():
+    """
+    Calculates values for employees pay - basic, holiday pay, employees NI, net pay and pension and employers NI and pension contributions
+    """
+    payroll_data=get_payroll_data()
+    print(payroll_data[0])
 
-def search():
-    employee_num=input("Employee num")
-    search_value = employeedetail.findall(employee_num )
-    print(search_value)
-"""
+#def search():
+ #   employee_num=input("Employee num")
+  #  search_value = employeedetail.findall(employee_num )
+   # print(search_value)
+
 
 def get_main_menu_option():
     """
@@ -202,7 +204,8 @@ def main():
     """
 """main_menu_option = get_main_menu_option()"""
 #process_payroll=process_payroll()
-get_payroll_data=get_payroll_data()
+#get_payroll_data=get_payroll_data()
+calculate_employee_payslip_data=calculate_employee_payslip_data()
 #get_employee_num=get_employee_num()
     
 print("Welcome to Payroll application")
