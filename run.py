@@ -22,10 +22,10 @@ def get_payroll_week():
   
     """
     while True:
-       input_payroll_week=input("Enter Payroll Week (1-52) : ")
+        input_payroll_week=input("Enter Payroll Week (1-52) : ")
        
-    if validate_data(input_payroll_week,1,52):
-       return(input_payroll_week)
+        if validate_data(input_payroll_week,1,52):
+            return(input_payroll_week)
 
 def get_employee_num():
     """
@@ -35,6 +35,9 @@ def get_employee_num():
         input_employee_num = input("Enter Employee number e.g. 100014  : ")
         if validate_employee_num(input_employee_num):
             return(input_employee_num)
+            ri=validate_employee_num
+            print(ri)
+        
       
 def get_employee_hours():
     """
@@ -45,7 +48,23 @@ def get_employee_hours():
         if validate_data(input_employee_hours,1,15):
             return(input_employee_hours)
 
-"""def search():
+
+
+
+def get_payroll_data():
+    """
+    Get payroll week, employee's payroll, number, number of hour from user and rate of pay from spreadsheet
+    """
+    employee_entered_payroll_week = get_payroll_week()
+    employee_num=get_employee_num()
+    employee_rate_of_pay = validate_employee_num(employee_num)
+    employee_hours = get_employee_hours()
+    return (employee_entered_payroll_week,employee_num,employee_rate_of_pay,employee_hours)
+   
+ 
+"""
+
+def search():
     employee_num=input("Employee num")
     search_value = employeedetail.findall(employee_num )
     print(search_value)
@@ -158,10 +177,13 @@ def validate_employee_num(num):
     """
     try:
         employee_row = employeedetail.find(num).row 
-        print(employee_row)
+        #print(employee_row)
         values_list = employeedetail.row_values(employee_row)
-        print(values_list)
-       
+       # print(values_list)
+        values_list = employeedetail.row_values(employee_row)
+        employee_rateofpay =employeedetail.cell(employee_row,4)
+        #print(employee_rateofpay.value)
+        return employee_rateofpay.value
     except AttributeError as e:
         print(f"\nInvalid employee number, please try again.\n")
         decision = input('Do you want to try again? type y or n : ')
@@ -179,7 +201,9 @@ def main():
     Run all program functions
     """
 """main_menu_option = get_main_menu_option()"""
-employee_hours=get_employee_hours()
+#process_payroll=process_payroll()
+get_payroll_data=get_payroll_data()
+#get_employee_num=get_employee_num()
     
 print("Welcome to Payroll application")
 main()
