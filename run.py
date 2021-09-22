@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-
+import pandas as pd
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -14,18 +14,28 @@ SHEET = GSPREAD_CLIENT.open('companypayroll')
 
 employeedetail = SHEET.worksheet('employeedetail')
 
-data = employeedetail.get_all_values()
-
-CONST PAYROLL_WEEK == 34
+PAYROLL_WEEK = 34
 
 def get_payroll_week():
     """
-    Get payroll week from user
-    Run function related to input
+    Get payroll week from user and validate
+  
     """
+    while True:
+       input_payroll_week=input("Enter Payroll Week (1-52) : ")
+       
+    if validate_data(input_payroll_week,1,52):
+       return(input_payroll_week)
 
-    input_payroll_week =input("Enter Payroll Week (1-52) : )
-    return(input_payroll_week)
+def get_employee_num():
+    """
+    Get employee number from user and validate to check that the employee is in the employee details list
+    """ 
+    while True:
+        input_employee_num = input("Enter Employee number e.g. 100014  : ")
+        if validate_employee_num(input_employee_num):
+            return(input_employee_num)
+      
 
 """def search():
     employee_num=input("Employee num")
@@ -47,7 +57,7 @@ def get_main_menu_option():
         print("Example:  1\n")
 
         main_menu_option_data = input("Please enter number option from the menu : ")
-        if validate_data(main_menu_option_data):
+        if validate_data(main_menu_option_data,1,4):
             if main_menu_option_data == "1":
                 get_display_payroll_option()
             if main_menu_option_data == "2":
@@ -71,7 +81,7 @@ def get_display_payroll_option():
         print("4 Main menu\n")
         print("Example:  1\n")
         display_payroll_option_data = input("Please enter number option from the menu : ")
-        if validate_data(display_payroll_option_data):
+        if validate_data(display_payroll_option_data,1,4):
             if display_payroll_option_data == "1":
                 get_allemployeepay_option()
             if display_payroll_option_data == "2":
@@ -81,8 +91,6 @@ def get_display_payroll_option():
             if display_payroll_option_data == "4":
                 get_main_menu_option()
 
-
-        
 
 def get_process_payroll_option():
     """
@@ -99,7 +107,7 @@ def get_process_payroll_option():
 
         process_payroll_option_data = input("Please enter number option from the menu : ")
     
-        if validate_data(process_payroll_option_data):
+        if validate_data(process_payroll_option_data,1,3):
             print("Data is valid")
             break
         return process_payroll_option_data
@@ -134,12 +142,36 @@ def validate_data(value,minvalue,maxvalue):
 
     return True
 
+
+def validate_employee_num(num):
+    """
+    Inside the try, converts value to integer
+    raise ValueError if strings cannot be converted into int or less than 1 or greater than 4
+    """
+    try:
+        employee_row = employeedetail.find(num).row 
+        print(employee_row)
+        values_list = employeedetail.row_values(employee_row)
+        print(values_list)
+       
+    except AttributeError as e:
+        print(f"\nInvalid employee number, please try again.\n")
+        decision = input(' Do you want to try again?')
+        if decision =="y":
+            get_employee_num()
+        elif decision == "n":
+            main_menu_option = get_main_menu_option()
+        return False
+        
+        
+
+    return True
 def main():
     """
     Run all program functions
     """
-"""main_menu_option = get_main_menu_option()
+"""main_menu_option = get_main_menu_option()"""
+employee_num=get_employee_num()
     
-Print("Welcome to Payroll application")
-main()"""
-search()
+print("Welcome to Payroll application")
+main()
