@@ -117,16 +117,16 @@ def get_add_amend_employee_option():
         get_main_menu_option()
         
        
-def validate_data(value):
+def validate_data(value,minvalue,maxvalue):
     """
     Inside the try, converts value to integer
     raise ValueError if strings cannot be converted into int or less than 1 or greater than 4
     """
     try:
        
-        if int(value) < 1 or int(value) > 4:
+        if int(value) < minvalue or int(value) > maxvalue:
             raise ValueError(
-               f"Number between 1 and 4 required, you typed {value}"
+               f"Number between {minvalue} and {maxvalue} required, you typed {value}"
         )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
