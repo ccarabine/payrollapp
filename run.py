@@ -15,6 +15,12 @@ SHEET = GSPREAD_CLIENT.open('companypayroll')
 employeedetail = SHEET.worksheet('employeedetail')
 
 PAYROLL_WEEK = 34
+HOL_PC = 0.1208
+EMPLOYEES_NI_PC = 0.1392 
+EMPLOYEES_NI_AMOUNT=156
+
+EMPLOYERS_PENSION_PC =0.03
+EMPLOYERS_NI_PC = 0.1
 
 def get_payroll_week():
     """
@@ -43,10 +49,8 @@ def get_employee_hours():
     """
     while True:
         input_employee_hours=input("Enter number of hours worked : ")
-        if validate_data(input_employee_hours,1,15):
+        if validate_data(input_employee_hours,1,100):
             return(input_employee_hours)
-
-
 
 
 def get_payroll_data():
@@ -59,15 +63,38 @@ def get_payroll_data():
     employee_rate_of_pay=(employee_retrived_data[0])
     employee_pension=(employee_retrived_data[1])
     employee_hours = get_employee_hours()
-    employee_hours = get_employee_hours()
-    return (employee_entered_payroll_week,employee_num,employee_rate_of_pay,employee_hours)
+   
+    return (employee_entered_payroll_week,employee_num,employee_rate_of_pay,employee_pension, employee_hours)
    
 def calculate_employee_payslip_data():
     """
     Calculates values for employees pay - basic, holiday pay, employees NI, net pay and pension and employers NI and pension contributions
     """
     payroll_data=get_payroll_data()
-    print(payroll_data[0])
+   
+    employee_rate_of_pay=float(payroll_data[2]) 
+    employee_hours=int(payroll_data[4]) 
+
+    employee_basic_pay = employee_hours * employee_rate_of_pay
+    employee_holiday = employee_basic_pay * HOL_PC
+    employee_basic_hol = employee_basic_pay + employee_holiday
+    if (employee_basic_pay + employee_holiday) < EMPLOYEES_NI_AMOUNT:
+        employee_ni = 0
+    else:
+        employee_ni = ((employee_basic_hol) - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC
+    employee_pension = employee_basic_pay * EMPLOYERS_PENSION_PC
+    employee_deducations = employee_ni + employee_pension
+    employee_net_pay = employee_basic_hol - employee_ni - employee_pension
+
+    employers_ni = employee_basic_hol * EMPLOYERS_NI_PC
+    employers_pension = employee_basic_hol * EMPLOYERS_PENSION_PC
+
+    # print(f' Week Name, employee number payroll info:{employee_basic_pay}')
+    print(f' Basic Pay :{employee_basic_pay}')
+    print(f' Holiday Pay :{employee_holiday}')
+    print(f' NI contribution: {employee_ni}')
+    print(f' Pension contribution: {employee_pension}')
+    print(f' Net Pay: {employee_net_pay}')
 
 #def search():
  #   employee_num=input("Employee num")
