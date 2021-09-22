@@ -16,6 +16,22 @@ employeedetail = SHEET.worksheet('employeedetail')
 
 data = employeedetail.get_all_values()
 
+CONST PAYROLL_WEEK == 34
+
+def get_payroll_week():
+    """
+    Get payroll week from user
+    Run function related to input
+    """
+
+    input_payroll_week =input("Enter Payroll Week (1-52) : )
+    return(input_payroll_week)
+
+"""def search():
+    employee_num=input("Employee num")
+    search_value = employeedetail.findall(employee_num )
+    print(search_value)
+"""
 
 def get_main_menu_option():
     """
@@ -122,7 +138,8 @@ def main():
     """
     Run all program functions
     """
-main_menu_option = get_main_menu_option()
-
+"""main_menu_option = get_main_menu_option()
+    
 Print("Welcome to Payroll application")
-main()
+main()"""
+search()
