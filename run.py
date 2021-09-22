@@ -36,6 +36,14 @@ def get_employee_num():
         if validate_employee_num(input_employee_num):
             return(input_employee_num)
       
+def get_employee_hours():
+    """
+    Get employees hours for week from user ( maximum 15 hours) and validate
+    """
+    while True:
+        input_employee_hours=input("Enter number of hours worked : ")
+        if validate_data(input_employee_hours,1,15):
+            return(input_employee_hours)
 
 """def search():
     employee_num=input("Employee num")
@@ -137,7 +145,7 @@ def validate_data(value,minvalue,maxvalue):
                f"Number between {minvalue} and {maxvalue} required, you typed {value}"
         )
     except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
+        print(f"Invalid data, please try again.\n")
         return False
 
     return True
@@ -156,7 +164,7 @@ def validate_employee_num(num):
        
     except AttributeError as e:
         print(f"\nInvalid employee number, please try again.\n")
-        decision = input(' Do you want to try again?')
+        decision = input('Do you want to try again? type y or n : ')
         if decision =="y":
             get_employee_num()
         elif decision == "n":
@@ -171,7 +179,7 @@ def main():
     Run all program functions
     """
 """main_menu_option = get_main_menu_option()"""
-employee_num=get_employee_num()
+employee_hours=get_employee_hours()
     
 print("Welcome to Payroll application")
 main()
