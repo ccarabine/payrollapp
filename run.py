@@ -51,11 +51,14 @@ def get_employee_hours():
 
 def get_payroll_data():
     """
-    Get payroll week, employee's payroll, number, number of hour from user and rate of pay for employee from spreadsheet
+    Get payroll week, employee's payroll, number, number of hour from user and rate of pay and pension % for employee from spreadsheet
     """
     employee_entered_payroll_week = get_payroll_week()
     employee_num=get_employee_num()
-    employee_rate_of_pay = validate_employee_num(employee_num)
+    employee_retrived_data = validate_employee_num(employee_num)
+    employee_rate_of_pay=(employee_retrived_data[0])
+    employee_pension=(employee_retrived_data[1])
+    employee_hours = get_employee_hours()
     employee_hours = get_employee_hours()
     return (employee_entered_payroll_week,employee_num,employee_rate_of_pay,employee_hours)
    
@@ -174,18 +177,16 @@ def validate_data(value,minvalue,maxvalue):
 
 def validate_employee_num(num):
     """
-    Inside the try, converts value to integer
-    raise ValueError if strings cannot be converted into int or less than 1 or greater than 4
+    Try: find employee number in employee detail sheet
+        puts the row ref, rate of pay and pension into variables an returns rate of pay and pension
+    except AttributeError if there isn't a value in the sheet then asks the user if they want to try again or return to the main menu
     """
     try:
         employee_row = employeedetail.find(num).row 
-        #print(employee_row)
-        values_list = employeedetail.row_values(employee_row)
-       # print(values_list)
         values_list = employeedetail.row_values(employee_row)
         employee_rateofpay =employeedetail.cell(employee_row,4)
-        #print(employee_rateofpay.value)
-        return employee_rateofpay.value
+        employee_pension =employeedetail.cell(employee_row,5)
+        return employee_rateofpay.value,employee_pension.value,
     except AttributeError as e:
         print(f"\nInvalid employee number, please try again.\n")
         decision = input('Do you want to try again? type y or n : ')
