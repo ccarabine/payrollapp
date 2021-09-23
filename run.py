@@ -109,6 +109,7 @@ def calculate_employee_payslip_data():
     
     if yesorno("Are the amounts correct? "):
         print("Ready to upload into payroll spreadsheet")
+        row_date=[]
         row_data= [week_no,employee_number,employee_surname,employee_firstname,employee_hours,employee_basic_pay,employee_holiday,employee_ni,employee_pension,employee_net_pay,employers_ni,employers_pension]
         update_worksheet(row_data,"employeepayroll")
         return (employee_basic_pay)
@@ -293,6 +294,14 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
 
+def next_employee_to_process():
+    
+    while True:
+            if yesorno("Would you like to process another employees hours? type y or n :  "):
+                calculate_employee_payslip_data()
+            else:
+                get_main_menu_option()
+
 def main():
     """
     Run all program functions
@@ -300,8 +309,8 @@ def main():
 """main_menu_option = get_main_menu_option()"""
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
-calculate_employee_payslip_data=calculate_employee_payslip_data()
-
+calculate_employee_payslip_data()
+next_employee_to_process()
 #yesorno=yesorno(question)
 
 #get_employee_num=get_employee_num()
