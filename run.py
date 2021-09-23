@@ -45,7 +45,7 @@ def get_employee_num():
         input_employee_num = input("Enter Employee number e.g. 100014  : ")
         print ("Finding Employment record")
         if validate_employee_num(input_employee_num):
-            print ("Employment record retrieved")
+            print ("Employment record retrieved")    
             return(input_employee_num)
                     
       
@@ -251,6 +251,7 @@ def validate_employee_num(num):
     """
     try:
         employee_row = employeedetail.find(num).row 
+        
         values_list = employeedetail.row_values(employee_row)
         employee_number =employeedetail.cell(employee_row,1)
         employee_surname =employeedetail.cell(employee_row,2)
@@ -265,7 +266,39 @@ def validate_employee_num(num):
             if yesorno("Do you want to try again? type y or n :  "):
                 break
             get_main_menu_option()
-                
+
+def amend_employees_hours():
+    """
+    Try: User requested to input payroll week and employee number. Checks to see if there is a record.  If there is it will delete the row
+        and request user to put the details in again
+        
+    except IndexError if there isn't a value in the sheet then returns to the main menu
+    """
+    try:
+        week=get_payroll_week()
+        num=get_employee_num()
+    
+        employee_num_found = employeepayroll.findall(num)
+        week_found = employeepayroll.findall(week)
+        em=[]
+        for i in employee_num_found:
+            em.append(i.row)
+        wk=[]
+        for i in week_found:
+            wk.append(i.row)
+        
+        set1 = set(em)
+        set2 = set(wk)
+        intersect = list(set1 & set2)
+        row_to_delete = intersect[0]
+    
+        employeepayroll.delete_rows(row_to_delete)
+        Print('Record deleted for  {num} in week {week}. Please re-enter details')
+        calculate_employee_payslip_data()
+
+    except IndexError as e:
+        print(f"\nNo payroll record found for {num} in week {week}, returning to main menu.\n")
+        get_main_menu_option()
               
 def yesorno(question):
     """ 
@@ -308,39 +341,14 @@ def next_employee_to_process():
             else:
                 get_main_menu_option()
 
-def amend_employees_hours():
-    """
-    Find week and payroll number where the row matches, then delete the row
-    """
-    week=get_payroll_week()
-    num=get_employee_num()
-    
-    employee_num_found = employeepayroll.findall(num)
-    week_found = employeepayroll.findall(week)
-   
-   
-    em=[]
-    for i in employee_num_found:
-        em.append(i.row)
-    
-    wk=[]
-    for i in week_found:
-        wk.append(i.row)
-        print(i)
-    
-    set1 = set(em)
-    set2 = set(wk)
-    intersect = list(set1 & set2)
-    row_to_delete = intersect[0]
-    
-    employeepayroll.delete_rows(row_to_delete)
- 
+
+
 
 def main():
     """
     Run all program functions
     """
-"""main_menu_option = get_main_menu_option()"""
+#main_menu_option = get_main_menu_option()
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
 #calculate_employee_payslip_data()
