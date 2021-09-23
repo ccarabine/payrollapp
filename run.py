@@ -84,9 +84,8 @@ def calculate_employee_payslip_data():
     employee_firstname=(payroll_data[3])
     
     employee_rate_of_pay=float(payroll_data[4])
-    employee_pension=(payroll_data[5]) 
+    employee_pension=float(payroll_data[5]) 
     employee_hours=float(payroll_data[6]) 
-    print (payroll_data)
     employee_basic_pay = round(employee_hours * employee_rate_of_pay,2)
     employee_holiday = round(employee_basic_pay * HOL_PC,2)
     employee_basic_hol = (employee_basic_pay + employee_holiday)
@@ -94,13 +93,14 @@ def calculate_employee_payslip_data():
         employee_ni = 0
     else:
         employee_ni = round(((employee_basic_hol) - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC,2)
-    employee_pension = round(employee_basic_pay * EMPLOYERS_PENSION_PC,2)
     employee_deducations = round(employee_ni + employee_pension,2)
+    employee_pension= round(employee_pension * employee_basic_hol,2)
     employee_net_pay = round(employee_basic_hol - employee_ni - employee_pension,2)
-
+    
+    
     employers_ni = round(employee_basic_hol * EMPLOYERS_NI_PC,2)
     employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC,2)
-    print(f'Employee : {employee_number} - {employee_firstname} {employee_surname}')
+    print(f'\n Employee : {employee_number} - {employee_firstname} {employee_surname}')
     print(f' Basic Pay : £{employee_basic_pay}')
     print(f' Holiday Pay : £{employee_holiday}')
     print(f' NI contribution: £{employee_ni}')
@@ -109,9 +109,7 @@ def calculate_employee_payslip_data():
     
     if yesorno("Are the amounts correct? "):
         print("Ready to upload into payroll spreadsheet")
-        
-        row_data= [week_no,employee_number,employee_surname,employee_firstname,employee_hours,employee_basic_pay,employee_pension,employee_net_pay,employers_ni,employers_pension]
-        print(row_data)
+        row_data= [week_no,employee_number,employee_surname,employee_firstname,employee_hours,employee_basic_pay,employee_holiday,employee_ni,employee_pension,employee_net_pay,employers_ni,employers_pension]
         update_worksheet(row_data,"employeepayroll")
         return (employee_basic_pay)
     else:
