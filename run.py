@@ -67,7 +67,7 @@ def get_payroll_data():
     """
     Get payroll week, employee's payroll, number, number of hour from user and rate of pay and pension % for employee from spreadsheet
     """
-    employee_entered_payroll_week = get_payroll_week(PAYROLL_WEEK)
+    employee_entered_payroll_week = get_payroll_week()
     employee_num=get_employee_num()
     employee_retrived_data = validate_employee_num(employee_num)
     
@@ -195,8 +195,15 @@ def get_process_payroll_option():
         process_payroll_option_data = input("Please enter number option from the menu : ")
     
         if validate_data_int(process_payroll_option_data,1,3):
-            print("Data is valid")
-            break
+            if process_payroll_option_data == "1":
+                calculate_employee_payslip_data()
+                next_employee_to_process()
+            if process_payroll_option_data == "2":
+                amend_employees_hours()
+            if process_payroll_option_data == "3":
+                get_main_menu_option()
+           
+            
         return process_payroll_option_data
 
 
