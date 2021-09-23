@@ -31,12 +31,12 @@ def get_payroll_week():
     while True:
         input_payroll_week=input("Enter Payroll Week (1-52) : ")
        
-        if validate_data(input_payroll_week,1,52):
+        if validate_data_int(input_payroll_week,1,52):
             return(input_payroll_week)
 
 def get_employee_num():
     """
-    Get employee number from user and validate to check that the employee is in the employee details list
+    Get employee number from user,validate to check that the employee is in the employee details list and retrieve details
     """ 
     while True:
         input_employee_num = input("Enter Employee number e.g. 100014  : ")
@@ -48,11 +48,11 @@ def get_employee_num():
       
 def get_employee_hours():
     """
-    Get employees hours for week from user ( maximum 15 hours) and validate
+    Get employees hours for week from user ( maximum 100 hours) and validate
     """
     while True:
         input_employee_hours=input("Enter number of hours worked : ")
-        if validate_data(input_employee_hours,1,100):
+        if validate_data_float(input_employee_hours,1,100):
             return(input_employee_hours)
 
 
@@ -63,24 +63,33 @@ def get_payroll_data():
     employee_entered_payroll_week = get_payroll_week()
     employee_num=get_employee_num()
     employee_retrived_data = validate_employee_num(employee_num)
-    employee_rate_of_pay=(employee_retrived_data[0])
-    employee_pension=(employee_retrived_data[1])
+    
+    employee_number =(employee_retrived_data[0])
+    employee_surname =(employee_retrived_data[1])
+    employee_firstname =(employee_retrived_data[2])
+    employee_rate_of_pay=(employee_retrived_data[3])
+    employee_pension=(employee_retrived_data[4])
     employee_hours = get_employee_hours()
    
-    return (employee_entered_payroll_week,employee_num,employee_rate_of_pay,employee_pension, employee_hours)
+    return (employee_entered_payroll_week,employee_number,employee_surname,employee_firstname,employee_rate_of_pay,employee_pension, employee_hours)
    
 def calculate_employee_payslip_data():
     """
-    Calculates values for employees pay - basic, holiday pay, employees NI, net pay and pension and employers NI and pension contributions
+    Calculates values for employees pay and employers contributions and puts values in a list
     """
     payroll_data=get_payroll_data()
-   
-    employee_rate_of_pay=float(payroll_data[2]) 
-    employee_hours=int(payroll_data[4]) 
-
+    week_no = (payroll_data[0]) 
+    employee_number=(payroll_data[1]) 
+    employee_surname=(payroll_data[2]) 
+    employee_firstname=(payroll_data[3])
+    
+    employee_rate_of_pay=float(payroll_data[4])
+    employee_pension=(payroll_data[5]) 
+    employee_hours=float(payroll_data[6]) 
+    print (payroll_data)
     employee_basic_pay = round(employee_hours * employee_rate_of_pay,2)
     employee_holiday = round(employee_basic_pay * HOL_PC,2)
-    employee_basic_hol = round(employee_basic_pay + employee_holiday,2)
+    employee_basic_hol = (employee_basic_pay + employee_holiday)
     if (employee_basic_pay + employee_holiday) < EMPLOYEES_NI_AMOUNT:
         employee_ni = 0
     else:
@@ -91,8 +100,7 @@ def calculate_employee_payslip_data():
 
     employers_ni = round(employee_basic_hol * EMPLOYERS_NI_PC,2)
     employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC,2)
-
-    # print(f' Week Name, employee number payroll info:{employee_basic_pay}')
+    print(f'Employee : {employee_number} - {employee_firstname} {employee_surname}')
     print(f' Basic Pay : £{employee_basic_pay}')
     print(f' Holiday Pay : £{employee_holiday}')
     print(f' NI contribution: £{employee_ni}')
@@ -101,6 +109,10 @@ def calculate_employee_payslip_data():
     
     if yesorno("Are the amounts correct? "):
         print("Ready to upload into payroll spreadsheet")
+        
+        row_data= [week_no,employee_number,employee_surname,employee_firstname,employee_hours,employee_basic_pay,employee_pension,employee_net_pay,employers_ni,employers_pension]
+        print(row_data)
+        return (employee_basic_pay)
     else:
         print("Re enter details \n")
         calculate_employee_payslip_data()
@@ -193,10 +205,10 @@ def get_add_amend_employee_option():
         get_main_menu_option()
         
        
-def validate_data(value,minvalue,maxvalue):
+def validate_data_int(value,minvalue,maxvalue):
     """
     Inside the try, converts value to integer
-    raise ValueError if strings cannot be converted into int or less than 1 or greater than 4
+    raise ValueError if strings cannot be converted into int or less than min or greater than max values
     """
     try:
        
@@ -210,7 +222,24 @@ def validate_data(value,minvalue,maxvalue):
 
     return True
 
+def validate_data_float(value,minvalue,maxvalue):
+    """
+    Inside the try, converts value to float
+    raise ValueError if strings cannot be converted into float or less than min or greater than max value
+    """
+    try:
+       
+        if float(value) < minvalue or float(value) > maxvalue:
+            raise ValueError(
+               f"Number between {minvalue} and {maxvalue} required, you typed {value}"
+        )
+    except ValueError as e:
+        print(f"Invalid data, please try again.\n")
+        return False
 
+    return True
+
+    
 def validate_employee_num(num):
     """
     Try: find employee number in employee detail sheet
@@ -220,9 +249,12 @@ def validate_employee_num(num):
     try:
         employee_row = employeedetail.find(num).row 
         values_list = employeedetail.row_values(employee_row)
+        employee_number =employeedetail.cell(employee_row,1)
+        employee_surname =employeedetail.cell(employee_row,2)
+        employee_firstname =employeedetail.cell(employee_row,3)
         employee_rateofpay =employeedetail.cell(employee_row,4)
         employee_pension =employeedetail.cell(employee_row,5)
-        return employee_rateofpay.value,employee_pension.value,
+        return employee_number.value, employee_surname.value,employee_firstname.value,employee_rateofpay.value,employee_pension.value
     except AttributeError as e:
         print(f"\nInvalid employee number, please try again.\n")
         while True:
