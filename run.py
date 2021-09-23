@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -13,6 +14,8 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('companypayroll')
 
 employeedetail = SHEET.worksheet('employeedetail')
+employeepayroll = SHEET.worksheet('employeepayroll')
+employee_payroll_list = employeepayroll.get_all_values()
 
 PAYROLL_WEEK = 34
 HOL_PC = 0.1208
@@ -254,6 +257,7 @@ def validate_employee_num(num):
         employee_firstname =employeedetail.cell(employee_row,3)
         employee_rateofpay =employeedetail.cell(employee_row,4)
         employee_pension =employeedetail.cell(employee_row,5)
+        print(employee_row)
         return employee_number.value, employee_surname.value,employee_firstname.value,employee_rateofpay.value,employee_pension.value
     except AttributeError as e:
         print(f"\nInvalid employee number, please try again.\n")
@@ -295,12 +299,42 @@ def update_worksheet(data, worksheet):
     print(f"{worksheet} worksheet updated successfully\n")
 
 def next_employee_to_process():
-    
-    while True:
+   """
+   Requests user input if they would like to process another employees hours
+   """ 
+   while True:
             if yesorno("Would you like to process another employees hours? type y or n :  "):
                 calculate_employee_payslip_data()
             else:
                 get_main_menu_option()
+
+def amend_employees_hours():
+    """
+    Find week and payroll number where the row matches, then delete the row
+    """
+    week=get_payroll_week()
+    num=get_employee_num()
+    
+    employee_num_found = employeepayroll.findall(num)
+    week_found = employeepayroll.findall(week)
+   
+   
+    em=[]
+    for i in employee_num_found:
+        em.append(i.row)
+    
+    wk=[]
+    for i in week_found:
+        wk.append(i.row)
+        print(i)
+    
+    set1 = set(em)
+    set2 = set(wk)
+    intersect = list(set1 & set2)
+    row_to_delete = intersect[0]
+    
+    employeepayroll.delete_rows(row_to_delete)
+ 
 
 def main():
     """
@@ -309,11 +343,8 @@ def main():
 """main_menu_option = get_main_menu_option()"""
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
-calculate_employee_payslip_data()
-next_employee_to_process()
-#yesorno=yesorno(question)
-
-#get_employee_num=get_employee_num()
-    
+#calculate_employee_payslip_data()
+#next_employee_to_process()
+amend_employees_hours()    
 print("Welcome to Payroll application")
 main()
