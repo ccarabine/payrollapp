@@ -144,7 +144,7 @@ def get_main_menu_option():
         print("Example:  1\n")
 
         main_menu_option_data = input("Please enter number option from the menu : ")
-        if validate_data(main_menu_option_data,1,4):
+        if validate_data_int(main_menu_option_data,1,4):
             if main_menu_option_data == "1":
                 get_display_payroll_option()
             if main_menu_option_data == "2":
@@ -168,7 +168,7 @@ def get_display_payroll_option():
         print("4 Main menu\n")
         print("Example:  1\n")
         display_payroll_option_data = input("Please enter number option from the menu : ")
-        if validate_data(display_payroll_option_data,1,4):
+        if validate_data_int(display_payroll_option_data,1,4):
             if display_payroll_option_data == "1":
                 get_allemployeepay_option()
             if display_payroll_option_data == "2":
@@ -194,7 +194,7 @@ def get_process_payroll_option():
 
         process_payroll_option_data = input("Please enter number option from the menu : ")
     
-        if validate_data(process_payroll_option_data,1,3):
+        if validate_data_int(process_payroll_option_data,1,3):
             print("Data is valid")
             break
         return process_payroll_option_data
@@ -352,11 +352,11 @@ def main():
     """
     Run all program functions
     """
-#main_menu_option = get_main_menu_option()
+main_menu_option = get_main_menu_option()
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
 #calculate_employee_payslip_data()
 #next_employee_to_process()
-amend_employees_hours()    
+#amend_employees_hours()    
 print("Welcome to Payroll application")
 main()
