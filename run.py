@@ -29,13 +29,17 @@ EMPLOYERS_NI_PC = 0.1
 def get_payroll_week():
     """
     Get payroll week from user and validate
+    Can only process and amend payroll for current week
   
     """
     while True:
         input_payroll_week=input("Enter Payroll Week (1-52) : ")
-       
-        if validate_data_int(input_payroll_week,1,52):
-            return(input_payroll_week)
+        if int(input_payroll_week) == PAYROLL_WEEK:
+            if validate_data_int(input_payroll_week,1,52):
+                return(input_payroll_week)
+        else: 
+            print (f'You can only enter /Amend payroll for the current week which is week {PAYROLL_WEEK}')
+
 
 def get_employee_num():
     """
@@ -63,7 +67,7 @@ def get_payroll_data():
     """
     Get payroll week, employee's payroll, number, number of hour from user and rate of pay and pension % for employee from spreadsheet
     """
-    employee_entered_payroll_week = get_payroll_week()
+    employee_entered_payroll_week = get_payroll_week(PAYROLL_WEEK)
     employee_num=get_employee_num()
     employee_retrived_data = validate_employee_num(employee_num)
     
@@ -272,7 +276,7 @@ def amend_employees_hours():
     Try: User requested to input payroll week and employee number. Checks to see if there is a record.  If there is it will delete the row
         and request user to put the details in again
         
-    except IndexError if there isn't a value in the sheet then returns to the main menu
+    except IndexError if there isn't a value in the sheet then returns to the process/amend menu
     """
     try:
         week=get_payroll_week()
@@ -293,12 +297,12 @@ def amend_employees_hours():
         row_to_delete = intersect[0]
     
         employeepayroll.delete_rows(row_to_delete)
-        Print('Record deleted for  {num} in week {week}. Please re-enter details')
+        print(f'Record deleted for {num} in week {week}. Please re-enter details')
         calculate_employee_payslip_data()
 
     except IndexError as e:
         print(f"\nNo payroll record found for {num} in week {week}, returning to main menu.\n")
-        get_main_menu_option()
+        get_process_payroll_option()
               
 def yesorno(question):
     """ 
