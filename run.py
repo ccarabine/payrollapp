@@ -40,7 +40,9 @@ def get_employee_num():
     """ 
     while True:
         input_employee_num = input("Enter Employee number e.g. 100014  : ")
+        print ("Finding Employment record")
         if validate_employee_num(input_employee_num):
+            print ("Employment record retrieved")
             return(input_employee_num)
                     
       
@@ -76,26 +78,32 @@ def calculate_employee_payslip_data():
     employee_rate_of_pay=float(payroll_data[2]) 
     employee_hours=int(payroll_data[4]) 
 
-    employee_basic_pay = employee_hours * employee_rate_of_pay
-    employee_holiday = employee_basic_pay * HOL_PC
-    employee_basic_hol = employee_basic_pay + employee_holiday
+    employee_basic_pay = round(employee_hours * employee_rate_of_pay,2)
+    employee_holiday = round(employee_basic_pay * HOL_PC,2)
+    employee_basic_hol = round(employee_basic_pay + employee_holiday,2)
     if (employee_basic_pay + employee_holiday) < EMPLOYEES_NI_AMOUNT:
         employee_ni = 0
     else:
-        employee_ni = ((employee_basic_hol) - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC
-    employee_pension = employee_basic_pay * EMPLOYERS_PENSION_PC
-    employee_deducations = employee_ni + employee_pension
-    employee_net_pay = employee_basic_hol - employee_ni - employee_pension
+        employee_ni = round(((employee_basic_hol) - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC,2)
+    employee_pension = round(employee_basic_pay * EMPLOYERS_PENSION_PC,2)
+    employee_deducations = round(employee_ni + employee_pension,2)
+    employee_net_pay = round(employee_basic_hol - employee_ni - employee_pension,2)
 
-    employers_ni = employee_basic_hol * EMPLOYERS_NI_PC
-    employers_pension = employee_basic_hol * EMPLOYERS_PENSION_PC
+    employers_ni = round(employee_basic_hol * EMPLOYERS_NI_PC,2)
+    employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC,2)
 
     # print(f' Week Name, employee number payroll info:{employee_basic_pay}')
-    print(f' Basic Pay :{employee_basic_pay}')
-    print(f' Holiday Pay :{employee_holiday}')
-    print(f' NI contribution: {employee_ni}')
-    print(f' Pension contribution: {employee_pension}')
-    print(f' Net Pay: {employee_net_pay}')
+    print(f' Basic Pay : £{employee_basic_pay}')
+    print(f' Holiday Pay : £{employee_holiday}')
+    print(f' NI contribution: £{employee_ni}')
+    print(f' Pension contribution: £{employee_pension}')
+    print(f' Net Pay: £{employee_net_pay}')
+    
+    if yesorno("Are the amounts correct? "):
+        print("Ready to upload into payroll spreadsheet")
+    else:
+        print("Re enter details \n")
+        calculate_employee_payslip_data()
 
 #def search():
  #   employee_num=input("Employee num")
@@ -222,10 +230,13 @@ def validate_employee_num(num):
                 break
             get_main_menu_option()
                 
-       
-           
-            
+              
 def yesorno(question):
+    """ 
+     Function to take user input yes or no
+     validate input
+     Code used from https://gist.github.com/garrettdreyfus/8153571  
+     """
     answer = input(f'{question}') 
     try:
         if answer[0] == 'y':
@@ -240,27 +251,6 @@ def yesorno(question):
         print(error)
         return yesorno()
    
-"""
-    try:       
-        if decision_input =="y":
-            raise ValueError(
-               f"Number between {minvalue} and {maxvalue} required, you typed {value}"
-        )
-    except ValueError as e:
-        print(f"Invalid data, please try again.\n")
-        return False
-
-    return True
-
-        if decision =="y":
-            break
-        elif decision == "n":
-            n_function()
-    except ValueError as e:
-        print(f"Invalid data, please try again.\n")
-        return False
-    return True
-"""
 def main():
     """
     Run all program functions
