@@ -217,9 +217,11 @@ def validate_employee_num(num):
         return employee_rateofpay.value,employee_pension.value,
     except AttributeError as e:
         print(f"\nInvalid employee number, please try again.\n")
-        #decision = input('Do you want to try again? type y or n : ')
-        #while true:
-        yesorno("Do you want to try again? type y or n :  ") 
+        while True:
+            if yesorno("Do you want to try again? type y or n :  "):
+                break
+            get_main_menu_option()
+                
        
            
             
