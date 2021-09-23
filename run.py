@@ -112,6 +112,7 @@ def calculate_employee_payslip_data():
         
         row_data= [week_no,employee_number,employee_surname,employee_firstname,employee_hours,employee_basic_pay,employee_pension,employee_net_pay,employers_ni,employers_pension]
         print(row_data)
+        update_worksheet(row_data,"employeepayroll")
         return (employee_basic_pay)
     else:
         print("Re enter details \n")
@@ -239,7 +240,7 @@ def validate_data_float(value,minvalue,maxvalue):
 
     return True
 
-    
+
 def validate_employee_num(num):
     """
     Try: find employee number in employee detail sheet
@@ -282,7 +283,18 @@ def yesorno(question):
         print("Please enter valid entry")
         print(error)
         return yesorno()
-   
+
+def update_worksheet(data, worksheet):
+    """
+    Receives a list to be inserted into a worksheet
+    Update the relevant worksheet with the data provided
+    Code taken from Love sandwiches project
+    """
+    print(f"Updating {worksheet} worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated successfully\n")
+
 def main():
     """
     Run all program functions
