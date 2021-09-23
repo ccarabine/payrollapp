@@ -39,7 +39,7 @@ def get_payroll_week():
                 return(input_payroll_week)
         else: 
             print (f'You can only enter /Amend payroll for the current week which is week {PAYROLL_WEEK}')
-
+    
 
 def get_employee_num():
     """
@@ -67,8 +67,10 @@ def get_payroll_data():
     """
     Get payroll week, employee's payroll, number, number of hour from user and rate of pay and pension % for employee from spreadsheet
     """
-    employee_entered_payroll_week = get_payroll_week()
-    employee_num=get_employee_num()
+    employee_entered_payroll_week=check_data_in_payroll_sheet[0]
+    employee_num = check_data_in_payroll_sheet[1]
+    #employee_entered_payroll_week = get_payroll_week()
+    #employee_num=get_employee_num()
     employee_retrived_data = validate_employee_num(employee_num)
     
     employee_number =(employee_retrived_data[0])
@@ -269,7 +271,7 @@ def validate_employee_num(num):
         employee_firstname =employeedetail.cell(employee_row,3)
         employee_rateofpay =employeedetail.cell(employee_row,4)
         employee_pension =employeedetail.cell(employee_row,5)
-        print(employee_row)
+      
         return employee_number.value, employee_surname.value,employee_firstname.value,employee_rateofpay.value,employee_pension.value
     except AttributeError as e:
         print(f"\nInvalid employee number, please try again.\n")
@@ -278,7 +280,47 @@ def validate_employee_num(num):
                 break
             get_main_menu_option()
 
-def amend_employees_hours():
+def check_data_in_payroll_sheet():
+    """
+    Try: User requested to input payroll week and employee number. Checks to see if there is a record.  If there is it will delete the row
+        and request user to put the details in again
+        
+    except IndexError if there isn't a value in the sheet then returns to the process/amend menu
+    """
+    while True:
+        week=get_payroll_week()
+        num=get_employee_num()
+
+        employee_num_found = employeepayroll.findall(num)
+        week_found = employeepayroll.findall(week)
+        em=[]
+        for i in employee_num_found:
+            em.append(i.row)
+        wk=[]
+        for i in week_found:
+            wk.append(i.row)
+
+        set1 = set(em)
+        set2 = set(wk)
+        intersect = list(set1 & set2)
+        try: 
+            print(intersect[0])
+            print("already entered")
+            if intersect[0] >= 1:
+                print(f'A record has already been entered for employee number: {num} in week {week} ')
+                intersect=[]
+                
+           # else:
+           #     print(f"no record found")    
+                #print(f"\nNo payroll record found for {num} in week {week}, returning to main menu.\n")
+            #can run a function
+              #  return(week,num)
+        except IndexError as e:
+            #print(f'\nNo payroll record found for {num} in week {week}, returning to main menu.\n')
+            print(f' no record found do this')
+            return(week,num)
+#orginal
+def amend_employees_hourss():
     """
     Try: User requested to input payroll week and employee number. Checks to see if there is a record.  If there is it will delete the row
         and request user to put the details in again
@@ -310,7 +352,7 @@ def amend_employees_hours():
     except IndexError as e:
         print(f"\nNo payroll record found for {num} in week {week}, returning to main menu.\n")
         get_process_payroll_option()
-              
+
 def yesorno(question):
     """ 
      Function to take user input yes or no
@@ -348,7 +390,8 @@ def next_employee_to_process():
    """ 
    while True:
             if yesorno("Would you like to process another employees hours? type y or n :  "):
-                calculate_employee_payslip_data()
+                check_data_in_payroll_sheet()
+                
             else:
                 get_main_menu_option()
 
@@ -359,11 +402,13 @@ def main():
     """
     Run all program functions
     """
-main_menu_option = get_main_menu_option()
+check_data_in_payroll_sheet= check_data_in_payroll_sheet()
+
+#main_menu_option = get_main_menu_option()
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
-#calculate_employee_payslip_data()
-#next_employee_to_process()
+calculate_employee_payslip_data()
+next_employee_to_process()
 #amend_employees_hours()    
 print("Welcome to Payroll application")
 main()
