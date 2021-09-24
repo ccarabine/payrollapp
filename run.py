@@ -63,12 +63,12 @@ def get_employee_hours():
             return(input_employee_hours)
 
 
-def get_payroll_data():
+def get_payroll_data(data):
     """
     Get payroll week, employee's payroll, number, number of hour from user and rate of pay and pension % for employee from spreadsheet
     """
-    employee_entered_payroll_week=check_data_in_payroll_sheet[0]
-    employee_num = check_data_in_payroll_sheet[1]
+    employee_entered_payroll_week=data[0]
+    employee_num = data[1]
     #employee_entered_payroll_week = get_payroll_week()
     #employee_num=get_employee_num()
     employee_retrived_data = validate_employee_num(employee_num)
@@ -280,45 +280,46 @@ def validate_employee_num(num):
                 break
             get_main_menu_option()
 
-def check_data_in_payroll_sheet():
+def check_data_in_payroll_sheet(week, employee_num):
     """
     Try: User requested to input payroll week and employee number. Checks to see if there is a record.  If there is it will delete the row
         and request user to put the details in again
         
     except IndexError if there isn't a value in the sheet then returns to the process/amend menu
     """
-    while True:
-        week=get_payroll_week()
-        num=get_employee_num()
+    #while True:
+    employee_num_found = employeepayroll.findall(employee_num)
+    week_found = employeepayroll.findall(week)
+    em=[]
+    for i in employee_num_found:
+        em.append(i.row)
+    wk=[]
+    for i in week_found:
+        wk.append(i.row)
 
-        employee_num_found = employeepayroll.findall(num)
-        week_found = employeepayroll.findall(week)
-        em=[]
-        for i in employee_num_found:
-            em.append(i.row)
-        wk=[]
-        for i in week_found:
-            wk.append(i.row)
-
-        set1 = set(em)
-        set2 = set(wk)
-        intersect = list(set1 & set2)
-        try: 
-            print(intersect[0])
-            print("already entered")
-            if intersect[0] >= 1:
-                print(f'A record has already been entered for employee number: {num} in week {week} ')
-                intersect=[]
-                
-           # else:
-           #     print(f"no record found")    
-                #print(f"\nNo payroll record found for {num} in week {week}, returning to main menu.\n")
-            #can run a function
-              #  return(week,num)
-        except IndexError as e:
-            #print(f'\nNo payroll record found for {num} in week {week}, returning to main menu.\n')
-            print(f' no record found do this')
-            return(week,num)
+    set1 = set(em)
+    set2 = set(wk)
+    intersect = list(set1 & set2)
+    try: 
+        print(intersect[0])
+        print("already entered")
+        if intersect[0] >= 1:
+            print(f'A record has already been entered for employee number: {employee_num} in week {week} ')
+            intersect=[]
+            print("false")
+            get_main_menu_option()
+        else:
+        #     print(f"no record found")    
+            #print(f"\nNo payroll record found for {num} in week {week}, returning to main menu.\n")
+        #can run a function
+            return(week,employee_num)
+    except IndexError as e:
+        #print(f'\nNo payroll record found for {num} in week {week}, returning to main menu.\n')
+        print(f' no record found do this - good to add a row continue')
+        return(week,employee_num)
+        # return True
+    print ("true")
+    
 #orginal
 def amend_employees_hourss():
     """
@@ -402,13 +403,15 @@ def main():
     """
     Run all program functions
     """
-check_data_in_payroll_sheet= check_data_in_payroll_sheet()
+    week=get_payroll_week()
+    num=get_employee_num()
+    check_data_in_payroll_sheet=check_data_in_payroll_sheet(week,num)
 
 #main_menu_option = get_main_menu_option()
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
-calculate_employee_payslip_data()
-next_employee_to_process()
+    calculate_employee_payslip_data(check_data_in_payroll_sheet)
+#next_employee_to_process()
 #amend_employees_hours()    
 print("Welcome to Payroll application")
 main()
