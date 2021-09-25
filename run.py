@@ -193,8 +193,12 @@ def get_process_payroll_option():
     
         if validate_data_int(process_payroll_option_data,1,3):
             if process_payroll_option_data == "1":
-                calculate_employee_payslip_data()
+                week=get_payroll_week()
+                num=get_employee_num()
+                check_data_in_payroll_sheet(week,num)
+                calculate_employee_payslip_data(week,num)
                 next_employee_to_process()
+       
             if process_payroll_option_data == "2":
                 amend_employees_hours()
             if process_payroll_option_data == "3":
@@ -391,12 +395,9 @@ def main():
     """
     Run all program functions
     """
-    week=get_payroll_week()
-    num=get_employee_num()
-    check_data_in_payroll_sheet(week,num)
-    calculate_employee_payslip_data(week,num)
-    next_employee_to_process()
-#main_menu_option = get_main_menu_option()
+    main_menu_option = get_main_menu_option()
+    
+
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
     
