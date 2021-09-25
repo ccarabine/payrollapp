@@ -63,16 +63,11 @@ def get_employee_hours():
             return(input_employee_hours)
 
 
-def get_payroll_data(data):
+def get_payroll_data(employee_entered_payroll_week,employee_num):
     """
-    Get payroll week, employee's payroll, number, number of hour from user and rate of pay and pension % for employee from spreadsheet
+    Get Employees details from spreadsheet and put into variables
     """
-    employee_entered_payroll_week=data[0]
-    employee_num = data[1]
-    #employee_entered_payroll_week = get_payroll_week()
-    #employee_num=get_employee_num()
     employee_retrived_data = validate_employee_num(employee_num)
-    
     employee_number =(employee_retrived_data[0])
     employee_surname =(employee_retrived_data[1])
     employee_firstname =(employee_retrived_data[2])
@@ -82,11 +77,11 @@ def get_payroll_data(data):
    
     return (employee_entered_payroll_week,employee_number,employee_surname,employee_firstname,employee_rate_of_pay,employee_pension, employee_hours)
    
-def calculate_employee_payslip_data():
+def calculate_employee_payslip_data(employee_entered_payroll_week,employee_num):
     """
     Calculates values for employees pay and employers contributions and puts values in a list
     """
-    payroll_data=get_payroll_data()
+    payroll_data=get_payroll_data(employee_entered_payroll_week,employee_num)
     week_no = (payroll_data[0]) 
     employee_number=(payroll_data[1]) 
     employee_surname=(payroll_data[2]) 
@@ -287,7 +282,6 @@ def check_data_in_payroll_sheet(week, employee_num):
         
     except IndexError if there isn't a value in the sheet then returns to the process/amend menu
     """
-    #while True:
     employee_num_found = employeepayroll.findall(employee_num)
     week_found = employeepayroll.findall(week)
     em=[]
@@ -306,19 +300,13 @@ def check_data_in_payroll_sheet(week, employee_num):
         if intersect[0] >= 1:
             print(f'A record has already been entered for employee number: {employee_num} in week {week} ')
             intersect=[]
-            print("false")
             get_main_menu_option()
         else:
-        #     print(f"no record found")    
-            #print(f"\nNo payroll record found for {num} in week {week}, returning to main menu.\n")
-        #can run a function
             return(week,employee_num)
     except IndexError as e:
-        #print(f'\nNo payroll record found for {num} in week {week}, returning to main menu.\n')
         print(f' no record found do this - good to add a row continue')
         return(week,employee_num)
-        # return True
-    print ("true")
+       
     
 #orginal
 def amend_employees_hourss():
@@ -405,13 +393,13 @@ def main():
     """
     week=get_payroll_week()
     num=get_employee_num()
-    check_data_in_payroll_sheet=check_data_in_payroll_sheet(week,num)
-
+    check_data_in_payroll_sheet(week,num)
+    calculate_employee_payslip_data(week,num)
+    next_employee_to_process()
 #main_menu_option = get_main_menu_option()
 #process_payroll=process_payroll()
 #get_payroll_data=get_payroll_data()
-    calculate_employee_payslip_data(check_data_in_payroll_sheet)
-#next_employee_to_process()
+    
 #amend_employees_hours()    
 print("Welcome to Payroll application")
 main()
