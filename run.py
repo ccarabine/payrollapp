@@ -1,7 +1,8 @@
 import gspread
+from pprint import pprint
 from google.oauth2.service_account import Credentials
-import pandas as pd
 
+from datetime import date
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -24,7 +25,7 @@ EMPLOYEES_NI_AMOUNT=156
 
 EMPLOYERS_PENSION_PC =0.03
 EMPLOYERS_NI_PC = 0.1
-#main_menu_option = get_main_menu_option()
+
 
 def get_payroll_week():
     """
@@ -121,10 +122,6 @@ def calculate_employee_payslip_data(employee_entered_payroll_week,employee_num):
         print("Re enter details \n")
         calculate_employee_payslip_data()
 
-#def search():
- #   employee_num=input("Employee num")
-  #  search_value = employeedetail.findall(employee_num )
-   # print(search_value)
 
 
 def get_main_menu_option():
@@ -200,7 +197,10 @@ def get_process_payroll_option():
                 next_employee_to_process()
        
             if process_payroll_option_data == "2":
-                amend_employees_hours()
+                week=get_payroll_week()
+                employee_num=get_employee_num()
+                check_data_in_payroll_sheet(week, employee_num)
+                amend_employees_hours(week, employee_num)
             if process_payroll_option_data == "3":
                 get_main_menu_option()
            
@@ -281,50 +281,12 @@ def validate_employee_num(num):
 
 def check_data_in_payroll_sheet(week, employee_num):
     """
-    Try: User requested to input payroll week and employee number. Checks to see if there is a record.  If there is it will delete the row
-        and request user to put the details in again
+    Try: Checks to see if there is a record for the week and employee number in spreadsheet.  If there is it will return the row to delete 
         
     except IndexError if there isn't a value in the sheet then returns to the process/amend menu
     """
-    employee_num_found = employeepayroll.findall(employee_num)
-    week_found = employeepayroll.findall(week)
-    em=[]
-    for i in employee_num_found:
-        em.append(i.row)
-    wk=[]
-    for i in week_found:
-        wk.append(i.row)
-
-    set1 = set(em)
-    set2 = set(wk)
-    intersect = list(set1 & set2)
     try: 
-        print(intersect[0])
-        print("already entered")
-        if intersect[0] >= 1:
-            print(f'A record has already been entered for employee number: {employee_num} in week {week} ')
-            intersect=[]
-            get_main_menu_option()
-        else:
-            return(week,employee_num)
-    except IndexError as e:
-        print(f' no record found do this - good to add a row continue')
-        return(week,employee_num)
-       
-    
-#orginal
-def amend_employees_hourss():
-    """
-    Try: User requested to input payroll week and employee number. Checks to see if there is a record.  If there is it will delete the row
-        and request user to put the details in again
-        
-    except IndexError if there isn't a value in the sheet then returns to the process/amend menu
-    """
-    try:
-        week=get_payroll_week()
-        num=get_employee_num()
-    
-        employee_num_found = employeepayroll.findall(num)
+        employee_num_found = employeepayroll.findall(employee_num)
         week_found = employeepayroll.findall(week)
         em=[]
         for i in employee_num_found:
@@ -332,16 +294,33 @@ def amend_employees_hourss():
         wk=[]
         for i in week_found:
             wk.append(i.row)
-        
+
         set1 = set(em)
         set2 = set(wk)
         intersect = list(set1 & set2)
-        row_to_delete = intersect[0]
+        row_to_delete=intersect[0]
     
-        employeepayroll.delete_rows(row_to_delete)
-        print(f'Record deleted for {num} in week {week}. Please re-enter details')
-        calculate_employee_payslip_data()
-
+        if intersect[0] >= 1:
+            print(f'Record for {employee_num} found in week {week} ')
+            intersect=[]
+            return(row_to_delete,employee_num_found,week_found)
+        else:
+            return(week, employee_num)
+    except IndexError as e:
+        print(f'No payroll record found ')
+        get_process_payroll_option()
+       
+def amend_employees_hours(week, employee_num):
+    """
+    Try: Delete the payroll information for the employee and request user to put the details in again
+        
+    except IndexError if there isn't a value in the sheet then returns to the process/amend menu
+    """
+    try:
+        row_to_delete =check_data_in_payroll_sheet(week, employee_num)
+        employeepayroll.delete_rows(row_to_delete[0])
+        calculate_employee_payslip_data(week, employee_num)
+        print(f'Updated payroll information')
     except IndexError as e:
         print(f"\nNo payroll record found for {num} in week {week}, returning to main menu.\n")
         get_process_payroll_option()
@@ -390,16 +369,15 @@ def next_employee_to_process():
 
 
 
-
 def main():
     """
     Run all program functions
     """
     main_menu_option = get_main_menu_option()
-    
+   # search()
 
 #process_payroll=process_payroll()
-#get_payroll_data=get_payroll_data()
+#get pprint(values_list)_payroll_data=get_payroll_data()
     
 #amend_employees_hours()    
 print("Welcome to Payroll application")
