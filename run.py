@@ -284,9 +284,11 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num,status):
     except IndexError if there isn't a value in the sheet then returns to the process/amend menu
     """
     try: 
-        if status == "1":
+        print(employee_num)
+        if status == "1" or "3":
             employee_num=employee_num[0]
-      
+            print(employee_num)
+        print(employee_num)
         employee_num_found = employeepayroll.findall(employee_num)
         week_found = employeepayroll.findall(entered_payroll_week)
         em=[]
@@ -308,7 +310,8 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num,status):
                 print("Returning to menu")
                 intersect=[]
                 get_process_payroll_option()
-                
+            elif status == "3":
+                return(row_to_delete)
     except IndexError as e:
         if status == "1":
             print(f'No payroll entry found, ready to process employee ')
@@ -378,13 +381,26 @@ def next_employee_to_process():
             else:
                 get_main_menu_option()
 
+def display_all_employeepay_for_week():
+    """
+    Request user to input payroll week, display first row(headings) and the data in tables
+    """
+    week=get_payroll_week()
+    values = employeepayroll.findall(week)
+    values_list = employeepayroll.row_values(1)
+    print(values_list)
+    for r in values:
+        print(', '.join(employeepayroll.row_values(r.row))) 
+
+
 
 def main():
     """
     Run all program functions
     """
-    main_menu_option = get_main_menu_option()
-   # search()
+    #main_menu_option = get_main_menu_option()
+    #display_all_employeepay_for_week()
+    display_all_employeepay_for_week()
 
 #process_payroll=process_payroll()
 #get pprint(values_list)_payroll_data=get_payroll_data()
