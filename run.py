@@ -1,4 +1,5 @@
 import gspread
+import pprint
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -284,11 +285,9 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num,status):
     except IndexError if there isn't a value in the sheet then returns to the process/amend menu
     """
     try: 
-        print(employee_num)
         if status == "1" or "3":
             employee_num=employee_num[0]
-            print(employee_num)
-        print(employee_num)
+
         employee_num_found = employeepayroll.findall(employee_num)
         week_found = employeepayroll.findall(entered_payroll_week)
         em=[]
@@ -392,7 +391,20 @@ def display_all_employeepay_for_week():
     for r in values:
         print(', '.join(employeepayroll.row_values(r.row))) 
 
-
+def display_ind_employee_pay_for_week():
+    """
+    Request user to enter payroll week(only current week) and employee number, validation to ensure there is a record
+    displays employee pay record
+    """
+    entered_payroll_week=get_payroll_week()
+    employee_num=get_employee_num()
+    row=check_data_in_payroll_sheet(entered_payroll_week, employee_num,"3")
+    headings = employeepayroll.row_values(1)
+    employee_data1 = employeepayroll.row_values(row)
+   
+    for heading, employee_data in zip(headings, employee_data1):
+        print(f' {heading} : {employee_data}')
+        
 
 def main():
     """
