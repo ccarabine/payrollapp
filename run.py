@@ -35,7 +35,8 @@ def get_payroll_week():
         input_payroll_week=input("Enter Payroll Week (1-52) : ")
         if int(input_payroll_week) == PAYROLL_WEEK:
             if validate_data_int(input_payroll_week,1,52):
-                return(input_payroll_week)
+                payroll_wk="wk"+ input_payroll_week
+                return(payroll_wk)
         else: 
             print (f'You can only enter /Amend payroll for the current week which is week {PAYROLL_WEEK}')
     
@@ -192,6 +193,7 @@ def process_payroll_option_1():
     Process payroll option 1 -run functions below to add employees hours
     """
     entered_payroll_week=get_payroll_week()
+    print(entered_payroll_week)
     employee_num=get_employee_num()
     status="1"
     check_data_in_payroll_sheet(entered_payroll_week,employee_num,status)
