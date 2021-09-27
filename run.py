@@ -155,9 +155,9 @@ def get_display_payroll_option():
         display_payroll_option_data = input("Please enter number option from the menu : ")
         if validate_data_int(display_payroll_option_data,1,4):
             if display_payroll_option_data == "1":
-                get_allemployeepay_option()
+                display_all_employeepay_for_week()
             if display_payroll_option_data == "2":
-                get_employeepay_option()
+                display_ind_employee_pay_for_week()
             if display_payroll_option_data == "3":
                 get_employerssummaryay_option()
             if display_payroll_option_data == "4":
@@ -385,11 +385,12 @@ def display_all_employeepay_for_week():
     Request user to input payroll week, display first row(headings) and the data in tables
     """
     week=get_payroll_week()
-    values = employeepayroll.findall(week)
-    values_list = employeepayroll.row_values(1)
-    print(values_list)
-    for r in values:
+    employee_data1 = employeepayroll.findall(week)
+    headings = employeepayroll.row_values(1)
+    print(headings)
+    for r in employee_data1:
         print(', '.join(employeepayroll.row_values(r.row))) 
+     
 
 def display_ind_employee_pay_for_week():
     """
@@ -410,7 +411,7 @@ def main():
     """
     Run all program functions
     """
-    #main_menu_option = get_main_menu_option()
+    main_menu_option = get_main_menu_option()
     #display_all_employeepay_for_week()
     display_all_employeepay_for_week()
 
