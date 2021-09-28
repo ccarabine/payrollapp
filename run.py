@@ -1,5 +1,8 @@
 import gspread
 import pprint
+from datetime import date
+import datetime
+
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -17,7 +20,6 @@ employeedetail = SHEET.worksheet('employeedetail')
 employeepayroll = SHEET.worksheet('employeepayroll')
 employee_payroll_list = employeepayroll.get_all_values()
 
-PAYROLL_WEEK = 34
 HOL_PC = 0.1208
 EMPLOYEES_NI_PC = 0.1392 
 EMPLOYEES_NI_AMOUNT=156
@@ -32,15 +34,26 @@ def get_payroll_week():
     Can only process and amend payroll for current week
   
     """
+    current_payroll_week1=current_payroll_week()
+    
     while True:
         input_payroll_week=input("Enter Payroll Week (1-52) : ")
-        if int(input_payroll_week) == PAYROLL_WEEK:
+        if int(input_payroll_week) == current_payroll_week1:
             if validate_data_int(input_payroll_week,1,52):
                 payroll_wk="wk"+ input_payroll_week
                 return(payroll_wk)
         else: 
-            print (f'You can only enter /Amend payroll for the current week which is week {PAYROLL_WEEK}')
-    
+            print (f'You can only enter /Amend payroll for the current week which is Week {current_payroll_week1}')
+
+
+def current_payroll_week():
+    """
+    Get tax week number, minus 13 weeks to start in april for payroll week
+    """
+    tax_week_number = date.today().isocalendar()[1]
+    payroll_week_number = tax_week_number - 12
+    return(payroll_week_number)
+
 
 def get_employee_num():
     """
@@ -194,7 +207,6 @@ def process_payroll_option_1():
     Process payroll option 1 -run functions below to add employees hours
     """
     entered_payroll_week=get_payroll_week()
-    print(entered_payroll_week)
     employee_num=get_employee_num()
     status="1"
     check_data_in_payroll_sheet(entered_payroll_week,employee_num,status)
@@ -412,9 +424,11 @@ def main():
     Run all program functions
     """
     main_menu_option = get_main_menu_option()
+    
+    
     #display_all_employeepay_for_week()
-    display_all_employeepay_for_week()
-
+   # display_all_employeepay_for_week()
+    
 #process_payroll=process_payroll()
 #get pprint(values_list)_payroll_data=get_payroll_data()
     
