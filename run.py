@@ -38,10 +38,12 @@ def get_payroll_week():
     
     while True:
         input_payroll_week=input("Enter Payroll Week (1-52) : ")
-        if int(input_payroll_week) == current_payroll_week1:
-            if validate_data_int(input_payroll_week,1,52):
+        if validate_data_int(input_payroll_week,1,52):
+            if int(input_payroll_week) == current_payroll_week1:
                 payroll_wk="wk"+ input_payroll_week
                 return(payroll_wk)
+            else:
+                print (f'You can only enter /Amend payroll for the current week which is Week {current_payroll_week1}')
         else: 
             print (f'You can only enter /Amend payroll for the current week which is Week {current_payroll_week1}')
 
@@ -51,7 +53,7 @@ def current_payroll_week():
     Get tax week number, minus 13 weeks to start in april for payroll week
     """
     tax_week_number = date.today().isocalendar()[1]
-    payroll_week_number = tax_week_number - 12
+    payroll_week_number = tax_week_number - 13
     return(payroll_week_number)
 
 
