@@ -344,24 +344,23 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
         set1 = set(em)
         set2 = set(wk)
         intersect = list(set1 & set2)
-        print(f'employee number{employee_num} here')
         row_to_delete = intersect[0]
         if row_to_delete >= 1:
             print(
                 f'Record for {employee_num} found in '
                 f'week {entered_payroll_week} '
                 )
-            if status == "2":
-                return (row_to_delete)
-            elif status == "1":
+            if status == "1":
                 print("Returning to menu")
                 get_process_payroll_option()
+            elif status == "2":
+                return (row_to_delete)
             elif status == "3":
                 return(row_to_delete)
     except IndexError:
         if status == "1":
             print('No payroll entry found, ready to process employee ')
-            return(entered_payroll_week, employee_num)
+            return(entered_payroll_week, employee_num[0])
         elif status == "2":
             print(
                 'No record found, select option 1 to '
@@ -395,7 +394,6 @@ def amend_employees_hours(entered_payroll_week, employee_num):
         print('Updated payroll information')
     except IndexError:
         print("employee_num")
-        print(employee_num)
         print(
             f'\nNo payroll record found for {employee_num} in week'
             f' {entered_payroll_week}, returning to main menu.\n')
@@ -462,17 +460,21 @@ def display_all_employeepay_for_week():
 
 def display_ind_employee_pay_for_week():
     """
-    Request user to enter payroll week(only current week) and employee number,
+    Request user to enter payroll week and employee number,
     validation to ensure there is a record displays employee pay record
     """
-    entered_payroll_week = get_payroll_week("any week")
+    week = get_payroll_week("any week")
     employee_num = get_employee_num()
-    row = check_data_in_payroll_sheet(entered_payroll_week, employee_num, "3")
-    headings = employeepayroll.row_values(1)
-    employee_data1 = employeepayroll.row_values(row)
-    print(employee_data1)
-    for heading, employee_data in zip(headings, employee_data1):
-        print(f' {heading} : {employee_data}')
+    employee_num = employee_num[0]
+    print(employee_num)
+    display_employee_data = df.loc[
+        (df['Week Number'] == (week)) & (
+            df['Employee Number'] == (employee_num)), [
+                    'Week Number', 'Employee Number',
+                    'First Name', 'Surname', 'Basic Pay', 'Holiday Pay',
+                    'Employees NI', 'Employees Pension', 'NET Pay'
+                    ]]
+    print(display_employee_data)
 
 
 def get_employerssummaryay_option():
