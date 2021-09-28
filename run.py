@@ -332,7 +332,9 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num,status):
         elif status == "2":
             print(f'No record found, select option 1 to process employees hours ')
             get_process_payroll_option()
-            
+        elif status == "3":
+            print(f'No record found, select option 2, try again or select another option ')
+            get_display_payroll_option()
 
 def amend_employees_hours(entered_payroll_week, employee_num):
     """
@@ -416,7 +418,7 @@ def display_ind_employee_pay_for_week():
     row=check_data_in_payroll_sheet(entered_payroll_week, employee_num,"3")
     headings = employeepayroll.row_values(1)
     employee_data1 = employeepayroll.row_values(row)
-   
+    print(employee_data1)
     for heading, employee_data in zip(headings, employee_data1):
         print(f' {heading} : {employee_data}')
         
