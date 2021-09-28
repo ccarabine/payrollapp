@@ -458,8 +458,8 @@ def display_all_employeepay_for_week():
     display data for week
     """
     week = get_payroll_week("any week")
-    data_by_week= df.groupby('Week Number')
-    filtered_data_by_week= data_by_week.get_group(week)
+    data_by_week = df.groupby('Week Number')
+    filtered_data_by_week = data_by_week.get_group(week)
     print(filtered_data_by_week)
 
 
@@ -478,10 +478,23 @@ def display_ind_employee_pay_for_week():
         print(f' {heading} : {employee_data}')
 
 
+def get_employerssummaryay_option():
+    company_payroll_data = df.groupby(
+        ['Week Number'])[
+                'NET Pay',
+                'Employees NI', 'Employees Pension',
+                'Company NI', 'Company Pension'
+                ].agg(lambda x: sum(x.astype(float)))
+    print(company_payroll_data)
+
+
 def main():
     """
     Run all program functions
     """
     get_main_menu_option()
+
+
 print("Welcome to Payroll application")
+
 main()
