@@ -27,10 +27,11 @@ EMPLOYEES_NI_AMOUNT=156
 EMPLOYERS_PENSION_PC =0.03
 EMPLOYERS_NI_PC = 0.1
 
-
-def get_payroll_week():
+def get_payroll_week(week_status):
     """
     Get payroll week from user and validate
+    if week status is normal then can only enter the current week
+    if week status is any week, then can enter any week between 1 to 52 for displaying purposes
     Can only process and amend payroll for current week
   
     """
@@ -39,11 +40,15 @@ def get_payroll_week():
     while True:
         input_payroll_week=input("Enter Payroll Week (1-52) : ")
         if validate_data_int(input_payroll_week,1,52):
-            if int(input_payroll_week) == current_payroll_week1:
+            if week_status=="normal":
+                if int(input_payroll_week) == current_payroll_week1:
+                    payroll_wk="wk"+ input_payroll_week
+                    return(payroll_wk)
+                else:
+                    print (f'You can only enter /Amend payroll for the current week which is Week {current_payroll_week1}')
+            elif week_status=="any week":
                 payroll_wk="wk"+ input_payroll_week
                 return(payroll_wk)
-            else:
-                print (f'You can only enter /Amend payroll for the current week which is Week {current_payroll_week1}')
         else: 
             print (f'You can only enter /Amend payroll for the current week which is Week {current_payroll_week1}')
 
@@ -208,7 +213,8 @@ def process_payroll_option_1():
     """
     Process payroll option 1 -run functions below to add employees hours
     """
-    entered_payroll_week=get_payroll_week()
+   
+    entered_payroll_week=get_payroll_week("normal")
     employee_num=get_employee_num()
     status="1"
     check_data_in_payroll_sheet(entered_payroll_week,employee_num,status)
@@ -219,7 +225,7 @@ def process_payroll_option_2():
     """
     Process payroll option 2 -run functions below to amend employees hours
     """
-    entered_payroll_week=get_payroll_week()
+    entered_payroll_week=get_payroll_week("normal")
     employee_num=get_employee_num()
     amend_employees_hours(entered_payroll_week, employee_num)
 
@@ -400,7 +406,7 @@ def display_all_employeepay_for_week():
     """
     Request user to input payroll week, display first row(headings) and the data in tables
     """
-    week=get_payroll_week()
+    week=get_payroll_week("any week")
     employee_data1 = employeepayroll.findall(week)
     headings = employeepayroll.row_values(1)
     print(headings)
@@ -413,7 +419,7 @@ def display_ind_employee_pay_for_week():
     Request user to enter payroll week(only current week) and employee number, validation to ensure there is a record
     displays employee pay record
     """
-    entered_payroll_week=get_payroll_week()
+    entered_payroll_week=get_payroll_week("any week")
     employee_num=get_employee_num()
     row=check_data_in_payroll_sheet(entered_payroll_week, employee_num,"3")
     headings = employeepayroll.row_values(1)
