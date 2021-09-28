@@ -1,6 +1,6 @@
 import gspread
 from datetime import date
-
+import pandas as pd
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -16,7 +16,10 @@ SHEET = GSPREAD_CLIENT.open('companypayroll')
 
 employeedetail = SHEET.worksheet('employeedetail')
 employeepayroll = SHEET.worksheet('employeepayroll')
-employee_payroll_list = employeepayroll.get_all_values()
+
+data = employeepayroll.get_all_values()
+headers = data.pop(0)
+df = pd.DataFrame(data, columns=headers)
 
 HOL_PC = 0.1208
 EMPLOYEES_NI_PC = 0.1392
@@ -452,14 +455,12 @@ def next_employee_to_process():
 def display_all_employeepay_for_week():
     """
     Request user to input payroll week,
-    display first row(headings) and the data in tables
+    display data for week
     """
     week = get_payroll_week("any week")
-    employee_data1 = employeepayroll.findall(week)
-    headings = employeepayroll.row_values(1)
-    print(headings)
-    for r in employee_data1:
-        print(', '.join(employeepayroll.row_values(r.row)))
+    data_by_week= df.groupby('Week Number')
+    filtered_data_by_week= data_by_week.get_group(week)
+    print(filtered_data_by_week)
 
 
 def display_ind_employee_pay_for_week():
@@ -482,7 +483,5 @@ def main():
     Run all program functions
     """
     get_main_menu_option()
-
-
 print("Welcome to Payroll application")
 main()
