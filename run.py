@@ -160,8 +160,7 @@ def get_main_menu_option():
         print("-------------- Main Menu -------------- ")
         print("1 Display payroll")
         print("2 Process / Amend payroll")
-        print("3 Run payroll")
-        print("4 Add / Amend employee details\n")
+        print("3 Add / Amend employee details\n")
         print("Example:  1\n")
 
         main_menu_option_data = input(
@@ -172,8 +171,6 @@ def get_main_menu_option():
             if main_menu_option_data == "2":
                 get_process_payroll_option()
             if main_menu_option_data == "3":
-                get_run_payroll_option()
-            if main_menu_option_data == "4":
                 get_add_amend_employee_option()
 
 
@@ -479,6 +476,9 @@ def display_ind_employee_pay_for_week():
 
 
 def get_employerssummaryay_option():
+    """
+    Displays Employers amounts to pay out
+    """
     company_payroll_data = df.groupby(
         ['Week Number'])[
                 'NET Pay',
