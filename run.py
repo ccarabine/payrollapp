@@ -2,6 +2,7 @@ import gspread
 import getpass
 from datetime import date
 import pandas as pd
+import time
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -457,6 +458,7 @@ def display_all_employeepay_for_week():
     data_by_week = df.groupby('Week Number')
     filtered_data_by_week = data_by_week.get_group(week)
     print(filtered_data_by_week)
+    time.sleep(3)
 
 
 def display_ind_employee_pay_for_week():
@@ -476,6 +478,7 @@ def display_ind_employee_pay_for_week():
                     'Employees NI', 'Employees Pension', 'NET Pay'
                     ]]
     print(display_employee_data)
+    time.sleep(3)
 
 
 def get_employerssummaryay_option():
@@ -489,6 +492,7 @@ def get_employerssummaryay_option():
                 'Company NI', 'Company Pension'
                 ].agg(lambda x: sum(x.astype(float)))
     print(company_payroll_data)
+    time.sleep(3)
 
 def password():
     """
