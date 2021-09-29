@@ -1,4 +1,5 @@
 import gspread
+import getpass
 from datetime import date
 import pandas as pd
 from google.oauth2.service_account import Credentials
@@ -489,11 +490,25 @@ def get_employerssummaryay_option():
                 ].agg(lambda x: sum(x.astype(float)))
     print(company_payroll_data)
 
+def password():
+    """
+    Prompts user for password
+    """
+    while True:
+        pass_word = getpass.getpass(prompt='Enter password (No characters show when typed): ')
+        
+        if pass_word == 'admin':
+            print('Password Correct')
+            return
+        else:
+            print('Incorrect password, please try again')
+          
 
 def main():
     """
     Run all program functions
     """
+    password()
     get_main_menu_option()
 
 
