@@ -174,7 +174,7 @@ def get_main_menu_option():
 
         main_menu_option_data = input(
             'Please enter number option from the menu : ')
-        if validate_data_int(main_menu_option_data, 1, 4):
+        if validate_data_int(main_menu_option_data, 1, 3):
             if main_menu_option_data == "1":
                 clear()
                 get_display_payroll_option()
