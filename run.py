@@ -3,6 +3,7 @@ import getpass
 from datetime import date
 import pandas as pd
 import time
+from os import system, name
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -175,10 +176,13 @@ def get_main_menu_option():
             'Please enter number option from the menu : ')
         if validate_data_int(main_menu_option_data, 1, 4):
             if main_menu_option_data == "1":
+                clear()
                 get_display_payroll_option()
             if main_menu_option_data == "2":
+                clear()
                 get_process_payroll_option()
             if main_menu_option_data == "3":
+                clear()
                 get_add_amend_employee_option()
 
 
@@ -199,12 +203,16 @@ def get_display_payroll_option():
             )
         if validate_data_int(display_payroll_option_data, 1, 4):
             if display_payroll_option_data == "1":
+                clear()
                 display_all_employeepay_for_week()
             if display_payroll_option_data == "2":
+                clear()
                 display_ind_employee_pay_for_week()
             if display_payroll_option_data == "3":
+                clear()
                 get_employerssummaryay_option()
             if display_payroll_option_data == "4":
+                clear()
                 get_main_menu_option()
 
 
@@ -438,6 +446,8 @@ def update_worksheet(data, worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
+    time.sleep(1)
+    clear()
 
 
 def next_employee_to_process():
@@ -475,7 +485,7 @@ def display_ind_employee_pay_for_week():
     week = get_payroll_week("any week")
     employee_num = get_employee_num()
     employee_num = employee_num[0]
-    print(employee_num)
+    clear()
     display_employee_data = df.loc[
         (df['Week Number'] == (week)) & (
             df['Employee Number'] == (employee_num)), [
@@ -510,9 +520,20 @@ def password():
             prompt='Enter password (No characters show when typed): ')
         if pass_word == 'admin':
             print('Password Correct')
+            clear()
             return
         else:
             print('Incorrect password, please try again')
+
+
+def clear():
+    """
+    Brings the function called text to the top of the terminal
+    """
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
 
 
 def main():
