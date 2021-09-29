@@ -24,11 +24,12 @@ headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
 
 HOL_PC = 0.1208
-EMPLOYEES_NI_PC = 0.1392
-EMPLOYEES_NI_AMOUNT = 156
+EMPLOYEES_NI_PC = 0.12
+EMPLOYEES_NI_AMOUNT = 184
 
 EMPLOYERS_PENSION_PC = 0.03
-EMPLOYERS_NI_PC = 0.1
+EMPLOYERS_NI_PC = 0.138
+EMPLOYERS_NI_AMOUNT = 170
 
 
 def get_payroll_week(week_status):
@@ -123,7 +124,12 @@ def calculate_employee_payslip_data(
     employee_net_pay = round(
         employee_basic_hol - employee_ni - employee_pension, 2
         )
-    employers_ni = round(employee_basic_hol * EMPLOYERS_NI_PC, 2)
+    if (employee_basic_pay + employee_holiday) < EMPLOYERS_NI_AMOUNT:
+        employers_ni = 0
+    else:
+        employers_ni = round(
+            ((employee_basic_hol) - EMPLOYERS_NI_AMOUNT) * EMPLOYERS_NI_PC, 2
+            )
     employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC, 2)
 
     print(
@@ -494,19 +500,20 @@ def get_employerssummaryay_option():
     print(company_payroll_data)
     time.sleep(3)
 
+
 def password():
     """
     Prompts user for password
     """
     while True:
-        pass_word = getpass.getpass(prompt='Enter password (No characters show when typed): ')
-        
+        pass_word = getpass.getpass(
+            prompt='Enter password (No characters show when typed): ')
         if pass_word == 'admin':
             print('Password Correct')
             return
         else:
             print('Incorrect password, please try again')
-          
+
 
 def main():
     """
