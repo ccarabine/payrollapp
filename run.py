@@ -36,41 +36,44 @@ EMPLOYERS_NI_AMOUNT = 170
 def get_payroll_week(week_status):
     """
     Get payroll week from user and validate
-    if week status is normal then can only enter the current week
+    if week status is normal then can only enter the previous week
     if week status is any week, then can enter any week between
         1 to 52 for displaying purposes
-    Can only process and amend payroll for current week
+    Can only process and amend payroll for previous week
     """
-    current_payroll_week1 = current_payroll_week()
+    last_week_payroll_week_number = payroll_weeks()
+
     while True:
         input_payroll_week = input("Enter Payroll Week (1-52) : ")
         if validate_data_int(input_payroll_week, 1, 52):
             if week_status == "normal":
-                if int(input_payroll_week) == current_payroll_week1:
+                if int(input_payroll_week) == last_week_payroll_week_number:
                     payroll_wk = "wk" + input_payroll_week
                     return(payroll_wk)
                 else:
                     print(
                         'You can only enter / '
                         'amend payroll for the current week'
-                        f'which is Week {current_payroll_week1}')
+                        f'which is Week {last_week_payroll_week_number}')
             elif week_status == "any week":
                 payroll_wk = "wk" + input_payroll_week
                 return(payroll_wk)
         else:
             print(
                 'You can only enter / '
-                'amend payroll for the current week which'
-                f' is Week {current_payroll_week1}')
+                'amend payroll for the previous week which'
+                f' is Week {last_week_payroll_week_number}')
 
 
-def current_payroll_week():
+def payroll_weeks():
     """
-    Get tax week number, minus 13 weeks to start in april for payroll week
+    Get current tax week number, minus 13 weeks to start in april for payroll week
+    to get the previous payroll week, minus 1 week
     """
     tax_week_number = date.today().isocalendar()[1]
-    payroll_week_number = tax_week_number - 13
-    return(payroll_week_number)
+    current_payroll_week_number = tax_week_number - 13
+    last_week_payroll_week_number = current_payroll_week_number -1
+    return(last_week_payroll_week_number)
 
 
 def get_employee_num():
@@ -232,10 +235,13 @@ def get_process_payroll_option():
             )
         if validate_data_int(process_payroll_option_data, 1, 3):
             if process_payroll_option_data == "1":
+                clear()
                 process_payroll_option_1()
             if process_payroll_option_data == "2":
+                clear()
                 process_payroll_option_2()
             if process_payroll_option_data == "3":
+                clear()
                 get_main_menu_option()
         return process_payroll_option_data
 
