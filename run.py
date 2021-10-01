@@ -1,3 +1,11 @@
+"""
+Main File run.py, for payroll applicaiton by Chris Carabine
+
+This is the main file for a command line interface payroll system for
+staff to process employees hours for payroll.
+
+The data is pushed to and read from google sheet, stored on google drive
+"""
 import gspread
 import getpass
 from datetime import date
@@ -6,6 +14,34 @@ import time
 from os import system, name
 from google.oauth2.service_account import Credentials
 
+"""
+Imports for all modules for application to function fully:
+
+gspread:  A Python API for Google Sheets. Read, write, and format cell ranges.
+
+Getpass: Prompt the user for a password without echoing.
+
+datetime: to get the current week of the year
+
+Pandas:  allows importing data and manipulation operations such as merging,
+reshaping, selecting, as well as data cleaning, and data wrangling features.
+
+Time: The sleep() function delays execution of the current thread for the
+given number of seconds.
+
+os: The OS module in Python provides functions for interacting with the
+operating system.
+
+google.oauth2.service_account: So the application can access the account that
+the sheet is on with the credentials
+
+"""
+
+"""
+SCOPES, CREDS, SCOPED_CREDS,GSPREAD_CLIENT,SHEET : used with Google API Client
+to gain access to and modify data on Google Sheets.
+"""
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -13,6 +49,7 @@ SCOPE = [
     ]
 
 CREDS = Credentials.from_service_account_file('creds.json')
+
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('companypayroll')
@@ -20,10 +57,15 @@ SHEET = GSPREAD_CLIENT.open('companypayroll')
 employeedetail = SHEET.worksheet('employeedetail')
 employeepayroll = SHEET.worksheet('employeepayroll')
 
+
+"""
+Puts the data from employeepayroll in tp a pandas data frame
+"""
 data = employeepayroll.get_all_values()
 headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
 
+# Constant variables
 HOL_PC = 0.1208
 EMPLOYEES_NI_PC = 0.12
 EMPLOYEES_NI_AMOUNT = 184
@@ -36,10 +78,13 @@ EMPLOYERS_NI_AMOUNT = 170
 def get_payroll_week(week_status):
     """
     Get payroll week from user and validate
-    if week status is normal then can only enter the previous week
-    if week status is any week, then can enter any week between
+    if week status is normal then the user can only enter the previous week
+    else if week status is any week, then can enter any week between
         1 to 52 for displaying purposes
     Can only process and amend payroll for previous week
+    @param week_status(str): "normal" or "any week" coded in
+    @returns: payroll_wk(str)
+
     """
     last_week_payroll_week_number = payroll_weeks()
 
@@ -67,12 +112,15 @@ def get_payroll_week(week_status):
 
 def payroll_weeks():
     """
-    Get current tax week number, minus 13 weeks to start in april for payroll week
-    to get the previous payroll week, minus 1 week
+    Get current tax week number, minus 13 weeks to start in april for
+    payroll week to get the previous payroll week, minus 1 week
+    @returns: last_week_payroll_week_number(str)
+    isocalender code reference from
+    http://week-number.net/programming/week-number-in-python.html
     """
     tax_week_number = date.today().isocalendar()[1]
     current_payroll_week_number = tax_week_number - 13
-    last_week_payroll_week_number = current_payroll_week_number -1
+    last_week_payroll_week_number = current_payroll_week_number - 1
     return(last_week_payroll_week_number)
 
 
@@ -80,6 +128,8 @@ def get_employee_num():
     """
     Get employee number from user,validate to check that the employee
     is in the employee details list and retrieve details
+    @returns: input_employee_num(str):Employee number given by user
+    @returns: status(str): Status coded in
     """
     while True:
         input_employee_num = input("Enter Employee number e.g. 100014  : ")
@@ -93,6 +143,7 @@ def get_employee_num():
 def get_employee_hours():
     """
     Get employees hours for week from user ( maximum 100 hours) and validate
+    @returns: input_employee_hours(float):Employee hours given by user
     """
     while True:
         input_employee_hours = input("Enter number of hours worked : ")
@@ -105,7 +156,11 @@ def calculate_employee_payslip_data(
         ):
     """
     Get Employees details from spreadsheet,
-    put into variables and calculate values
+    put into variables, calculate values and updates worksheet
+    @param entered_payroll_week(str): payroll week
+    @param employee_num : Employee number
+    @param status(str) : Status
+    @returns: payroll_wk(str) : Payroll week
     """
     employee_retrived_data = validate_employee_num(employee_num, "1")
     employee_num = (employee_retrived_data[0])
@@ -156,7 +211,7 @@ def calculate_employee_payslip_data(
                 employers_ni, employers_pension
         ]
         update_worksheet(row_data, "employeepayroll")
-        return (employee_basic_pay)
+        return ()
     else:
         print("Re enter details \n")
         calculate_employee_payslip_data(
@@ -213,7 +268,7 @@ def get_display_payroll_option():
                 display_ind_employee_pay_for_week()
             if display_payroll_option_data == "3":
                 clear()
-                get_employerssummaryay_option()
+                get_employerssummary_option()
             if display_payroll_option_data == "4":
                 clear()
                 get_main_menu_option()
@@ -243,7 +298,7 @@ def get_process_payroll_option():
             if process_payroll_option_data == "3":
                 clear()
                 get_main_menu_option()
-        return process_payroll_option_data
+        return()
 
 
 def process_payroll_option_1():
@@ -272,7 +327,6 @@ def get_add_amend_employee_option():
     """
     Get add / amend employee option input from user
     Run function related to input
-
     Future feature
     """
     while True:
@@ -285,6 +339,10 @@ def validate_data_int(value, minvalue, maxvalue):
     Inside the try, converts value to integer
     raise ValueError if strings cannot be converted into int
     or less than min or greater than max values
+    @param value(string): value converted to an interger
+    @param minvalue(int): Min value
+    @param maxvalue(int): Max value
+    @raise ValueError: raises an exception
     """
     try:
         if int(value) < minvalue or int(value) > maxvalue:
@@ -304,6 +362,10 @@ def validate_data_float(value, minvalue, maxvalue):
     Inside the try, converts value to float
     raise ValueError if strings cannot be converted into float
     or less than min or greater than max value
+    @param value(string): value converted to a float
+    @param minvalue(int): Min value
+    @param maxvalue(int): Max value
+    @raise ValueError: raises an exception, if the value is incorrect
     """
     try:
         if float(value) < minvalue or float(value) > maxvalue:
@@ -324,6 +386,11 @@ def validate_employee_num(employee_num, status):
     except AttributeError if there isn't a value in the sheet
         then asks the user if they want to try again or return
         to the main menu
+
+    @param employee_num(string): Employee number
+    @param status(string): Status value coded in
+    @raise AttributeError: raises an exception if the employee
+    number is incorrect
     """
     try:
         print("Validating employee number")
@@ -353,6 +420,12 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
             If there is it will return the row to delete
     except IndexError: if there isn't a value in the sheet
             then returns to the process/amend menu
+    @param entered_payroll_week(string): Payroll week
+    @param employee_num(string): Employee number
+    @return row_to_delete(int): Row to delete in spreadsheet
+    @raise indexError: if no record is found
+    intersect part of code referenced to
+    https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/
     """
     try:
         employee_num_found = employeepayroll.findall(employee_num)
@@ -403,6 +476,11 @@ def amend_employees_hours(entered_payroll_week, employee_num):
         request user to put the hours again
     except IndexError if there isn't a value in the sheet
         then returns to the process/amend menu
+
+    @param entered_payroll_week(string): Payroll week
+    @param employee_num(string): Employee number
+
+    @raise indexError: if no record is found
     """
     try:
         employee_num = employee_num[0]
@@ -424,8 +502,11 @@ def amend_employees_hours(entered_payroll_week, employee_num):
 
 def yesorno(question):
     """
-     Function to take user input yes or no
-     validate input
+    Function to take user input yes or no
+    validate input
+
+    @param question(string): Question
+
      Code used from https://gist.github.com/garrettdreyfus/8153571
      """
     answer = input(f'{question}')
@@ -436,18 +517,25 @@ def yesorno(question):
             return False
         else:
             print('Invalid entry')
-            return yesorno(question)
+            return ()
     except Exception as error:
         print("Please enter valid entry")
         print(error)
-        return yesorno(question)
+        return ()
 
 
 def update_worksheet(data, worksheet):
     """
     Receives a list to be inserted into a worksheet
     Update the relevant worksheet with the data provided
+
+    @param data(string): list of values to upload
+    @param worksheet(string): google sheet name
+
+    Code reference from code institute love sandwiches project
+
     """
+    print(data)
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
@@ -473,8 +561,10 @@ def next_employee_to_process():
 
 def display_all_employeepay_for_week():
     """
-    Request user to input payroll week,
-    display data for week
+    Request user to input payroll week,display data for week
+
+    groupby referenced from
+    https://stackoverflow.com/questions/39922986/pandas-group-by-and-sum
     """
     week = get_payroll_week("any week")
     data_by_week = df.groupby('Week Number')
@@ -487,6 +577,9 @@ def display_ind_employee_pay_for_week():
     """
     Request user to enter payroll week and employee number,
     validation to ensure there is a record displays employee pay record
+
+    sleep referenced from
+    https://www.codegrepper.com/code-examples/python/how+to+pause+after+a+print+statement+in+python
     """
     week = get_payroll_week("any week")
     employee_num = get_employee_num()
@@ -503,9 +596,11 @@ def display_ind_employee_pay_for_week():
     time.sleep(3)
 
 
-def get_employerssummaryay_option():
+def get_employerssummary_option():
     """
     Displays Employers amounts to pay out
+    summarising data reference from
+    https://stackoverflow.com/questions/43745301/converting-column-from-dataframe-to-float-for-sum-usage-python-pandas
     """
     company_payroll_data = df.groupby(
         ['Week Number'])[
@@ -520,6 +615,8 @@ def get_employerssummaryay_option():
 def password():
     """
     Prompts user for password
+    getpass referenced from
+    https://www.geeksforgeeks.org/getpass-and-getuser-in-python-password-without-echo/
     """
     while True:
         pass_word = getpass.getpass(
@@ -535,6 +632,7 @@ def password():
 def clear():
     """
     Brings the function called text to the top of the terminal
+    code is referenced from https://www.geeksforgeeks.org/clear-screen-python/
     """
     if name == 'nt':
         _ = system('cls')
