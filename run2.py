@@ -8,13 +8,15 @@ The data is pushed to and read from google sheet, stored on google drive
 """
 import gspread
 import getpass
-from datetime import date
+from validate import validate_data_int, validate_data_float, \
+    validate_employee_num, check_data_in_payroll_sheet
+from algorithms import calculate_payroll_values, payroll_weeks
+from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
+    add_amend_employee_menu
 import pandas as pd
 import time
 from os import system, name
 from google.oauth2.service_account import Credentials
-from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
-    add_amend_employee_menu
 
 """
 Imports for all modules for application to function fully:
@@ -67,14 +69,7 @@ data = employeepayroll.get_all_values()
 headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
 
-# Constant variables
-HOL_PC = 0.1208
-EMPLOYEES_NI_PC = 0.12
-EMPLOYEES_NI_AMOUNT = 184
 
-EMPLOYERS_PENSION_PC = 0.03
-EMPLOYERS_NI_PC = 0.138
-EMPLOYERS_NI_AMOUNT = 170
 
 
 def get_payroll_week(week_status):
@@ -112,20 +107,6 @@ def get_payroll_week(week_status):
                 f' is Week {last_week_payroll_week_number}')
 
 
-def payroll_weeks():
-    """
-    Get current tax week number, minus 13 weeks to start in april for
-    payroll week to get the previous payroll week, minus 1 week
-    @returns: last_week_payroll_week_number(str)
-    isocalender code reference from
-    http://week-number.net/programming/week-number-in-python.html
-    """
-    tax_week_number = date.today().isocalendar()[1]
-    current_payroll_week_number = tax_week_number - 13
-    last_week_payroll_week_number = current_payroll_week_number - 1
-    return(last_week_payroll_week_number)
-
-
 def get_employee_num():
     """
     Get employee number from user,validate to check that the employee
@@ -151,73 +132,6 @@ def get_employee_hours():
         input_employee_hours = input("Enter number of hours worked : ")
         if validate_data_float(input_employee_hours, 1, 100):
             return(input_employee_hours)
-
-
-def calculate_employee_payslip_data(
-    entered_payroll_week, employee_num, status
-        ):
-    """
-    Get Employees details from spreadsheet,
-    put into variables, calculate values and updates worksheet
-    @param entered_payroll_week(str): payroll week
-    @param employee_num : Employee number
-    @param status(str) : Status
-    @returns: payroll_wk(str) : Payroll week
-    """
-    employee_retrived_data = validate_employee_num(employee_num, "1")
-    employee_num = (employee_retrived_data[0])
-    employee_surname = (employee_retrived_data[1])
-    employee_firstname = (employee_retrived_data[2])
-    employee_rate_of_pay = float(employee_retrived_data[3])
-    employee_pension = float(employee_retrived_data[4])
-    employee_hours_data = (get_employee_hours())
-    employee_hours = float(employee_hours_data)
-    employee_basic_pay = round(employee_hours * employee_rate_of_pay, 2)
-    employee_holiday = round(employee_basic_pay * HOL_PC, 2)
-    employee_basic_hol = (employee_basic_pay + employee_holiday)
-    if (employee_basic_pay + employee_holiday) < EMPLOYEES_NI_AMOUNT:
-        employee_ni = 0
-    else:
-        employee_ni = round(
-            ((employee_basic_hol) - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC, 2
-            )
-    employee_pension = round(employee_pension * employee_basic_hol, 2)
-    employee_net_pay = round(
-        employee_basic_hol - employee_ni - employee_pension, 2
-        )
-    if (employee_basic_pay + employee_holiday) < EMPLOYERS_NI_AMOUNT:
-        employers_ni = 0
-    else:
-        employers_ni = round(
-            ((employee_basic_hol) - EMPLOYERS_NI_AMOUNT) * EMPLOYERS_NI_PC, 2
-            )
-    employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC, 2)
-
-    print(
-        f'\n Employee : {employee_num} - '
-        f'{employee_firstname} {employee_surname}'
-        )
-    print(f' Basic Pay : £{employee_basic_pay}')
-    print(f' Holiday Pay : £{employee_holiday}')
-    print(f' NI contribution: £{employee_ni}')
-    print(f' Pension contribution: £{employee_pension}')
-    print(f' Net Pay: £{employee_net_pay}')
-    if yesorno("Are the amounts correct? "):
-        print("Ready to upload into payroll spreadsheet")
-        row_data = [
-                entered_payroll_week, employee_num,
-                employee_surname, employee_firstname,
-                employee_hours, employee_basic_pay,
-                employee_holiday, employee_ni,
-                employee_pension, employee_net_pay,
-                employers_ni, employers_pension
-        ]
-        update_worksheet(row_data, "employeepayroll")
-        return ()
-    else:
-        print("Re enter details \n")
-        calculate_employee_payslip_data(
-            entered_payroll_week, employee_num, status)
 
 
 def get_main_menu_option():
@@ -288,15 +202,6 @@ def get_process_payroll_option():
                 get_main_menu_option()
         return()
 
-def get_add_amend_employee_option():
-    """
-    Get add / amend employee option input from user
-    Run function related to input
-    Future feature
-    """
-    while True:
-        add_amend_employee_menu()
-        get_main_menu_option()
 
 def process_payroll_option_1():
     """
@@ -320,143 +225,15 @@ def process_payroll_option_2():
     amend_employees_hours(entered_payroll_week, employee_num)
 
 
-
-
-
-def validate_data_int(value, minvalue, maxvalue):
+def get_add_amend_employee_option():
     """
-    Inside the try, converts value to integer
-    raise ValueError if strings cannot be converted into int
-    or less than min or greater than max values
-    @param value(string): value converted to an interger
-    @param minvalue(int): Min value
-    @param maxvalue(int): Max value
-    @raise ValueError: raises an exception
+    Get add / amend employee option input from user
+    Run function related to input
+    Future feature
     """
-    try:
-        if int(value) < minvalue or int(value) > maxvalue:
-            raise ValueError(
-                f'Number between {minvalue} and {maxvalue} required,'
-                f' you typed {value}'
-                )
-    except ValueError:
-        print('Invalid data, please try again.\n')
-        return False
-
-    return True
-
-
-def validate_data_float(value, minvalue, maxvalue):
-    """
-    Inside the try, converts value to float
-    raise ValueError if strings cannot be converted into float
-    or less than min or greater than max value
-    @param value(string): value converted to a float
-    @param minvalue(int): Min value
-    @param maxvalue(int): Max value
-    @raise ValueError: raises an exception, if the value is incorrect
-    """
-    try:
-        if float(value) < minvalue or float(value) > maxvalue:
-            raise ValueError(
-                f'Number between {minvalue} and {maxvalue} '
-                f'required, you typed {value}'
-                )
-    except ValueError:
-        print('Invalid data, please try again.\n')
-        return False
-    return True
-
-
-def validate_employee_num(employee_num, status):
-    """
-    Try: find employee number in employee detail sheet
-        and puts the values into variables and returns them
-    except AttributeError if there isn't a value in the sheet
-        then asks the user if they want to try again or return
-        to the main menu
-
-    @param employee_num(string): Employee number
-    @param status(string): Status value coded in
-    @raise AttributeError: raises an exception if the employee
-    number is incorrect
-    """
-    try:
-        print("Validating employee number")
-        employee_row = employeedetail.find(employee_num).row
-        employee_num = employeedetail.cell(employee_row, 1)
-        employee_surname = employeedetail.cell(employee_row, 2)
-        employee_firstname = employeedetail.cell(employee_row, 3)
-        employee_rateofpay = employeedetail.cell(employee_row, 4)
-        employee_pension = employeedetail.cell(employee_row, 5)
-        return employee_num.value,\
-            employee_surname.value,\
-            employee_firstname.value,\
-            employee_rateofpay.value,\
-            employee_pension.value
-    except AttributeError:
-        print('\nInvalid employee number, please try again.\n')
-        while True:
-            if yesorno("Do you want to try again? type y or n :  "):
-                break
-            get_main_menu_option()
-
-
-def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
-    """
-    Try:    Checks to see if there is a record for the week and
-            employee number in spreadsheet.
-            If there is it will return the row to delete
-    except IndexError: if there isn't a value in the sheet
-            then returns to the process/amend menu
-    @param entered_payroll_week(string): Payroll week
-    @param employee_num(string): Employee number
-    @return row_to_delete(int): Row to delete in spreadsheet
-    @raise indexError: if no record is found
-    intersect part of code referenced to
-    https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/
-    """
-    try:
-        employee_num_found = employeepayroll.findall(employee_num)
-        week_found = employeepayroll.findall(entered_payroll_week)
-        em = []
-        for i in employee_num_found:
-            em.append(i.row)
-        wk = []
-        for i in week_found:
-            wk.append(i.row)
-        set1 = set(em)
-        set2 = set(wk)
-        intersect = list(set1 & set2)
-        row_to_delete = intersect[0]
-        if row_to_delete >= 1:
-            print(
-                f'Record for {employee_num} found in '
-                f'week {entered_payroll_week} '
-                )
-            if status == "1":
-                print("Returning to menu")
-                get_process_payroll_option()
-            elif status == "2":
-                return (row_to_delete)
-            elif status == "3":
-                return(row_to_delete)
-    except IndexError:
-        if status == "1":
-            print('No payroll entry found, ready to process employee ')
-            return(entered_payroll_week, employee_num[0])
-        elif status == "2":
-            print(
-                'No record found, select option 1 to '
-                'process employees hours '
-                )
-            get_process_payroll_option()
-        elif status == "3":
-            print(
-                'No record found, select option 2, try again or'
-                ' select another option '
-                )
-            get_display_payroll_option()
+    while True:
+        add_amend_employee_menu()
+        get_main_menu_option()
 
 
 def amend_employees_hours(entered_payroll_week, employee_num):
@@ -627,6 +404,71 @@ def clear():
         _ = system('cls')
     else:
         _ = system('clear')
+def get_employee_data(payroll_week, employee_num, status):
+        
+    """
+    Get Employees details from spreadsheet,
+    and returns values
+    @param entered_payroll_week(str): payroll week
+    @param employee_num : Employee number
+    @param status(str) : Status
+
+    @returns: payroll_wk(str) : Payroll week
+    @returns: employee_num(str) :Employee number
+    @returns: employee_surname(str) :Employee Surname
+    @returns: employee_firstname(str) :Employee
+    @returns: employee_rate_of_pay(float)
+    @returns: employee_pension(float)
+    @returns: employee_hours(float)
+    """
+    employee_retrived_data = validate_employee_num(employee_num, "1")
+    employee_num = (employee_retrived_data[0])
+    employee_surname = (employee_retrived_data[1])
+    employee_firstname = (employee_retrived_data[2])
+    employee_rate_of_pay = float(employee_retrived_data[3])
+    employee_pension = float(employee_retrived_data[4])
+    employee_hours_data = (get_employee_hours())
+    employee_hours = float(employee_hours_data)
+    return (payroll_week, employee_num, employee_surname, employee_firstname,
+        employee_rate_of_pay, employee_rate_of_pay, employee_pension,
+        employee_hours)
+
+def print_payroll_values(employee_num, employee_surname, employee_firstname, employee_basic_pay,\
+        employee_holiday, employee_ni, employee_pension, employee_net_pay):
+    print(
+        f'\n Employee : {employee_num} - '
+        f'{employee_firstname} {employee_surname}'
+        )
+    print(f' Basic Pay : £{employee_basic_pay}')
+    print(f' Holiday Pay : £{employee_holiday}')
+    print(f' NI contribution: £{employee_ni}')
+    print(f' Pension contribution: £{employee_pension}')
+    print(f' Net Pay: £{employee_net_pay}')
+    return()
+   
+def calculate_employee_payslip_data():
+    get_employee_data(payroll_week, employee_num, status)
+    calculate_payroll_values(payroll_week, employee_num, employee_surname, employee_firstname, \
+         employee_rate_of_pay, employee_pension,employee_hours)
+
+    if yesorno("Are the amounts correct? "):
+        print("Ready to upload into payroll spreadsheet")
+        row_data = [
+                entered_payroll_week, employee_num,
+                employee_surname, employee_firstname,
+                employee_hours, employee_basic_pay,
+                employee_holiday, employee_ni,
+                employee_pension, employee_net_pay,
+                employers_ni, employers_pension
+        ]
+        update_worksheet(row_data, "employeepayroll")
+        return ()
+    else:
+        print("Re enter details \n")
+        calculate_employee_payslip_data(
+            entered_payroll_week, employee_num, status)
+
+
 
 
 def main():
