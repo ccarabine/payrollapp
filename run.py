@@ -15,6 +15,7 @@ from os import system, name
 from google.oauth2.service_account import Credentials
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
     add_amend_employee_menu
+from algorithms import calculate_payroll_values, payroll_weeks
 
 """
 Imports for all modules for application to function fully:
@@ -371,7 +372,6 @@ def validate_data_float(value, minvalue, maxvalue):
 def validate_employee_num(employee_num, status):
     """
     Try: find employee number in employee detail sheet
-        and puts the values into variables and returns them
     except AttributeError if there isn't a value in the sheet
         then asks the user if they want to try again or return
         to the main menu
@@ -380,26 +380,61 @@ def validate_employee_num(employee_num, status):
     @param status(string): Status value coded in
     @raise AttributeError: raises an exception if the employee
     number is incorrect
+    @return employee_row(int): Employee row in sheet
     """
     try:
         print("Validating employee number")
         employee_row = employeedetail.find(employee_num).row
-        employee_num = employeedetail.cell(employee_row, 1)
-        employee_surname = employeedetail.cell(employee_row, 2)
-        employee_firstname = employeedetail.cell(employee_row, 3)
-        employee_rateofpay = employeedetail.cell(employee_row, 4)
-        employee_pension = employeedetail.cell(employee_row, 5)
-        return employee_num.value,\
-            employee_surname.value,\
-            employee_firstname.value,\
-            employee_rateofpay.value,\
-            employee_pension.value
+        print(type(employee_row))
+        return employee_row
     except AttributeError:
         print('\nInvalid employee number, please try again.\n')
         while True:
             if yesorno("Do you want to try again? type y or n :  "):
                 break
             get_main_menu_option()
+
+def get_employee_data(employee_row):
+    """
+    Gets the values from employee detail Google Sheets and returns values
+
+     @param employee_row(string): Employee number
+    """
+    employee_num = employeedetail.cell(employee_row, 1)
+    employee_surname = employeedetail.cell(employee_row, 2)
+    employee_firstname = employeedetail.cell(employee_row, 3)
+    employee_rateofpay = employeedetail.cell(employee_row, 4)
+    employee_pension = employeedetail.cell(employee_row, 5)
+
+    employee_hours_data = (get_employee_hours())
+    employee_hours = float(employee_hours_data)
+
+    return employee_num.value,\
+    employee_surname.value,\
+    employee_firstname.value,\
+    employee_rateofpay.value,\
+    employee_pension.value
+  
+
+    """
+    Get Employees details from spreadsheet,
+    and returns values
+    @param entered_payroll_week(str): payroll week
+    @param employee_num : Employee number
+    @param status(str) : Status
+
+    @returns: payroll_wk(str) : Payroll week
+    @returns: employee_num(str) :Employee number
+    @returns: employee_surname(str) :Employee Surname
+    @returns: employee_firstname(str) :Employee
+    @returns: employee_rate_of_pay(float)
+    @returns: employee_pension(float)
+    @returns: employee_hours(float)
+    """
+  
+    #return (payroll_week, employee_num, employee_surname, employee_firstname,
+     #   employee_rate_of_pay, employee_rate_of_pay, employee_pension,
+     #   employee_hours)
 
 
 def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
