@@ -2,7 +2,8 @@ def main_menu():
     print("-------------- Main Menu -------------- ")
     print("1 Display payroll")
     print("2 Process / Amend payroll")
-    print("3 Add / Amend employee details\n")
+    print("3 Add / Amend employee details")
+    print("4 Close Application\n")
     print("Example:  1\n")
 
 
