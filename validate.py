@@ -96,14 +96,14 @@ def validate_employee_num(employee_num, status):
             get_main_menu_option()
 
 
-def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
+def check_data_in_payroll_sheet(payroll_week, employee_num, status):
     """
     Try:    Checks to see if there is a record for the week and
             employee number in spreadsheet.
             If there is it will return the row to delete
     except IndexError: if there isn't a value in the sheet
             then returns to the process/amend menu
-    @param entered_payroll_week(string): Payroll week
+    @param payroll_week(string): Payroll week
     @param employee_num(string): Employee number
     @return row_to_delete(int): Row to delete in spreadsheet
     @raise indexError: if no record is found
@@ -112,7 +112,7 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
     """
     try:
         employee_num_found = employeepayroll.findall(employee_num)
-        week_found = employeepayroll.findall(entered_payroll_week)
+        week_found = employeepayroll.findall(payroll_week)
         em = []
         for i in employee_num_found:
             em.append(i.row)
@@ -126,7 +126,7 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
         if row_to_delete >= 1:
             print(
                 f'Record for {employee_num} found in '
-                f'week {entered_payroll_week} '
+                f'week {payroll_week} '
                 )
             if status == "1":
                 print("Returning to menu")
@@ -138,7 +138,7 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
     except IndexError:
         if status == "1":
             print('No payroll entry found, ready to process employee ')
-            return(entered_payroll_week, employee_num[0])
+            return(payroll_week, employee_num[0])
         elif status == "2":
             print(
                 'No record found, select option 1 to '

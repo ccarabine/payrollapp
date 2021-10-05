@@ -86,26 +86,26 @@ def get_payroll_week(week_status):
         1 to 52 for displaying purposes
     Can only process and amend payroll for previous week
     @param week_status(str): "normal" or "any week" coded in
-    @returns: payroll_wk(str)
+    @returns: payroll_week(str)
 
     """
     last_week_payroll_week_number = payroll_weeks()
 
     while True:
-        input_payroll_week = input("Enter Payroll Week (1-52) : ")
-        if validate_data_int(input_payroll_week, 1, 52):
+        payroll_week = input("Enter Payroll Week (1-52) : ")
+        if validate_data_int(payroll_week, 1, 52):
             if week_status == "normal":
-                if int(input_payroll_week) == last_week_payroll_week_number:
-                    payroll_wk = "wk" + input_payroll_week
-                    return(payroll_wk)
+                if int(payroll_week) == last_week_payroll_week_number:
+                    payroll_week = "wk" + payroll_week
+                    return(payroll_week)
                 else:
                     print(
                         'You can only enter / '
                         'amend payroll for the current week'
                         f'which is Week {last_week_payroll_week_number}')
             elif week_status == "any week":
-                payroll_wk = "wk" + input_payroll_week
-                return(payroll_wk)
+                payroll_week = "wk" + payroll_week
+                return(payroll_week)
         else:
             print(
                 'You can only enter / '
@@ -113,59 +113,41 @@ def get_payroll_week(week_status):
                 f' is Week {last_week_payroll_week_number}')
 
 
-def payroll_weeks():
-    """
-    Get current tax week number, minus 13 weeks to start in april for
-    payroll week to get the previous payroll week, minus 1 week
-    @returns: last_week_payroll_week_number(str)
-    isocalender code reference from
-    http://week-number.net/programming/week-number-in-python.html
-    """
-    tax_week_number = date.today().isocalendar()[1]
-    current_payroll_week_number = tax_week_number - 13
-    last_week_payroll_week_number = current_payroll_week_number - 1
-    return(last_week_payroll_week_number)
-
-
 def get_employee_num():
     """
     Get employee number from user,validate to check that the employee
     is in the employee details list and retrieve details
-    @returns: input_employee_num(str):Employee number given by user
-    @returns: status(str): Status coded in
+    @returns: employee_num(str):Employee number given by user
+
     """
     while True:
-        input_employee_num = input("Enter Employee number e.g. 100014  : ")
+        employee_num = input("Enter Employee number e.g. 100014  : ")
         print("Finding Employment record")
-        if validate_employee_num(input_employee_num, 1):
+        if validate_employee_num(employee_num):
             print("Employment record retrieved")
-            status = "1"
-            return(input_employee_num, status)
+            return(employee_num)
 
 
 def get_employee_hours():
     """
     Get employees hours for week from user ( maximum 100 hours) and validate
-    @returns: input_employee_hours(float):Employee hours given by user
+    @returns: employee_hours(float):Employee hours given by user
     """
     while True:
-        input_employee_hours = input("Enter number of hours worked : ")
-        if validate_data_float(input_employee_hours, 1, 100):
-            return(input_employee_hours)
+        employee_hours = input("Enter number of hours worked : ")
+        if validate_data_float(employee_hours, 1, 100):
+            return(employee_hours)
 
 
 def calculate_employee_payslip_data(
-    entered_payroll_week, employee_num, status
-        ):
+    payroll_week, employee_num):
     """
     Get Employees details from spreadsheet,
     calculate values and updates worksheet
-    @param entered_payroll_week(str): payroll week
+    @param payroll_week(str): payroll week
     @param employee_num : Employee number
-    @param status(str) : Status
-    @returns: payroll_wk(str) : Payroll week
     """
-    employee_row = validate_employee_num(employee_num, "1")
+    employee_row = validate_employee_num(employee_num)
     employee_retrived_data = get_employee_data(employee_row)
     employee_num = (employee_retrived_data[0])
     employee_surname = (employee_retrived_data[1])
@@ -208,7 +190,7 @@ def calculate_employee_payslip_data(
     if yesorno("Are the amounts correct? "):
         print("Ready to upload into payroll spreadsheet")
         row_data = [
-                entered_payroll_week, employee_num,
+                payroll_week, employee_num,
                 employee_surname, employee_firstname,
                 employee_hours, employee_basic_pay,
                 employee_holiday, employee_ni,
@@ -220,11 +202,12 @@ def calculate_employee_payslip_data(
     else:
         print("Re enter details \n")
         calculate_employee_payslip_data(
-            entered_payroll_week, employee_num, status)
+            payroll_week, employee_num)
 
 
 def get_main_menu_option():
     """
+    Display menu
     Get Main menu option input from user
     Run function related to input
     """
@@ -246,6 +229,7 @@ def get_main_menu_option():
 
 def get_display_payroll_option():
     """
+    Display menu
     Get display payroll option input from user
     Run function related to input
     """
@@ -271,6 +255,7 @@ def get_display_payroll_option():
 
 def get_process_payroll_option():
     """
+    Display menu
     Get process / Amend payroll option input from user
     Run function related to input
     """
@@ -305,25 +290,27 @@ def process_payroll_option_1():
     """
     Process payroll option 1 -run functions below to add employees hours
     """
-    entered_payroll_week = get_payroll_week("normal")
+    payroll_week = get_payroll_week("normal")
     employee_num = get_employee_num()
-    status = "1"
-    employee_num = employee_num[0]
-    check_data_in_payroll_sheet(entered_payroll_week, employee_num, status)
-    calculate_employee_payslip_data(entered_payroll_week, employee_num, status)
-    next_employee_to_process()
-
+    row_num = check_for_records_in_payroll_sheet(payroll_week, employee_num)
+    row_num = int(row_num)
+  
+    if row_num >= 1:
+        print(
+            f'Employees hours already entered in {payroll_week}'
+            f', please go to option 2 to amend \n')
+        get_process_payroll_option()
+    else:
+        calculate_employee_payslip_data(payroll_week, employee_num)
+        next_employee_to_process()
 
 def process_payroll_option_2():
     """
     Process payroll option 2 -run functions below to amend employees hours
     """
-    entered_payroll_week = get_payroll_week("normal")
+    payroll_week = get_payroll_week("normal")
     employee_num = get_employee_num()
-    amend_employees_hours(entered_payroll_week, employee_num)
-
-
-
+    amend_employees_hours(payroll_week, employee_num)
 
 
 def validate_data_int(value, minvalue, maxvalue):
@@ -371,15 +358,14 @@ def validate_data_float(value, minvalue, maxvalue):
     return True
 
 
-def validate_employee_num(employee_num, status):
+def validate_employee_num(employee_num):
     """
-    Try: find employee number in employee detail sheet
+    Try: Find employee number in employee detail sheet
     except AttributeError if there isn't a value in the sheet
         then asks the user if they want to try again or return
         to the main menu
 
     @param employee_num(string): Employee number
-    @param status(string): Status value coded in
     @raise AttributeError: raises an exception if the employee
     number is incorrect
     @return employee_row(int): Employee row in sheet
@@ -398,8 +384,12 @@ def validate_employee_num(employee_num, status):
 def get_employee_data(employee_row):
     """
     Gets the values from employee detail Google Sheets and returns values
-
-     @param employee_row(string): Employee number
+    @param employee_row(string): Employee row in google sheets
+    @returns: employee_num(str) :Employee number
+    @returns: employee_surname(str) :Employee Surname
+    @returns: employee_firstname(str) :Employee first name
+    @returns: employee_rate_of_pay(float)
+    @returns: employee_pension(float)
     """
     employee_num = employeedetail.cell(employee_row, 1)
     employee_surname = employeedetail.cell(employee_row, 2)
@@ -414,44 +404,24 @@ def get_employee_data(employee_row):
     employee_pension.value
   
 
-    """
-    Get Employees details from spreadsheet,
-    and returns values
-    @param entered_payroll_week(str): payroll week
-    @param employee_num : Employee number
-    @param status(str) : Status
-
-    @returns: payroll_wk(str) : Payroll week
-    @returns: employee_num(str) :Employee number
-    @returns: employee_surname(str) :Employee Surname
-    @returns: employee_firstname(str) :Employee
-    @returns: employee_rate_of_pay(float)
-    @returns: employee_pension(float)
-    @returns: employee_hours(float)
-    """
-  
-    #return (payroll_week, employee_num, employee_surname, employee_firstname,
-     #   employee_rate_of_pay, employee_rate_of_pay, employee_pension,
-     #   employee_hours)
-
-
-def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
+def check_for_records_in_payroll_sheet(payroll_week, employee_num):
     """
     Try:    Checks to see if there is a record for the week and
             employee number in spreadsheet.
             If there is it will return the row to delete
     except IndexError: if there isn't a value in the sheet
-            then returns to the process/amend menu
-    @param entered_payroll_week(string): Payroll week
+            then returns to the menu
+    @param payroll_week(string): Payroll week
     @param employee_num(string): Employee number
-    @return row_to_delete(int): Row to delete in spreadsheet
+    @return matched_row(int): Row to delete in spreadsheet
     @raise indexError: if no record is found
+    @return :0
     intersect part of code referenced to
     https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/
     """
     try:
         employee_num_found = employeepayroll.findall(employee_num)
-        week_found = employeepayroll.findall(entered_payroll_week)
+        week_found = employeepayroll.findall(payroll_week)
         em = []
         for i in employee_num_found:
             em.append(i.row)
@@ -461,63 +431,40 @@ def check_data_in_payroll_sheet(entered_payroll_week, employee_num, status):
         set1 = set(em)
         set2 = set(wk)
         intersect = list(set1 & set2)
-        row_to_delete = intersect[0]
-        if row_to_delete >= 1:
-            print(
-                f'Record for {employee_num} found in '
-                f'week {entered_payroll_week} '
-                )
-            if status == "1":
-                print("Returning to menu")
-                get_process_payroll_option()
-            elif status == "2":
-                return (row_to_delete)
-            elif status == "3":
-                return(row_to_delete)
+        matched_row = int(intersect[0])
+        if matched_row >= 1:
+            return (matched_row)
     except IndexError:
-        if status == "1":
-            print('No payroll entry found, ready to process employee ')
-            return(entered_payroll_week, employee_num[0])
-        elif status == "2":
-            print(
-                'No record found, select option 1 to '
-                'process employees hours '
-                )
-            get_process_payroll_option()
-        elif status == "3":
-            print(
-                'No record found, select option 2, try again or'
-                ' select another option '
-                )
-            get_display_payroll_option()
+        print(
+            'No record found, please try again, '
+            'returning to main menu '
+            )
+        return(0)
 
 
-def amend_employees_hours(entered_payroll_week, employee_num):
+def amend_employees_hours(payroll_week, employee_num):
     """
     Try: Delete the payroll information for the employee and
         request user to put the hours again
     except IndexError if there isn't a value in the sheet
         then returns to the process/amend menu
 
-    @param entered_payroll_week(string): Payroll week
+    @param payroll_week(string): Payroll week
     @param employee_num(string): Employee number
 
     @raise indexError: if no record is found
     """
     try:
-        employee_num = employee_num[0]
-        row_to_delete = check_data_in_payroll_sheet(
-            entered_payroll_week, employee_num, "2"
-            )
+        row_to_delete = check_for_records_in_payroll_sheet(
+        payroll_week, employee_num)
         employeepayroll.delete_rows(row_to_delete)
         calculate_employee_payslip_data(
-            entered_payroll_week, employee_num, "2"
-            )
+            payroll_week, employee_num,)
         print('Updated payroll information')
     except IndexError:
         print(
             f'\nNo payroll record found for {employee_num} in week'
-            f' {entered_payroll_week}, returning to main menu.\n')
+            f' {payroll_week}, returning to main menu.\n')
         get_process_payroll_option()
 
 
@@ -556,7 +503,6 @@ def update_worksheet(data, worksheet):
     Code reference from code institute love sandwiches project
 
     """
-    print(data)
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
@@ -605,8 +551,6 @@ def display_ind_employee_pay_for_week():
     
     week = get_payroll_week("any week")
     employee_num = get_employee_num()
-    employee_num = employee_num[0]
-    clear()
     display_employee_data = df.loc[
         (df['Week Number'] == (week)) & (
             df['Employee Number'] == (employee_num)), [
