@@ -1,5 +1,8 @@
 from datetime import date
+"""Imports for all modules for application to function fully:
 
+datetime: to get the current week of the year
+"""
 # Constant variables
 HOL_PC = 0.1208
 EMPLOYEES_NI_PC = 0.12
@@ -10,16 +13,18 @@ EMPLOYERS_NI_PC = 0.138
 EMPLOYERS_NI_AMOUNT = 170
 
 
-def calculate_payroll_values(payroll_week, employee_num, employee_surname,
- employee_firstname, employee_rate_of_pay, employee_pension, employee_hours):
+def calculate_payroll_values(payroll_week, employee_num, employee_surname, employee_firstname, \
+        employee_rate_of_pay, employee_pension, employee_hours):
     """
     Get Employees details from spreadsheet,
     put into variables, calculate values and updates worksheet
     @param payroll_week(str): payroll week
     @param employee_num : Employee number
     @param status(str) : Status
-    @returns: payroll_week(str) : Payroll week
+    @returns: payroll_wk(str) : Payroll week
     """
+
+
     employee_basic_pay = round(employee_hours * employee_rate_of_pay, 2)
     employee_holiday = round(employee_basic_pay * HOL_PC, 2)
     employee_basic_hol = (employee_basic_pay + employee_holiday)

@@ -8,14 +8,13 @@ The data is pushed to and read from google sheet, stored on google drive
 """
 import gspread
 import getpass
-from datetime import date
 import pandas as pd
 import time
 from os import system, name
 from google.oauth2.service_account import Credentials
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
     add_amend_employee_menu
-from algorithms import calculate_payroll_values, payroll_weeks
+from algorithms import payroll_weeks
 
 """
 Imports for all modules for application to function fully:
@@ -139,8 +138,7 @@ def get_employee_hours():
             return(employee_hours)
 
 
-def calculate_employee_payslip_data(
-    payroll_week, employee_num):
+def calculate_employee_payslip_data(payroll_week, employee_num):
     """
     Get Employees details from spreadsheet,
     calculate values and updates worksheet
@@ -276,6 +274,7 @@ def get_process_payroll_option():
                 get_main_menu_option()
         return()
 
+
 def get_add_amend_employee_option():
     """
     Get add / amend employee option input from user
@@ -286,6 +285,7 @@ def get_add_amend_employee_option():
         add_amend_employee_menu()
         get_main_menu_option()
 
+
 def process_payroll_option_1():
     """
     Process payroll option 1 -run functions below to add employees hours
@@ -294,7 +294,6 @@ def process_payroll_option_1():
     employee_num = get_employee_num()
     row_num = check_for_records_in_payroll_sheet(payroll_week, employee_num)
     row_num = int(row_num)
-  
     if row_num >= 1:
         print(
             f'Employees hours already entered in {payroll_week}'
@@ -303,6 +302,7 @@ def process_payroll_option_1():
     else:
         calculate_employee_payslip_data(payroll_week, employee_num)
         next_employee_to_process()
+
 
 def process_payroll_option_2():
     """
@@ -381,6 +381,7 @@ def validate_employee_num(employee_num):
                 break
             get_main_menu_option()
 
+
 def get_employee_data(employee_row):
     """
     Gets the values from employee detail Google Sheets and returns values
@@ -396,13 +397,12 @@ def get_employee_data(employee_row):
     employee_firstname = employeedetail.cell(employee_row, 3)
     employee_rateofpay = employeedetail.cell(employee_row, 4)
     employee_pension = employeedetail.cell(employee_row, 5)
-
     return employee_num.value,\
-    employee_surname.value,\
-    employee_firstname.value,\
-    employee_rateofpay.value,\
-    employee_pension.value
-  
+        employee_surname.value,\
+        employee_firstname.value,\
+        employee_rateofpay.value,\
+        employee_pension.value
+
 
 def check_for_records_in_payroll_sheet(payroll_week, employee_num):
     """
@@ -456,7 +456,7 @@ def amend_employees_hours(payroll_week, employee_num):
     """
     try:
         row_to_delete = check_for_records_in_payroll_sheet(
-        payroll_week, employee_num)
+            payroll_week, employee_num)
         employeepayroll.delete_rows(row_to_delete)
         calculate_employee_payslip_data(
             payroll_week, employee_num,)
@@ -548,7 +548,6 @@ def display_ind_employee_pay_for_week():
     sleep referenced from
     https://www.codegrepper.com/code-examples/python/how+to+pause+after+a+print+statement+in+python
     """
-    
     week = get_payroll_week("any week")
     employee_num = get_employee_num()
     display_employee_data = df.loc[
@@ -560,12 +559,12 @@ def display_ind_employee_pay_for_week():
                     ]]
     if display_employee_data.empty:
         print(
-            f'\nNo payroll record found for employee number: {employee_num} in '
-            f'{week}, returning to main menu.\n')
+            f'\nNo payroll record found for employee number: {employee_num}'
+            f' in {week}, returning to main menu.\n')
     else:
         print(display_employee_data)
     time.sleep(3)
-     
+
 
 def get_employerssummary_option():
     """
@@ -620,5 +619,4 @@ def main():
 
 
 print("Welcome to Payroll application")
-
 main()
