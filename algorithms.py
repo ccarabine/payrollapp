@@ -11,7 +11,7 @@ EMPLOYERS_NI_AMOUNT = 170
 
 
 def calculate_payroll_values(payroll_week, employee_num, employee_surname, employee_firstname, \
-         employee_rate_of_pay, employee_pension, employee_hours):
+        employee_rate_of_pay, employee_pension, employee_hours):
     """
     Get Employees details from spreadsheet,
     put into variables, calculate values and updates worksheet
@@ -42,7 +42,7 @@ def calculate_payroll_values(payroll_week, employee_num, employee_surname, emplo
     employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC, 2)
     return (payroll_week, employee_num, employee_surname, employee_firstname, employee_basic_pay,\
         employee_holiday, employee_ni, employee_pension, employee_net_pay, employers_ni, employers_pension)
-         
+   
 
 def payroll_weeks():
     """

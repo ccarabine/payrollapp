@@ -159,18 +159,20 @@ def calculate_employee_payslip_data(
         ):
     """
     Get Employees details from spreadsheet,
-    put into variables, calculate values and updates worksheet
+    calculate values and updates worksheet
     @param entered_payroll_week(str): payroll week
     @param employee_num : Employee number
     @param status(str) : Status
     @returns: payroll_wk(str) : Payroll week
     """
-    employee_retrived_data = validate_employee_num(employee_num, "1")
+    employee_row = validate_employee_num(employee_num, "1")
+    employee_retrived_data = get_employee_data(employee_row)
     employee_num = (employee_retrived_data[0])
     employee_surname = (employee_retrived_data[1])
     employee_firstname = (employee_retrived_data[2])
     employee_rate_of_pay = float(employee_retrived_data[3])
     employee_pension = float(employee_retrived_data[4])
+
     employee_hours_data = (get_employee_hours())
     employee_hours = float(employee_hours_data)
     employee_basic_pay = round(employee_hours * employee_rate_of_pay, 2)
@@ -385,7 +387,6 @@ def validate_employee_num(employee_num, status):
     try:
         print("Validating employee number")
         employee_row = employeedetail.find(employee_num).row
-        print(type(employee_row))
         return employee_row
     except AttributeError:
         print('\nInvalid employee number, please try again.\n')
@@ -405,9 +406,6 @@ def get_employee_data(employee_row):
     employee_firstname = employeedetail.cell(employee_row, 3)
     employee_rateofpay = employeedetail.cell(employee_row, 4)
     employee_pension = employeedetail.cell(employee_row, 5)
-
-    employee_hours_data = (get_employee_hours())
-    employee_hours = float(employee_hours_data)
 
     return employee_num.value,\
     employee_surname.value,\
@@ -517,7 +515,6 @@ def amend_employees_hours(entered_payroll_week, employee_num):
             )
         print('Updated payroll information')
     except IndexError:
-        print("employee_num")
         print(
             f'\nNo payroll record found for {employee_num} in week'
             f' {entered_payroll_week}, returning to main menu.\n')
@@ -605,6 +602,7 @@ def display_ind_employee_pay_for_week():
     sleep referenced from
     https://www.codegrepper.com/code-examples/python/how+to+pause+after+a+print+statement+in+python
     """
+    
     week = get_payroll_week("any week")
     employee_num = get_employee_num()
     employee_num = employee_num[0]
@@ -616,9 +614,14 @@ def display_ind_employee_pay_for_week():
                     'First Name', 'Surname', 'Basic Pay', 'Holiday Pay',
                     'Employees NI', 'Employees Pension', 'NET Pay'
                     ]]
-    print(display_employee_data)
+    if display_employee_data.empty:
+        print(
+            f'\nNo payroll record found for employee number: {employee_num} in '
+            f'{week}, returning to main menu.\n')
+    else:
+        print(display_employee_data)
     time.sleep(3)
-
+     
 
 def get_employerssummary_option():
     """
