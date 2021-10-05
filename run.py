@@ -574,11 +574,11 @@ def get_employerssummary_option():
     https://stackoverflow.com/questions/43745301/converting-column-from-dataframe-to-float-for-sum-usage-python-pandas
     """
     company_payroll_data = df.groupby(
-        ['Week Number'])[
+        ['Week Number'])[[
                 'NET Pay',
                 'Employees NI', 'Employees Pension',
                 'Company NI', 'Company Pension'
-                ].agg(lambda x: sum(x.astype(float)))
+                ]].agg(lambda x: sum(x.astype(float)))
     print(company_payroll_data)
     time.sleep(3)
 
