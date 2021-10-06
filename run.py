@@ -7,24 +7,19 @@ staff to process employees hours for payroll.
 The data is pushed to and read from google sheet, stored on google drive
 """
 import gspread
-import getpass
 import pandas as pd
 import time
-
-from os import system, name
 from google.oauth2.service_account import Credentials
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
     add_amend_employee_menu
-from algorithms import payroll_weeks
+from utility_functions import get_payroll_week, get_employee_num, \
+    get_employee_hours, yesorno, update_worksheet, validate_data_int, \
+    validate_employee_num, password, clear, check_for_records_in_payroll_sheet
 
 """
 Imports for all modules for application to function fully:
 
 gspread:  A Python API for Google Sheets. Read, write, and format cell ranges.
-
-Getpass: Prompt the user for a password without echoing.
-
-datetime: to get the current week of the year
 
 Pandas:  allows importing data and manipulation operations such as merging,
 reshaping, selecting, as well as data cleaning, and data wrangling features.
@@ -32,11 +27,12 @@ reshaping, selecting, as well as data cleaning, and data wrangling features.
 Time: The sleep() function delays execution of the current thread for the
 given number of seconds.
 
-os: The OS module in Python provides functions for interacting with the
-operating system.
-
 google.oauth2.service_account: So the application can access the account that
 the sheet is on with the credentials
+
+menu: importing functions locally from menu.py
+
+utility_functions: importing functions locally from utility_functions.py
 
 """
 
@@ -61,9 +57,7 @@ employeedetail = SHEET.worksheet('employeedetail')
 employeepayroll = SHEET.worksheet('employeepayroll')
 
 
-"""
-Puts the data from employeepayroll in tp a pandas data frame
-"""
+# Puts the data from employeepayroll in to a pandas data frame
 data = employeepayroll.get_all_values()
 headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
@@ -78,67 +72,7 @@ EMPLOYERS_NI_PC = 0.138
 EMPLOYERS_NI_AMOUNT = 170
 
 
-def get_payroll_week(week_status):
-    """
-    Get payroll week from user and validate
-    if week status is normal then the user can only enter the previous week
-    else if week status is any week, then can enter any week between
-        1 to 52 for displaying purposes
-    Can only process and amend payroll for previous week
-    @param week_status(str): "normal" or "any week" coded in
-    @returns: payroll_week(str)
-
-    """
-    last_week_payroll_week_number = payroll_weeks()
-
-    while True:
-        payroll_week = input("Enter Payroll Week (1-52) : ")
-        if validate_data_int(payroll_week, 1, 52):
-            if week_status == "normal":
-                if int(payroll_week) == last_week_payroll_week_number:
-                    payroll_week = "wk" + payroll_week
-                    return(payroll_week)
-                else:
-                    print(
-                        'You can only enter / '
-                        'amend payroll for the current week'
-                        f'which is Week {last_week_payroll_week_number}')
-            elif week_status == "any week":
-                payroll_week = "wk" + payroll_week
-                return(payroll_week)
-        else:
-            print(
-                'You can only enter / '
-                'amend payroll for the previous week which'
-                f' is Week {last_week_payroll_week_number}')
-
-
-def get_employee_num():
-    """
-    Get employee number from user,validate to check that the employee
-    is in the employee details list and retrieve details
-    @returns: employee_num(str):Employee number given by user
-
-    """
-    while True:
-        employee_num = input("Enter Employee number e.g. 100014  : ")
-        print("Finding Employment record")
-        if validate_employee_num(employee_num):
-            print("Employment record retrieved")
-            return(employee_num)
-
-
-def get_employee_hours():
-    """
-    Get employees hours for week from user ( maximum 100 hours) and validate
-    @returns: employee_hours(float):Employee hours given by user
-    """
-    while True:
-        employee_hours = input("Enter number of hours worked : ")
-        if validate_data_float(employee_hours, 1, 100):
-            return(employee_hours)
-
-
+# Menu options functionality
 def get_main_menu_option():
     """
     Display menu
@@ -189,6 +123,31 @@ def get_display_payroll_option():
                 get_main_menu_option()
 
 
+def get_process_payroll_option():
+    """
+    Display menu
+    Get process / Amend payroll option input from user
+    Run function related to input
+    """
+    while True:
+        process_amend_payroll_menu()
+        process_payroll_option_data = input(
+            'Please enter number option from the menu : '
+            )
+        if validate_data_int(process_payroll_option_data, 1, 3):
+            if process_payroll_option_data == "1":
+                clear()
+                process_payroll_option_1()
+            if process_payroll_option_data == "2":
+                clear()
+                process_payroll_option_2()
+            if process_payroll_option_data == "3":
+                clear()
+                get_main_menu_option()
+        return()
+
+
+# Display menu functionility
 def display_all_employeepay_for_week():
     """
     Request user to input payroll week,display data for week
@@ -245,41 +204,7 @@ def get_employerssummary_option():
     time.sleep(3)
 
 
-def get_process_payroll_option():
-    """
-    Display menu
-    Get process / Amend payroll option input from user
-    Run function related to input
-    """
-    while True:
-        process_amend_payroll_menu()
-        process_payroll_option_data = input(
-            'Please enter number option from the menu : '
-            )
-        if validate_data_int(process_payroll_option_data, 1, 3):
-            if process_payroll_option_data == "1":
-                clear()
-                process_payroll_option_1()
-            if process_payroll_option_data == "2":
-                clear()
-                process_payroll_option_2()
-            if process_payroll_option_data == "3":
-                clear()
-                get_main_menu_option()
-        return()
-
-
-def get_add_amend_employee_option():
-    """
-    Get add / amend employee option input from user
-    Run function related to input
-    Future feature
-    """
-    while True:
-        add_amend_employee_menu()
-        get_main_menu_option()
-
-
+# Add / amend payroll functionality
 def process_payroll_option_1():
     """
     Process payroll option 1 -run functions below to add employees hours
@@ -298,64 +223,19 @@ def process_payroll_option_1():
         next_employee_to_process()
 
 
-def check_for_records_in_payroll_sheet(payroll_week, employee_num):
+def next_employee_to_process():
     """
-    Try:    Checks to see if there is a record for the week and
-            employee number in spreadsheet.
-            If there is it will return the row to delete
-    except IndexError: if there isn't a value in the sheet
-            then returns to the menu
-    @param payroll_week(string): Payroll week
-    @param employee_num(string): Employee number
-    @return matched_row(int): Row to delete in spreadsheet
-    @raise indexError: if no record is found
-    @return :0
-    intersect part of code referenced to
-    https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/
+    Requests user input if they would like to process another employees hours
     """
-    try:
-        employee_num_found = employeepayroll.findall(employee_num)
-        week_found = employeepayroll.findall(payroll_week)
-        em = []
-        for i in employee_num_found:
-            em.append(i.row)
-        wk = []
-        for i in week_found:
-            wk.append(i.row)
-        set1 = set(em)
-        set2 = set(wk)
-        intersect = list(set1 & set2)
-        matched_row = int(intersect[0])
-        if matched_row >= 1:
-            return (matched_row)
-    except IndexError:
-        print(
-            'No record found, please try again, '
-            'returning to main menu '
-            )
-        return(0)
-
-
-def get_employee_data(employee_row):
-    """
-    Gets the values from employee detail Google Sheets and returns values
-    @param employee_row(string): Employee row in google sheets
-    @returns: employee_num(str) :Employee number
-    @returns: employee_surname(str) :Employee Surname
-    @returns: employee_firstname(str) :Employee first name
-    @returns: employee_rate_of_pay(float)
-    @returns: employee_pension(float)
-    """
-    employee_num = employeedetail.cell(employee_row, 1)
-    employee_surname = employeedetail.cell(employee_row, 2)
-    employee_firstname = employeedetail.cell(employee_row, 3)
-    employee_rateofpay = employeedetail.cell(employee_row, 4)
-    employee_pension = employeedetail.cell(employee_row, 5)
-    return employee_num.value,\
-        employee_surname.value,\
-        employee_firstname.value,\
-        employee_rateofpay.value,\
-        employee_pension.value
+    while True:
+        if yesorno(
+            'Would you like to process another '
+            'employees hours? type y or n :  '
+                ):
+            process_payroll_option_1()
+            return()
+        else:
+            get_main_menu_option()
 
 
 def calculate_employee_payslip_data(payroll_week, employee_num):
@@ -422,62 +302,26 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
             payroll_week, employee_num)
 
 
-def next_employee_to_process():
+def get_employee_data(employee_row):
     """
-    Requests user input if they would like to process another employees hours
+    Gets the values from employee detail Google Sheets and returns values
+    @param employee_row(string): Employee row in google sheets
+    @returns: employee_num(str) :Employee number
+    @returns: employee_surname(str) :Employee Surname
+    @returns: employee_firstname(str) :Employee first name
+    @returns: employee_rate_of_pay(float)
+    @returns: employee_pension(float)
     """
-    while True:
-        if yesorno(
-            'Would you like to process another '
-            'employees hours? type y or n :  '
-                ):
-            process_payroll_option_1()
-            return()
-        else:
-            get_main_menu_option()
-
-
-def yesorno(question):
-    """
-    Function to take user input yes or no
-    validate input
-
-    @param question(string): Question
-
-     Code used from https://gist.github.com/garrettdreyfus/8153571
-     """
-    answer = input(f'{question}')
-    try:
-        if answer[0] == 'y':
-            return True
-        elif answer[0] == 'n':
-            return False
-        else:
-            print('Invalid entry')
-            return ()
-    except Exception as error:
-        print("Please enter valid entry")
-        print(error)
-        return ()
-
-
-def update_worksheet(data, worksheet):
-    """
-    Receives a list to be inserted into a worksheet
-    Update the relevant worksheet with the data provided
-
-    @param data(string): list of values to upload
-    @param worksheet(string): google sheet name
-
-    Code reference from code institute love sandwiches project
-
-    """
-    print(f"Updating {worksheet} worksheet...\n")
-    worksheet_to_update = SHEET.worksheet(worksheet)
-    worksheet_to_update.append_row(data)
-    print(f"{worksheet} worksheet updated successfully\n")
-    time.sleep(1)
-    clear()
+    employee_num = employeedetail.cell(employee_row, 1)
+    employee_surname = employeedetail.cell(employee_row, 2)
+    employee_firstname = employeedetail.cell(employee_row, 3)
+    employee_rateofpay = employeedetail.cell(employee_row, 4)
+    employee_pension = employeedetail.cell(employee_row, 5)
+    return employee_num.value,\
+        employee_surname.value,\
+        employee_firstname.value,\
+        employee_rateofpay.value,\
+        employee_pension.value
 
 
 def process_payroll_option_2():
@@ -515,110 +359,16 @@ def amend_employees_hours(payroll_week, employee_num):
         get_process_payroll_option()
 
 
-def validate_data_int(value, minvalue, maxvalue):
+# Add / amend employee functionality
+def get_add_amend_employee_option():
     """
-    Inside the try, converts value to integer
-    raise ValueError if strings cannot be converted into int
-    or less than min or greater than max values
-    @param value(string): value converted to an interger
-    @param minvalue(int): Min value
-    @param maxvalue(int): Max value
-    @raise ValueError: raises an exception
-    """
-    try:
-        if int(value) < minvalue or int(value) > maxvalue:
-            raise ValueError(
-                f'Number between {minvalue} and {maxvalue} required,'
-                f' you typed {value}'
-                )
-    except ValueError:
-        print('Invalid data, please try again.\n')
-        return False
-
-    return True
-
-
-def validate_data_float(value, minvalue, maxvalue):
-    """
-    Inside the try, converts value to float
-    raise ValueError if strings cannot be converted into float
-    or less than min or greater than max value
-    @param value(string): value converted to a float
-    @param minvalue(int): Min value
-    @param maxvalue(int): Max value
-    @raise ValueError: raises an exception, if the value is incorrect
-    """
-    try:
-        if float(value) < minvalue or float(value) > maxvalue:
-            raise ValueError(
-                f'Number between {minvalue} and {maxvalue} '
-                f'required, you typed {value}'
-                )
-    except ValueError:
-        print('Invalid data, please try again.\n')
-        return False
-    return True
-
-
-def validate_employee_num(employee_num):
-    """
-    Try: Find employee number in employee detail sheet
-    except AttributeError if there isn't a value in the sheet
-        then asks the user if they want to try again or return
-        to the main menu
-
-    @param employee_num(string): Employee number
-    @raise AttributeError: raises an exception if the employee
-    number is incorrect
-    @return employee_row(int): Employee row in sheet
-    """
-    try:
-        print("Validating employee number")
-        employee_row = employeedetail.find(employee_num).row
-        return employee_row
-    except AttributeError:
-        print('\nInvalid employee number, please try again.\n')
-        while True:
-            if yesorno("Do you want to try again? type y or n :  "):
-                break
-            get_main_menu_option()
-
-
-def password():
-    """
-    Prompts user for password
-    getpass referenced from
-    https://www.geeksforgeeks.org/getpass-and-getuser-in-python-password \
-        -without-echo/
-    checking the file and that the username and password are correct
-        referenced from
-    https://stackoverflow.com/questions/46738966/how-to-check-text-file- \
-        for-usernames-and-passwords
+    Get add / amend employee option input from user
+    Run function related to input
+    Future feature
     """
     while True:
-        username = getpass.getpass(
-                prompt='\nPlease enter your username: ')
-        password = getpass.getpass(
-                prompt='\nPlease enter your password: ')
-        for line in open("accountfile.txt", "r").readlines():  # Read the lines
-            login_info = line.split()  # Split on the space, and store the \
-            # results in a list of two strings
-            if username == login_info[0] and password == login_info[1]:
-                print("Correct credentials!")
-                clear()
-                return True
-        print("Incorrect credentials, please try again.")
-
-
-def clear():
-    """
-    Brings the function called text to the top of the terminal
-    code is referenced from https://www.geeksforgeeks.org/clear-screen-python/
-    """
-    if name == 'nt':
-        _ = system('cls')
-    else:
-        _ = system('clear')
+        add_amend_employee_menu()
+        get_main_menu_option()
 
 
 def main():
@@ -629,6 +379,6 @@ def main():
     get_main_menu_option()
 
 
-clear()
+# clear()
 print("Welcome to Payroll application")
 main()
