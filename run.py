@@ -233,16 +233,12 @@ def get_display_payroll_option():
             )
         if validate_data_int(display_payroll_option_data, 1, 4):
             if display_payroll_option_data == "1":
-                clear()
                 display_all_employeepay_for_week()
             if display_payroll_option_data == "2":
-                clear()
                 display_ind_employee_pay_for_week()
             if display_payroll_option_data == "3":
-                clear()
                 get_employerssummary_option()
             if display_payroll_option_data == "4":
-                clear()
                 get_main_menu_option()
 
 
@@ -259,13 +255,10 @@ def get_process_payroll_option():
             )
         if validate_data_int(process_payroll_option_data, 1, 3):
             if process_payroll_option_data == "1":
-                clear()
                 process_payroll_option_1()
             if process_payroll_option_data == "2":
-                clear()
                 process_payroll_option_2()
             if process_payroll_option_data == "3":
-                clear()
                 get_main_menu_option()
         return()
 
@@ -332,7 +325,8 @@ def process_payroll_option_1():
     """
     Process payroll option 1 -run functions below to add employees hours
     """
-    payroll_week = get_payroll_week("normal")
+    payroll_week = payroll_weeks()
+    payroll_week = "wk" + str(payroll_week)
     employee_num = get_employee_num()
     row_num = check_for_records_in_payroll_sheet(payroll_week, employee_num)
     row_num = int(row_num)
@@ -450,8 +444,10 @@ def get_employee_data(employee_row):
 def process_payroll_option_2():
     """
     Process payroll option 2 -run functions below to amend employees hours
+    payrolls_weeks is the previous week
     """
-    payroll_week = get_payroll_week("normal")
+    payroll_week = payroll_weeks()
+    payroll_week = "wk" + str(payroll_week)
     employee_num = get_employee_num()
     amend_employees_hours(payroll_week, employee_num)
 
@@ -556,7 +552,6 @@ def validate_employee_num(employee_num):
     try:
         print("Validating employee number")
         employee_row = employeedetail.find(employee_num).row
-        print(employee_row)
         return employee_row
     except AttributeError:
         print('\nInvalid employee number, please try again.\n')
