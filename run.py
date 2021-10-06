@@ -10,6 +10,7 @@ import gspread
 import getpass
 import pandas as pd
 import time
+
 from os import system, name
 from google.oauth2.service_account import Credentials
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
@@ -160,6 +161,7 @@ def get_main_menu_option():
                 get_add_amend_employee_option()
             if main_menu_option_data == "4":
                 quit()
+
 
 def get_display_payroll_option():
     """
@@ -586,17 +588,26 @@ def password():
     """
     Prompts user for password
     getpass referenced from
-    https://www.geeksforgeeks.org/getpass-and-getuser-in-python-password-without-echo/
+    https://www.geeksforgeeks.org/getpass-and-getuser-in-python-password \
+        -without-echo/
+    checking the file and that the username and password are correct
+        referenced from
+    https://stackoverflow.com/questions/46738966/how-to-check-text-file- \
+        for-usernames-and-passwords
     """
     while True:
-        pass_word = getpass.getpass(
-            prompt='Enter password (No characters show when typed): ')
-        if pass_word == 'admin':
-            print('Password Correct')
-            clear()
-            return
-        else:
-            print('Incorrect password, please try again')
+        username = getpass.getpass(
+                prompt='\nPlease enter your username: ')
+        password = getpass.getpass(
+                prompt='\nPlease enter your password: ')
+        for line in open("accountfile.txt", "r").readlines():  # Read the lines
+            login_info = line.split()  # Split on the space, and store the \
+            # results in a list of two strings
+            if username == login_info[0] and password == login_info[1]:
+                print("Correct credentials!")
+                clear()
+                return True
+        print("Incorrect credentials, please try again.")
 
 
 def clear():
@@ -618,5 +629,6 @@ def main():
     get_main_menu_option()
 
 
+clear()
 print("Welcome to Payroll application")
 main()
