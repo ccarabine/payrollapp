@@ -8,11 +8,10 @@ The data is pushed to and read from google sheet, stored on google drive
 """
 import getpass
 import gspread
-import time
 import pandas as pd
 from google.oauth2.service_account import Credentials
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
-    add_amend_employee_menu
+    add_amend_employee_menu, welcome_menu
 from datetime import date
 from os import system, name
 """
@@ -22,16 +21,8 @@ Getpass: Prompt the user for a password without echoing.
 
 gspread:  A Python API for Google Sheets. Read, write, and format cell ranges.
 
-Time: The sleep() function delays execution of the current thread for the
-given number of seconds
-
-gspread:  A Python API for Google Sheets. Read, write, and format cell ranges.
-
 Pandas:  allows importing data and manipulation operations such as merging,
 reshaping, selecting, as well as data cleaning, and data wrangling features.
-
-Time: The sleep() function delays execution of the current thread for the
-given number of seconds.
 
 google.oauth2.service_account: So the application can access the account that
 the sheet is on with the credentials
@@ -39,7 +30,7 @@ the sheet is on with the credentials
 datetime: to get the current week of the year
 
 os: The OS module in Python provides functions for interacting with the
-operating system.
+operating system. Used for the clear function
 
 """
 
@@ -93,26 +84,26 @@ def get_payroll_week(week_status):
     """
     last_week_payroll_week_number = payroll_weeks()
 
-    while True:
-        payroll_week = input("Enter Payroll Week (1-52) : ")
-        if validate_data_int(payroll_week, 1, 52):
-            if week_status == "normal":
-                if int(payroll_week) == last_week_payroll_week_number:
+    try:
+        while True:
+            payroll_week = input("Enter payroll week (numeral) : ")
+            if validate_data_int(payroll_week, 1, 52):
+                if week_status == "normal":
+                    if int(payroll_week) == last_week_payroll_week_number:
+                        payroll_week = "wk" + payroll_week
+                        return(payroll_week)
+                    else:
+                        print(
+                            'You can only enter / '
+                            'amend payroll for the current week '
+                            f'which is week {last_week_payroll_week_number}')
+                elif week_status == "any week":
                     payroll_week = "wk" + payroll_week
                     return(payroll_week)
-                else:
-                    print(
-                        'You can only enter / '
-                        'amend payroll for the current week'
-                        f'which is Week {last_week_payroll_week_number}')
-            elif week_status == "any week":
-                payroll_week = "wk" + payroll_week
-                return(payroll_week)
-        else:
-            print(
-                'You can only enter / '
-                'amend payroll for the previous week which'
-                f' is Week {last_week_payroll_week_number}')
+    except KeyError:
+        print('Invalid week number, please try again.\n')
+        return False
+
 
 
 def payroll_weeks():
@@ -136,10 +127,10 @@ def get_employee_num():
     @returns: employee_num(str):Employee number given by user
     """
     while True:
-        employee_num = input("Enter Employee number e.g. 100014  : ")
-        print("Finding Employment record")
+        employee_num = input("Enter employee number : ")
+        print("Finding employment record")
         if validate_employee_num(employee_num):
-            print("Employment record retrieved")
+            print("Employment record located")
             return(employee_num)
         else:
             clear()
@@ -189,8 +180,7 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
             return (matched_row)
     except IndexError:
         print(
-            'No record found, please try again, '
-            'returning to main menu '
+            'No entry found in payroll'
             )
         return(0)
 
@@ -239,6 +229,7 @@ def get_display_payroll_option():
             if display_payroll_option_data == "3":
                 get_employerssummary_option()
             if display_payroll_option_data == "4":
+                clear()
                 get_main_menu_option()
 
 
@@ -259,6 +250,7 @@ def get_process_payroll_option():
             if process_payroll_option_data == "2":
                 process_payroll_option_2()
             if process_payroll_option_data == "3":
+                clear()
                 get_main_menu_option()
         return()
 
@@ -271,20 +263,38 @@ def display_all_employeepay_for_week():
     groupby referenced from
     https://stackoverflow.com/questions/39922986/pandas-group-by-and-sum
     """
-    week = get_payroll_week("any week")
-    data_by_week = df.groupby('Week Number')
-    filtered_data_by_week = data_by_week.get_group(week)
-    print(filtered_data_by_week)
-    time.sleep(3)
+    try:
+        week = get_payroll_week("any week")
+        data_by_week = df.groupby('Week Number')
+        filtered_data_by_week = data_by_week.get_group(week)
+        print("------------------------------------------")
+        print("------- People Payroll Application -------")
+        print("------------ All employees' pay ----------")
+        print("------------------------------------------")
+        print("\n")
+        print(filtered_data_by_week)
+        print(
+            '\nPress enter to clear the screen and return to the display'
+            'payroll menu'
+            )
+        input()
+        clear()
+    except KeyError:
+        print('Invalid week number, please try again.\n')
+        print(
+            '\nPress enter to clear the screen and return to the display'
+            'payroll menu'
+            )
+        input()
+        clear()
+        return False
+
 
 
 def display_ind_employee_pay_for_week():
     """
     Request user to enter payroll week and employee number,
     validation to ensure there is a record displays employee pay record
-
-    sleep referenced from
-    https://www.codegrepper.com/code-examples/python/how+to+pause+after+a+print+statement+in+python
     """
     week = get_payroll_week("any week")
     employee_num = get_employee_num()
@@ -298,17 +308,32 @@ def display_ind_employee_pay_for_week():
     if display_employee_data.empty:
         print(
             f'\nNo payroll record found for employee number: {employee_num}'
-            f' in {week}, returning to main menu.\n')
+            f' in {week}.\n')
+        print(
+            'Press enter to clear the screen and return to the'
+            ' display payroll menu')
+        input()
+        clear()
     else:
+        print("------------------------------------------")
+        print("------- People Payroll Application -------")
+        print(f'------------ Employee {employee_num} pay ---------')
+        print("------------------------------------------")
+        print("\n")
         print(display_employee_data)
-    time.sleep(3)
+        print(
+            '\nPress enter to clear the screen and return to the'
+            ' display payroll menu')
+        input()
+        clear()
 
 
 def get_employerssummary_option():
     """
     Displays Employers amounts to pay out
     summarising data reference from
-    https://stackoverflow.com/questions/43745301/converting-column-from-dataframe-to-float-for-sum-usage-python-pandas
+    https://stackoverflow.com/questions/43745301/converting-column-from- /
+    dataframe-to-float-for-sum-usage-python-pandas
     """
     company_payroll_data = df.groupby(
         ['Week Number'])[[
@@ -316,8 +341,18 @@ def get_employerssummary_option():
                 'Employees NI', 'Employees Pension',
                 'Company NI', 'Company Pension'
                 ]].agg(lambda x: sum(x.astype(float)))
+    print("------------------------------------------")
+    print("------- People Payroll Application -------")
+    print("------- Employers payment summary --------")
+    print("------------------------------------------")
+    print("\n")
     print(company_payroll_data)
-    time.sleep(3)
+    print(
+        '\nPress enter to clear the screen and return to the display'
+        ' payroll menu'
+        )
+    input()
+    clear()
 
 
 # Add / amend payroll functionality
@@ -327,6 +362,7 @@ def process_payroll_option_1():
     """
     payroll_week = payroll_weeks()
     payroll_week = "wk" + str(payroll_week)
+    print(f'Payroll week is {payroll_week}\n')
     employee_num = get_employee_num()
     row_num = check_for_records_in_payroll_sheet(payroll_week, employee_num)
     row_num = int(row_num)
@@ -334,6 +370,12 @@ def process_payroll_option_1():
         print(
             f'Employees hours already entered in {payroll_week}'
             f', please go to option 2 to amend \n')
+        print(
+            '\nPress enter to clear the screen and return to the Process '
+            '/ amend payroll menu'
+            )
+        input()
+        clear()
         get_process_payroll_option()
     else:
         calculate_employee_payslip_data(payroll_week, employee_num)
@@ -402,7 +444,7 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
     print(f' Pension contribution: £{employee_pension}')
     print(f' Net Pay: £{employee_net_pay}')
     if yesorno("Are the amounts correct? "):
-        print("Ready to upload into payroll spreadsheet")
+        print("\nReady to upload into payroll spreadsheet \n")
         row_data = [
                 payroll_week, employee_num,
                 employee_surname, employee_firstname,
@@ -448,6 +490,7 @@ def process_payroll_option_2():
     """
     payroll_week = payroll_weeks()
     payroll_week = "wk" + str(payroll_week)
+    print(f'Payroll week is {payroll_week}\n')
     employee_num = get_employee_num()
     amend_employees_hours(payroll_week, employee_num)
 
@@ -467,14 +510,27 @@ def amend_employees_hours(payroll_week, employee_num):
     try:
         row_to_delete = check_for_records_in_payroll_sheet(
             payroll_week, employee_num)
+        if (row_to_delete == 0):
+            raise IndexError()
         employeepayroll.delete_rows(row_to_delete)
         calculate_employee_payslip_data(
             payroll_week, employee_num,)
-        print('Updated payroll information')
+        print(
+            '\nPress enter to clear the screen and return to the Process '
+            '/ amend payroll menu')
+        input()
+        clear()
+        get_process_payroll_option()
     except IndexError:
         print(
             f'\nNo payroll record found for {employee_num} in week'
             f' {payroll_week}, returning to main menu.\n')
+        print(
+            '\nPress enter to clear the screen and return to the Process '
+            '/ amend payroll menu'
+            )
+        input()
+        clear()
         get_process_payroll_option()
 
 
@@ -487,6 +543,9 @@ def get_add_amend_employee_option():
     """
     while True:
         add_amend_employee_menu()
+        print('\nPress enter to clear the screen and return to the Main menu')
+        input()
+        clear()
         get_main_menu_option()
 
 
@@ -550,7 +609,6 @@ def validate_employee_num(employee_num):
     """
 
     try:
-        print("Validating employee number")
         employee_row = employeedetail.find(employee_num).row
         return employee_row
     except AttributeError:
@@ -574,12 +632,9 @@ def update_worksheet(data, worksheet):
     Code reference from code institute love sandwiches project
 
     """
-    print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
-    time.sleep(1)
-    clear()
 
 
 def password():
@@ -594,6 +649,7 @@ def password():
         for-usernames-and-passwords
     """
     while True:
+        print("Login (Characters will not be visible on screen when typed)")
         username = getpass.getpass(
                 prompt='\nPlease enter your username: ')
         password = getpass.getpass(
@@ -652,5 +708,5 @@ def main():
 
 
 clear()
-print("Welcome to Payroll application")
+welcome_menu()
 main()
