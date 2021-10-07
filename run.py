@@ -288,10 +288,10 @@ def display_all_employeepay_for_week():
         week = get_payroll_week()
         data_by_week = df.groupby('Week Number')
         filtered_data_by_week = data_by_week.get_group(week)
-        print("------------------------------------------")
-        print("------- People Payroll Application -------")
-        print("------------ All employees' pay ----------")
-        print("------------------------------------------")
+        print("-------------------------------------------------------------")
+        print("---------------- People Payroll Application -----------------")
+        print("---------------------- Employees' pay -----------------------")
+        print("-------------------------------------------------------------\n")
         print("\n")
         print(filtered_data_by_week)
         print(
@@ -337,11 +337,13 @@ def display_ind_employee_pay_for_week():
         clear()
         get_display_payroll_option()
     else:
-        print("------------------------------------------")
-        print("------- People Payroll Application -------")
-        print(f'------------ Employee {employee_num} pay ---------')
-        print("------------------------------------------")
-        print("\n")
+        print("-------------------------------------------------------------")
+        print("---------------- People Payroll Application -----------------")
+        print(
+            f'---------------------- Employee {employee_num} ---------------'
+            '-------'
+            )
+        print("-------------------------------------------------------------\n")
         print(display_employee_data)
         print(
             '\nPress any key to clear the screen and return to the'
@@ -362,13 +364,12 @@ def get_employerssummary_option():
         ['Week Number'])[[
                 'NET Pay',
                 'Employees NI', 'Employees Pension',
-                'Company NI', 'Company Pension'
+                'Employers NI', 'Employers Pension'
                 ]].agg(lambda x: sum(x.astype(float)))
-    print("------------------------------------------")
-    print("------- People Payroll Application -------")
-    print("------- Employers payment summary --------")
-    print("------------------------------------------")
-    print("\n")
+    print("-------------------------------------------------------------")
+    print("---------------- People Payroll Application -----------------")
+    print("----------------- Employers payment summary -----------------")
+    print("-------------------------------------------------------------\n")
     print(company_payroll_data)
     print(
         '\nPress any key to clear the screen and return to the display'
@@ -467,7 +468,7 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
     print(f' NI contribution: £{employee_ni}')
     print(f' Pension contribution: £{employee_pension}')
     print(f' Net Pay: £{employee_net_pay}')
-    if yesorno("Are the amounts correct? "):
+    if yesorno("Are the amounts correct? type y or n "):
         print("\nReady to upload into payroll spreadsheet \n")
         row_data = [
                 payroll_week, employee_num,
@@ -729,15 +730,6 @@ def yesorno(question):
         return ()
 
 
-def main():
-    """
-    Run all program functions
-    """
-    password()
-    print()
-    get_main_menu_option()
-
-
 def wait_key():
     """
     Wait for a key press on the console
@@ -755,6 +747,15 @@ def wait_key():
         pass
     finally:
         termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
+
+
+def main():
+    """
+    Run all program functions
+    """
+    password()
+    print()
+    get_main_menu_option()
 
 
 clear()
