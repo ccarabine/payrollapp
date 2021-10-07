@@ -9,11 +9,15 @@ The data is pushed to and read from google sheet, stored on google drive
 import getpass
 import gspread
 import pandas as pd
+import sys
+import os
+import termios
 from google.oauth2.service_account import Credentials
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
     add_amend_employee_menu, welcome_menu
 from datetime import date
 from os import system, name
+
 """
 Imports for all modules for application to function fully:
 
@@ -31,6 +35,8 @@ datetime: to get the current week of the year
 
 os: The OS module in Python provides functions for interacting with the
 operating system. Used for the clear function
+
+sys:
 
 """
 
@@ -103,7 +109,6 @@ def get_payroll_week(week_status):
     except KeyError:
         print('Invalid week number, please try again.\n')
         return False
-
 
 
 def payroll_weeks():
@@ -274,21 +279,20 @@ def display_all_employeepay_for_week():
         print("\n")
         print(filtered_data_by_week)
         print(
-            '\nPress enter to clear the screen and return to the display'
+            '\nPress any key to clear the screen and return to the display '
             'payroll menu'
             )
-        input()
+        wait_key()
         clear()
     except KeyError:
         print('Invalid week number, please try again.\n')
         print(
-            '\nPress enter to clear the screen and return to the display'
+            '\nPress any key to clear the screen and return to the display '
             'payroll menu'
             )
-        input()
+        wait_key()
         clear()
         return False
-
 
 
 def display_ind_employee_pay_for_week():
@@ -310,9 +314,9 @@ def display_ind_employee_pay_for_week():
             f'\nNo payroll record found for employee number: {employee_num}'
             f' in {week}.\n')
         print(
-            'Press enter to clear the screen and return to the'
+            'Press any key to clear the screen and return to the'
             ' display payroll menu')
-        input()
+        wait_key()
         clear()
     else:
         print("------------------------------------------")
@@ -322,9 +326,9 @@ def display_ind_employee_pay_for_week():
         print("\n")
         print(display_employee_data)
         print(
-            '\nPress enter to clear the screen and return to the'
+            '\nPress any key to clear the screen and return to the'
             ' display payroll menu')
-        input()
+        wait_key()
         clear()
 
 
@@ -348,10 +352,10 @@ def get_employerssummary_option():
     print("\n")
     print(company_payroll_data)
     print(
-        '\nPress enter to clear the screen and return to the display'
+        '\nPress any key to clear the screen and return to the display'
         ' payroll menu'
         )
-    input()
+    wait_key()
     clear()
 
 
@@ -371,10 +375,10 @@ def process_payroll_option_1():
             f'Employees hours already entered in {payroll_week}'
             f', please go to option 2 to amend \n')
         print(
-            '\nPress enter to clear the screen and return to the Process '
-            '/ amend payroll menu'
+            '\nPress any key to clear the screen and return to the Process '
+            'amend payroll menu'
             )
-        input()
+        wait_key()
         clear()
         get_process_payroll_option()
     else:
@@ -394,6 +398,7 @@ def next_employee_to_process():
             process_payroll_option_1()
             return()
         else:
+            clear()
             get_main_menu_option()
 
 
@@ -516,9 +521,9 @@ def amend_employees_hours(payroll_week, employee_num):
         calculate_employee_payslip_data(
             payroll_week, employee_num,)
         print(
-            '\nPress enter to clear the screen and return to the Process '
+            '\nPress any key to clear the screen and return to the Process '
             '/ amend payroll menu')
-        input()
+        wait_key()
         clear()
         get_process_payroll_option()
     except IndexError:
@@ -529,7 +534,7 @@ def amend_employees_hours(payroll_week, employee_num):
             '\nPress enter to clear the screen and return to the Process '
             '/ amend payroll menu'
             )
-        input()
+        wait_key()
         clear()
         get_process_payroll_option()
 
@@ -543,8 +548,8 @@ def get_add_amend_employee_option():
     """
     while True:
         add_amend_employee_menu()
-        print('\nPress enter to clear the screen and return to the Main menu')
-        input()
+        print('\nPress any key to clear the screen and return to the Main menu')
+        wait_key()
         clear()
         get_main_menu_option()
 
@@ -707,6 +712,25 @@ def main():
     get_main_menu_option()
 
 
+def wait_key():
+    """
+    Wait for a key press on the console
+    referenced from https://stackoverflow.com/questions/983354/ \
+    how-to-make-a-script-wait-for-a-pressed-key
+    """
+    try:
+        fd = sys.stdin.fileno()
+        oldterm = termios.tcgetattr(fd)
+        newattr = termios.tcgetattr(fd)
+        newattr[3] = newattr[3] & ~termios.ICANON & ~termios.ECHO
+        termios.tcsetattr(fd, termios.TCSANOW, newattr)
+        sys.stdin.read(1)
+    except IOError:
+        pass
+    finally:
+        termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
+
+    
 clear()
 welcome_menu()
 main()
