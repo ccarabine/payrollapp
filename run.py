@@ -18,16 +18,18 @@ import os
 if path.exists("env.py"):
     import env
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
-    add_amend_employee_menu, welcome_menu
+    add_amend_employee_menu, welcome_menu, employees_pay_menu, \
+    employers_payment_summary_menu
+
+
 """
 Imports for all modules for application to function fully:
 
-Getpass: Prompt the user for a password without echoing.
+Getpass: Prompt the user for a username and password without echoing.
 
 gspread:  A Python API for Google Sheets. Read, write, and format cell ranges.
 
-Pandas:  allows importing data and manipulation operations such as merging,
-reshaping, selecting, as well as data cleaning, and data wrangling features.
+Pandas:  allows importing data displaying data
 
 sys: System-specific parameters and functions module used in wait_key function
 
@@ -42,8 +44,6 @@ datetime: to get the current week of the year
 os: The OS module in Python provides functions for interacting with the
 operating system. Used for the clear function and to access the environment
 varaibles
-
-env:  Import from env file
 
 menu:  Import the functions listed from the menu file
 
@@ -288,11 +288,7 @@ def display_all_employeepay_for_week():
         week = get_payroll_week()
         data_by_week = df.groupby('Week Number')
         filtered_data_by_week = data_by_week.get_group(week)
-        print("-------------------------------------------------------------")
-        print("---------------- People Payroll Application -----------------")
-        print("---------------------- Employees' pay -----------------------")
-        print("-------------------------------------------------------------\n")
-        print("\n")
+        employees_pay_menu()
         print(filtered_data_by_week)
         print(
             '\nPress any key to clear the screen and return to the display '
@@ -343,7 +339,10 @@ def display_ind_employee_pay_for_week():
             f'---------------------- Employee {employee_num} ---------------'
             '-------'
             )
-        print("-------------------------------------------------------------\n")
+        print(
+            '----------------------------------------------------------'
+            '---\n'
+            )
         print(display_employee_data)
         print(
             '\nPress any key to clear the screen and return to the'
@@ -366,10 +365,7 @@ def get_employerssummary_option():
                 'Employees NI', 'Employees Pension',
                 'Employers NI', 'Employers Pension'
                 ]].agg(lambda x: sum(x.astype(float)))
-    print("-------------------------------------------------------------")
-    print("---------------- People Payroll Application -----------------")
-    print("----------------- Employers payment summary -----------------")
-    print("-------------------------------------------------------------\n")
+    employers_payment_summary_menu()
     print(company_payroll_data)
     print(
         '\nPress any key to clear the screen and return to the display'
@@ -710,10 +706,8 @@ def yesorno(question):
     """
     Function to take user input yes or no
     validate input
-
     @param question(string): Question
-
-     Code used from https://gist.github.com/garrettdreyfus/8153571
+    Code used from https://gist.github.com/garrettdreyfus/8153571
      """
     answer = input(f'{question}\n')
     try:

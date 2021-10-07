@@ -53,11 +53,32 @@ def process_amend_payroll_menu():
 def add_amend_employee_menu():
     """
     Displays the Add / Amend Employee's Details menu
-    sleep referenced from
-    https://www.codegrepper.com/code-examples/python/how+to+pause+after+a+print+statement+in+python
     """
     print("-------------------------------------------------------------")
     print("---------------- People Payroll Application -----------------")
     print("-------------- Add / Amend Employee's Details ---------------")
     print("-------------------------------------------------------------\n")
     print("\n Feature in next update, returning to main menu \n")
+
+
+def employees_pay_menu():
+    """
+    Displays the Employees' Details menu
+    """
+    print("-------------------------------------------------------------")
+    print("---------------- People Payroll Application -----------------")
+    print("---------------------- Employees' pay -----------------------")
+    print(
+        "---------------------------------------------------------"
+        "----\n"
+        )
+
+
+def employers_payment_summary_menu():
+    """
+    Displays the Employees' Details menu
+    """
+    print("-------------------------------------------------------------")
+    print("---------------- People Payroll Application -----------------")
+    print("----------------- Employers payment summary -----------------")
+    print("-------------------------------------------------------------\n")
