@@ -12,11 +12,13 @@ import pandas as pd
 import sys
 import termios
 from google.oauth2.service_account import Credentials
+from datetime import date
+from os import system, name, path
+import os
+if path.exists("env.py"):
+    import env
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
     add_amend_employee_menu, welcome_menu
-from datetime import date
-from os import system, name
-
 """
 Imports for all modules for application to function fully:
 
@@ -27,15 +29,23 @@ gspread:  A Python API for Google Sheets. Read, write, and format cell ranges.
 Pandas:  allows importing data and manipulation operations such as merging,
 reshaping, selecting, as well as data cleaning, and data wrangling features.
 
+sys: System-specific parameters and functions module used in wait_key function
+
+termios: The termios module provides an interface the terminal control \
+    facilities used in wait_key function
+
 google.oauth2.service_account: So the application can access the account that
 the sheet is on with the credentials
 
 datetime: to get the current week of the year
 
 os: The OS module in Python provides functions for interacting with the
-operating system. Used for the clear function
+operating system. Used for the clear function and to access the environment
+varaibles
 
-sys:
+env:  Import from env file
+
+menu:  Import the functions listed from the menu file
 
 """
 
@@ -84,7 +94,7 @@ def get_payroll_week():
     """
     try:
         while True:
-            payroll_week = input("Enter payroll week (numeral) : ")
+            payroll_week = input("Enter payroll week (numeral) : \n")
             if validate_data_int(payroll_week, 1, 52):
                 if int(payroll_week):
                     payroll_week = "wk" + payroll_week
@@ -138,7 +148,7 @@ def get_employee_num():
     @returns: employee_num(str):Employee number given by user
     """
     while True:
-        employee_num = input("Enter employee number : ")
+        employee_num = input("Enter employee number : \n")
         print("Finding employment record")
         if validate_employee_num(employee_num):
             print("Employment record located")
@@ -154,7 +164,7 @@ def get_employee_hours():
     @returns: employee_hours(float):Employee hours given by user
     """
     while True:
-        employee_hours = input("Enter number of hours worked : ")
+        employee_hours = input("Enter number of hours worked : \n")
         if validate_data_float(employee_hours, 1, 100):
             return(employee_hours)
 
@@ -206,7 +216,7 @@ def get_main_menu_option():
     while True:
         main_menu()
         main_menu_option_data = input(
-            'Please enter number option from the menu : ')
+            'Please enter number option from the menu : \n')
         if validate_data_int(main_menu_option_data, 1, 4):
             if main_menu_option_data == "1":
                 clear()
@@ -230,7 +240,7 @@ def get_display_payroll_option():
     while True:
         display_payroll_menu()
         display_payroll_option_data = input(
-            'Please enter number option from the menu : '
+            'Please enter number option from the menu : \n'
             )
         if validate_data_int(display_payroll_option_data, 1, 4):
             if display_payroll_option_data == "1":
@@ -253,7 +263,7 @@ def get_process_payroll_option():
     while True:
         process_amend_payroll_menu()
         process_payroll_option_data = input(
-            'Please enter number option from the menu : '
+            'Please enter number option from the menu : \n'
             )
         if validate_data_int(process_payroll_option_data, 1, 3):
             if process_payroll_option_data == "1":
@@ -659,23 +669,25 @@ def password():
         referenced from
     https://stackoverflow.com/questions/46738966/how-to-check-text-file- \
         for-usernames-and-passwords
+    referenced from slack post  - How to set up environment variables \
+    anna_ci Dec 19th, 2019 at 8:25 AM
     """
     payroll_week = payroll_week_current()
     print(f'       Current Payroll week is {payroll_week}\n')
     print("Login (Characters will not be visible on screen when typed)")
     while True:
-        username = getpass.getpass(
-                prompt='\nPlease enter your username: ')
-        password = getpass.getpass(
-                prompt='\nPlease enter your password: ')
-        for line in open("credentials.txt", "r").readlines():  # Read the lines
-            login_info = line.split()  # Split on the space, and store the \
-            # results in a list of two strings
-            if username == login_info[0] and password == login_info[1]:
-                print("Correct credentials!")
-                clear()
-                return True
-        print("Incorrect credentials, please try again.")
+        username = os.environ.get('username')
+        password = os.environ.get('password')
+        username_input = getpass.getpass(
+                prompt='\nPlease enter your username: \n')
+        password_input = getpass.getpass(
+                prompt='\nPlease enter your password: \n')
+        if username_input == username and password_input == password:
+            print("Correct credentials!")
+            clear()
+            return True
+        else:
+            print("Incorrect credentials, please try again.")
 
 
 def clear():
@@ -698,7 +710,7 @@ def yesorno(question):
 
      Code used from https://gist.github.com/garrettdreyfus/8153571
      """
-    answer = input(f'{question}')
+    answer = input(f'{question}\n')
     try:
         if answer[0] == 'y':
             return True
