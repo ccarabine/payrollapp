@@ -10,7 +10,6 @@ import getpass
 import gspread
 import pandas as pd
 import sys
-import os
 import termios
 from google.oauth2.service_account import Credentials
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
@@ -115,14 +114,37 @@ def payroll_weeks():
     """
     Get current tax week number, minus 13 weeks to start in april for
     payroll week to get the previous payroll week, minus 1 week
-    @returns: last_week_payroll_week_number(str)
+    @returns: last_week_payroll_week_number(str): payroll week to process
+    @returns: current_payroll_week_number(str): current payrool week
     isocalender code reference from
     http://week-number.net/programming/week-number-in-python.html
     """
     tax_week_number = date.today().isocalendar()[1]
     current_payroll_week_number = tax_week_number - 13
     last_week_payroll_week_number = current_payroll_week_number - 1
-    return(last_week_payroll_week_number)
+    return (last_week_payroll_week_number, current_payroll_week_number)
+
+
+def payroll_week_for_processing():
+    """
+    Function get the previous payroll week and return the value
+    @return payroll_week(str): week to process employees hours
+    """
+    payroll_week = payroll_weeks()
+    payroll_week = payroll_week[0]
+    payroll_week = "wk" + str(payroll_week)
+    return(payroll_week)
+
+
+def payroll_week_current():
+    """
+    Function get the current payroll week and return the value
+    @return payroll_week(str): current payroll week
+    """
+    payroll_week = payroll_weeks()
+    payroll_week = payroll_week[1]
+    payroll_week = "wk" + str(payroll_week)
+    return(payroll_week)
 
 
 def get_employee_num():
@@ -364,9 +386,8 @@ def process_payroll_option_1():
     """
     Process payroll option 1 -run functions below to add employees hours
     """
-    payroll_week = payroll_weeks()
-    payroll_week = "wk" + str(payroll_week)
-    print(f'Payroll week is {payroll_week}\n')
+    payroll_week = payroll_week_for_processing()
+    print(f'\nPayroll week for processing is {payroll_week}\n')
     employee_num = get_employee_num()
     row_num = check_for_records_in_payroll_sheet(payroll_week, employee_num)
     row_num = int(row_num)
@@ -493,9 +514,8 @@ def process_payroll_option_2():
     Process payroll option 2 -run functions below to amend employees hours
     payrolls_weeks is the previous week
     """
-    payroll_week = payroll_weeks()
-    payroll_week = "wk" + str(payroll_week)
-    print(f'Payroll week is {payroll_week}\n')
+    payroll_week = payroll_week_for_processing()
+    print(f'\nPayroll week for processing is {payroll_week}\n')
     employee_num = get_employee_num()
     amend_employees_hours(payroll_week, employee_num)
 
@@ -548,7 +568,10 @@ def get_add_amend_employee_option():
     """
     while True:
         add_amend_employee_menu()
-        print('\nPress any key to clear the screen and return to the Main menu')
+        print(
+            '\nPress any key to clear the screen and return'
+            ' to the Main menu'
+            )
         wait_key()
         clear()
         get_main_menu_option()
@@ -653,8 +676,10 @@ def password():
     https://stackoverflow.com/questions/46738966/how-to-check-text-file- \
         for-usernames-and-passwords
     """
+    payroll_week = payroll_week_current()
+    print(f'       Current Payroll week is {payroll_week}\n')
+    print("Login (Characters will not be visible on screen when typed)")
     while True:
-        print("Login (Characters will not be visible on screen when typed)")
         username = getpass.getpass(
                 prompt='\nPlease enter your username: ')
         password = getpass.getpass(
@@ -709,6 +734,7 @@ def main():
     Run all program functions
     """
     password()
+    print()
     get_main_menu_option()
 
 
@@ -730,7 +756,7 @@ def wait_key():
     finally:
         termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
 
-    
+
 clear()
 welcome_menu()
 main()
