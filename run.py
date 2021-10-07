@@ -300,6 +300,7 @@ def display_all_employeepay_for_week():
             )
         wait_key()
         clear()
+        get_display_payroll_option()
     except KeyError:
         print('Invalid week number, please try again.\n')
         print(
@@ -308,7 +309,7 @@ def display_all_employeepay_for_week():
             )
         wait_key()
         clear()
-        return False
+        get_display_payroll_option()
 
 
 def display_ind_employee_pay_for_week():
@@ -334,6 +335,7 @@ def display_ind_employee_pay_for_week():
             ' display payroll menu')
         wait_key()
         clear()
+        get_display_payroll_option()
     else:
         print("------------------------------------------")
         print("------- People Payroll Application -------")
@@ -346,6 +348,7 @@ def display_ind_employee_pay_for_week():
             ' display payroll menu')
         wait_key()
         clear()
+        get_display_payroll_option()
 
 
 def get_employerssummary_option():
@@ -373,6 +376,7 @@ def get_employerssummary_option():
         )
     wait_key()
     clear()
+    get_display_payroll_option()
 
 
 # Add / amend payroll functionality

@@ -1,12 +1,3 @@
-import time
-"""
-Imports for all modules for application to function fully
-
-Time: The sleep() function delays execution of the current thread for the
-given number of seconds
-"""
-
-
 def welcome_menu():
     """
     Displays the welcome screen on load
@@ -73,4 +64,3 @@ def add_amend_employee_menu():
     print("----- Add / Amend Employee's Details -----")
     print("------------------------------------------")
     print("\n Feature in next update, returning to main menu \n")
-    time.sleep(3)
