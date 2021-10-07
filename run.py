@@ -76,33 +76,17 @@ EMPLOYERS_NI_PC = 0.138
 EMPLOYERS_NI_AMOUNT = 170
 
 
-def get_payroll_week(week_status):
+def get_payroll_week():
     """
     Get payroll week from user and validate
-    if week status is normal then the user can only enter the previous week
-    else if week status is any week, then can enter any week between
-        1 to 52 for displaying purposes
-    Can only process and amend payroll for previous week
-    @param week_status(str): "normal" or "any week" coded in
     @returns: payroll_week(str)
 
     """
-    last_week_payroll_week_number = payroll_weeks()
-
     try:
         while True:
             payroll_week = input("Enter payroll week (numeral) : ")
             if validate_data_int(payroll_week, 1, 52):
-                if week_status == "normal":
-                    if int(payroll_week) == last_week_payroll_week_number:
-                        payroll_week = "wk" + payroll_week
-                        return(payroll_week)
-                    else:
-                        print(
-                            'You can only enter / '
-                            'amend payroll for the current week '
-                            f'which is week {last_week_payroll_week_number}')
-                elif week_status == "any week":
+                if int(payroll_week):
                     payroll_week = "wk" + payroll_week
                     return(payroll_week)
     except KeyError:
@@ -291,7 +275,7 @@ def display_all_employeepay_for_week():
     https://stackoverflow.com/questions/39922986/pandas-group-by-and-sum
     """
     try:
-        week = get_payroll_week("any week")
+        week = get_payroll_week()
         data_by_week = df.groupby('Week Number')
         filtered_data_by_week = data_by_week.get_group(week)
         print("------------------------------------------")
@@ -322,7 +306,7 @@ def display_ind_employee_pay_for_week():
     Request user to enter payroll week and employee number,
     validation to ensure there is a record displays employee pay record
     """
-    week = get_payroll_week("any week")
+    week = get_payroll_week()
     employee_num = get_employee_num()
     display_employee_data = df.loc[
         (df['Week Number'] == (week)) & (
