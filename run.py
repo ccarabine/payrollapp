@@ -213,10 +213,11 @@ def get_main_menu_option():
     Get Main menu option input from user
     Run function related to input
     """
+    main_menu()
     while True:
-        main_menu()
         main_menu_option_data = input(
-            'Please enter number option from the menu : \n')
+                'Please enter number option from the menu : \n'
+                )
         if validate_data_int(main_menu_option_data, 1, 4):
             if main_menu_option_data == "1":
                 clear()
@@ -237,8 +238,8 @@ def get_display_payroll_option():
     Get display payroll option input from user
     Run function related to input
     """
+    display_payroll_menu()
     while True:
-        display_payroll_menu()
         display_payroll_option_data = input(
             'Please enter number option from the menu : \n'
             )
@@ -260,8 +261,8 @@ def get_process_payroll_option():
     Get process / Amend payroll option input from user
     Run function related to input
     """
+    process_amend_payroll_menu()
     while True:
-        process_amend_payroll_menu()
         process_payroll_option_data = input(
             'Please enter number option from the menu : \n'
             )
@@ -273,10 +274,9 @@ def get_process_payroll_option():
             if process_payroll_option_data == "3":
                 clear()
                 get_main_menu_option()
-        return()
 
 
-# Display menu functionility
+# Display menu functionality
 def display_all_employeepay_for_week():
     """
     Request user to input payroll week,display data for week
