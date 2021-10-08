@@ -10,10 +10,10 @@ ___
 **Covered by Feature 1: Welcome Message and security**
 
 ___
-
+Test 1
 - **Action** - *User enters correct username and password*
 
-- **Expected Result** - *Main menu is displayed”*
+- **Expected Result** - *Main menu is displayed*
 
 - **Actual Result** - *Works as intended*
 
@@ -24,10 +24,10 @@ ___
 </details><br>
 
 ___
-
+Test 2
 - **Action** - *User enters incorrect password*
 
-- **Expected Result** - *Display ” Incorrect credentials, please try again.”*
+- **Expected Result** - *Display ”Incorrect credentials, please try again.”*
 
 - **Actual Result** - *Works as intended*
 
@@ -38,10 +38,10 @@ ___
 </details><br>
 
 ___
-
+Test 3
 - **Action** - *User enters a string of numbers and letters*
 
-- **Expected Result** - *Display ” Incorrect credentials, please try again”*
+- **Expected Result** - *Display ”Incorrect credentials, please try again”*
 
 - **Actual Result** - *Works as intended*
 
@@ -63,19 +63,21 @@ ___
 ___
 Test 1
 
-- **Action** - *From the main menu, type “2”, then “1”, user prompted to Enter Payroll Week : type “25” , then type Employee number “100017”*, then Enter number of hours worked “25”
+- **Action** - *From the main menu, type “2”, then “1”, user prompted to Enter Payroll Week : type “25” , then type Employee number “100017”, then Enter number of hours worked “25”*
 
-Note: Importing employee number to check that there is a record in google sheets to retrieve the employees rate of pay and pension %
+Note: Importing employee number to check that there is a record in google sheets to retrieve the employees rate of pay and pension %<br>
 Exporting all the calculated values to google sheet
 
 - **Expected Result** -
-Messaged displayed if the employee record is found against the employee number<br>
-Employment record located<br>
+Message displayed if the employee record is found against the employee number<br>
+"Employment record located"<br>
 Letting us know that the record has been exported 
 
-    After the hours have been entered expecting the following message "employeepayroll worksheet updated successfully" to let use know the information has been imported to google sheets
+    After the hours have been entered, the following message displayed <br>
 
-    Would you like to process another employees hours? type y or n :
+    "employeepayroll worksheet updated successfully" <br>to let use know the information has been imported to google sheets
+
+    "Would you like to process another employees hours? type y or n :"
  
 - **Actual Result** - *Works as intended*
 <details>
@@ -210,7 +212,7 @@ ___
 Test 8
 - **Action** - *User enters “3”*
 
-- **Expected Result** - *summarised employers data is displayed by week, main menu is displayed*
+- **Expected Result** - *summarised employers data is displayed by week*
 
 - **Actual Result** - *Works as intended*
 Image Us 3_8
@@ -224,7 +226,7 @@ ___
 Test 4
 - **Action** - *User enters “4”*
 
-- **Expected Result** - * main menu is displayed*
+- **Expected Result** - *main menu is displayed*
 
 - **Actual Result** - *Works as intended*
 Image Us 3_9
@@ -238,7 +240,7 @@ ___
 Test 5
 - **Action** - *User enters “0” or 5*
 
-- **Expected Result** - *Display ” Invalid data, please try again.” And displays the main menu*
+- **Expected Result** - *Display ”Invalid data, please try again.”*
 
 - **Actual Result** - *Works as intended*
 
@@ -252,7 +254,7 @@ ___
 Test 6
 - **Action** - *User enters a string of numbers and letters*
 
-- **Expected Result** - *Display ” Invalid data, please try again.” And displays the main menu*
+- **Expected Result** - *Display ” Invalid data, please try again.”*
 
 - **Actual Result** - *Works as intended*
 
@@ -295,7 +297,7 @@ ___
 Test 3
 - **Action** - *User enters “3”*
 
-- **Expected Result** - *displays main menu*
+- **Expected Result** - *Displays main menu*
 - **Actual Result** - *Works as intended*
 
 <details>
@@ -309,7 +311,7 @@ ___
 Test 4
 - **Action** - *User enters “0” or 4*
 
-- **Expected Result** - *Display ” Invalid data, please try again.” *
+- **Expected Result** - *Display ” Invalid data, please try again.”*
 
 - **Actual Result** - *Works as intended*
 
@@ -323,7 +325,7 @@ ___
 Test 5
 - **Action** - *User enters a string of numbers and letters*
 
-- **Expected Result** - *Display ” Invalid data, please try again.” *
+- **Expected Result** - *Display ”Invalid data, please try again.”*
 
 - **Actual Result** - *Works as intended*
 <details>
@@ -343,10 +345,10 @@ ___
 ___
 Test 1
 
-- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100017
+- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100017*
 
-- **Expected Result** 
-Employees hours already entered in wk26, please go to option 2 to amend
+- **Expected Result** -
+*Employees hours already entered in wk26, please go to option 2 to amend*
 
 - **Actual Result** - *Works as intended*
 <details>
@@ -361,8 +363,9 @@ Test 2
 
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015*
 - **Expected Result** - 
-No entry found in payroll
-Enter number of hours worked :
+*No entry found in payroll
+
+    Enter number of hours worked :*
 
 - **Actual Result** - *Works as intended*
 <details>
@@ -381,13 +384,13 @@ ___
 ___
 Test 1
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”
-- **Expected Result** - 
-Employee : 100015 - Hadley Light
- Basic Pay : £525.0
- Holiday Pay : £63.42
- NI contribution: £48.53
- Pension contribution: £17.65
- Net Pay: £522.24
+- **Expected Result** - <br>
+Employee : 100015 - Hadley Light<br>
+ Basic Pay : £525.0<br>
+ Holiday Pay : £63.42<br>
+ NI contribution: £48.53<br>
+ Pension contribution: £17.65<br>
+ Net Pay: £522.24<br>
 - **Actual Result** - *Works as intended*
 <details>
     <summary>Click here to view result</summary>
@@ -410,13 +413,13 @@ ___
 ___
 Test 1
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”*
-- **Expected Result** - 
-Employee : 100015 - Hadley Light
- Basic Pay : £525.0
- Holiday Pay : £63.42
- NI contribution: £48.53
- Pension contribution: £17.65
- Net Pay: £522.24
+- **Expected Result** - <br>
+*Employee : 100015 - Hadley Light<br>
+ Basic Pay : £525.0<br>
+ Holiday Pay : £63.42<br>
+ NI contribution: £48.53<br>
+ Pension contribution: £17.65<br>
+ Net Pay: £522.24*<br>
 - **Actual Result** - *Works as intended*
 
 <details>
@@ -429,9 +432,9 @@ ___
 Test 2
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”, are the amount correct? “n”
 - **Expected Result** - 
-    Re enter details 
+    *Re enter details* 
 
-    Enter number of hours worked : 
+    *Enter number of hours worked :* 
 
 - **Actual Result** - *Works as intended*
 
@@ -448,9 +451,9 @@ ___
 **Covered by Feature 3: Display payroll**
 ___
 Test 1
-- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “25”
+- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “25”*
 - **Expected Result** - 
-records displayed
+*Records displayed*
 - **Actual Result** - *Works as intended*
 
 <details>
@@ -486,7 +489,7 @@ Test 1
 - **Action to view the record** - *From the main menu, type “1”, then “2” user prompted to Enter Payroll Week : type “25”, then type Employee number “100017”*, 
 
 - **Expected Result** - 
-Record displayed
+*Record displayed*
 
 - **Actual Result** - *Works as intended*
 
@@ -500,13 +503,13 @@ Record displayed
 - **Action to amend the record** - *From the main menu, type “2”, then “2” type Employee number “100017”*, enter number of hours worked “25”
 
 - **Expected Result** - 
-Employee : 100017 - Stobbs Harriet<br>
+*Employee : 100017 - Stobbs Harriet<br>
  Basic Pay : £350.0<br>
  Holiday Pay : £42.28<br>
  NI contribution: £24.99<br>
  Pension contribution: £11.77<br>
  Net Pay: £355.52<br>
-Are the amounts correct?<br>
+Are the amounts correct?<br>*
 - **Actual Result** - *Works as intended*
 
 <details>
@@ -523,9 +526,9 @@ ___
 
 ___
 
-- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week :26  
+- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week :26*
 
-- **Expected Result** - Records displayed
+- **Expected Result** - *Records displayed*
 
 - **Actual Result** - *Works as intended*
 
@@ -547,7 +550,7 @@ ___
 ## Site owner stories testing  <a name="user-stories-testing"></a>
 ___
 ## Testing of user story 11
-11. I want a terminal based application which allows the user to navigate the system intuitively without returning errors<br>
+**"I want a terminal based application which allows the user to navigate the system intuitively without returning errors"**<br>
 
 **Covered by Feature 1: Welcome Message and security, <br>
 Feature 2: Menu system <br>
