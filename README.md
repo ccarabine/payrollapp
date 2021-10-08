@@ -518,7 +518,7 @@ Display the main menu
 6. As a user, I want full visibility of an employee’s payment summary before submission to payroll (send to google sheets spreadsheet)<br>
 11. As a user with no formal finance training/qualifications I need simple and easy to understand terminology<br>
 12. As a user I need to be able to trust the application to calculate payments accurately<br>
-13. As a user I need quick painless process, in order to free up more time to be productive in other areas of my role.<br>*
+13. As a user I need quick painless process, in order to free up more time to be productive in other areas of my role.*<br>
 
 **Owners stories covered:**<br>
 *14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors*
@@ -541,7 +541,7 @@ This is a future feature
 - Add / Amend employee details
 - Statutory sick pay, maternity/Paternity leave
 - Bonuses
-- Allow for contracted staff
+- Payroll for salary staff
 - Admin password to display as astericks
 - Allow different users with different access
 - Change password
@@ -560,7 +560,8 @@ This is a future feature
 User stories are tested with the features that cover them. All user stories passed the tests.
 
 # Click on link to testing of user stories
-#to put in
+check if link works
+[Link to testing ](https://github.com/ccarabine/payroll/blob/main/docs/testing.md)
 ---
 ## User stories testing  <a name="user-stories-testing"></a>
 
