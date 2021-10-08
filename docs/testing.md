@@ -18,7 +18,7 @@ ___
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](docs/images/testing/test_us1_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us1_1.PNG)
 </details><br>
 
 ___
@@ -30,13 +30,10 @@ ___
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>View image of date validation here</summary>
+    <summary>Click here to view result</summary>
 
-![User story 1, 2IMAGE  test-f1-2
-
-
-</details>
-
+![Screenshot of result](/docs/images/testing/test_us1_2.PNG)
+</details><br>
 ___
 
 - **Action** - *User enters a string of numbers and letters*
@@ -79,8 +76,18 @@ to let use know the information has been imported to google sheets
 - Would you like to process another employees hours? type y or n :
  
 - **Actual Result** - *Works as intended*
+<details>
+    <summary>Click here to view result</summary>
 
-Image Us2_1
+![Screenshot of result](/docs/images/testing/test_us2_1.PNG)
+</details><br>
+
+<details>
+    <summary>Click here to view result- Google sheet updated</summary>
+
+![Screenshot of result](/docs/images/testing/userstory2test1.png)
+</details><br>
+
 
 ___
 
@@ -99,7 +106,11 @@ Test 1
 
 - **Actual Result** - *Works as intended*
 
-Image Us3_1
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_1.PNG)
+</details><br>
 
 ___
 Test 2
@@ -109,16 +120,24 @@ Test 2
 
 - **Actual Result** - *Works as intended*
 
-Image Us3_2
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_2.PNG)
+</details><br>
 
 ___
 Test 3
 - **Action** - *User enters “1”*
 
-- **Expected Result** - *Displays “Display Payroll” menu *
+- **Expected Result** - *Displays “Display Payroll” menu*
 
 - **Actual Result** - *Works as intended*
-Image Us3_3
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_3.PNG)
+</details><br>
 
 ___
 Test 4
@@ -127,8 +146,12 @@ Test 4
 - **Expected Result** - *Displays “Process / Amend” menu *
 
 - **Actual Result** - *Works as intended*
-Image Us3_4
 
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_4.PNG)
+</details><br>
 ___
 Test 5
 - **Action** - *User enters “3”*
@@ -137,7 +160,12 @@ Test 5
 “Press any key to clear the screen and return to the Main menu”*
 
 - **Actual Result** - *Works as intended*
-Image Us3_5
+
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_5.PNG)
+</details><br>
 
 ___
 
@@ -148,8 +176,12 @@ Test 6
 - **Expected Result** - *user is prompted to enter payroll week *
 
 - **Actual Result** - *Works as intended*
-Image Us3_6
 
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_6.PNG)
+</details><br>
 ____
 
 Test 7
@@ -159,6 +191,11 @@ Test 7
 
 - **Actual Result** - *Works as intended*
 Image Us 3_7
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_7.PNG)
+</details><br>
 
 
 ___
@@ -170,6 +207,11 @@ Test 8
 
 - **Actual Result** - *Works as intended*
 Image Us 3_8
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_8.PNG)
+</details><br>
 
 ___
 Test 4
@@ -179,7 +221,11 @@ Test 4
 
 - **Actual Result** - *Works as intended*
 Image Us 3_9
+<details>
+    <summary>Click here to view result</summary>
 
+![Screenshot of result](/docs/images/testing/test_us3_9.PNG)
+</details><br>
 ___
 Test 5
 - **Action** - *User enters “0” or 5*
@@ -187,8 +233,12 @@ Test 5
 - **Expected Result** - *Display ” Invalid data, please try again.” And displays the main menu*
 
 - **Actual Result** - *Works as intended*
-Image Us 3_10
 
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_10.PNG)
+</details><br>
 ___
 Test 6
 - **Action** - *User enters a string of numbers and letters*
@@ -197,7 +247,11 @@ Test 6
 
 - **Actual Result** - *Works as intended*
 
-Image Us 3_11
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_11.PNG)
+</details><br>
 ___
 
 ##  Process / Amend Payroll menu testing
@@ -206,7 +260,11 @@ Test 1
 
 - **Expected Result** - *User is prompted to enter employee number ”*
 - **Actual Result** - *Works as intended*
-Image Us 3_12
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_12.PNG)
+</details><br>
 
 ___
 Test 2
@@ -216,15 +274,25 @@ Test 2
 - **Expected Result** - *User is prompted to enter employee number ”*
 
 - **Actual Result** - *Works as intended*
-___ Image Us 3-13
+
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_13.PNG)
+</details><br>
+
 ___
 Test 3
 - **Action** - *User enters “3”*
 
 - **Expected Result** - *displays main menu*
 - **Actual Result** - *Works as intended*
-______ Image Us 3_14
-___
+
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_14.PNG)
+</details><br>
 
 
 Test 4
@@ -233,8 +301,12 @@ Test 4
 - **Expected Result** - *Display ” Invalid data, please try again.” And displays the main menu*
 
 - **Actual Result** - *Works as intended*
-___ Image Us 3_15
 
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us3_15.PNG)
+</details><br>
 ___
 Test 5
 - **Action** - *User enters a string of numbers and letters*
@@ -242,13 +314,15 @@ Test 5
 - **Expected Result** - *Display ” Invalid data, please try again.” And displays the main menu*
 
 - **Actual Result** - *Works as intended*
+<details>
+    <summary>Click here to view result</summary>
 
-___ Image Us 3_16
+![Screenshot of result](/docs/images/testing/test_us3_16.PNG)
+</details><br>
 
 ___
 
-
-### Testing of user story 4
+## Testing of user story 4
 
 *“As a user, I want to process employees hours and get feedback if i have entered them already”*
 
@@ -263,7 +337,11 @@ Employees hours already entered in wk26, please go to option 2 to amend
 
 - **Actual Result** - *Works as intended*
 ___ Image Us 4_1
+<details>
+    <summary>Click here to view result</summary>
 
+![Screenshot of result](/docs/images/testing/test_us4_1.PNG)
+</details><br>
 ___
 
 Test 2
@@ -274,7 +352,12 @@ No entry found in payroll
 Enter number of hours worked :
 
 - **Actual Result** - *Works as intended*
-Image Us 4_2
+<details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us4_2.PNG)
+</details><br>
+
 ___ 
 
 
@@ -293,7 +376,15 @@ Employee : 100015 - Hadley Light
  Pension contribution: £17.65
  Net Pay: £522.24
 - **Actual Result** - *Works as intended*
+<details>
+    <summary>Click here to view result</summary>
 
+![Screenshot of result](/docs/images/testing/test_us5.PNG)
+</details><br><details>
+    <summary>Click here to view result</summary>
+
+![Screenshot of result](/docs/images/testing/test_us2_1.PNG)
+</details><br>
 ___ Image Us 5-1
 ___ Image Us 5-2
 
