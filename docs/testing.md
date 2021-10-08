@@ -1,13 +1,15 @@
 
 ## User stories testing  <a name="user-stories-testing"></a>
 
-I have tested the site owner/user stories to ensure the MPV has been achieved.
+I have tested the user/site owner stories to ensure the MPV has been achieved.
 ___
 
-### Testing of user story 1
+## Testing of user story 1
 *“As a user, I want additional security so other colleagues can’t access the application”*
 
 **Covered by Feature 1: Welcome Message and security**
+
+___
 
 - **Action** - *User enters correct username and password*
 
@@ -34,6 +36,7 @@ ___
 
 ![Screenshot of result](/docs/images/testing/test_us1_2.PNG)
 </details><br>
+
 ___
 
 - **Action** - *User enters a string of numbers and letters*
@@ -43,37 +46,36 @@ ___
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>View image of date validation here</summary>
+    <summary>Click here to view result</summary>
 
-![User story 1, 2IMAGE  test-f1-2
-
-</details>
+![Screenshot of result](/docs/images/testing/test_us1_2.PNG)
+</details><br>
 
 ___
 
 
-# Testing of user story 2
+## Testing of user story 2
 
 *“As a user, I want a terminal based application to import / exporting data form google sheets”*
 
 **Covered by Feature 3: Display payroll & Feature 4: Process /Amend payroll**
+
+___
 Test 1
 
-- **Action** - *From the main menu, type “2”, then “1” user prompted to Enter Payroll Week : type “25” , then type Employee number “100017”*, then Enter number of hours worked “25”
+- **Action** - *From the main menu, type “2”, then “1”, user prompted to Enter Payroll Week : type “25” , then type Employee number “100017”*, then Enter number of hours worked “25”
 
 Note: Importing employee number to check that there is a record in google sheets to retrieve the employees rate of pay and pension %
 Exporting all the calculated values to google sheet
 
 - **Expected Result** -
-Messaged displayed if the employee record is found against the employee number
-Employment record located
+Messaged displayed if the employee record is found against the employee number<br>
+Employment record located<br>
 Letting us know that the record has been exported 
 
-- After the hours have been entered expecting the following message
-employeepayroll worksheet updated successfully
-to let use know the information has been imported to google sheets
+    After the hours have been entered expecting the following message "employeepayroll worksheet updated successfully" to let use know the information has been imported to google sheets
 
-- Would you like to process another employees hours? type y or n :
+    Would you like to process another employees hours? type y or n :
  
 - **Actual Result** - *Works as intended*
 <details>
@@ -91,13 +93,15 @@ to let use know the information has been imported to google sheets
 
 ___
 
-### Testing of user story 3
+## Testing of user story 3
 
 *“As a user, I want to easily navigate through to the different functions to view and process payroll”*
 
 
 **Covered by Feature 2: Menu system**
-Main menu testing
+
+___
+## Main menu testing
 
 Test 1
 - **Action** - *User enters a string of numbers and letters*
@@ -152,7 +156,9 @@ Test 4
 
 ![Screenshot of result](/docs/images/testing/test_us3_4.PNG)
 </details><br>
+
 ___
+
 Test 5
 - **Action** - *User enters “3”*
 
@@ -182,6 +188,7 @@ Test 6
 
 ![Screenshot of result](/docs/images/testing/test_us3_6.PNG)
 </details><br>
+
 ____
 
 Test 7
@@ -226,6 +233,7 @@ Image Us 3_9
 
 ![Screenshot of result](/docs/images/testing/test_us3_9.PNG)
 </details><br>
+
 ___
 Test 5
 - **Action** - *User enters “0” or 5*
@@ -239,6 +247,7 @@ Test 5
 
 ![Screenshot of result](/docs/images/testing/test_us3_10.PNG)
 </details><br>
+
 ___
 Test 6
 - **Action** - *User enters a string of numbers and letters*
@@ -252,6 +261,7 @@ Test 6
 
 ![Screenshot of result](/docs/images/testing/test_us3_11.PNG)
 </details><br>
+
 ___
 
 ##  Process / Amend Payroll menu testing
@@ -294,11 +304,12 @@ Test 3
 ![Screenshot of result](/docs/images/testing/test_us3_14.PNG)
 </details><br>
 
+___
 
 Test 4
 - **Action** - *User enters “0” or 4*
 
-- **Expected Result** - *Display ” Invalid data, please try again.” And displays the main menu*
+- **Expected Result** - *Display ” Invalid data, please try again.” *
 
 - **Actual Result** - *Works as intended*
 
@@ -307,11 +318,12 @@ Test 4
 
 ![Screenshot of result](/docs/images/testing/test_us3_15.PNG)
 </details><br>
+
 ___
 Test 5
 - **Action** - *User enters a string of numbers and letters*
 
-- **Expected Result** - *Display ” Invalid data, please try again.” And displays the main menu*
+- **Expected Result** - *Display ” Invalid data, please try again.” *
 
 - **Actual Result** - *Works as intended*
 <details>
@@ -327,26 +339,27 @@ ___
 *“As a user, I want to process employees hours and get feedback if i have entered them already”*
 
 **Covered by Feature  4: Process /Amend payroll**
+
+___
 Test 1
 
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100017
 
+- **Expected Result** 
 Employees hours already entered in wk26, please go to option 2 to amend
 
-# - **Expected Result** - 
-
 - **Actual Result** - *Works as intended*
-___ Image Us 4_1
 <details>
     <summary>Click here to view result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us4_1.PNG)
 </details><br>
+
 ___
 
 Test 2
 
-- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015
+- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015*
 - **Expected Result** - 
 No entry found in payroll
 Enter number of hours worked :
@@ -360,12 +373,12 @@ Enter number of hours worked :
 
 ___ 
 
-
 ## Testing of user story 5
 
 *“As a user, I want an application that calculates	Basic pay, holiday pay, Employee NI contributions, Pension Contributions, Net pay, Employer NI contributions, Pension Contributions"*<br>
 **Covered by Feature  4: Process /Amend payroll**
 
+___
 Test 1
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”
 - **Expected Result** - 
@@ -379,21 +392,24 @@ Employee : 100015 - Hadley Light
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](/docs/images/testing/test_us5.PNG)
-</details><br><details>
-    <summary>Click here to view result</summary>
-
-![Screenshot of result](/docs/images/testing/test_us2_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us5_1.PNG)
 </details><br>
-___ Image Us 5-1
-___ Image Us 5-2
+
+<details>
+    <summary>Click here to view result in Google Sheets</summary>
+
+![Screenshot of result](/docs/images/testing/test_us5_2.PNG)
+</details><br>
 
 ___
 
 ## Testing of user story 6
-*"As a user, I want to be able to view an employees figures before I submit them to the payroll(send to google sheets spreadsheet)"
+*"As a user, I want to be able to view an employees figures before I submit them to the payroll(send to google sheets spreadsheet)"<br>
+
 **Covered by Feature  4: Process /Amend payroll**
-- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”
+___
+Test 1
+- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”*
 - **Expected Result** - 
 Employee : 100015 - Hadley Light
  Basic Pay : £525.0
@@ -402,33 +418,49 @@ Employee : 100015 - Hadley Light
  Pension contribution: £17.65
  Net Pay: £522.24
 - **Actual Result** - *Works as intended*
-___ Image Us 6-1
+
+<details>
+    <summary>Click here to view result </summary>
+
+![Screenshot of result](/docs/images/testing/test_us6_1.PNG)
+</details><br>
 
 ___
-Test
+Test 2
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”, are the amount correct? “n”
 - **Expected Result** - 
-Re enter details 
+    Re enter details 
 
-Enter number of hours worked : 
+    Enter number of hours worked : 
 
 - **Actual Result** - *Works as intended*
-___ Image Us 6-2
+
+<details>
+    <summary>Click here to view result </summary>
+
+![Screenshot of result](/docs/images/testing/test_us6_2.PNG)
+</details><br>
 
 ___
 ## Testing of user story 7
 *"As a user, I want to be able to view all employees figures for any week"*
-**Covered by Feature 3: Display payroll”
 
+**Covered by Feature 3: Display payroll**
+___
+Test 1
 - **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “25”
 - **Expected Result** - 
 records displayed
 - **Actual Result** - *Works as intended*
 
-___ Image Us 7-1
+<details>
+    <summary>Click here to view result </summary>
+
+![Screenshot of result](/docs/images/testing/test_us7_1.PNG)
+</details><br>
 
 ___
-Test
+Test 2
 - **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “2”  *** no records
 
 - **Expected Result** - 
@@ -436,14 +468,21 @@ Invalid week number, please try again.
 
 - **Actual Result** - *Works as intended*
 
-___ Image Us 7-2
+<details>
+    <summary>Click here to view result </summary>
+
+![Screenshot of result](/docs/images/testing/test_us7_2.PNG)
+</details><br>
 
 ___
 
 ## Testing of user story 8
 *"As a user, I want to be able to view an employee figures for a week and be able to amend them"*<br>
-**Covered by Feature 3: Display payroll”**
+**Covered by Feature 3: Display payroll”**<br>
 **Covered by Feature  4: Process /Amend payroll**
+
+___
+Test 1
 - **Action to view the record** - *From the main menu, type “1”, then “2” user prompted to Enter Payroll Week : type “25”, then type Employee number “100017”*, 
 
 - **Expected Result** - 
@@ -451,47 +490,82 @@ Record displayed
 
 - **Actual Result** - *Works as intended*
 
-___ Image Us 8_1
+<details>
+    <summary>Click here to view result </summary>
+
+![Screenshot of result](/docs/images/testing/test_us8_1.PNG)
+</details><br>
+
+
 - **Action to amend the record** - *From the main menu, type “2”, then “2” type Employee number “100017”*, enter number of hours worked “25”
 
 - **Expected Result** - 
-Employee : 100017 - Stobbs Harriet
- Basic Pay : £350.0
- Holiday Pay : £42.28
- NI contribution: £24.99
- Pension contribution: £11.77
- Net Pay: £355.52
-Are the amounts correct?
+Employee : 100017 - Stobbs Harriet<br>
+ Basic Pay : £350.0<br>
+ Holiday Pay : £42.28<br>
+ NI contribution: £24.99<br>
+ Pension contribution: £11.77<br>
+ Net Pay: £355.52<br>
+Are the amounts correct?<br>
 - **Actual Result** - *Works as intended*
-___ Image Us 8_2
 
+<details>
+    <summary>Click here to view result </summary>
 
-## Testing of user story 9
-"As a user, I want to be able to view all employers figures summarised and grouped by week"*<br> 
+![Screenshot of result](/docs/images/testing/test_us8_2.PNG)
+</details><br>
+
+___
+## Testing of user story 9<br>
+*"As a user, I want to be able to view all employers figures summarised and grouped by week"*<br> 
+
 **Covered by Feature 3: Display payroll**
+
+___
 
 - **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week :26  
 
-- **Expected Result** - 
-
-Records displayed
+- **Expected Result** - Records displayed
 
 - **Actual Result** - *Works as intended*
-___ Image Us 8_2
+
+<details>
+    <summary>Click here to view result </summary>
+
+![Screenshot of result](/docs/images/testing/test_us9_1.PNG)
+</details><br>
 
 ___
 ## Testing of user story 10
-As a user I want to be able to add/amend employee details
-Future feature
+*"As a user I want to be able to add/amend employee details"*<br>
 
+___
+
+Future feature<br>
+
+___
 ## Site owner stories testing  <a name="user-stories-testing"></a>
+___
+## Testing of user story 11
+11. I want a terminal based application which allows the user to navigate the system intuitively without returning errors<br>
 
+**Covered by Feature 1: Welcome Message and security, <br>
+Feature 2: Menu system <br>
+Feature 3: Display payroll<br>
+Feature 4: Process /Amend payroll <br>**
 
-11. I want a terminal based application which allows the user to navigate the system intuitively without returning errors
-**Covered by Feature 1: Welcome Message and security, Feature 2: Menu system, Feature 3: Display payroll & Feature 4: Process /Amend payroll**
+___
 
+- **Action** - On load, the application welcomes the user and prompted for a password
 
+- **Expected Result** - Displays Welcome
 
-Welcome and security features  us11_1
+- **Actual Result** - *Works as intended*
 
-Testing as above
+<details>
+    <summary>Click here to view result </summary>
+
+![Screenshot of result](/docs/images/testing/test_us11_1.PNG)
+</details><br>
+
+All testing above covers this user story
