@@ -12,7 +12,7 @@ ___
 
 ### View my deployed site. <a href="https://people-payroll-application.herokuapp.com/"> People Payroll Applicaiton </a>
 
-[Here](https://docs.google.com/spreadsheets/d/1tZfgo8_TkdA9EdJyrj58YbFePcTcciv-zyC2UBqY6-g/edit?usp=sharing) is the link to the Google Spreadsheet, to see the updates made.
+[Here](https://docs.google.com/spreadsheets/d/1Mh0WaeqPiZRDhHZpLVrVSoBcV8L4cPMKQXs2a-Z90Uo/edit?usp=sharing) is the link to the Google Spreadsheet, to see the updates made.
 
 ***
 ## Table of Contents <a name="Home"></a>
@@ -30,10 +30,9 @@ ___
 
 3. [Testing](#testing)
 
-    * [Features testing](#features-testing)
-    * [User Stories Testing](#user-stories-testing)
+    * [User Stories/feature Testing](#user-stories-testing)
     * [Known issues during testing](#known-issues)
-    * [Validation testing  ](#validation-testing)
+    * [Validation testing  ](#validation-testing)  #correct
     * [Bugs left](#unfixed-bugs)
 4. [Deployment](#deployment)
 5. [Technologies Used](#technology-used)
@@ -244,10 +243,43 @@ Application closes
 ## Flowcharts
 
 I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowcharts for my project in order to plan out flow of the application
-INSERT FLOW CHARTS
-Link to flow chart page
 
-DO TO
+<details>
+    <summary>Click here to view flowchart - Security and menu  </summary>
+
+![Screenshot of flowchart - Security and menu ](docs/images/flow_charts/menus.png)
+</details><br>
+
+<details>
+    <summary>Click here to view flowchart - display payroll option 1 </summary>
+
+![Screenshot of flowchart - display payroll option 1](docs/images/flow_charts/display_payroll_option_one.png)
+</details><br>
+
+<details>
+    <summary>Click here to view flowchart - display payroll option 2 </summary>
+
+![Screenshot of flowchart - display payroll option 2 ](docs/images/flow_charts/display_payroll_option_two.png)
+</details><br>
+
+<details>
+    <summary>Click here to view flowchart - display payroll option 3 </summary>
+
+![Screenshot of flowchart - display payroll option 3 ](docs/images/flow_charts/display_payroll_option_three.png)
+
+</details><br>
+
+<details>
+    <summary>Click here to view flowchart - Process payroll add / amend </summary>
+
+![Screenshot of flowchart - Process payroll add /amend ](docs/images/flow_charts/process_payroll_add_amend.png)
+</details><br>
+
+<details>
+    <summary>Click here to view flowchart - Data model, variables and rules </summary>
+
+![Screenshot of flowchart - Data model, variables and rules ](docs/images/flow_charts/details.png)
+</details><br>
 
 ### [Contents table ](#home)
 ___
@@ -672,20 +704,12 @@ ___
 ### [Contents table ](#home)
 
 ---
-## PEP8 Online Validation Service:<a name="PEP8-Online-Validation-Service"></a>
+## PEP8 Online Validation Service:<a name="#validation-testing"></a>
 All Python files passed the [PEP8](http://pep8online.com/) and [Pylint](https://www.pylint.org/) tests with 0 errors.
 
 Click [here](https://github.com/johnvenkiah/CI_PP3_John_Venkiah/blob/main/docs/validation/validation.md) to view them.
 
-
-## PEP8 Online Validation Service:<a name="#validation-testing"></a>
-I used [PEP8 Online Validation Service]( http://pep8online.com/) to test the python code.
-
-No errors were detected in the code. Warnings were detected in the code however this was due to the use of the new ES6 syntax in the code.
-
-# TO dO
-# to do
-    
+ 
 
 ---
 ##  Unfixed Bugs <a name="unfixed-bugs"></a> 

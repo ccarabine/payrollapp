@@ -223,7 +223,7 @@ Image Us 3_8
 </details><br>
 
 ___
-Test 4
+Test 9
 - **Action** - *User enters “4”*
 
 - **Expected Result** - *main menu is displayed*
@@ -237,7 +237,7 @@ Image Us 3_9
 </details><br>
 
 ___
-Test 5
+Test 10
 - **Action** - *User enters “0” or 5*
 
 - **Expected Result** - *Display ”Invalid data, please try again.”*
@@ -251,7 +251,7 @@ Test 5
 </details><br>
 
 ___
-Test 6
+Test 11
 - **Action** - *User enters a string of numbers and letters*
 
 - **Expected Result** - *Display ” Invalid data, please try again.”*
@@ -267,7 +267,7 @@ Test 6
 ___
 
 ##  Process / Amend Payroll menu testing
-Test 1
+Test 12
 - **Action** - *User enters “1”*
 
 - **Expected Result** - *User is prompted to enter employee number ”*
@@ -279,7 +279,7 @@ Test 1
 </details><br>
 
 ___
-Test 2
+Test 13
 
 - **Action** - *User enters “2”*
 
@@ -294,7 +294,7 @@ Test 2
 </details><br>
 
 ___
-Test 3
+Test 14
 - **Action** - *User enters “3”*
 
 - **Expected Result** - *Displays main menu*
@@ -308,7 +308,7 @@ Test 3
 
 ___
 
-Test 4
+Test 15
 - **Action** - *User enters “0” or 4*
 
 - **Expected Result** - *Display ” Invalid data, please try again.”*
@@ -322,7 +322,7 @@ Test 4
 </details><br>
 
 ___
-Test 5
+Test 16
 - **Action** - *User enters a string of numbers and letters*
 
 - **Expected Result** - *Display ”Invalid data, please try again.”*
