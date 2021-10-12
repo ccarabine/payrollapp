@@ -204,6 +204,8 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
             'No entry found in payroll'
             )
         return(0)
+    except gspread.exceptions.APIError:
+        print("Api error occurred for gspread due to authentication")
 
 
 # Menu options functionality
@@ -428,61 +430,64 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
     @param payroll_week(str): payroll week
     @param employee_num : Employee number
     """
-    employee_row = validate_employee_num(employee_num)
-    employee_retrived_data = get_employee_data(employee_row)
-    employee_num = (employee_retrived_data[0])
-    employee_surname = (employee_retrived_data[1])
-    employee_firstname = (employee_retrived_data[2])
-    employee_rate_of_pay = float(employee_retrived_data[3])
-    employee_pension = float(employee_retrived_data[4])
+    try:
+        employee_row = validate_employee_num(employee_num)
+        employee_retrived_data = get_employee_data(employee_row)
+        employee_num = (employee_retrived_data[0])
+        employee_surname = (employee_retrived_data[1])
+        employee_firstname = (employee_retrived_data[2])
+        employee_rate_of_pay = float(employee_retrived_data[3])
+        employee_pension = float(employee_retrived_data[4])
 
-    employee_hours_data = (get_employee_hours())
-    employee_hours = float(employee_hours_data)
-    employee_basic_pay = round(employee_hours * employee_rate_of_pay, 2)
-    employee_holiday = round(employee_basic_pay * HOL_PC, 2)
-    employee_basic_hol = (employee_basic_pay + employee_holiday)
-    if (employee_basic_pay + employee_holiday) < EMPLOYEES_NI_AMOUNT:
-        employee_ni = 0
-    else:
-        employee_ni = round(
-            ((employee_basic_hol) - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC, 2
+        employee_hours_data = (get_employee_hours())
+        employee_hours = float(employee_hours_data)
+        employee_basic_pay = round(employee_hours * employee_rate_of_pay, 2)
+        employee_holiday = round(employee_basic_pay * HOL_PC, 2)
+        employee_basic_hol = (employee_basic_pay + employee_holiday)
+        if (employee_basic_pay + employee_holiday) < EMPLOYEES_NI_AMOUNT:
+            employee_ni = 0
+        else:
+            employee_ni = round(
+                (employee_basic_hol - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC, 2
+                )
+        employee_pension = round(employee_pension * employee_basic_hol, 2)
+        employee_net_pay = round(
+            employee_basic_hol - employee_ni - employee_pension, 2
             )
-    employee_pension = round(employee_pension * employee_basic_hol, 2)
-    employee_net_pay = round(
-        employee_basic_hol - employee_ni - employee_pension, 2
-        )
-    if (employee_basic_pay + employee_holiday) < EMPLOYERS_NI_AMOUNT:
-        employers_ni = 0
-    else:
-        employers_ni = round(
-            ((employee_basic_hol) - EMPLOYERS_NI_AMOUNT) * EMPLOYERS_NI_PC, 2
+        if (employee_basic_pay + employee_holiday) < EMPLOYERS_NI_AMOUNT:
+            employers_ni = 0
+        else:
+            employers_ni = round(
+                (employee_basic_hol - EMPLOYERS_NI_AMOUNT) * EMPLOYERS_NI_PC, 2
+                    )
+        employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC, 2)
+        print(
+            f'\n Employee : {employee_num} - '
+            f'{employee_firstname} {employee_surname}'
             )
-    employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC, 2)
-    print(
-        f'\n Employee : {employee_num} - '
-        f'{employee_firstname} {employee_surname}'
-        )
-    print(f' Basic Pay : £{employee_basic_pay}')
-    print(f' Holiday Pay : £{employee_holiday}')
-    print(f' NI contribution: £{employee_ni}')
-    print(f' Pension contribution: £{employee_pension}')
-    print(f' Net Pay: £{employee_net_pay}')
-    if yesorno("Are the amounts correct? type y or n "):
-        print("\nReady to upload into payroll spreadsheet \n")
-        row_data = [
-                payroll_week, employee_num,
-                employee_surname, employee_firstname,
-                employee_hours, employee_basic_pay,
-                employee_holiday, employee_ni,
-                employee_pension, employee_net_pay,
-                employers_ni, employers_pension
-        ]
-        update_worksheet(row_data, "employeepayroll")
-        return ()
-    else:
-        print("Re enter details \n")
-        calculate_employee_payslip_data(
-            payroll_week, employee_num)
+        print(f' Basic Pay : £{employee_basic_pay}')
+        print(f' Holiday Pay : £{employee_holiday}')
+        print(f' NI contribution: £{employee_ni}')
+        print(f' Pension contribution: £{employee_pension}')
+        print(f' Net Pay: £{employee_net_pay}')
+        if yesorno("Are the amounts correct? type y or n "):
+            print("\nReady to upload into payroll spreadsheet \n")
+            row_data = [
+                    payroll_week, employee_num,
+                    employee_surname, employee_firstname,
+                    employee_hours, employee_basic_pay,
+                    employee_holiday, employee_ni,
+                    employee_pension, employee_net_pay,
+                    employers_ni, employers_pension
+            ]
+            update_worksheet(row_data, "employeepayroll")
+            return ()
+        else:
+            print("Re enter details \n")
+            calculate_employee_payslip_data(
+                payroll_week, employee_num)
+    except gspread.exceptions.APIError:
+        print("Api error occurred for gspread due to authentication")
 
 
 def get_employee_data(employee_row):
@@ -495,16 +500,19 @@ def get_employee_data(employee_row):
     @returns: employee_rate_of_pay(float)
     @returns: employee_pension(float)
     """
-    employee_num = employeedetail.cell(employee_row, 1)
-    employee_surname = employeedetail.cell(employee_row, 2)
-    employee_firstname = employeedetail.cell(employee_row, 3)
-    employee_rateofpay = employeedetail.cell(employee_row, 4)
-    employee_pension = employeedetail.cell(employee_row, 5)
-    return employee_num.value,\
-        employee_surname.value,\
-        employee_firstname.value,\
-        employee_rateofpay.value,\
-        employee_pension.value
+    try:
+        employee_num = employeedetail.cell(employee_row, 1)
+        employee_surname = employeedetail.cell(employee_row, 2)
+        employee_firstname = employeedetail.cell(employee_row, 3)
+        employee_rateofpay = employeedetail.cell(employee_row, 4)
+        employee_pension = employeedetail.cell(employee_row, 5)
+        return employee_num.value,\
+            employee_surname.value,\
+            employee_firstname.value,\
+            employee_rateofpay.value,\
+            employee_pension.value
+    except gspread.exceptions.APIError:
+        print("Api error occurred for gspread due to authentication")
 
 
 def process_payroll_option_2():
@@ -555,6 +563,8 @@ def amend_employees_hours(payroll_week, employee_num):
         wait_key()
         clear()
         get_process_payroll_option()
+    except gspread.exceptions.APIError:
+        print("Api error occurred for gspread due to authentication")
 
 
 # Add / amend employee functionality
@@ -644,6 +654,8 @@ def validate_employee_num(employee_num):
             get_employee_num()
         else:
             return False
+    except gspread.exceptions.APIError:
+        print("Api error occurred for gspread due to authentication")
 
 
 # General functions
