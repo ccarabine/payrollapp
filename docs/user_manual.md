@@ -7,7 +7,7 @@
 4. [Process / Amend payroll data](#process_amend)<br>
 
 
-[Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/docs/README.md)
+[Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md)
 ___
 
 ## **1. Login** <a name="login"></a> 
@@ -237,5 +237,5 @@ Display the main menu
 
 ___
 
-[Click to go to back to Readme file ](https://github.com/ccarabine/payroll/blob/main/docs/README.md)
+[Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md)
 
