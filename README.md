@@ -835,31 +835,31 @@ I have also utilised the following applications, platforms  and libraries:
 
 
 
-# to do Document the rationale as to why a particular library/libraries are necessary for the implementation of the project. NEED TO ADD ALL
-
 #### Python Libraries
 
-I have used these third party and Python libraries for this project for the following reasons:
+I have used these Python and third party libraries for this project for the following reasons:
 
-- Getpass: to prompt the user for a password without showing the characters. 
+- Getpass: getpass has been used to prompt the user for a username and password without showing the characters used in the password function.
 
-- datetime: to get the current week of the year to calulate the payroll week
+- from datetime import date: date has been used to get the current week of the year used in the payroll_weeks function
 
-- time: to allow the application to use the sleep function which delays execution of the current thread for the given number of seconds.
+- os: The OS module has ben used to provides functions for interacting with the operating system. Used for the clear function and to access the environment varaibles in the password function.
 
+- system : System provides functions for interacting with the operating system, used in the clear function
 
-- os: to allow the application to use the clear function,clearing the text from the terminal. The OS module in Python provides functions for interacting with the operating system and
+- name: name has been used in the clear function. os module provides the operating system interface from Python
 
+- sys: sys has been used in wait_key function
+
+- termios: The termios module has been used to provide an interface the terminal control facilities used in wait_key function
 
 #### Third Party Libraries
 
-- google.oauth2.service_account: to allow the application access the account that the sheet is on with the credentials
+- gspread:  gspread has been used to access, update and manipulate data from Google Sheets
 
-- gspread: to allows to open the GoogleSheets. A Python API for Google Sheets.
+- Pandas:  Pandas has been used to allow for the creation of Dataframes, importing data  and displaying data
 
-- Pandas:  to allow importing data and displaying data
-
-CHECK EVERYTHING IS IN HERE
+- google.oauth2.service_account: google.oauth2.service_account has been used to allow the application to access the account that the sheet is on with the credentials
 
 [Contents table ](#home)
 ---

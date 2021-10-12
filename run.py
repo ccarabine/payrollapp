@@ -25,25 +25,35 @@ from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
 """
 Imports for all modules for application to function fully:
 
-Getpass: Prompt the user for a username and password without echoing.
+Getpass: getpass has been used to Prompt the user for a username and password
+without showing the characters.
 
-gspread:  A Python API for Google Sheets. Read, write, and format cell ranges.
+gspread:  gspread has been used to access, update and manipulate data from
+Google Sheets
 
-Pandas:  allows importing data displaying data
+Pandas:  Pandas has been used to allow for the creation of Dataframes,
+importing data  and displaying data
 
-sys: System-specific parameters and functions module used in wait_key function
+sys: sys has been used in wait_key function
 
-termios: The termios module provides an interface the terminal control \
-    facilities used in wait_key function
+termios: The termios module has been used to provide an interface the terminal
+ control and facilities used in wait_key function
 
-google.oauth2.service_account: So the application can access the account that
-the sheet is on with the credentials
+google.oauth2.service_account: google.oauth2.service_account has been used to
+allow the application to access the account that the sheet is on with the
+credentials
 
-datetime: to get the current week of the year
+datetime: datetime has been used to get the current week of the year
 
-os: The OS module in Python provides functions for interacting with the
+os: The OS module has ben used to provides functions for interacting with the
 operating system. Used for the clear function and to access the environment
 varaibles
+
+system : System provides functions for interacting with the operating system,
+used in the clear function
+
+name: name has been used in the clear function. os module provides the
+operating system interface from Python
 
 menu:  Import the functions listed from the menu file
 
