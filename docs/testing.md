@@ -65,8 +65,11 @@ Test 1
 
 - **Action** - *From the main menu, type “2”, then “1”, user prompted to Enter Payroll Week : type “25” , then type Employee number “100017”, then Enter number of hours worked “25”*
 
-Note: Importing employee number to check that there is a record in google sheets to retrieve the employees rate of pay and pension %<br>
-Exporting all the calculated values to google sheet
+*Note:*
+
+*Importing employee number to check that there is a record in google sheets to retrieve the employees rate of pay and pension %<br>*
+
+*Exporting all the calculated values to google sheet*
 
 - **Expected Result** -
 Message displayed if the employee record is found against the employee number<br>
@@ -181,7 +184,7 @@ ___
 Test 6
 - **Action** - *User enters “1”*
 
-- **Expected Result** - *user is prompted to enter payroll week *
+- **Expected Result** - *user is prompted to enter payroll week*
 
 - **Actual Result** - *Works as intended*
 
@@ -199,7 +202,7 @@ Test 7
 - **Expected Result** - *User is prompted Enter Payroll Week  :”*
 
 - **Actual Result** - *Works as intended*
-Image Us 3_7
+
 <details>
     <summary>Click here to view result</summary>
 
@@ -215,7 +218,7 @@ Test 8
 - **Expected Result** - *summarised employers data is displayed by week*
 
 - **Actual Result** - *Works as intended*
-Image Us 3_8
+
 <details>
     <summary>Click here to view result</summary>
 
@@ -223,7 +226,7 @@ Image Us 3_8
 </details><br>
 
 ___
-Test 9
+Test 4
 - **Action** - *User enters “4”*
 
 - **Expected Result** - *main menu is displayed*
@@ -237,7 +240,7 @@ Image Us 3_9
 </details><br>
 
 ___
-Test 10
+Test 5
 - **Action** - *User enters “0” or 5*
 
 - **Expected Result** - *Display ”Invalid data, please try again.”*
@@ -251,7 +254,7 @@ Test 10
 </details><br>
 
 ___
-Test 11
+Test 6
 - **Action** - *User enters a string of numbers and letters*
 
 - **Expected Result** - *Display ” Invalid data, please try again.”*
@@ -267,7 +270,7 @@ Test 11
 ___
 
 ##  Process / Amend Payroll menu testing
-Test 12
+Test 1
 - **Action** - *User enters “1”*
 
 - **Expected Result** - *User is prompted to enter employee number ”*
@@ -279,7 +282,7 @@ Test 12
 </details><br>
 
 ___
-Test 13
+Test 2
 
 - **Action** - *User enters “2”*
 
@@ -294,10 +297,11 @@ Test 13
 </details><br>
 
 ___
-Test 14
+Test 3
 - **Action** - *User enters “3”*
 
 - **Expected Result** - *Displays main menu*
+
 - **Actual Result** - *Works as intended*
 
 <details>
@@ -308,7 +312,7 @@ Test 14
 
 ___
 
-Test 15
+Test 4
 - **Action** - *User enters “0” or 4*
 
 - **Expected Result** - *Display ” Invalid data, please try again.”*
@@ -322,7 +326,7 @@ Test 15
 </details><br>
 
 ___
-Test 16
+Test 5
 - **Action** - *User enters a string of numbers and letters*
 
 - **Expected Result** - *Display ”Invalid data, please try again.”*
@@ -363,9 +367,9 @@ Test 2
 
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015*
 - **Expected Result** - 
-*No entry found in payroll
+*No entry found in payroll*
 
-    Enter number of hours worked :*
+    *Enter number of hours worked :*
 
 - **Actual Result** - *Works as intended*
 <details>
@@ -379,18 +383,19 @@ ___
 ## Testing of user story 5
 
 *“As a user, I want an application that calculates	Basic pay, holiday pay, Employee NI contributions, Pension Contributions, Net pay, Employer NI contributions, Pension Contributions"*<br>
+
 **Covered by Feature  4: Process /Amend payroll**
 
 ___
 Test 1
-- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”
+- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”*
 - **Expected Result** - <br>
-Employee : 100015 - Hadley Light<br>
+*Employee : 100015 - Hadley Light<br>
  Basic Pay : £525.0<br>
  Holiday Pay : £63.42<br>
  NI contribution: £48.53<br>
  Pension contribution: £17.65<br>
- Net Pay: £522.24<br>
+ Net Pay: £522.24*<br>
 - **Actual Result** - *Works as intended*
 <details>
     <summary>Click here to view result</summary>
@@ -407,7 +412,7 @@ Employee : 100015 - Hadley Light<br>
 ___
 
 ## Testing of user story 6
-*"As a user, I want to be able to view an employees figures before I submit them to the payroll(send to google sheets spreadsheet)"<br>
+*"As a user, I want to be able to view an employees figures before I submit them to the payroll(send to google sheets spreadsheet)"*<br>
 
 **Covered by Feature  4: Process /Amend payroll**
 ___
@@ -430,7 +435,7 @@ Test 1
 
 ___
 Test 2
-- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”, are the amount correct? “n”
+- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”, are the amount correct? “n”*
 - **Expected Result** - 
     *Re enter details* 
 
@@ -464,10 +469,11 @@ Test 1
 
 ___
 Test 2
-- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “2”  *** no records
+- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “2”*
+*Note : test is based on no records in week typed*
 
 - **Expected Result** - 
-Invalid week number, please try again.
+*Invalid week number, please try again.*
 
 - **Actual Result** - *Works as intended*
 
@@ -500,7 +506,7 @@ Test 1
 </details><br>
 
 
-- **Action to amend the record** - *From the main menu, type “2”, then “2” type Employee number “100017”*, enter number of hours worked “25”
+- **Action to amend the record** - *From the main menu, type “2”, then “2” type Employee number “100017”, enter number of hours worked “25”*
 
 - **Expected Result** - 
 *Employee : 100017 - Stobbs Harriet<br>
@@ -559,9 +565,9 @@ Feature 4: Process /Amend payroll <br>**
 
 ___
 
-- **Action** - On load, the application welcomes the user and prompted for a password
+- **Action** - *On load, the application welcomes the user and prompted for a password*
 
-- **Expected Result** - Displays Welcome
+- **Expected Result** - *Displays Welcome*
 
 - **Actual Result** - *Works as intended*
 
