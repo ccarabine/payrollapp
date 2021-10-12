@@ -24,7 +24,7 @@ ___
     i.  [Strategy](#strategy)<br>
     ii. [Scope](#scope)<br>
     iii. [Structure](#Structure)<br>
-    iv. [Skeleton](#skeleton)<br>
+    iv. [Skeleton and technical design](#skeleton)<br>
     v. [Surface](#surface)<br>
       
 2. [Features](#features)<br>
@@ -247,11 +247,11 @@ User inputs numeral 4, the forth option in main menu. The application closes.<br
 ### [Contents table ](#home)
 
 ---
-# iv. Skelton <a name="skeleton"></a> 
+# iv. Skelton / Technical design <a name="skeleton"></a> 
 
-## Flowcharts
+## Data model, application features and business logic
 
-I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowcharts for my project in order to plan out flow of the application
+I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowcharts for my project in order to plan out the flow of the application to manage, query and manupulate data
 
 <details>
     <summary>Click here to view flowchart - Security and menu  </summary>
@@ -288,6 +288,19 @@ I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowchar
     <summary>Click here to view flowchart - Data model, variables and rules </summary>
 
 ![Screenshot of flowchart - Data model, variables and rules ](docs/images/flow_charts/details.png)
+</details><br>
+
+
+<details>
+    <summary>Click here to view data relationship</summary>
+
+![Screenshot of data relationship ](docs/images/flow_charts/data_relationship.png)
+</details><br>
+
+<details>
+    <summary>Click here to view  formaulas and variables</summary>
+
+![Screenshot of data relationship ](docs/images/flow_charts/formulas_variables.png)
 </details><br>
 
 ### [Contents table ](#home)
