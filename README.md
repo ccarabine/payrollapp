@@ -12,7 +12,10 @@ ___
 
 ### View my deployed site. <a href="https://people-payroll-application.herokuapp.com/"> People Payroll Applicaiton </a>
 
+[Click](https://github.com/ccarabine/payroll/blob/main/docs/user_manual.md)) to view the user manual to operate the application.
+
 [Here](https://docs.google.com/spreadsheets/d/1Mh0WaeqPiZRDhHZpLVrVSoBcV8L4cPMKQXs2a-Z90Uo/edit?usp=sharing) is the link to the Google Spreadsheet, to see the updates made.
+
 
 ***
 ## Table of Contents <a name="Home"></a>
