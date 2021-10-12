@@ -284,12 +284,15 @@ def display_all_employeepay_for_week():
     groupby referenced from
     https://stackoverflow.com/questions/39922986/pandas-group-by-and-sum
     """
-    try:
-        week = get_payroll_week()
-        data_by_week = df.groupby('Week Number')
-        filtered_data_by_week = data_by_week.get_group(week)
-        employees_pay_menu()
-        print(filtered_data_by_week)
+
+    week = get_payroll_week()
+    display_employee_data = df.loc[
+        (df['Week Number'] == (week)), [
+                    'Employee Number', 'Basic Pay', 'Hol Pay',
+                    'EE NI', 'EE Pension', 'NET Pay'
+                    ]]
+    if display_employee_data.empty:
+        print('Invalid week number, please try again.\n')
         print(
             '\nPress any key to clear the screen and return to the display '
             'payroll menu'
@@ -297,8 +300,9 @@ def display_all_employeepay_for_week():
         wait_key()
         clear()
         get_display_payroll_option()
-    except KeyError:
-        print('Invalid week number, please try again.\n')
+    else:
+        employees_pay_menu()
+        print(display_employee_data)
         print(
             '\nPress any key to clear the screen and return to the display '
             'payroll menu'
@@ -318,9 +322,8 @@ def display_ind_employee_pay_for_week():
     display_employee_data = df.loc[
         (df['Week Number'] == (week)) & (
             df['Employee Number'] == (employee_num)), [
-                    'Week Number', 'Employee Number',
-                    'First Name', 'Surname', 'Basic Pay', 'Holiday Pay',
-                    'Employees NI', 'Employees Pension', 'NET Pay'
+                    'Surname', 'Basic Pay', 'Hol Pay',
+                    'EE NI', 'EE Pension', 'NET Pay'
                     ]]
     if display_employee_data.empty:
         print(
@@ -362,8 +365,8 @@ def get_employerssummary_option():
     company_payroll_data = df.groupby(
         ['Week Number'])[[
                 'NET Pay',
-                'Employees NI', 'Employees Pension',
-                'Employers NI', 'Employers Pension'
+                'EE NI', 'EE Pension',
+                'Er NI', 'Er Pension'
                 ]].agg(lambda x: sum(x.astype(float)))
     employers_payment_summary_menu()
     print(company_payroll_data)
