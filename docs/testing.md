@@ -451,7 +451,7 @@ ___
 **Covered by Feature 3: Display payroll**
 ___
 Test 1
-- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “25”*
+- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “26”*
 - **Expected Result** - 
 *Records displayed*
 - **Actual Result** - *Works as intended*
@@ -486,7 +486,7 @@ ___
 
 ___
 Test 1
-- **Action to view the record** - *From the main menu, type “1”, then “2” user prompted to Enter Payroll Week : type “25”, then type Employee number “100017”*, 
+- **Action to view the record** - *From the main menu, type “1”, then “2” user prompted to Enter Payroll Week : type “26”, then type Employee number “100015”*, 
 
 - **Expected Result** - 
 *Record displayed*
@@ -500,15 +500,15 @@ Test 1
 </details><br>
 
 
-- **Action to amend the record** - *From the main menu, type “2”, then “2” type Employee number “100017”*, enter number of hours worked “25”
+- **Action to amend the record** - *From the main menu, type “2”, then “2” type Employee number “100015”*, enter number of hours worked “27”
 
 - **Expected Result** - 
-*Employee : 100017 - Stobbs Harriet<br>
- Basic Pay : £350.0<br>
- Holiday Pay : £42.28<br>
- NI contribution: £24.99<br>
- Pension contribution: £11.77<br>
- Net Pay: £355.52<br>
+*Employee : 100015 - Hadley Light<br>
+ Basic Pay : £567.0<br>
+ Holiday Pay : £68.49<br>
+ NI contribution: £54.18<br>
+ Pension contribution: £19.06<br>
+ Net Pay: £562.25<br>
 Are the amounts correct?<br>*
 - **Actual Result** - *Works as intended*
 

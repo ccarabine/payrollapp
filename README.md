@@ -224,16 +224,22 @@ User enters required Y,
 
 The values are added to google sheet employee payroll sheet 
 
-### **User inputs** numeral 3, the third option in the ‘Main menu’
+### **User inputs** numeral 3, the third option in the ‘Process / amend payroll’ menu
 
 The main menu is displayed
 
+### **5. Add / Amend employee details<br>**
+<details>
+    <summary>Click here to view the Add / Amend employee details menu - Future Feature</summary>
 
-User inputs numeral 3, the third option in main menu. The next step is the Feature in next update, returning to main menu is displayed
+![Screenshot of Add / Amend employee details menu](docs/images/menu/add_amend_employees_details_menu.PNG)
+</details><br>
 
-### **User inputs** numeral 4, the fourth option in the ‘Main menu’
+User inputs numeral 3, the third option in main menu. The next step is the Feature in next update, returning to main menu is displayed.
 
-Application closes
+### **6. Close application<br>**
+
+User inputs numeral 4, the forth option in main menu. The application closes.<br>
 
 ### [Contents table ](#home)
 
@@ -304,7 +310,7 @@ ___
 </details><br>
 The user is welcomed to the payroll application and prompted to enter a username and password (no password characters are visible)<br>
 If the user enters: <br>
-- the correct password, the main menu is displayed
+- the correct password, the main menu is displayed<br>
 - an incorrect password, the user will be prompted to try again 
 
 **User stories covered:**<br>
@@ -402,7 +408,7 @@ ___
 *Option 2* selected from the display payroll menu - 2 Employee pay for week selected <br>
 
 User will be prompted to enter the payroll week which must be before the current payroll week. After validation, the user will be then prompted to enter the employee number <br>
-If the user has entered an incorrectly, an error message will be displayed ‘Invalid employee number, please try again.’<br>
+If the user has entered incorrectly, an error message will be displayed ‘Invalid employee number, please try again.’<br>
 Then the user will be prompted ‘Do you want to try again? type y or n :’<br>
 If no they will be taken back to the main menu
 
@@ -700,6 +706,21 @@ ___
 - **Corrective action:**
 
 *No user input required just added code to put the previous week into the variable payroll_week*
+
+___
+
+- **Issue:** 
+
+*Display records in display menu options 1,2 and 3 would only show a limtied amount of fields due to the constraints of the deployment terminal is set to 80 characters*
+
+- **Corrective action:**
+
+*Reduced the descriptions of 
+- Employee NI & Employee Pension to EE NI & EE Pension 
+- Emplorer NI & Emplorer Pension to Er NI & Er Pension
+- Holiday pay to Hol pay
+
+Reduced the number of fields in the reports*
 
 ### [Contents table ](#home)
 
