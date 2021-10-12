@@ -113,9 +113,10 @@ Enter the employee number <br>
 
     *If no they will be taken back to the main menu*
 
-    *There is further validation to check if the employee number has a record in the employee detail sheet.*
+There is further validation to check if the employee number has a record in the employee detail sheet.
 
-    *If the employee number has been found the employees payroll sheet for the week, the data is displayed*
+If the employee number has been found the employees payroll sheet for the week, the data is displayed
+
 <details>
 <summary>Click here to view the report</summary>
 
@@ -175,9 +176,9 @@ Enter the employee number
 
     *“Employees hours already entered in wkxx, please go to option 2 to amend”*
 
-    *Press any key to return to the display payroll menu is displayed*
+Press any key to return to the display payroll menu is displayed
 
-    *Providing there is no record already entered, ‘No entry found in payroll’ message will be displayed*
+Providing there is no record already entered, ‘No entry found in payroll’ message will be displayed
 
 Enter the hours worked
 
@@ -185,15 +186,15 @@ Enter the hours worked
 
     *If incorrect then ‘Invalid data, please try again.’ Is displayed and the user is prompted to enter the hours worked again*
 
-    *The system will now calculate all the values for basic pay, holiday pay, NI contribution, pension contribution, net pay, employers NI contribution and employers contribution and display these values.*
+The system will now calculate all the values for basic pay, holiday pay, NI contribution, pension contribution, net pay, employers NI contribution and employers contribution and display these values.
 
 The user will be prompted ‘Are the amounts correct?’. 
 
 - **Error Handling:** *If the values are incorrect , a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’*
 
-*If the values are correct, the user type ‘y’ a message will be displayed “Ready to upload into payroll spreadsheet" then the information uploads the values to the google sheets. When successfully ‘employeepayroll worksheet updated successfully’ is displayed*
+If the values are correct, the user type ‘y’ a message will be displayed “Ready to upload into payroll spreadsheet" then the information uploads the values to the google sheets. When successfully ‘employeepayroll worksheet updated successfully’ is displayed
 
-*The user will then prompted if they would like to process another employees hours which they can add another employees hours or go back to the main menu*
+The user will then prompted if they would like to process another employees hours which they can add another employees hours or go back to the main menu
 
 <details>
     <summary>Click here to see an example</summary>
