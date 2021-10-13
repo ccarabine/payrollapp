@@ -6,17 +6,17 @@ staff to process employees hours for payroll.
 
 The data is pushed to and read from google sheet, stored on google drive
 """
-import getpass
 import gspread
-import pandas as pd
 import sys
+import getpass
 import termios
-from google.oauth2.service_account import Credentials
 from datetime import date
 from os import system, name, path
 import os
+from google.oauth2.service_account import Credentials
 if path.exists("env.py"):
     import env
+import pandas as pd
 from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
     add_amend_employee_menu, welcome_menu, employees_pay_menu, \
     employers_payment_summary_menu

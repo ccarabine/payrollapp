@@ -14,7 +14,7 @@ ___
 <details>
     <summary>Click here to view login screen</summary>
 
-![Screenshot of Home screen](docs/images/people_payroll_welcomescreen.PNG)
+![Screenshot of Home screen](/docs/images/people_payroll_welcomescreen.PNG)
 </details><br>
 
 ___
@@ -36,7 +36,7 @@ ___
 <details>
     <summary>Click here to view the main menu</summary>
 
-![Screenshot of main menu](docs/images/menu/main_menu.PNG)
+![Screenshot of main menu](/docs/images/menu/main_menu.PNG)
 </details><br>
 
 
@@ -45,7 +45,7 @@ Type "1" from the main menu and press enter, the payroll menu will be displayed.
 <details>
     <summary>Click here to view the menu</summary>
 
-![Screenshot of display payroll menu](docs/images/menu/display_payroll_menu.PNG)
+![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
 
 ### Process / amend payroll menu
@@ -53,7 +53,7 @@ Type "2" from the main menu and press enter, the process / amend payroll menu wi
 <details>
     <summary>Click here to view the menu</summary>
 
-![Screenshot of process / amend payroll menu](docs/images/menu/process_amend_menu.PNG)
+![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
 
 ### Add / amend employee details
@@ -62,27 +62,27 @@ Type "3" from the main menu and press enter, the add / amend employee details  w
 <details>
     <summary>Click here to view the  menu</summary>
 
-![Screenshot of add / amend employee details menu](docs/images/menu/add_amend_employees_details_menu.PNG)
+![Screenshot of add / amend employee details menu](/docs/images/menu/add_amend_employees_details_menu.PNG)
 </details><br>
 
 ### Close Application
-Type "4" from the main menu, the application closes
+Type "4" from the main menu and press enter, the application closes
 
 - **Error handling:** *If an incorrect number option is typed during any of the menu selections, the user will receive feedback: ‘Invalid data, please try again.’*
 ___
 
 ## **3. View reports** <a name="reports"></a> 
 ### Display payroll menu
-Type "1" from the main menu, the display payroll menu will be displayed<br>
+Type "1" from the main menu and press enter, the display payroll menu will be displayed<br>
 <details>
     <summary>Click here to view the menu</summary>
 
-![Screenshot of add / amend employee details menu](docs/images/menu/display_payroll_menu.PNG)
+![Screenshot of add / amend employee details menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
 
 ___
 ### Overall employees’ pay for week selected report
-Type "1" from the display payroll menu to goto the "Overall employees’ pay for week selected" report
+Type "1" from the display payroll menu and press enter to goto the "Overall employees’ pay for week selected" report
 
 Enter the payroll week 
 
@@ -93,7 +93,7 @@ The report will be displayed to the screen
 <details>
 <summary>Click here to view the report</summary>
 
-![screenshot 1. Overall employees’ pay for week selected report](docs/images/features/feature_3_1.PNG)
+![screenshot 1. Overall employees’ pay for week selected report](/docs/images/features/feature_3_1.PNG)
 </details><br>
 Press any key to return to the the display payroll menu<br>
 
@@ -107,7 +107,7 @@ Enter the payroll week
 ‘Invalid week number, please try again’*
 
 Enter the employee number <br>
-- **Error handling:** *If the user has entered incorrectly, an error message will be displayed ‘Invalid employee number, please try again.’
+- **Error handling:** *If the user has entered incorrectly, an error message will be displayed ‘Invalid employee number, please try again.’*
 
     *Then the user will be prompted ‘Do you want to try again? type y or n :’*
 
@@ -120,7 +120,7 @@ If the employee number has been found the employees payroll sheet for the week, 
 <details>
 <summary>Click here to view the report</summary>
 
-![screenshot Employee pay for week selected report](docs/images/features/feature_3_2.PNG)
+![screenshot Employee pay for week selected report](/docs/images/features/feature_3_2.PNG)
 </details><br>
 
 - **Error handling:** *If there is no record, a error message will be displayed
@@ -135,36 +135,36 @@ Type "3" and press enter to go to "Employers summary for week" report<br>
 <details>
 <summary>Click here to view the report</summary>
 
-![screenshot 3 Employers summary by week report](docs/images/features/feature_3_3.PNG)
+![screenshot 3 Employers summary by week report](/docs/images/features/feature_3_3.PNG)
 </details><br>
 
 Press any key to return to the display payroll menu is displayed
 ___
 ### Main menu
-Type "4" an press enter to go to the Main menu<br>
+Type "4" and press enter to go to the Main menu<br>
 
 The main menu will be displayed
 <details>
 <summary>Click here to view the menu</summary>
 
-![screenshot Main menu](docs/images/features/feature_3_4.PNG)
+![screenshot Main menu](/docs/images/features/feature_3_4.PNG)
 </details><br>
 
 ___
 ## **4.Process / Amend payroll data**
 <a name="process_amend"></a> 
 ### Process / amend payroll menu
-Type "2" from the main menu to go to the process / amend payroll menu 
+Type "2" from the main menu and press enter to go to the process / amend payroll menu 
 <details>
 <summary>Click here to view the menu</summary>
 
-![screenshot Main menu](docs/images/menu/process_amend_menu.PNG)
+![screenshot Main menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
 
 ___
 ### Add Employee's hours
 
-Type "1" from the process / amend payroll menu to go to Add Employee’s hours<br>
+Type "1" from the process / amend payroll menu and press enter to go to Add Employee’s hours<br>
 
 Enter the employee number
 
@@ -190,7 +190,7 @@ The system will now calculate all the values for basic pay, holiday pay, NI cont
 
 The user will be prompted ‘Are the amounts correct?’. 
 
-- **Error Handling:** *If the values are incorrect , a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’*
+If the values are incorrect , a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’
 
 If the values are correct, the user type ‘y’ a message will be displayed “Ready to upload into payroll spreadsheet" then the information uploads the values to the google sheets. When successfully ‘employeepayroll worksheet updated successfully’ is displayed
 
@@ -199,41 +199,41 @@ The user will then prompted if they would like to process another employees hour
 <details>
     <summary>Click here to see an example</summary>
 
-![screenshot Add employees' hours](docs/images/features/feature_4.PNG)
+![screenshot Add employees' hours](/docs/images/features/feature_4.PNG)
 </details><br>
 
 ___
 ### Amend Employee's hours
-Type "2" from the  process / amend payroll menu to go to the Amend employees hours)<br>
+Type "2" from the  process / amend payroll menu and press enter to go to the Amend employees hours)<br>
 
 Enter the employee number
 
 - **Error Handling:** *Validation will check if the employee number is in the google sheets employee detail sheet.*
 
-    *There is additional validation to ensure there is an employee record already entered into google sheets employee payroll sheet to ensure we can amend the result
-    If no record is found ‘No payroll record found for xx in week wkxx, returning to main menu.’ Will be displayed*
+There is additional validation to ensure there is an employee record already entered into google sheets employee payroll sheet to ensure we can amend the result
+If no record is found ‘No payroll record found for xx in week wkxx, returning to main menu.’ Will be displayed*
 
-    *‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information and then the process /amend payroll menu will be displayed*
+Press any key to return to the display payroll menu
 
 If an record is found, ‘Employment record located’ message will be displayed . This record will be deleted and the user will be prompted to enter the employees hours again which will follow the add employees detail features above
 
 <details>
 <summary>Click here to view an example</summary>
 
-![screenshot Amend employees' hours](docs/images/features/feature_4_2.PNG)
+![screenshot Amend employees' hours](/docs/images/features/feature_4_2.PNG)
 </details><br>
 
 
 
 ___
 ### Main menu
-Type "3" from the  process / amend payroll menu to go the main menu
+Type "3" from the  process / amend payroll menu and press enter to go the main menu
 
 Display the main menu
 <details>
 <summary>Click here view the menu</summary>
 
-![screenshot Display the main menu](docs/images/features/feature_4_3.PNG)
+![screenshot Display the main menu](/docs/images/features/feature_4_3.PNG)
 </details><br>
 
 ___

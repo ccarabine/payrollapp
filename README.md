@@ -5,16 +5,16 @@
 ___
 
 
-![Screenshot of home screen](docs/images/people_payroll_welcomescreen.PNG)
+![Screenshot of home screen](/docs/images/people_payroll_welcomescreen.PNG)
 
 
 **People Payroll is a terminal based application providing a solution to common pain points experienced by many small business owners. The application enables employers to process employee hours, and simultaneously calculate their pay/liabilities efficiently, eliminating the risk of manual calculation errors, and resulting in increased productivity.**
 
 ### View my deployed site. <a href="https://people-payroll-application.herokuapp.com/"> People Payroll Applicaiton </a>
 
-[Click](https://github.com/ccarabine/payroll/blob/main/docs/user_manual.md) to view the user manual to operate the application.
+[Click](https://github.com/ccarabine/payroll/blob/main//docs/user_manual.md) to view the user manual to operate the application.
 
-[Here](https://docs.google.com/spreadsheets/d/1Mh0WaeqPiZRDhHZpLVrVSoBcV8L4cPMKQXs2a-Z90Uo/edit?usp=sharing) is the link to the Google Spreadsheet, to see the updates made.
+[Here](https:///docs.google.com/spreadsheets/d/1Mh0WaeqPiZRDhHZpLVrVSoBcV8L4cPMKQXs2a-Z90Uo/edit?usp=sharing) is the link to the Google Spreadsheet, to see the updates made.
 
 
 ***
@@ -104,7 +104,7 @@ I have rated the features on a scale of 1 to 5 in terms of importance (how impor
 
 To achieve the strategy goals, the following features highlighted in dark/light green will be implemented to create a minimal viable  product due to timescale and technical ability. The additional features in red will be added at a further stage
 
-![Strategy trade offs table](docs/images/strategytradeoffs.PNG) 
+![Strategy trade offs table](/docs/images/strategytradeoffs.PNG) 
 
 ### [Contents table ](#home)
 ---
@@ -121,7 +121,7 @@ It is important that the application is easy to navigate and provides feedback t
 <details>
     <summary>Click here to view the home screen</summary>
 
-![Screenshot of Home screen](docs/images/people_payroll_welcomescreen.PNG)
+![Screenshot of Home screen](/docs/images/people_payroll_welcomescreen.PNG)
 </details><br>
 This welcomes the user to the application, to access the application the user needs to enter a (non-visible) password. The main menu will then be displayed
 
@@ -132,7 +132,7 @@ ____
 <details>
     <summary>Click here to view the main menu</summary>
 
-![Screenshot of main menu](docs/images/menu/main_menu.PNG)
+![Screenshot of main menu](/docs/images/menu/main_menu.PNG)
 </details><br>
 
 People Payroll Application<br>
@@ -148,7 +148,7 @@ ___
 <details>
     <summary>Click here to view the display payroll menu</summary>
 
-![Screenshot of display payroll menu](docs/images/menu/display_payroll_menu.PNG)
+![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
 
 ### **User inputs** numeral 1, the first option 1 in main menu. The next step is the ‘Display Payroll’ menu 
@@ -187,7 +187,7 @@ ___
 <details>
     <summary>Click here to view the process / amend payroll menu</summary>
 
-![Screenshot of process / amend payroll menu](docs/images/menu/process_amend_menu.PNG)
+![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
 
 ### **User inputs** numeral 2, the second option in main menu. The next step is the ‘Process / amend payroll’ menu 
@@ -235,7 +235,7 @@ The main menu is displayed
 <details>
     <summary>Click here to view the Add / Amend employee details menu - Future Feature</summary>
 
-![Screenshot of Add / Amend employee details menu](docs/images/menu/add_amend_employees_details_menu.PNG)
+![Screenshot of Add / Amend employee details menu](/docs/images/menu/add_amend_employees_details_menu.PNG)
 </details><br>
 
 User inputs numeral 3, the third option in main menu. The next step is the Feature in next update, returning to main menu is displayed.
@@ -256,51 +256,51 @@ I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowchar
 <details>
     <summary>Click here to view flowchart - Security and menu  </summary>
 
-![Screenshot of flowchart - Security and menu ](docs/images/flow_charts/menus.png)
+![Screenshot of flowchart - Security and menu ](/docs/images/flow_charts/menus.png)
 </details><br>
 
 <details>
     <summary>Click here to view flowchart - display payroll option 1 </summary>
 
-![Screenshot of flowchart - display payroll option 1](docs/images/flow_charts/display_payroll_option_one.png)
+![Screenshot of flowchart - display payroll option 1](/docs/images/flow_charts/display_payroll_option_one.png)
 </details><br>
 
 <details>
     <summary>Click here to view flowchart - display payroll option 2 </summary>
 
-![Screenshot of flowchart - display payroll option 2 ](docs/images/flow_charts/display_payroll_option_two.png)
+![Screenshot of flowchart - display payroll option 2 ](/docs/images/flow_charts/display_payroll_option_two.png)
 </details><br>
 
 <details>
     <summary>Click here to view flowchart - display payroll option 3 </summary>
 
-![Screenshot of flowchart - display payroll option 3 ](docs/images/flow_charts/display_payroll_option_three.png)
+![Screenshot of flowchart - display payroll option 3 ](/docs/images/flow_charts/display_payroll_option_three.png)
 
 </details><br>
 
 <details>
     <summary>Click here to view flowchart - Process payroll add / amend </summary>
 
-![Screenshot of flowchart - Process payroll add /amend ](docs/images/flow_charts/process_payroll_add_amend.png)
+![Screenshot of flowchart - Process payroll add /amend ](/docs/images/flow_charts/process_payroll_add_amend.png)
 </details><br>
 
 <details>
     <summary>Click here to view flowchart - Data model, variables and rules </summary>
 
-![Screenshot of flowchart - Data model, variables and rules ](docs/images/flow_charts/details.png)
+![Screenshot of flowchart - Data model, variables and rules ](/docs/images/flow_charts/details.png)
 </details><br>
 
 
 <details>
     <summary>Click here to view data relationship</summary>
 
-![Screenshot of data relationship ](docs/images/flow_charts/data_relationship.png)
+![Screenshot of data relationship ](/docs/images/flow_charts/data_relationship.png)
 </details><br>
 
 <details>
-    <summary>Click here to view  formaulas and variables</summary>
+    <summary>Click here to view  formulas and variables</summary>
 
-![Screenshot of data relationship ](docs/images/flow_charts/formulas_variables.png)
+![Screenshot of data relationship ](/docs/images/flow_charts/formulas_variables.png)
 </details><br>
 
 ### [Contents table ](#home)
@@ -322,7 +322,7 @@ ___
 <details>
     <summary>Click here to view the home screen</summary>
 
-![Screenshot of Home screen](docs/images/people_payroll_welcomescreen.PNG)
+![Screenshot of Home screen](/docs/images/people_payroll_welcomescreen.PNG)
 </details><br>
 The user is welcomed to the payroll application and prompted to enter a username and password (no password characters are visible)<br>
 If the user enters: <br>
@@ -339,7 +339,7 @@ ___
 <details>
     <summary>Click here to view the main menu</summary>
 
-![Screenshot of main menu](docs/images/menu/main_menu.PNG)
+![Screenshot of main menu](/docs/images/menu/main_menu.PNG)
 </details><br>
 People Payroll Application<br>
 
@@ -354,7 +354,7 @@ ___
 <details>
     <summary>Click here to view the display payroll menu</summary>
 
-![Screenshot of display payroll menu](docs/images/menu/display_payroll_menu.PNG)
+![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
 People Payroll Application<br>
 
@@ -368,7 +368,7 @@ ___
 <details>
     <summary>Click here to view the process / amend payroll menu</summary>
 
-![Screenshot of process / amend payroll menu](docs/images/menu/process_amend_menu.PNG)
+![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
 
 People Payroll Application<br>
@@ -417,7 +417,7 @@ then the display payroll menu is displayed
 <details>
 <summary>1. Overall employees’ pay for week selected report</summary>
 
-![screenshot 1. Overall employees’ pay for week selected report](docs/images/features/feature_3_1.PNG)
+![screenshot 1. Overall employees’ pay for week selected report](/docs/images/features/feature_3_1.PNG)
 </details><br>
 ___
 
@@ -442,9 +442,11 @@ then the display payroll menu is displayed
 <details>
 <summary>2. Employee pay for week selected report</summary>
 
-![screenshot Employee pay for week selected report](docs/images/features/feature_3_2.PNG)
+![screenshot Employee pay for week selected report](/docs/images/features/feature_3_2.PNG)
 </details><br>
+
 ___
+
 *Option 3* selected from the display payroll menu - 3. Employers summary for week<br>
 
 The data is summarised for each heading and grouped by week and displayed to the terminal
@@ -456,7 +458,7 @@ then the display payroll menu is displayed
 <details>
 <summary>3. Employers summary by week report</summary>
 
-![screenshot 3 Employers summary by week report](docs/images/features/feature_3_3.PNG)
+![screenshot 3 Employers summary by week report](/docs/images/features/feature_3_3.PNG)
 </details><br>
 
 ___
@@ -467,7 +469,7 @@ The main menu is displayed
 <details>
 <summary>4. Main menu</summary>
 
-![screenshot Main menu](docs/images/features/feature_3_4.PNG)
+![screenshot Main menu](/docs/images/features/feature_3_4.PNG)
 </details><br>
 
 ___
@@ -528,7 +530,7 @@ The user will then prompted if they would like to process another employees hour
 <details>
     <summary>Click here to view add employees' hours</summary>
 
-![screenshot Add employees' hours](docs/images/features/feature_4.PNG)
+![screenshot Add employees' hours](/docs/images/features/feature_4.PNG)
 </details><br>
 
 ___
@@ -545,13 +547,13 @@ If an record is found, ‘Employment record located’ message will be displayed
 <details>
 <summary>Click here to view amend employees' hours</summary>
 
-![screenshot Amend employees' hours](docs/images/features/feature_4_2.PNG)
+![screenshot Amend employees' hours](/docs/images/features/feature_4_2.PNG)
 </details><br>
 
 <details>
 <summary>Click here to view amend employees' hours- Google sheets</summary>
 
-![screenshot Amend employees' hours -google sheets](docs/images/features/feature_4_2_1.PNG)
+![screenshot Amend employees' hours -google sheets](/docs/images/features/feature_4_2_1.PNG)
 </details><br>
 
 ___
@@ -562,7 +564,7 @@ Display the main menu
 <details>
 <summary>Click here view display the main menu</summary>
 
-![screenshot Display the main menu](docs/images/features/feature_4_3.PNG)
+![screenshot Display the main menu](/docs/images/features/feature_4_3.PNG)
 </details><br>
 **User stories covered:**<br>
 *2.	As a user, I want a terminal based application to import/export data via google sheets<br>
@@ -615,7 +617,7 @@ User stories are tested with the features that cover them. All user stories pass
 
 # Click on link to testing of user stories
 check if link works
-[Link to testing ](https://github.com/ccarabine/payroll/blob/main/docs/testing.md)
+[Link to testing ](https://github.com/ccarabine/payroll/blob/main//docs/testing.md)
 ---
 ## User stories testing  <a name="user-stories-testing"></a>
 
@@ -744,7 +746,7 @@ Reduced the number of fields in the reports*
 ## PEP8 Online Validation Service:<a name="#validation-testing"></a>
 All Python files passed the [PEP8](http://pep8online.com/) and [Pylint](https://www.pylint.org/) tests with 0 errors.
 
-Click [here](https://github.com/johnvenkiah/CI_PP3_John_Venkiah/blob/main/docs/validation/validation.md) to view them.
+Click [here](https://github.com/johnvenkiah/CI_PP3_John_Venkiah/blob/main//docs/validation/validation.md) to view them.
 
  
 
@@ -827,7 +829,7 @@ I have also utilised the following applications, platforms  and libraries:
 
 * [Google Cloud Platform](https://console.cloud.google.com/home/dashboard?project=payroll-326612) : Google Cloud Platform has been used for APIs and credentials to be able to access Google Sheets with the relevant data.
 
-- [Google Sheets](https://docs.google.com/spreadsheets/u/0/): Spreadsheet to store the data for employees details and employee payroll 
+- [Google Sheets](https:///docs.google.com/spreadsheets/u/0/): Spreadsheet to store the data for employees details and employee payroll 
 
 - [PEP8 Online Validation Service](http://pep8online.com/): The PEP8 Online Validation Service was used to validate the Python document for this project and to identify any issues with the code.
 
@@ -883,11 +885,11 @@ I used the following websites and videos for inspiration and code for my project
 
 [clearing the terminal before next function](https://www.geeksforgeeks.org/clear-screen-python/)
 
-[Use of gspread](https://docs.gspread.org/en/latest/user-guide.html)
+[Use of gspread](https:///docs.gspread.org/en/latest/user-guide.html)
 
 [Using gspread-Finding and Updating Cells in google sheers](https://www.youtube.com/watch?v=yPQ2Gk33b1U)
 
-[Using gspread to select a worksheet]( https://docs.gspread.org/en/latest/user-guide.html#selecting-a-worksheet)
+[Using gspread to select a worksheet]( https:///docs.gspread.org/en/latest/user-guide.html#selecting-a-worksheet)
 
 [Using pandas](https://kanoki.org/2020/01/21/pandas-dataframe-filter-with-multiple-conditions/)
 
