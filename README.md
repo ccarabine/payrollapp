@@ -35,8 +35,8 @@ ___
 
     * [User Stories/feature Testing](#user-stories-testing)
     * [Known issues during testing](#known-issues)
-    * [Validation testing  ](#validation-testing)  #correct
-    * [Bugs left](#unfixed-bugs)
+    * [Validation testing  ](#validation-testing)
+    * [Unfixed bugs](#unfixed-bugs)
 4. [Deployment](#deployment)
 5. [Technologies Used](#technology-used)
 6. [Credits](#credits)
@@ -164,15 +164,15 @@ Display payroll menu<br>
 
 ### **User inputs** numeral 1, the first option in the ‘Display Payroll’ menu. 
 
-The next step is ‘Enter Payroll Week (1-52) :’<br>
+The next step is ‘Enter Payroll Week :’<br>
 User enters required fiscal/calendar week by inputting the relevant numeral, then all employees payroll is displayed to the terminal for relevant week
 
 ### **User inputs** numeral 2, the second option in the ‘Display Payroll’ menu.
 
-The next step is ‘Enter Payroll Week (1-52) :’
+The next step is ‘Enter Payroll Week :’
 User enters required fiscal/calendar week by inputting the relevant numeral
 
-The next step is ‘Enter Employee Number e.g. 100014 :’ 
+The next step is ‘Enter Employee Number :’ 
 User enters required employee number, the terminal then displays the employees pay summary for relevant week
 
 ### **User inputs** numeral 3, the third option in the ‘Employer’s summary for the week’
@@ -215,7 +215,7 @@ The values are added to google sheet employee payroll sheet
 
 ### **User inputs** numeral 2, the second option in the ‘Process / amend payroll’ menu.
 
-The next step is ‘Enter Employee Number e.g. 100014 :’ 
+The next step is ‘Enter Employee Number :’ 
 User enters required employee number in numerals,
 
 The next step is ‘Enter number of hours worked :’
@@ -285,22 +285,15 @@ I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowchar
 </details><br>
 
 <details>
-    <summary>Click here to view flowchart - Data model, variables and rules </summary>
+    <summary>Click here to view data relationship </summary>
 
-![Screenshot of flowchart - Data model, variables and rules ](/docs/images/flow_charts/details.png)
-</details><br>
-
-
-<details>
-    <summary>Click here to view data relationship</summary>
-
-![Screenshot of data relationship ](/docs/images/flow_charts/data_relationship.png)
+![Screenshot of flowchart - Data relationship ](/docs/images/flow_charts/data_relationship.png)
 </details><br>
 
 <details>
-    <summary>Click here to view  formulas and variables</summary>
+    <summary>Click here to view the formulas and variables </summary>
 
-![Screenshot of data relationship ](/docs/images/flow_charts/formulas_variables.png)
+![Screenshot of formulas ](/docs/images/flow_charts/formulas_variables.png)
 </details><br>
 
 ### [Contents table ](#home)
@@ -335,34 +328,21 @@ ___
 ### **Feature 2: Menu system**
 The menu system consists of all the options required to facilitate all stages of the payroll process as follows:
 
-___
 <details>
     <summary>Click here to view the main menu</summary>
 
 ![Screenshot of main menu](/docs/images/menu/main_menu.PNG)
 </details><br>
-People Payroll Application<br>
-
-**Main menu**<br>
-1 Display payroll<br>
-2 Process / Amend payroll<br>
-3 Add / Amend employee details<br>
-4 Close Application<br>
 
 ___
+
 *Option 1* from the main menu typed , display the payroll menu
 <details>
     <summary>Click here to view the display payroll menu</summary>
 
 ![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
-People Payroll Application<br>
 
-**Display payroll menu**<br>
-1 Overall employees’ pay for week selected<br>
-2 Employee pay for week selected<br>
-3 Employers summary by week<br>
-4 Main menu<br>
 ___
 *Option 2* from the main menu typed , display the process /amend payroll menu
 <details>
@@ -371,12 +351,6 @@ ___
 ![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
 
-People Payroll Application<br>
-
-**Process / amend payroll menu**<br>
-1 Add Employees hours<br>
-2 Amend employees hours<br>
-3 Main menu<br>
 ___
 If an incorrect number option is typed during any of the menu selections, the user will receive feedback: ‘Invalid data, please try again.’
 
@@ -391,14 +365,13 @@ ___
 From the main menu, the user will be prompted to select an option by typing the relevant numeral.
 
 *Option 1* from the main menu typed , the payroll menu will be displayed
-People Payroll Application<br>
-___
-**Display payroll menu**<br>
-1 Overall employees’ pay for week selected<br>
-2 Employee pay for week selected<br>
-3 Employers summary by week<br>
-4 Main menu<br>
-___
+
+<details>
+<summary>Display Payroll menu</summary>
+
+![screenshot Display Payroll menu](/docs/images/menu/display_payroll_menu.PNG)
+</details><br>
+
 
 The user will be prompted to select an option by typing the relevant numeral
 
@@ -419,6 +392,7 @@ then the display payroll menu is displayed
 
 ![screenshot 1. Overall employees’ pay for week selected report](/docs/images/features/feature_3_1.PNG)
 </details><br>
+
 ___
 
 *Option 2* selected from the display payroll menu - 2 Employee pay for week selected <br>
@@ -493,13 +467,13 @@ ___
 From the main menu, the user will be prompted to select an option by typing in the relevant numeral
 
 Option 2 from the main menu typed, the process / amend payroll menu will be displayed
-___
-People Payroll Application<br>
 
-**Process / amend payroll**<br>
-1 Add Employees hours<br>
-2 Amend employees hours<br>
-3 Main menu<br>
+<details>
+    <summary>Click here to view the process / amend payroll menu</summary>
+
+![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
+</details><br>
+
 ___
 The user will be prompted to select an option by typing in the relevant numeral
 
@@ -593,8 +567,10 @@ This is a future feature
 
 ---
 ## Features remaining to implement (long term objectives): <a name="features-toimplement"></a>
-
+Next update
 - Add / Amend employee details
+
+Future objectives
 - Statutory sick pay, maternity/Paternity leave
 - Bonuses
 - Payroll for salary staff
@@ -603,27 +579,20 @@ This is a future feature
 - Change password
 
 
-# Data structure to do
-
-
-
-
 ### [Contents table ](#home)
 
 ---
 # Testing <a name="testing"></a> 
 
-User stories are tested with the features that cover them. All user stories passed the tests.
 
-# Click on link to testing of user stories
-check if link works
-[Link to testing ](https://github.com/ccarabine/payroll/blob/main//docs/testing.md)
----
 ## User stories testing  <a name="user-stories-testing"></a>
 
+User stories are tested with the current features. All user stories passed the tests.
+
+[Click on link to testing of user stories ](https://github.com/ccarabine/payroll/blob/main//docs/testing.md)
 
 ---
-## Known issues during testing <a name="known-issues"></a>
+## Known issues during development and testing <a name="known-issues"></a>
 
 During development the following issues were identified and corrected
 
@@ -743,12 +712,71 @@ Reduced the number of fields in the reports*
 ### [Contents table ](#home)
 
 ---
-## PEP8 Online Validation Service:<a name="#validation-testing"></a>
+## PEP8 Online Validation Service:<a name="validation-testing"></a>
 All Python files passed the [PEP8](http://pep8online.com/) and [Pylint](https://www.pylint.org/) tests with 0 errors.
 
-Click [here](https://github.com/johnvenkiah/CI_PP3_John_Venkiah/blob/main//docs/validation/validation.md) to view them.
+## Pylint
 
- 
+<details>
+<summary>Click here to view the results from pylint on run.py</summary>
+
+![screenshot results from pylint on run.py](/docs/images/testing/validation/pylint_runpy.png)
+</details><br>
+
+<details>
+<summary>Click here to view the results from pylint on menu.py</summary>
+
+![screenshot results from pylint on run.py](/docs/images/testing/validation/pylint_menupy.png)
+</details><br>
+
+Initial Errors
+<details>
+<summary>Click here to view the initial errors from pylint</summary>
+
+![screenshot the initial errors from pylint](/docs/images/testing/validation/pylint_initial_validation_errors.png)
+</details><br>
+Fixes to the errors
+Standard imports moved the imports in the correct order as suggested by pylint
+variable name em, wk, fd changed to employee, week and fd_int
+unnecessary parens - removed them
+redefining data and password - changed to data_1 and password_1
+
+i have disabled the following false errors:
+
+pylint: disable=broad-except    except Exception as error: <br>
+catching too general exception
+
+pylint: disable=unused-import   import env  
+'env' imported but unused
+unused import env  **this is used to store the password**
+
+pylint: disable=pointless-string-statement    Pylint states the imports docstring is pointless 
+i have used a doc string to comment all of the imports for all modules for application
+
+pylint: disable=no-else-return  Unnecessary "elif" after "return" 
+used on function  yesorno(question):
+    if answer == 'y': 
+        return True
+    elif answer == 'n':
+        return False
+    print('Invalid entry')
+    return yesorno(question)
+
+needed to keep the elif in, so if the user typed "n" it would return False
+
+
+## PEP8
+<details>
+<summary>Click here to view the results from PEP8 on run.py</summary>
+
+![screenshot results from PEP8 on run.py](/docs/images/testing/validation/pep8_runpy.PNG)
+</details><br>
+
+<details>
+<summary>Click here to view the results from PEP8 on menu.py</summary>
+
+![screenshot results from PEP8 on run.py](/docs/images/testing/validation/pep8_menupy.PNG)
+</details><br>
 
 ---
 ##  Unfixed Bugs <a name="unfixed-bugs"></a> 

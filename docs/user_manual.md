@@ -58,7 +58,7 @@ Type "2" from the main menu and press enter, the process / amend payroll menu wi
 
 ### Add / amend employee details
 
-Type "3" from the main menu and press enter, the add / amend employee details  will be displayed 
+Type "3" from the main menu and press enter, the add / amend employee details menu  will be displayed 
 <details>
     <summary>Click here to view the  menu</summary>
 
@@ -68,6 +68,8 @@ Type "3" from the main menu and press enter, the add / amend employee details  w
 ### Close Application
 Type "4" from the main menu and press enter, the application closes
 
+__
+The Menu system
 - **Error handling:** *If an incorrect number option is typed during any of the menu selections, the user will receive feedback: ‘Invalid data, please try again.’*
 ___
 
@@ -168,13 +170,19 @@ Type "1" from the process / amend payroll menu and press enter to go to Add Empl
 
 Enter the employee number
 
-- **Error Handling:**  *Validation will check if the employee number is in the  google sheets employee detail sheet.*  
+- **Error handling:** *If the user has entered incorrectly, an error message will be displayed ‘Invalid employee number, please try again.’*
 
-    *There is additional validation to ensure there is no employee record already entered into google sheets employee payroll sheet, to avoid duplicates.*
+    *Then the user will be prompted ‘Do you want to try again? type y or n :’*
 
-    *If there is already an existing employee record in the payroll sheet, the application will provide feedback to the user*
+    *If no they will be taken back to the main menu*
 
-    *“Employees hours already entered in wkxx, please go to option 2 to amend”*
+Validation will check if the employee number is in the  google sheets employee detail sheet.  
+
+There is additional validation to ensure there is no employee record already entered into google sheets employee payroll sheet, to avoid duplicates.
+
+If there is already an existing employee record in the payroll sheet, the application will provide feedback to the user
+
+“Employees hours already entered in wkxx, please go to option 2 to amend”
 
 Press any key to return to the display payroll menu is displayed
 
@@ -208,9 +216,16 @@ Type "2" from the  process / amend payroll menu and press enter to go to the Ame
 
 Enter the employee number
 
-- **Error Handling:** *Validation will check if the employee number is in the google sheets employee detail sheet.*
+- **Error handling:** *If the user has entered incorrectly, an error message will be displayed ‘Invalid employee number, please try again.’*
 
-There is additional validation to ensure there is an employee record already entered into google sheets employee payroll sheet to ensure we can amend the result
+    *Then the user will be prompted ‘Do you want to try again? type y or n :’*
+
+    *If no they will be taken back to the main menu*
+
+Validation will check if the employee number is in the google sheets employee detail sheet.
+
+There is additional validation to ensure there is an employee record already entered into employee payroll Google Sheet
+
 If no record is found ‘No payroll record found for xx in week wkxx, returning to main menu.’ Will be displayed*
 
 Press any key to return to the display payroll menu
