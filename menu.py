@@ -1,3 +1,11 @@
+"""
+menu.py file is for the people payroll applicaiton by Chris Carabine
+
+This is the menu file for a command line interface payroll system for
+displaying each of the menus.
+"""
+
+
 def welcome_menu():
     """
     Displays the welcome screen on load
