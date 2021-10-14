@@ -20,7 +20,7 @@ from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
     add_amend_employee_menu, welcome_menu, employees_pay_menu, \
     employers_payment_summary_menu
 if path.exists("env.py"):
-    import env # pylint: disable=unused-import  # noqa #  This is used!
+    import env  # pylint: disable=unused-import  # noqa #  This is used!
 
 # Pylint states the string below is pointless so have bypassed the message.
 # pylint: disable=pointless-string-statement
@@ -110,14 +110,15 @@ def get_payroll_week():
                 if int(payroll_week):
                     payroll_week = "wk" + payroll_week
                     return payroll_week
-    except KeyError:
+    except KeyError as error:
         print('Invalid week number, please try again.\n')
+        print(f'Error message, {error}')
         return False
 
 
 def payroll_weeks():
     """
-    To get the payroll week we first gets current tax week we are in now 
+    To get the payroll week we first gets current tax week we are in now
     and minus 13 weeks so the payroll week starts from april.
     To get the previous payroll week which we are processing the hours for,
     we minus 1 week
@@ -167,9 +168,6 @@ def get_employee_num():
             if validate_employee_num(employee_num):
                 print("Employment record located")
                 return employee_num
-            else:
-                clear()
-                get_main_menu_option()
         else:
             print("Employee number format incorrect, try this format 100010 ")
 
@@ -181,6 +179,7 @@ def get_employee_hours():
     """
     while True:
         employee_hours = input("Enter number of hours worked : \n")
+        employee_hours = float(employee_hours)
         if validate_data_float(employee_hours, 1, 100):
             return employee_hours
 
@@ -197,7 +196,7 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
     @return matched_row(int): Row to delete in spreadsheet
     @except indexError: if no record is found
     @return :0
-    @except gspread.exceptions.APIError: Api error 
+    @except gspread.exceptions.APIError: Api error
     intersect part of code referenced to
     https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/
     """
@@ -216,13 +215,15 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
         matched_row = int(intersect[0])
         if matched_row >= 1:
             return matched_row
+        return None
     except IndexError:
         print(
             'No entry found in payroll'
             )
-        return 0
+        return None
     except gspread.exceptions.APIError:
         print("Api error occurred for gspread due to authentication")
+        return None
 
 
 # Menu options functionality
@@ -248,7 +249,7 @@ def get_main_menu_option():
                 clear()
                 get_add_amend_employee_option()
             if main_menu_option_data == "4":
-                quit()
+                sys.exit()
 
 
 def get_display_payroll_option():
@@ -407,8 +408,11 @@ def process_payroll_option_1():
     print(f'\nPayroll week for processing is {payroll_week}\n')
     employee_num = get_employee_num()
     row_num = check_for_records_in_payroll_sheet(payroll_week, employee_num)
-    row_num = int(row_num)
-    if row_num >= 1:
+    if row_num is None:
+        calculate_employee_payslip_data(payroll_week, employee_num)
+        next_employee_to_process()
+    else:
+        row_num = int(row_num)
         print(
             f'Employees hours already entered in {payroll_week}'
             f', please go to option 2 to amend \n')
@@ -419,9 +423,6 @@ def process_payroll_option_1():
         wait_key()
         clear()
         get_process_payroll_option()
-    else:
-        calculate_employee_payslip_data(payroll_week, employee_num)
-        next_employee_to_process()
 
 
 def next_employee_to_process():
@@ -435,12 +436,10 @@ def next_employee_to_process():
                 )
         if answer is True:
             process_payroll_option_1()
-            return()
         elif answer is False:
             clear()
             get_main_menu_option()
-        else:
-            print("Try again")
+        print("Try again")
 
 
 def calculate_employee_payslip_data(payroll_week, employee_num):
@@ -452,16 +451,11 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
     """
     try:
         employee_row = validate_employee_num(employee_num)
-        employee_retrived_data = get_employee_data(employee_row)
-        employee_num = (employee_retrived_data[0])
-        employee_surname = (employee_retrived_data[1])
-        employee_firstname = (employee_retrived_data[2])
-        employee_rate_of_pay = float(employee_retrived_data[3])
-        employee_pension = float(employee_retrived_data[4])
-
-        employee_hours_data = (get_employee_hours())
-        employee_hours = float(employee_hours_data)
-        employee_basic_pay = round(employee_hours * employee_rate_of_pay, 2)
+        employee_dict = get_employee_data(employee_row)
+        employee_hours = get_employee_hours()
+        employee_basic_pay = round(
+            float(employee_hours) * float(employee_dict[
+                "employee_rate_of_pay"].value), 2)
         employee_holiday = round(employee_basic_pay * HOL_PC, 2)
         employee_basic_hol = (employee_basic_pay + employee_holiday)
         if (employee_basic_pay + employee_holiday) < EMPLOYEES_NI_AMOUNT:
@@ -470,7 +464,9 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
             employee_ni = round(
                 (employee_basic_hol - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC, 2
                 )
-        employee_pension = round(employee_pension * employee_basic_hol, 2)
+        employee_pension = round(
+            float(employee_dict[
+                    "employee_pension"].value) * employee_basic_hol, 2)
         employee_net_pay = round(
             employee_basic_hol - employee_ni - employee_pension, 2
             )
@@ -483,26 +479,31 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
         employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC, 2)
         print(
             f'\n Employee : {employee_num} - '
-            f'{employee_firstname} {employee_surname}'
+            f'{employee_dict["employee_firstname"].value} '
+            f'{employee_dict["employee_surname"].value}'
             )
         print(f' Basic Pay : £{employee_basic_pay}')
         print(f' Holiday Pay : £{employee_holiday}')
         print(f' NI contribution: £{employee_ni}')
         print(f' Pension contribution: £{employee_pension}')
         print(f' Net Pay: £{employee_net_pay}')
+        row_data = []
         answer = yesorno("Are the amounts correct? type y or n ")
         if answer:
             print("\nReady to upload into payroll spreadsheet \n")
             row_data = [
                     payroll_week, employee_num,
-                    employee_surname, employee_firstname,
+                    employee_dict[
+                        "employee_surname"].value,
+                    employee_dict[
+                        "employee_firstname"].value,
                     employee_hours, employee_basic_pay,
                     employee_holiday, employee_ni,
                     employee_pension, employee_net_pay,
                     employers_ni, employers_pension
             ]
-            update_worksheet(row_data, "employeepayroll")
-        else:
+        update_worksheet(row_data, "employeepayroll")
+        if answer is False:
             print("Re-enter details \n")
             calculate_employee_payslip_data(
                 payroll_week, employee_num)
@@ -524,15 +525,20 @@ def get_employee_data(employee_row):
         employee_num = employeedetail.cell(employee_row, 1)
         employee_surname = employeedetail.cell(employee_row, 2)
         employee_firstname = employeedetail.cell(employee_row, 3)
-        employee_rateofpay = employeedetail.cell(employee_row, 4)
+        employee_rate_of_pay = employeedetail.cell(employee_row, 4)
         employee_pension = employeedetail.cell(employee_row, 5)
-        return employee_num.value,\
-            employee_surname.value,\
-            employee_firstname.value,\
-            employee_rateofpay.value,\
-            employee_pension.value
+        employee_dic = {
+            "employee_num": employee_num,
+            "employee_surname": employee_surname,
+            "employee_firstname": employee_firstname,
+            "employee_rate_of_pay": employee_rate_of_pay,
+            "employee_pension": employee_pension
+            }
+
+        return employee_dic
     except gspread.exceptions.APIError:
         print("Api error occurred for gspread due to authentication")
+        return None
 
 
 def process_payroll_option_2():
@@ -557,7 +563,7 @@ def amend_employees_hours(payroll_week, employee_num):
     @param employee_num(string): Employee number
 
     @raise indexError: if no record is found
-    @raise gspread.exceptions.APIError: Api error 
+    @raise gspread.exceptions.APIError: Api error
 
     """
     try:
@@ -574,10 +580,11 @@ def amend_employees_hours(payroll_week, employee_num):
         wait_key()
         clear()
         get_process_payroll_option()
-    except IndexError:
+    except IndexError as error:
         print(
             f'\nNo payroll record found for {employee_num} in week'
             f' {payroll_week}, returning to main menu.\n')
+        print(f'Error message, {error}')
         print(
             '\nPress enter to clear the screen and return to the Process '
             '/ amend payroll menu'
@@ -624,7 +631,8 @@ def validate_data_int(value, minvalue, maxvalue):
                 f'Number between {minvalue} and {maxvalue} required,'
                 f' you typed {value}'
                 )
-    except ValueError:
+    except ValueError as error:
+        print(f'Error message, {error}')
         print('Invalid data, please try again.\n')
         return False
     return True
@@ -646,7 +654,8 @@ def validate_data_float(value, minvalue, maxvalue):
                 f'Number between {minvalue} and {maxvalue} '
                 f'required, you typed {value}'
                 )
-    except ValueError:
+    except ValueError as error:
+        print(f'Error message, {error}')
         print('Invalid data, please try again.\n')
         return False
     return True
@@ -669,15 +678,19 @@ def validate_employee_num(employee_num):
     try:
         employee_row = employeedetail.find(employee_num).row
         return employee_row
-    except AttributeError:
+    except AttributeError as error:
+        print(f'Error message, {error}')
         print('\nInvalid employee number, please try again.\n')
         answer = yesorno("Do you want to try again? type y or n :  ")
         if answer:
             get_employee_num()
         else:
-            return False
+            clear()
+            get_main_menu_option()
+        return None
     except gspread.exceptions.APIError:
         print("Api error occurred for gspread due to authentication")
+        return None
 
 
 # General functions
@@ -724,8 +737,7 @@ def password():
             print("Correct credentials!")
             clear()
             return True
-        else:
-            print("Incorrect credentials, please try again.")
+        print("Incorrect credentials, please try again.")
 
 
 def clear():
@@ -748,19 +760,19 @@ def yesorno(question):
     @ raise Exception: raises an exception, if the value is incorrect
      """
     try:
-        answer = input(f'{question}\n')
-        if answer[0] == 'y':
+        answer = str(input(f'{question}\n')).lower()
+        if answer == 'y':  # pylint: disable=no-else-return
             return True
-        elif answer[0] == 'n':
+        elif answer == 'n':
             return False
-        else:
-            print('Invalid entry')
-            return ()
+        print('Invalid entry')
+        return yesorno(question)
     except Exception as error:  # pylint: disable=broad-except
         print("Please enter valid entry")
         print(error)
         print('Press any key to retry')
         wait_key()
+        return ()
 
 
 def wait_key():
@@ -776,8 +788,8 @@ def wait_key():
         newattr[3] = newattr[3] & ~termios.ICANON & ~termios.ECHO
         termios.tcsetattr(fd_int, termios.TCSANOW, newattr)
         sys.stdin.read(1)
-    except IOError:
-        pass
+    except IOError as error:
+        print(f'Error message, {error}')
     finally:
         termios.tcsetattr(fd_int, termios.TCSAFLUSH, oldterm)
 
@@ -786,7 +798,7 @@ def main():
     """
     Run all program functions
     """
-    password()
+    #password()
     get_main_menu_option()
 
 
