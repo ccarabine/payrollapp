@@ -798,7 +798,7 @@ def main():
     """
     Run all program functions
     """
-    #password()
+    password()
     get_main_menu_option()
 
 
