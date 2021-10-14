@@ -22,7 +22,7 @@ from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
 if path.exists("env.py"):
     import env # pylint: disable=unused-import  # noqa #  This is used!
 
-# Pylint thinks the string below is pointless so have bypassed the message.
+# Pylint states the string below is pointless so have bypassed the message.
 # pylint: disable=pointless-string-statement
 """
 Imports for all modules for application to function fully:
@@ -117,10 +117,12 @@ def get_payroll_week():
 
 def payroll_weeks():
     """
-    Get current tax week number, minus 13 weeks to start in april for
-    payroll week to get the previous payroll week, minus 1 week
+    To get the payroll week we first gets current tax week we are in now 
+    and minus 13 weeks so the payroll week starts from april.
+    To get the previous payroll week which we are processing the hours for,
+    we minus 1 week
     @returns: last_week_payroll_week_number(str): payroll week to process
-    @returns: current_payroll_week_number(str): current payrool week
+    @returns: current_payroll_week_number(str): current payroll week
     isocalender code reference from
     http://week-number.net/programming/week-number-in-python.html
     """
@@ -132,7 +134,7 @@ def payroll_weeks():
 
 def payroll_week_for_processing():
     """
-    Function get the previous payroll week and return the value
+    Get the previous payroll week and return the value
     @return payroll_week(str): week to process employees hours
     """
     payroll_week = payroll_weeks()
@@ -143,7 +145,7 @@ def payroll_week_for_processing():
 
 def payroll_week_current():
     """
-    Function get the current payroll week and return the value
+    Get the current payroll week and return the value
     @return payroll_week(str): current payroll week
     """
     payroll_week = payroll_weeks()
@@ -169,7 +171,7 @@ def get_employee_num():
                 clear()
                 get_main_menu_option()
         else:
-            print("Employee number format incorrect, example 100010 ")
+            print("Employee number format incorrect, try this format 100010 ")
 
 
 def get_employee_hours():
@@ -193,8 +195,9 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
     @param payroll_week(string): Payroll week
     @param employee_num(string): Employee number
     @return matched_row(int): Row to delete in spreadsheet
-    @raise indexError: if no record is found
+    @except indexError: if no record is found
     @return :0
+    @except gspread.exceptions.APIError: Api error 
     intersect part of code referenced to
     https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/
     """
@@ -398,7 +401,7 @@ def get_employerssummary_option():
 # Add / amend payroll functionality
 def process_payroll_option_1():
     """
-    Process payroll option 1 -run functions below to add employees hours
+    Process payroll option 1 - run functions below to add employees hours
     """
     payroll_week = payroll_week_for_processing()
     print(f'\nPayroll week for processing is {payroll_week}\n')
@@ -554,6 +557,8 @@ def amend_employees_hours(payroll_week, employee_num):
     @param employee_num(string): Employee number
 
     @raise indexError: if no record is found
+    @raise gspread.exceptions.APIError: Api error 
+
     """
     try:
         row_to_delete = check_for_records_in_payroll_sheet(
@@ -622,7 +627,6 @@ def validate_data_int(value, minvalue, maxvalue):
     except ValueError:
         print('Invalid data, please try again.\n')
         return False
-
     return True
 
 
@@ -659,8 +663,9 @@ def validate_employee_num(employee_num):
     @raise AttributeError: raises an exception if the employee
     number is incorrect
     @return employee_row(int): Employee row in sheet
-    """
+    @raise gspread.exceptions.APIError: API error
 
+    """
     try:
         employee_row = employeedetail.find(employee_num).row
         return employee_row
@@ -740,6 +745,7 @@ def yesorno(question):
     validate input
     @param question(string): Question
     Code used from https://gist.github.com/garrettdreyfus/8153571
+    @ raise Exception: raises an exception, if the value is incorrect
      """
     try:
         answer = input(f'{question}\n')
