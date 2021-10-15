@@ -101,7 +101,7 @@ def get_payroll_week():
     """
     Get payroll week from user and validate
     @returns: payroll_week(str)
-
+    @except KeyError: if value is in correct
     """
     try:
         while True:
@@ -116,7 +116,7 @@ def get_payroll_week():
         return False
 
 
-def payroll_weeks():
+def payroll_weeks() -> tuple:
     """
     To get the payroll week we first gets current tax week we are in now
     and minus 13 weeks so the payroll week starts from april.
@@ -133,7 +133,7 @@ def payroll_weeks():
     return (last_week_payroll_week_number, current_payroll_week_number)
 
 
-def payroll_week_for_processing():
+def payroll_week_for_processing() -> str:
     """
     Get the previous payroll week and return the value
     @return payroll_week(str): week to process employees hours
@@ -144,7 +144,7 @@ def payroll_week_for_processing():
     return payroll_week
 
 
-def payroll_week_current():
+def payroll_week_current() -> str:
     """
     Get the current payroll week and return the value
     @return payroll_week(str): current payroll week
@@ -155,7 +155,7 @@ def payroll_week_current():
     return payroll_week
 
 
-def get_employee_num():
+def get_employee_num() -> str:
     """
     Get employee number from user,validate to check that the employee
     is in the employee details list and retrieve details
@@ -172,7 +172,7 @@ def get_employee_num():
             print("Employee number format incorrect, try this format 100010 ")
 
 
-def get_employee_hours():
+def get_employee_hours() -> float:
     """
     Get employees hours for week from user ( maximum 100 hours) and validate
     @returns: employee_hours(float):Employee hours given by user
@@ -195,8 +195,9 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
     @param employee_num(string): Employee number
     @return matched_row(int): Row to delete in spreadsheet
     @except indexError: if no record is found
-    @return :0
-    @except gspread.exceptions.APIError: Api error
+    @return : None
+    @raises gspread.exceptions.APIError: Api error
+    @return : None
     intersect part of code referenced to
     https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/
     """
@@ -448,6 +449,7 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
     calculate values and updates worksheet
     @param payroll_week(str): payroll week
     @param employee_num : Employee number
+    @raises gspread.exceptions.APIError: Api error
     """
     try:
         employee_row = validate_employee_num(employee_num)
@@ -515,11 +517,9 @@ def get_employee_data(employee_row):
     """
     Gets the values from employee detail Google Sheets and returns values
     @param employee_row(string): Employee row in google sheets
-    @returns: employee_num(str) :Employee number
-    @returns: employee_surname(str) :Employee Surname
-    @returns: employee_firstname(str) :Employee first name
-    @returns: employee_rate_of_pay(float)
-    @returns: employee_pension(float)
+    @returns: employee_dic(dict) : Employee number, surname, first name,
+        rate of pay and pension
+    @raises gspread.exceptions.APIError: Api error
     """
     try:
         employee_num = employeedetail.cell(employee_row, 1)
@@ -534,7 +534,6 @@ def get_employee_data(employee_row):
             "employee_rate_of_pay": employee_rate_of_pay,
             "employee_pension": employee_pension
             }
-
         return employee_dic
     except gspread.exceptions.APIError:
         print("Api error occurred for gspread due to authentication")
@@ -562,8 +561,8 @@ def amend_employees_hours(payroll_week, employee_num):
     @param payroll_week(string): Payroll week
     @param employee_num(string): Employee number
 
-    @raise indexError: if no record is found
-    @raise gspread.exceptions.APIError: Api error
+    @raises indexError: if no record is found
+    @raises gspread.exceptions.APIError: Api error
 
     """
     try:
@@ -623,7 +622,7 @@ def validate_data_int(value, minvalue, maxvalue):
     @param value(string): value converted to an interger
     @param minvalue(int): Min value
     @param maxvalue(int): Max value
-    @raise ValueError: raises an exception
+    @raises ValueError: raises an exception
     """
     try:
         if int(value) < minvalue or int(value) > maxvalue:
@@ -646,7 +645,7 @@ def validate_data_float(value, minvalue, maxvalue):
     @param value(string): value converted to a float
     @param minvalue(int): Min value
     @param maxvalue(int): Max value
-    @raise ValueError: raises an exception, if the value is incorrect
+    @raises ValueError: raises an exception, if the value is incorrect
     """
     try:
         if float(value) < minvalue or float(value) > maxvalue:
@@ -672,7 +671,8 @@ def validate_employee_num(employee_num):
     @raise AttributeError: raises an exception if the employee
     number is incorrect
     @return employee_row(int): Employee row in sheet
-    @raise gspread.exceptions.APIError: API error
+    @raises gspread.exceptions.APIError: API error
+    @return or None
 
     """
     try:
@@ -751,13 +751,14 @@ def clear():
         _ = system('clear')
 
 
-def yesorno(question):
+def yesorno(question) -> bool:
     """
     Function to take user input yes or no
     validate input
     @param question(string): Question
     Code used from https://gist.github.com/garrettdreyfus/8153571
     @ raise Exception: raises an exception, if the value is incorrect
+    @return yesorno(string)
      """
     try:
         answer = str(input(f'{question}\n')).lower()
