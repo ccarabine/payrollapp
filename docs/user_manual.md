@@ -21,7 +21,7 @@ ___
 
 1. Type username  and press enter
 2. Type password and press enter <br>
-(Usename and password characters will not be visible on screen)<br>
+(Username and password characters will not be visible on screen)<br>
 
 If the user enters the username and password correctly,  the main menu will be displayed <br>
 
@@ -68,7 +68,8 @@ Type "3" from the main menu and press enter, the add / amend employee details me
 ### Close Application
 Type "4" from the main menu and press enter, the application closes
 
-__
+___
+
 The Menu system
 - **Error handling:** *If an incorrect number option is typed during any of the menu selections, the user will receive feedback: ‘Invalid data, please try again.’*
 ___
@@ -84,7 +85,7 @@ Type "1" from the main menu and press enter, the display payroll menu will be di
 
 ___
 ### Overall employees’ pay for week selected report
-Type "1" from the display payroll menu and press enter to goto the "Overall employees’ pay for week selected" report
+Type "1" from the display payroll menu and press enter to go to the "Overall employees’ pay for week selected" report
 
 Enter the payroll week 
 
@@ -125,7 +126,8 @@ If the employee number has been found the employees payroll sheet for the week, 
 ![screenshot Employee pay for week selected report](/docs/images/features/feature_3_2.PNG)
 </details><br>
 
-- **Error handling:** *If there is no record, a error message will be displayed
+If there is no record, a error message will be displayed
+
 “No payroll record found for employee number: xx in xx”*
 
 Press any key to return to the display payroll menu
@@ -166,7 +168,7 @@ Type "2" from the main menu and press enter to go to the process / amend payroll
 ___
 ### Add Employee's hours
 
-Type "1" from the process / amend payroll menu and press enter to go to Add Employee’s hours<br>
+Type "1" from the process / amend payroll menu and press enter to go to Add employee’s hours<br>
 
 Enter the employee number
 
@@ -182,9 +184,9 @@ There is additional validation to ensure there is no employee record already ent
 
 If there is already an existing employee record in the payroll sheet, the application will provide feedback to the user
 
-“Employees hours already entered in wkxx, please go to option 2 to amend”
+“Employees hours already entered in wk xx, please go to option 2 to amend”
 
-Press any key to return to the display payroll menu is displayed
+Press any key to return to the Display payroll menu
 
 Providing there is no record already entered, ‘No entry found in payroll’ message will be displayed
 
@@ -200,9 +202,11 @@ The user will be prompted ‘Are the amounts correct?’.
 
 If the values are incorrect , a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’
 
-If the values are correct, the user type ‘y’ a message will be displayed “Ready to upload into payroll spreadsheet" then the information uploads the values to the google sheets. When successfully ‘employeepayroll worksheet updated successfully’ is displayed
+If the values are correct, type ‘y’
 
-The user will then prompted if they would like to process another employees hours which they can add another employees hours or go back to the main menu
+A message will be displayed “Ready to upload into payroll spreadsheet" then the information uploads to the google sheets. When successful ‘employeepayroll worksheet updated successfully’ is displayed
+
+The user will then prompted if they would like to process another employee's hours which they can add or go back to the main menu.
 
 <details>
     <summary>Click here to see an example</summary>
@@ -212,7 +216,7 @@ The user will then prompted if they would like to process another employees hour
 
 ___
 ### Amend Employee's hours
-Type "2" from the  process / amend payroll menu and press enter to go to the Amend employees hours)<br>
+Type "2" from the  process / amend payroll menu and press enter to go to Amend employees hours<br>
 
 Enter the employee number
 
@@ -226,7 +230,7 @@ Validation will check if the employee number is in the google sheets employee de
 
 There is additional validation to ensure there is an employee record already entered into employee payroll Google Sheet
 
-If no record is found ‘No payroll record found for xx in week wkxx, returning to main menu.’ Will be displayed*
+If no record is found ‘No payroll record found for xx in week wk xx, returning to main menu.’ Will be displayed
 
 Press any key to return to the display payroll menu
 
