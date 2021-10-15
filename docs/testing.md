@@ -1,7 +1,7 @@
 
 ## User stories testing  <a name="user-stories-testing"></a>
 
-[Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md)
+[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md)
 
 I have tested the user/site owner stories to ensure the MPV has been achieved.
 ___
@@ -22,7 +22,7 @@ Test 1
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us1_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us1_1.PNG)
 </details><br>
 
 ___
@@ -36,7 +36,7 @@ Test 2
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us1_2.PNG)
+![Screenshot of result](/docs/images/testing/test_us1_2.PNG)
 </details><br>
 
 ___
@@ -50,7 +50,7 @@ Test 3
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us1_2.PNG)
+![Screenshot of result](/docs/images/testing/test_us1_2.PNG)
 </details><br>
 
 ___
@@ -67,8 +67,11 @@ Test 1
 
 - **Action** - *From the main menu, type “2”, then “1”, user prompted to Enter Payroll Week : type “25” , then type Employee number “100017”, then Enter number of hours worked “25”*
 
-Note: Importing employee number to check that there is a record in google sheets to retrieve the employees rate of pay and pension %<br>
-Exporting all the calculated values to google sheet
+Note: 
+
+**Importing** employee number to check that there is a record in google sheets to retrieve the employees rate of pay and pension %<br>
+
+**Exporting** all the calculated values to google sheet
 
 - **Expected Result** -
 Message displayed if the employee record is found against the employee number<br>
@@ -85,13 +88,13 @@ Letting us know that the record has been exported
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us2_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us2_1.PNG)
 </details><br>
 
 <details>
     <summary>Click here to view result- Google sheet updated</summary>
 
-![Screenshot of result](//docs/images/testing/userstory2test1.png)
+![Screenshot of result](/docs/images/testing/userstory2test1.png)
 </details><br>
 
 
@@ -117,7 +120,7 @@ Test 1
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_1.PNG)
 </details><br>
 
 ___
@@ -131,7 +134,7 @@ Test 2
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_2.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_2.PNG)
 </details><br>
 
 ___
@@ -144,7 +147,7 @@ Test 3
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_3.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_3.PNG)
 </details><br>
 
 ___
@@ -158,7 +161,7 @@ Test 4
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_4.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_4.PNG)
 </details><br>
 
 ___
@@ -174,7 +177,7 @@ Test 5
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_5.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_5.PNG)
 </details><br>
 
 ___
@@ -183,14 +186,14 @@ ___
 Test 6
 - **Action** - *User enters “1”*
 
-- **Expected Result** - *user is prompted to enter payroll week *
+- **Expected Result** - *user is prompted to enter payroll week*
 
 - **Actual Result** - *Works as intended*
 
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_6.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_6.PNG)
 </details><br>
 
 ____
@@ -198,14 +201,14 @@ ____
 Test 7
 - **Action** - *User enters “2”*
 
-- **Expected Result** - *User is prompted Enter Payroll Week  :”*
+- **Expected Result** - *User is prompted Enter Payroll Week  :*
 
 - **Actual Result** - *Works as intended*
-Image Us 3_7
+
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_7.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_7.PNG)
 </details><br>
 
 
@@ -217,11 +220,11 @@ Test 8
 - **Expected Result** - *summarised employers data is displayed by week*
 
 - **Actual Result** - *Works as intended*
-Image Us 3_8
+
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_8.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_8.PNG)
 </details><br>
 
 ___
@@ -231,11 +234,11 @@ Test 9
 - **Expected Result** - *main menu is displayed*
 
 - **Actual Result** - *Works as intended*
-Image Us 3_9
+
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_9.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_9.PNG)
 </details><br>
 
 ___
@@ -249,7 +252,7 @@ Test 10
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_10.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_10.PNG)
 </details><br>
 
 ___
@@ -263,7 +266,7 @@ Test 11
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_11.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_11.PNG)
 </details><br>
 
 ___
@@ -277,7 +280,7 @@ Test 12
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_12.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_12.PNG)
 </details><br>
 
 ___
@@ -292,7 +295,7 @@ Test 13
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_13.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_13.PNG)
 </details><br>
 
 ___
@@ -305,7 +308,7 @@ Test 14
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_14.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_14.PNG)
 </details><br>
 
 ___
@@ -320,7 +323,7 @@ Test 15
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_15.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_15.PNG)
 </details><br>
 
 ___
@@ -333,7 +336,7 @@ Test 16
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us3_16.PNG)
+![Screenshot of result](/docs/images/testing/test_us3_16.PNG)
 </details><br>
 
 ___
@@ -356,7 +359,7 @@ Test 1
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us4_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us4_1.PNG)
 </details><br>
 
 ___
@@ -365,7 +368,7 @@ Test 2
 
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015*
 - **Expected Result** - 
-*No entry found in payroll
+*No entry found in payroll*
 
     Enter number of hours worked :*
 
@@ -373,7 +376,7 @@ Test 2
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us4_2.PNG)
+![Screenshot of result](/docs/images/testing/test_us4_2.PNG)
 </details><br>
 
 ___ 
@@ -397,19 +400,19 @@ Employee : 100015 - Hadley Light<br>
 <details>
     <summary>Click here to view result</summary>
 
-![Screenshot of result](//docs/images/testing/test_us5_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us5_1.PNG)
 </details><br>
 
 <details>
     <summary>Click here to view result in Google Sheets</summary>
 
-![Screenshot of result](//docs/images/testing/test_us5_2.PNG)
+![Screenshot of result](/docs/images/testing/test_us5_2.PNG)
 </details><br>
 
 ___
 
 ## Testing of user story 6
-*"As a user, I want to be able to view an employees figures before I submit them to the payroll(send to google sheets spreadsheet)"<br>
+*"As a user, I want to be able to view an employees figures before I submit them to the payroll(send to google sheets spreadsheet)"*<br>
 
 **Covered by Feature  4: Process /Amend payroll**
 ___
@@ -427,7 +430,7 @@ Test 1
 <details>
     <summary>Click here to view result </summary>
 
-![Screenshot of result](//docs/images/testing/test_us6_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us6_1.PNG)
 </details><br>
 
 ___
@@ -443,7 +446,7 @@ Test 2
 <details>
     <summary>Click here to view result </summary>
 
-![Screenshot of result](//docs/images/testing/test_us6_2.PNG)
+![Screenshot of result](/docs/images/testing/test_us6_2.PNG)
 </details><br>
 
 ___
@@ -461,12 +464,12 @@ Test 1
 <details>
     <summary>Click here to view result </summary>
 
-![Screenshot of result](//docs/images/testing/test_us7_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us7_1.PNG)
 </details><br>
 
 ___
 Test 2
-- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “2”  *** no records
+- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “2”*
 
 - **Expected Result** - 
 Invalid week number, please try again.
@@ -476,7 +479,7 @@ Invalid week number, please try again.
 <details>
     <summary>Click here to view result </summary>
 
-![Screenshot of result](//docs/images/testing/test_us7_2.PNG)
+![Screenshot of result](/docs/images/testing/test_us7_2.PNG)
 </details><br>
 
 ___
@@ -498,7 +501,7 @@ Test 1
 <details>
     <summary>Click here to view result </summary>
 
-![Screenshot of result](//docs/images/testing/test_us8_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us8_1.PNG)
 </details><br>
 
 
@@ -517,7 +520,7 @@ Are the amounts correct?<br>*
 <details>
     <summary>Click here to view result </summary>
 
-![Screenshot of result](//docs/images/testing/test_us8_2.PNG)
+![Screenshot of result](/docs/images/testing/test_us8_2.PNG)
 </details><br>
 
 ___
@@ -537,7 +540,7 @@ ___
 <details>
     <summary>Click here to view result </summary>
 
-![Screenshot of result](//docs/images/testing/test_us9_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us9_1.PNG)
 </details><br>
 
 ___
@@ -570,7 +573,7 @@ ___
 <details>
     <summary>Click here to view result </summary>
 
-![Screenshot of result](//docs/images/testing/test_us11_1.PNG)
+![Screenshot of result](/docs/images/testing/test_us11_1.PNG)
 </details><br>
 
 All testing above covers this user story
