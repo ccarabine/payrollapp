@@ -177,11 +177,20 @@ def get_employee_hours() -> float:
     Get employees hours for week from user ( maximum 100 hours) and validate
     @returns: employee_hours(float):Employee hours given by user
     """
-    while True:
+    try:
         employee_hours = input("Enter number of hours worked : \n")
         employee_hours = float(employee_hours)
         if validate_data_float(employee_hours, 1, 100):
             return employee_hours
+        return employee_hours
+    except ValueError as error:
+        print(f'Error message, {error}')
+        print('Invalid data, please try again.\n')
+        employee_hours = input("Enter number of hours worked : \n")
+        employee_hours = float(employee_hours)
+        if validate_data_float(employee_hours, 1, 100):
+            return employee_hours
+        return employee_hours
 
 
 def check_for_records_in_payroll_sheet(payroll_week, employee_num):
@@ -216,12 +225,12 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
         matched_row = int(intersect[0])
         if matched_row >= 1:
             return matched_row
-        return None
+        return 0
     except IndexError:
         print(
             'No entry found in payroll'
             )
-        return None
+        return 0
     except gspread.exceptions.APIError:
         print("Api error occurred for gspread due to authentication")
         return None
@@ -409,7 +418,7 @@ def process_payroll_option_1():
     print(f'\nPayroll week for processing is {payroll_week}\n')
     employee_num = get_employee_num()
     row_num = check_for_records_in_payroll_sheet(payroll_week, employee_num)
-    if row_num is None:
+    if row_num == 0:
         calculate_employee_payslip_data(payroll_week, employee_num)
         next_employee_to_process()
     else:
@@ -579,11 +588,10 @@ def amend_employees_hours(payroll_week, employee_num):
         wait_key()
         clear()
         get_process_payroll_option()
-    except IndexError as error:
+    except IndexError:
         print(
             f'\nNo payroll record found for {employee_num} in week'
             f' {payroll_week}, returning to main menu.\n')
-        print(f'Error message, {error}')
         print(
             '\nPress enter to clear the screen and return to the Process '
             '/ amend payroll menu'
@@ -683,10 +691,9 @@ def validate_employee_num(employee_num):
         print('\nInvalid employee number, please try again.\n')
         answer = yesorno("Do you want to try again? type y or n :  ")
         if answer:
-            get_employee_num()
-        else:
-            clear()
-            get_main_menu_option()
+            return None
+        clear()
+        get_main_menu_option()
         return None
     except gspread.exceptions.APIError:
         print("Api error occurred for gspread due to authentication")
