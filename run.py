@@ -82,11 +82,6 @@ employeedetail = SHEET.worksheet('employeedetail')
 employeepayroll = SHEET.worksheet('employeepayroll')
 
 
-# Puts the data from employeepayroll in to a pandas data frame
-data = employeepayroll.get_all_values()
-headers = data.pop(0)
-df = pd.DataFrame(data, columns=headers)
-
 # Constant variables
 HOL_PC = 0.1208
 EMPLOYEES_NI_PC = 0.12
@@ -95,6 +90,17 @@ EMPLOYEES_NI_AMOUNT = 184
 EMPLOYERS_PENSION_PC = 0.03
 EMPLOYERS_NI_PC = 0.138
 EMPLOYERS_NI_AMOUNT = 170
+
+
+def get_df() -> str:
+    """
+    Puts the data from employeepayroll in to a pandas data frame
+    @returns: dataframe(str)
+    """
+    data = employeepayroll.get_all_values()
+    headers = data.pop(0)
+    dataframe = pd.DataFrame(data, columns=headers)
+    return dataframe
 
 
 def get_payroll_week():
@@ -314,10 +320,10 @@ def display_all_employeepay_for_week():
     groupby referenced from
     https://stackoverflow.com/questions/39922986/pandas-group-by-and-sum
     """
-
+    dataframe = get_df()
     week = get_payroll_week()
-    display_employee_data = df.loc[
-        (df['Week Number'] == (week)), [
+    display_employee_data = dataframe.loc[
+        (dataframe['Week Number'] == (week)), [
                     'Employee Number', 'Basic Pay', 'Hol Pay',
                     'EE NI', 'EE Pension', 'NET Pay'
                     ]]
@@ -347,11 +353,12 @@ def display_ind_employee_pay_for_week():
     Request user to enter payroll week and employee number,
     validation to ensure there is a record displays employee pay record
     """
+    dataframe = get_df()
     week = get_payroll_week()
     employee_num = get_employee_num()
-    display_employee_data = df.loc[
-        (df['Week Number'] == (week)) & (
-            df['Employee Number'] == (employee_num)), [
+    display_employee_data = dataframe.loc[
+        (dataframe['Week Number'] == (week)) & (
+            dataframe['Employee Number'] == (employee_num)), [
                     'Surname', 'Basic Pay', 'Hol Pay',
                     'EE NI', 'EE Pension', 'NET Pay'
                     ]]
@@ -392,7 +399,8 @@ def get_employerssummary_option():
     https://stackoverflow.com/questions/43745301/converting-column-from- /
     dataframe-to-float-for-sum-usage-python-pandas
     """
-    company_payroll_data = df.groupby(
+    dataframe = get_df()
+    company_payroll_data = dataframe.groupby(
         ['Week Number'])[[
                 'NET Pay',
                 'EE NI', 'EE Pension',
