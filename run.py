@@ -184,18 +184,15 @@ def get_employee_hours() -> float:
     @returns: employee_hours(float):Employee hours given by user
     """
     try:
-        employee_hours = input("Enter number of hours worked : \n")
-        employee_hours = float(employee_hours)
-        if validate_data_float(employee_hours, 1, 100):
-            return employee_hours
-        return employee_hours
+        while True:
+            employee_hours = input("Enter number of hours worked : \n")
+            employee_hours = float(employee_hours)
+            if validate_data_float(employee_hours, 1, 100):
+                return employee_hours
     except ValueError as error:
         print(f'Error message, {error}')
         print('Invalid data, please try again.\n')
-        employee_hours = input("Enter number of hours worked : \n")
-        employee_hours = float(employee_hours)
-        if validate_data_float(employee_hours, 1, 100):
-            return employee_hours
+        employee_hours = get_employee_hours()
         return employee_hours
 
 
@@ -521,7 +518,7 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
                     employee_pension, employee_net_pay,
                     employers_ni, employers_pension
             ]
-        update_worksheet(row_data, "employeepayroll")
+            update_worksheet(row_data, "employeepayroll")
         if answer is False:
             print("Re-enter details \n")
             calculate_employee_payslip_data(
