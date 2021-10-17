@@ -609,121 +609,172 @@ User stories are tested with the current features. All user stories passed the t
 ---
 ## Known issues during development and testing <a name="known-issues"></a>
 
-During development the following issues were identified and corrected
+### During development the following issues were identified and corrected
 
  - **Issue:** 
  
- *When i selected 'display payroll' option 2, to display employee payment details, i entered an employee number that wasn't found in google sheets, an index error occurred*
+    *When i selected 'display payroll' option 2, to display employee payment details, i entered an employee number that wasn't found in google sheets, an index error occurred*
 
 -	**Corrective Action:** 
 
-*Added an except indexerror and error message "No record found"*
+    *Added an except indexerror and error message "No record found"*
 ___
 - **Issue:** 
 
-*when i selected option 1, option1 "Overall employees' pay for week selected".  I then input a week with no data, this would display an error message as it only allows the previous week to be entered*
+    *When i selected option 1, option1 "Overall employees' pay for week selected".  I then input a week with no data, this would display an error message as it only allows the previous week to be entered*
 
 - **Corrective Action:** 
 
-*Put in a “status” for the week with “normal” and “any week” . For this function the status would be “any week”*
+    *Put in a “status” for the week with “normal” and “any week” . For this function the status would be “any week”*
 
-**I have further removed this code so they display any week**
+-   **I have further removed this code so they display any week**
 ___
 - **Issue:** 
 
-*Add employees hours, it would only allow the user to enter the  current week payroll when the payroll needs to be the previous week*
+    *Add employees hours, it would only allow the user to enter the  current week payroll when the payroll needs to be the previous week*
 
 - **Corrective Action:** 
 
-*Add in function previous_week = current week -1*
+    *Add in function previous_week = current week -1*
 ___
 - **Issue:** 
 
-*On main menu screen, the user could type in “4 “*
+    *On main menu screen, the user could type in “4 “*
 
 - **Corrective Action:** 
 
-*change maxvalue to 3*
+    *Change maxvalue to 3*
 ___
 - **Issue:** 
 
-*The result of the employees pension contribution was incorrect as it was calculating only the basic pay  * pension % when it needs to be based on basic plus holiday pay *pension %*
+    *The result of the employees pension contribution was incorrect as it was calculating only the basic pay  * pension % when it needs to be based on basic plus holiday pay * pension %*
 
 - **Corrective Action:** 
 
-*changed from employee basic pay to employee_basic_hol ( basic plus holiday)*
+    *Changed from employee basic pay to employee_basic_hol ( basic plus holiday)*
 ___
 - **Issue:** 
 
-*To display employees payroll record, the function would used getallvalues.  There were multiple employees with e.g."25" hours and we wanted to display all records for week "25", the data would display all the employees hours as well as matching week 25*
-
-**Corrective Action:** 
-
-*Get payroll week added concatenate so week is "wk34" rather than just 34 so now we can getallvalues "wk34"*
-___
-- **Issue:** 
-
-*User entered a letter when entering the payroll week, an error would occur*
+    *To display employees payroll record, the function would used getallvalues.  There were multiple employees with e.g."25" hours and we wanted to display all records for week "25", the data would display all the employees hours as well as matching week 25*
 
 - **Corrective Action:** 
 
-*added an if, else statement to handle, with error message*
+    *Get payroll week added concatenate so week is "wk34" rather than just 34 so now we can getallvalues "wk34"*
+___
+- **Issue:** 
+
+    *User entered a letter when entering the payroll week, an error would occur*
+
+- **Corrective Action:** 
+
+    *Added an if, else statement to handle, with error message*
 ___
 
 - **Issue:**
 
-*The user entered a payroll week that wasn’t in the payroll spreadsheet a keyerror occured*
+    *The user entered a payroll week that wasn’t in the payroll spreadsheet a keyerror occured*
 
 - **Corrective Action:** 
 
-*added except keyError  and error message*
+    *Added except keyError  and error message*
 ___
 
 - **Issue:** 
 
-*Display Employee payroll for week, the data frame is empty then it would display an empty dataframe*
+    *Display Employee payroll for week, the data frame is empty then it would display an empty dataframe*
 
 - **Corrective Action:** 
 
-*created an if statement to handle if the dataframe is empty display error message and if it has data to display
+    *Created an if statement to handle if the dataframe is empty display error message and if it has data to display*
 
 ___
 
 - **Issue:** 
 
-*When selecting option 3, Employers summary for week this message is displayed*
+    *When selecting option 3, Employers summary for week this message is displayed*
 
-*run.py:510: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.*
+    *run.py:510: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.*
 
 - **Corrective action**
 
-[Warning indexing with multiple keys](https://stackoverflow.com/questions/60999753/pandas-future-warning-indexing-with-multiple-keys)
+    [Warning indexing with multiple keys](https://stackoverflow.com/questions/60999753/pandas-future-warning-indexing-with-multiple-keys)
 
-Add brackets around DF selection
+    Add brackets around DF selection
 ___
 
 - **Issue:** 
 
-*for add / amend employees hours, user had to enter the week ( which could only be the previous week)*
+    *For add / amend employees hours, user had to enter the week ( which could only be the previous week)*
 
 - **Corrective action:**
 
-*No user input required just added code to put the previous week into the variable payroll_week as it will always be the previous week*
+    *No user input required just added code to put the previous week into the variable payroll_week as it will always be the previous week*
+
+___
+
+### During testing the following issues were identified and corrected
+
+- **Issue:** 
+
+    *Display records in display menu options 1,2 and 3 would only show a limtied amount of fields due to the constraints of the deployment terminal is set to 80 characters*
+
+- **Corrective action:**
+
+    *Reduced the descriptions of* 
+
+    *- Employee NI & Employee Pension to EE NI & EE Pension*
+
+    *- Emplorer NI & Emplorer Pension to Er NI & Er Pension*
+
+    *- Holiday pay to Hol pay*
+
+    *- Reduced the number of fields in the reports*
 
 ___
 
 - **Issue:** 
 
-*Display records in display menu options 1,2 and 3 would only show a limtied amount of fields due to the constraints of the deployment terminal is set to 80 characters*
+    *When I entered a string  for ‘enter number of hours worked’ it returned a value error – ‘could not convert string to float’*
 
 - **Corrective action:**
 
-*Reduced the descriptions of 
-- Employee NI & Employee Pension to EE NI & EE Pension 
-- Emplorer NI & Emplorer Pension to Er NI & Er Pension
-- Holiday pay to Hol pay
+    *I added a ValueError statement to catch the error and provide feedback to the user that the input is invalid and  ask the user to re-enter the hours again*
+ 
+___
+ 
+- **Issue:** 
 
-Reduced the number of fields in the reports*
+    *Whilst further testing after implementing the corrective action above, I found an additional error, if the user typed a string  twice for the hours enter, the error would occur again*
+
+- **Corrective action:**
+
+    *I changed the code so if the user enters a string instead of a float then it will provide feedback to let the user know the input is invalid and call ‘get_employee_num’ until ‘validate_employee_num’ is true, it will then return the employees hours.*
+
+    *I also noticed that the ‘Update_worksheet’  function was running after the ‘if true’ statement due to the indent being incorrect.  I moved the line so it runs inside the function*
+
+___
+
+- **Issue:** 
+
+    *When displaying the reports, I noticed the data was not accurate due to the dataframe loading at the start of the code, resulting in inaccurate data when the user requested the report.*
+
+- **Corrective action:**
+
+    *I called the dataframe at the start of each function call when displaying data*
+
+___
+
+- **Issue:** 
+
+    *When amending the employee’s hours. I typed an incorrect employee number that was 6 characters, it displayed an error message and asked to enter  “y” or “n” to re-enter the employees number.*
+
+    *When I typed “y”, it prompted me to re-enter the employees number, I typed the correct employee number and an error occurred - it asked me to enter the employee number again instead of asking the me to enter in the hours worked. After the second time of entering the employees number, it moved on to request the hours worked*
+
+- **Corrective action:**
+
+    *1.	Removed calling the ‘get_employee_num’ from validate employee function*
+
+    *2.	I changed the code so, if the answer is true, return none, it will request the employee number at the correct point of the code*
 
 ### [Contents table ](#home)
 
