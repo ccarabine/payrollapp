@@ -20,7 +20,8 @@ from menu import main_menu, display_payroll_menu, process_amend_payroll_menu, \
     add_amend_employee_menu, welcome_menu, employees_pay_menu, \
     employers_payment_summary_menu
 if path.exists("env.py"):
-    import env  # pylint: disable=unused-import  # noqa #  This is used!
+    import env  # pylint: disable=unused-import  # noqa #
+    # This is used to get the username and password
 
 # Pylint states the string below is pointless so have bypassed the message.
 # pylint: disable=pointless-string-statement
@@ -870,23 +871,15 @@ def yesorno(question) -> bool:
     validate input
     @param question(string): Question
     Code used from https://gist.github.com/garrettdreyfus/8153571
-    @ raise Exception: raises an exception, if the value is incorrect
     @return yesorno(string)
      """
-    try:
-        answer = str(input(f'{question}\n')).lower()
-        if answer == 'y':  # pylint: disable=no-else-return
-            return True
-        elif answer == 'n':
-            return False
-        print('Invalid entry')
-        return yesorno(question)
-    except Exception as error:  # pylint: disable=broad-except
-        print("Please enter valid entry")
-        print(error)
-        print('Press any key to retry')
-        wait_key()
-        return ()
+    answer = str(input(f'{question}\n')).lower()
+    if answer == 'y':
+        return True
+    elif answer == 'n':
+        return False
+    print('Invalid entry')
+    return yesorno(question)
 
 
 def wait_key():

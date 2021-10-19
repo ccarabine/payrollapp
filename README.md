@@ -861,26 +861,12 @@ ___
 
 **I have disabled the following false errors:**
 
-pylint: disable=broad-except    except Exception as error: <br>
-i want to catch the error and display the error
-
 pylint: disable=unused-import   import env  
 'env' imported but unused
 unused import env  **this is used to get the username and password**
 
 pylint: disable=pointless-string-statement    Pylint states the imports docstring is pointless 
 i have used a doc string to comment all of the imports for all modules for application
-
-pylint: disable=no-else-return  Unnecessary "elif" after "return" 
-used on function  yesorno(question):
-    if answer == 'y': 
-        return True
-    elif answer == 'n':
-        return False
-    print('Invalid entry')
-    return yesorno(question)
-
-Needed to keep the elif in, so if the user typed "n" it would return False
 
 ___
 
