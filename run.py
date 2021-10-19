@@ -654,9 +654,11 @@ def get_employee_data(employee_row):
     except NameError:
         clear()
         get_main_menu_option()
+        return employee_row
     except AttributeError:
         clear()
         get_main_menu_option()
+        return employee_row
 
 
 def process_payroll_option_2():
@@ -884,7 +886,7 @@ def yesorno(question) -> bool:
     @return yesorno(string)
      """
     answer = str(input(f'{question}\n')).lower()
-    if answer == 'y':
+    if answer == 'y':  # pylint: disable=no-else-return
         return True
     elif answer == 'n':
         return False
