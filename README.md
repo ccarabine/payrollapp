@@ -776,6 +776,42 @@ ___
 
     *2.	I changed the code so, if the answer is true, return none, it will request the employee number at the correct point of the code*
 
+    ___
+
+- **Issue:** 
+
+    *run.py:490:0: R0914: Too many local variables (16/15) (too-many-locals) in calculate_employee_payslip_data function*
+
+    
+- **Corrective action:**
+
+    *Deleted employee_basic_hol varaible* 
+    *and put (employee_basic_pay + employee_holiday) where it was referenced in the formulas*
+
+     ___
+
+- **Issue:** 
+
+    *List of Variables doesn't conform to snake_case naming style*
+
+    
+- **Corrective action:**
+
+    *Created a .pylintrc file and added variables*
+
+   ___
+
+- **Issue:** 
+
+    *When the API fails, error messages would display and close the app*
+
+    
+- **Corrective action:**
+
+    *Put the gspread_client, sheet and work sheets into a function together with a try and except statement to catch api fails.*
+    
+    *To catch api errors where functions were calling the spreadsheet I put in further try and except statements to catch Name or Index Errors*
+
 ### [Contents table ](#home)
 
 ---

@@ -565,23 +565,23 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
             employee_ni = 0
         else:
             employee_ni = round(
-                ((employee_basic_pay + employee_holiday)
-                    - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC, 2)
+                ((employee_basic_pay + employee_holiday) -
+                    EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC, 2)
         employee_pension = round(
             float(employee_dict[
-                    "employee_pension"].value) * (employee_basic_pay
-                                                  + employee_holiday), 2)
+                    "employee_pension"].value) * (employee_basic_pay +
+                                                  employee_holiday), 2)
         employee_net_pay = round(
-            (employee_basic_pay + employee_holiday) - employee_ni
-            - employee_pension, 2)
+            (employee_basic_pay + employee_holiday) - employee_ni -
+            employee_pension, 2)
         if (employee_basic_pay + employee_holiday) < EMPLOYERS_NI_AMOUNT:
             employers_ni = 0
         else:
             employers_ni = round(
-                ((employee_basic_pay + employee_holiday) - EMPLOYERS_NI_AMOUNT)
-                * EMPLOYERS_NI_PC, 2)
-        employers_pension = round((employee_basic_pay + employee_holiday)
-                                  * EMPLOYERS_PENSION_PC, 2)
+                ((employee_basic_pay + employee_holiday) -
+                 EMPLOYERS_NI_AMOUNT) * EMPLOYERS_NI_PC, 2)
+        employers_pension = round((employee_basic_pay + employee_holiday) *
+                                  EMPLOYERS_PENSION_PC, 2)
         print(
             f'\n Employee : {employee_num} - '
             f'{employee_dict["employee_firstname"].value} '
