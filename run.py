@@ -60,12 +60,10 @@ operating system interface from Python
 menu:  Import the functions listed from the menu file
 """
 
-
 """
-SCOPES, CREDS, SCOPED_CREDS,GSPREAD_CLIENT,SHEET : used with Google API Client
-to gain access to and modify data on Google Sheets.
+SCOPES, CREDS, SCOPED_CREDS  used with Google API Client
+    to gain access to and modify data on Google Sheets.
 """
-
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -75,11 +73,6 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('companypayroll')
-
-employeedetail = SHEET.worksheet('employeedetail')
-employeepayroll = SHEET.worksheet('employeepayroll')
 
 
 # Constant variables
@@ -92,22 +85,76 @@ EMPLOYERS_NI_PC = 0.138
 EMPLOYERS_NI_AMOUNT = 170
 
 
-def get_df() -> str:
+def get_data_from_api():
     """
-    Puts the data from employeepayroll in to a pandas data frame
-    @returns: dataframe(str)
+    try: GSPREAD_CLIENT,SHEET used with Google API Client to gain access
+    to and modify data on Google Sheets.
+    except: If the API fails, print error message and go to the main menu
+
+    @return employeedetail, employeepayroll, SHEET Turple:
+    Worksheet 'employeedetail', 'employeepayroll' and
+    Spreadsheet 'companypayroll'
+    @raises gspread.exceptions.APIError: Api error
+    @return
+
     """
-    data = employeepayroll.get_all_values()
-    headers = data.pop(0)
-    dataframe = pd.DataFrame(data, columns=headers)
-    return dataframe
+
+    try:
+        GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+        SHEET = GSPREAD_CLIENT.open('companypayroll')
+        employeedetail = SHEET.worksheet('employeedetail')
+        employeepayroll = SHEET.worksheet('employeepayroll')
+        return(employeedetail, employeepayroll, SHEET)
+    except gspread.exceptions.APIError as error:
+        api_error("return to the main menu", error)
+        clear()
+        get_main_menu_option()
+        return()
+
+
+def api_error(next_step, error):
+    """
+    Print error message when a api error occurs and wait for
+    user to press any key to continue
+    """
+    print(f' Error Message {error}\n')
+    print('Api error occurred for gspread due to authentication\n')
+    print(f'Press any key to {next_step}')
+    wait_key()
+
+
+def get_df():
+    """
+    try: Puts the data from employeepayroll in to a pandas data frame
+    except NameError: when api fails
+    except indexError: when api fails, dataframe is empty
+    @returns: dataframe
+    @raises NameError: when api fails
+    @return
+    @raises indexError: when api fails, dataframe is empty
+    @return
+    """
+    try:
+        employeepayroll = get_data_from_api()
+        data = employeepayroll[1].get_all_values()
+        headers = data.pop(0)
+        dataframe = pd.DataFrame(data, columns=headers)
+        return dataframe
+    except NameError:
+        clear()
+        get_main_menu_option()
+        return()
+    except IndexError:
+        clear()
+        get_main_menu_option()
+        return()
 
 
 def get_payroll_week():
     """
     Get payroll week from user and validate
     @returns: payroll_week(str)
-    @except KeyError: if value is in correct
+    @raises KeyError: if value is in correct
     """
     try:
         while True:
@@ -203,19 +250,21 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
             If there is it will return the row to delete
     except IndexError: if there isn't a value in the sheet
             then returns to the menu
+    except NameError: when api fails
     @param payroll_week(string): Payroll week
     @param employee_num(string): Employee number
     @return matched_row(int): Row to delete in spreadsheet
-    @except indexError: if no record is found
-    @return : None
-    @raises gspread.exceptions.APIError: Api error
-    @return : None
+    @raises indexError: if no record is found
+    @return : 0
+    @raises NameError: when api fails
+    @return : 0
     intersect part of code referenced to
     https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/
     """
     try:
-        employee_num_found = employeepayroll.findall(employee_num)
-        week_found = employeepayroll.findall(payroll_week)
+        employeepayroll = get_data_from_api()
+        employee_num_found = employeepayroll[1].findall(employee_num)
+        week_found = employeepayroll[1].findall(payroll_week)
         employee = []
         for i in employee_num_found:
             employee.append(i.row)
@@ -234,9 +283,10 @@ def check_for_records_in_payroll_sheet(payroll_week, employee_num):
             'No entry found in payroll'
             )
         return 0
-    except gspread.exceptions.APIError:
-        print("Api error occurred for gspread due to authentication")
-        return None
+    except NameError as error:
+        api_error("return to the main menu", error)
+        get_main_menu_option()
+        return 0
 
 
 # Menu options functionality
@@ -312,106 +362,142 @@ def get_process_payroll_option():
 # Display menu functionality
 def display_all_employeepay_for_week():
     """
-    Request user to input payroll week,display data for week
-
+    try:
+        Request user to input payroll week,display data for week
+    except AttributeError: when api fails
+    except IndexError: when api fails
+    @raises AttributeError: Api error
+    @raises IndexError: Api error
     groupby referenced from
     https://stackoverflow.com/questions/39922986/pandas-group-by-and-sum
     """
-    dataframe = get_df()
-    week = get_payroll_week()
-    display_employee_data = dataframe.loc[
-        (dataframe['Week Number'] == (week)), [
-                    'Employee Number', 'Basic Pay', 'Hol Pay',
-                    'EE NI', 'EE Pension', 'NET Pay'
-                    ]]
-    if display_employee_data.empty:
-        print('Invalid week number, please try again.\n')
-        print(
-            '\nPress any key to clear the screen and return to the display '
-            'payroll menu'
-            )
-        wait_key()
+    try:
+        dataframe = get_df()
+        week = get_payroll_week()
+        display_employee_data = dataframe.loc[
+            (dataframe['Week Number'] == (week)), [
+                        'Employee Number', 'Basic Pay', 'Hol Pay',
+                        'EE NI', 'EE Pension', 'NET Pay'
+                        ]]
+        if display_employee_data.empty:
+            print('Invalid week number, please try again.\n')
+            print(
+                '\nPress any key to clear the screen and return to the '
+                'display payroll menu'
+                )
+            wait_key()
+            clear()
+            get_display_payroll_option()
+        else:
+            employees_pay_menu()
+            print(display_employee_data)
+            print(
+                '\nPress any key to clear the screen and return to the '
+                'display payroll menu'
+                )
+            wait_key()
+            clear()
+            get_display_payroll_option()
+    except IndexError:
         clear()
-        get_display_payroll_option()
-    else:
-        employees_pay_menu()
-        print(display_employee_data)
-        print(
-            '\nPress any key to clear the screen and return to the display '
-            'payroll menu'
-            )
-        wait_key()
+        get_main_menu_option()
+    except AttributeError:
         clear()
-        get_display_payroll_option()
+        get_main_menu_option()
 
 
 def display_ind_employee_pay_for_week():
     """
-    Request user to enter payroll week and employee number,
-    validation to ensure there is a record displays employee pay record
+    try:
+        Request user to input payroll week,display data for week
+    except AttributeError: when api fails
+    except IndexError: when api fails
+    @raises AttributeError: Api error
+    @raises IndexError: Api error
     """
-    dataframe = get_df()
-    week = get_payroll_week()
-    employee_num = get_employee_num()
-    display_employee_data = dataframe.loc[
-        (dataframe['Week Number'] == (week)) & (
-            dataframe['Employee Number'] == (employee_num)), [
-                    'Surname', 'Basic Pay', 'Hol Pay',
-                    'EE NI', 'EE Pension', 'NET Pay'
-                    ]]
-    if display_employee_data.empty:
-        print(
-            f'\nNo payroll record found for employee number: {employee_num}'
-            f' in {week}.\n')
-        print(
-            'Press any key to clear the screen and return to the'
-            ' display payroll menu')
-        wait_key()
+    try:
+        dataframe = get_df()
+        week = get_payroll_week()
+        employee_num = get_employee_num()
+        display_employee_data = dataframe.loc[
+            (dataframe['Week Number'] == (week)) & (
+                dataframe['Employee Number'] == (employee_num)), [
+                        'Surname', 'Basic Pay', 'Hol Pay',
+                        'EE NI', 'EE Pension', 'NET Pay'
+                        ]]
+        if display_employee_data.empty:
+            print(
+                f'\nNo payroll record found for employee number: '
+                f'{employee_num} in {week}.\n')
+            print(
+                'Press any key to clear the screen and return to the'
+                ' display payroll menu')
+            wait_key()
+            clear()
+            get_display_payroll_option()
+        else:
+            print('--------------------------------------------------------'
+                  '-----')
+            print('---------------- People Payroll Application ------------'
+                  '-----')
+            print(
+                f'---------------------- Employee {employee_num} -----------'
+                '-----------'
+                )
+            print(
+                '----------------------------------------------------------'
+                '---\n'
+                )
+            print(display_employee_data)
+            print(
+                '\nPress any key to clear the screen and return to the'
+                ' display payroll menu')
+            wait_key()
+            clear()
+            get_display_payroll_option()
+    except IndexError:
         clear()
-        get_display_payroll_option()
-    else:
-        print("-------------------------------------------------------------")
-        print("---------------- People Payroll Application -----------------")
-        print(
-            f'---------------------- Employee {employee_num} ---------------'
-            '-------'
-            )
-        print(
-            '----------------------------------------------------------'
-            '---\n'
-            )
-        print(display_employee_data)
-        print(
-            '\nPress any key to clear the screen and return to the'
-            ' display payroll menu')
-        wait_key()
+        get_main_menu_option()
+    except AttributeError:
         clear()
-        get_display_payroll_option()
+        get_main_menu_option()
 
 
 def get_employerssummary_option():
     """
-    Displays Employers amounts to pay out
+    try:
+        Displays Employers amounts to pay out
+    except AttributeError: when api fails
+    except IndexError: when api fails
+    @raises AttributeError: Api error
+    @raises IndexError: Api error
     summarising data reference from
     https://stackoverflow.com/questions/43745301/converting-column-from- /
     dataframe-to-float-for-sum-usage-python-pandas
     """
-    dataframe = get_df()
-    company_payroll_data = dataframe.groupby(
-        ['Week Number'])[[
-                'NET Pay',
-                'EE NI', 'EE Pension',
-                'Er NI', 'Er Pension'
-                ]].agg(lambda x: sum(x.astype(float)))
-    employers_payment_summary_menu()
-    print(company_payroll_data)
-    print(
-        '\nPress any key to clear the screen and return to the display'
-        ' payroll menu'
-        )
-    wait_key()
-    clear()
-    get_display_payroll_option()
+    try:
+        dataframe = get_df()
+        company_payroll_data = dataframe.groupby(
+            ['Week Number'])[[
+                    'NET Pay',
+                    'EE NI', 'EE Pension',
+                    'Er NI', 'Er Pension'
+                    ]].agg(lambda x: sum(x.astype(float)))
+        employers_payment_summary_menu()
+        print(company_payroll_data)
+        print(
+            '\nPress any key to clear the screen and return to the display'
+            ' payroll menu'
+            )
+        wait_key()
+        clear()
+        get_display_payroll_option()
+    except IndexError:
+        clear()
+        get_main_menu_option()
+    except AttributeError:
+        clear()
+        get_main_menu_option()
 
 
 # Add / amend payroll functionality
@@ -459,11 +545,13 @@ def next_employee_to_process():
 
 def calculate_employee_payslip_data(payroll_week, employee_num):
     """
-    Get Employees details from spreadsheet,
-    calculate values and updates worksheet
+    try:
+        Get Employees details from spreadsheet,
+        calculate values and updates worksheet
+    except: when api fails
     @param payroll_week(str): payroll week
     @param employee_num : Employee number
-    @raises gspread.exceptions.APIError: Api error
+    @raises NameError: Api error
     """
     try:
         employee_row = validate_employee_num(employee_num)
@@ -473,26 +561,27 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
             float(employee_hours) * float(employee_dict[
                 "employee_rate_of_pay"].value), 2)
         employee_holiday = round(employee_basic_pay * HOL_PC, 2)
-        employee_basic_hol = (employee_basic_pay + employee_holiday)
         if (employee_basic_pay + employee_holiday) < EMPLOYEES_NI_AMOUNT:
             employee_ni = 0
         else:
             employee_ni = round(
-                (employee_basic_hol - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC, 2
-                )
+                ((employee_basic_pay + employee_holiday)
+                    - EMPLOYEES_NI_AMOUNT) * EMPLOYEES_NI_PC, 2)
         employee_pension = round(
             float(employee_dict[
-                    "employee_pension"].value) * employee_basic_hol, 2)
+                    "employee_pension"].value) * (employee_basic_pay
+                                                  + employee_holiday), 2)
         employee_net_pay = round(
-            employee_basic_hol - employee_ni - employee_pension, 2
-            )
+            (employee_basic_pay + employee_holiday) - employee_ni
+            - employee_pension, 2)
         if (employee_basic_pay + employee_holiday) < EMPLOYERS_NI_AMOUNT:
             employers_ni = 0
         else:
             employers_ni = round(
-                (employee_basic_hol - EMPLOYERS_NI_AMOUNT) * EMPLOYERS_NI_PC, 2
-                    )
-        employers_pension = round(employee_basic_hol * EMPLOYERS_PENSION_PC, 2)
+                ((employee_basic_pay + employee_holiday) - EMPLOYERS_NI_AMOUNT)
+                * EMPLOYERS_NI_PC, 2)
+        employers_pension = round((employee_basic_pay + employee_holiday)
+                                  * EMPLOYERS_PENSION_PC, 2)
         print(
             f'\n Employee : {employee_num} - '
             f'{employee_dict["employee_firstname"].value} '
@@ -523,24 +612,29 @@ def calculate_employee_payslip_data(payroll_week, employee_num):
             print("Re-enter details \n")
             calculate_employee_payslip_data(
                 payroll_week, employee_num)
-    except gspread.exceptions.APIError:
-        print("Api error occurred for gspread due to authentication")
+    except NameError as error:
+        api_error("return to the main menu", error)
+        get_main_menu_option()
 
 
 def get_employee_data(employee_row):
     """
-    Gets the values from employee detail Google Sheets and returns values
+    try:
+        Gets the values from employee detail Google Sheets and returns values
+    except: When the api fails
     @param employee_row(string): Employee row in google sheets
     @returns: employee_dic(dict) : Employee number, surname, first name,
         rate of pay and pension
-    @raises gspread.exceptions.APIError: Api error
+    @raises NameError: Api error
+    @raises AttributeError: Api error
     """
     try:
-        employee_num = employeedetail.cell(employee_row, 1)
-        employee_surname = employeedetail.cell(employee_row, 2)
-        employee_firstname = employeedetail.cell(employee_row, 3)
-        employee_rate_of_pay = employeedetail.cell(employee_row, 4)
-        employee_pension = employeedetail.cell(employee_row, 5)
+        employeedetail = get_data_from_api()
+        employee_num = employeedetail[0].cell(employee_row, 1)
+        employee_surname = employeedetail[0].cell(employee_row, 2)
+        employee_firstname = employeedetail[0].cell(employee_row, 3)
+        employee_rate_of_pay = employeedetail[0].cell(employee_row, 4)
+        employee_pension = employeedetail[0].cell(employee_row, 5)
         employee_dic = {
             "employee_num": employee_num,
             "employee_surname": employee_surname,
@@ -549,9 +643,12 @@ def get_employee_data(employee_row):
             "employee_pension": employee_pension
             }
         return employee_dic
-    except gspread.exceptions.APIError:
-        print("Api error occurred for gspread due to authentication")
-        return None
+    except NameError:
+        clear()
+        get_main_menu_option()
+    except AttributeError:
+        clear()
+        get_main_menu_option()
 
 
 def process_payroll_option_2():
@@ -584,7 +681,8 @@ def amend_employees_hours(payroll_week, employee_num):
             payroll_week, employee_num)
         if row_to_delete == 0:
             raise IndexError()
-        employeepayroll.delete_rows(row_to_delete)
+        employeepayroll = get_data_from_api()
+        employeepayroll[1].delete_rows(row_to_delete)
         calculate_employee_payslip_data(
             payroll_week, employee_num,)
         print(
@@ -604,8 +702,9 @@ def amend_employees_hours(payroll_week, employee_num):
         wait_key()
         clear()
         get_process_payroll_option()
-    except gspread.exceptions.APIError:
-        print("Api error occurred for gspread due to authentication")
+    except NameError as error:
+        api_error("return to the main menu", error)
+        get_main_menu_option()
 
 
 # Add / amend employee functionality
@@ -689,20 +788,21 @@ def validate_employee_num(employee_num):
 
     """
     try:
-        employee_row = employeedetail.find(employee_num).row
+        employeedetail = get_data_from_api()
+        employee_row = employeedetail[0].find(employee_num).row
         return employee_row
     except AttributeError as error:
         print(f'Error message, {error}')
         print('\nInvalid employee number, please try again.\n')
         answer = yesorno("Do you want to try again? type y or n :  ")
         if answer:
-            return None
+            return ()
         clear()
         get_main_menu_option()
-        return None
-    except gspread.exceptions.APIError:
-        print("Api error occurred for gspread due to authentication")
-        return None
+        return ()
+    except NameError as error:
+        api_error("return to the main menu", error)
+        return ()
 
 
 # General functions
@@ -717,7 +817,8 @@ def update_worksheet(data_1, worksheet):
     Code reference from code institute love sandwiches project
 
     """
-    worksheet_to_update = SHEET.worksheet(worksheet)
+    SHEET = get_data_from_api()
+    worksheet_to_update = SHEET[2].worksheet(worksheet)
     worksheet_to_update.append_row(data_1)
     print(f"{worksheet} worksheet updated successfully\n")
 
@@ -811,10 +912,10 @@ def main():
     """
     Run all program functions
     """
+    clear()
+    welcome_menu()
     password()
     get_main_menu_option()
 
 
-clear()
-welcome_menu()
 main()
