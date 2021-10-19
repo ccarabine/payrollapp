@@ -1,7 +1,7 @@
 
-## User stories testing  <a name="user-stories-testing"></a>
+## User stories testing 
 
-[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md)
+[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#user-stories-testing)
 
 I have tested the user/site owner stories to ensure the MPV has been achieved.
 ___
@@ -576,6 +576,23 @@ ___
 ![Screenshot of result](/docs/images/testing/test_us11_1.PNG)
 </details><br>
 
+___
+
+- **Action** - Api fails
+
+- **Expected Result** - Displays error message, then 'Api error occurred for gspread due to authentication'
+'Press any key to return to the main menu'
+
+- **Actual Result** - *Works as intended*
+
+<details>
+    <summary>Click here to view result </summary>
+
+![Screenshot of result](/docs/images/testing/test_us11_2.png)
+</details><br>
+
+___
+
 All testing above covers this user story
 
-[Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md)
+[Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#user-stories-testing)
