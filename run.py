@@ -61,10 +61,9 @@ operating system interface from Python
 menu:  Import the functions listed from the menu file
 """
 
-"""
-SCOPES, CREDS, SCOPED_CREDS  used with Google API Client
-    to gain access to and modify data on Google Sheets.
-"""
+# SCOPES, CREDS, SCOPED_CREDS  used with Google API Client
+# to gain access to and modify data on Google Sheets.
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -92,7 +91,7 @@ def get_data_from_api():
     to and modify data on Google Sheets.
     except: If the API fails, print error message and go to the main menu
 
-    @return employeedetail, employeepayroll, SHEET Turple:
+    @return employeedetail, employeepayroll, SHEET (Turple):
     Worksheet 'employeedetail', 'employeepayroll' and
     Spreadsheet 'companypayroll'
     @raises gspread.exceptions.APIError: Api error
@@ -117,6 +116,8 @@ def api_error(next_step, error):
     """
     Print error message when a api error occurs and wait for
     user to press any key to continue
+    @param next_step(String): go to menu
+    @param error(String): Error message
     """
     print(f' Error Message {error}\n')
     print('Api error occurred for gspread due to authentication\n')
@@ -126,10 +127,10 @@ def api_error(next_step, error):
 
 def get_df():
     """
-    try: Puts the data from employeepayroll in to a pandas data frame
+    try: Gets the data from employeepayroll in to a pandas data frame
     except NameError: when api fails
     except indexError: when api fails, dataframe is empty
-    @returns: dataframe
+    @return: dataframe
     @raises NameError: when api fails
     @return
     @raises indexError: when api fails, dataframe is empty
@@ -153,9 +154,11 @@ def get_df():
 
 def get_payroll_week():
     """
-    Get payroll week from user and validate
-    @returns: payroll_week(str)
+    try: Get payroll week from user and validate
+    except: When input is incorrect
+    @return: payroll_week(str): payroll week
     @raises KeyError: if value is in correct
+    @return: payroll_week(boolean): False
     """
     try:
         while True:
@@ -176,8 +179,8 @@ def payroll_weeks() -> tuple:
     and minus 13 weeks so the payroll week starts from april.
     To get the previous payroll week which we are processing the hours for,
     we minus 1 week
-    @returns: last_week_payroll_week_number(str): payroll week to process
-    @returns: current_payroll_week_number(str): current payroll week
+    @return payroll_week (turple): payroll week to process and
+    current payroll week
     isocalender code reference from
     http://week-number.net/programming/week-number-in-python.html
     """
@@ -213,7 +216,7 @@ def get_employee_num() -> str:
     """
     Get employee number from user,validate to check that the employee
     is in the employee details list and retrieve details
-    @returns: employee_num(str):Employee number given by user
+    @return: employee_num(str):Employee number given by user
     """
     while True:
         employee_num = input("Enter employee number : \n")
@@ -228,8 +231,12 @@ def get_employee_num() -> str:
 
 def get_employee_hours() -> float:
     """
+    try:
     Get employees hours for week from user ( maximum 100 hours) and validate
-    @returns: employee_hours(float):Employee hours given by user
+    except: when input is incorrect and request the user to re-enter hours
+    @return: employee_hours(float):Employee hours given by user
+    @raises: ValueError: when input is incorrect
+    @return: employee_hours(float):Employee hours given by user
     """
     try:
         while True:
@@ -624,7 +631,7 @@ def get_employee_data(employee_row):
         Gets the values from employee detail Google Sheets and returns values
     except: When the api fails
     @param employee_row(string): Employee row in google sheets
-    @returns: employee_dic(dict) : Employee number, surname, first name,
+    @return: employee_dic(dict) : Employee number, surname, first name,
         rate of pay and pension
     @raises NameError: Api error
     @raises AttributeError: Api error
@@ -735,7 +742,9 @@ def validate_data_int(value, minvalue, maxvalue):
     @param value(string): value converted to an interger
     @param minvalue(int): Min value
     @param maxvalue(int): Max value
+    @return validate_data_int: True
     @raises ValueError: raises an exception
+    @return ValueError : False
     """
     try:
         if int(value) < minvalue or int(value) > maxvalue:
@@ -781,11 +790,12 @@ def validate_employee_num(employee_num):
         to the main menu
 
     @param employee_num(string): Employee number
+    @return employee_row(int): Employee row in sheet
     @raise AttributeError: raises an exception if the employee
     number is incorrect
-    @return employee_row(int): Employee row in sheet
-    @raises gspread.exceptions.APIError: API error
-    @return or None
+    @return
+    @raises NameError: API error
+    @return
 
     """
     try:
