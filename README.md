@@ -1,24 +1,56 @@
-# People Payroll Applicaton
+# People Payroll application
 
-## A command Line Interface Application
+People Payroll is a command line terminal based application providing a solution to common pain points experienced by many small business owners. The application enables employers to process employee hours, and simultaneously calculate their pay/liabilities efficiently, eliminating the risk of manual calculation errors, and resulting in increased productivity.
+
+<details>
+    <summary>Click here to view the login screen</summary>
+
+![Screenshot of login screen](/docs/images/people_payroll_welcomescreen.PNG)
+</details><br>
 
 ___
 
+## Points to note when using People Payroll application for the first time:
 
-![Screenshot of home screen](/docs/images/people_payroll_welcomescreen.PNG)
+___
+
+To gain access use the following login details
+
+Username : *admin*
+
+Password: *google1*
+
+From the login screen take note of the current payroll week e.g. 30, you will only be able to add/amend new records for the previous payroll week (hours from Monday to Sunday just gone)  e.g. 29, this feature is automated.  This is important to note when displaying records
+
+When you launch the application for the first time you will probably be in a new payroll week and there will be no records entered
+
+To add new records, click on option 2 from the main menu then option 3.
+Hours are the hours worked for the full week e.g., 40
+
+The following employee numbers are registered :
+
+- 100014
+
+- 100015
+
+- 100016
+
+- 100017
+
+The user can email admin@peoplepayroll.com to add additional employees until the future feature is released
+
+Click here to view: 
+
+* [People Payroll application](https://people-payroll-application.herokuapp.com/), my deployed site.
+
+* [User manual](https://github.com/ccarabine/payroll/blob/main/docs/user_manual.md), to operate the application.
+
+* [Google Sheets](https://docs.google.com/spreadsheets/d/1Mh0WaeqPiZRDhHZpLVrVSoBcV8L4cPMKQXs2a-Z90Uo/edit?usp=sharing), to access changes made.
 
 
-**People Payroll is a terminal based application providing a solution to common pain points experienced by many small business owners. The application enables employers to process employee hours, and simultaneously calculate their pay/liabilities efficiently, eliminating the risk of manual calculation errors, and resulting in increased productivity.**
-
-### View my deployed site. <a href="https://people-payroll-application.herokuapp.com/"> People Payroll Application </a>
-
-[Click](https://github.com/ccarabine/payroll/blob/main/docs/user_manual.md) to view the user manual to operate the application.
-
-[Here](https://docs.google.com/spreadsheets/d/1Mh0WaeqPiZRDhHZpLVrVSoBcV8L4cPMKQXs2a-Z90Uo/edit?usp=sharing) is the link to the Google Spreadsheet, to see the updates made.
-
-
-***
+___
 ## Table of Contents <a name="Home"></a>
+___
 
 1. [User Experience (UX)](#ux)<br>
     i.  [Strategy](#strategy)<br>
@@ -31,36 +63,35 @@ ___
     i. [Current Features](#features-current)<br>
     ii. [Features to implement](#features-toimplement)<br>
 
-3. [Testing](#testing)
+3. [Testing](#testing)<br>
 
-    * [User Stories/feature Testing](#user-stories-testing)
-    * [Known issues during testing](#known-issues)
-    * [Validation testing  ](#validation-testing)
-    * [Unfixed bugs](#unfixed-bugs)
-4. [Deployment](#deployment)
-5. [Technologies Used](#technology-used)
-6. [Credits](#credits)
-7. [Acknowledgements](#acknowledgements)
+    i. [User Stories/feature Testing](#user-stories-testing)<br>
+    ii.  [Known issues during testing](#known-issues)<br>
+    iii. [Validation testing  ](#validation-testing)<br>
+    iv. [Unfixed bugs](#unfixed-bugs)<br>
+4. [Deployment](#deployment)<br>
+5. [Technologies Used](#technology-used)<br>
+6. [Credits](#credits)<br>
+7. [Acknowledgements](#acknowledgements)<br>
 
 
 ---
 # 1. User Experience (UX) <a name="ux"></a> 
- 
-## Project Goals 
-___
 
-Project Goals for intended use are:
+## Goals 
 
-Create a payroll application: 
+### Project Goals:
 
-- to process employee hours quickly and efficiently by calculating their pay/liabilities effectively, resulting in increased accuracy and productivity.
-- that enables users to navigate with ease.
-- that is intuitive to all users.
+- Create a payroll application:
 
-Personal Goal:
+    - to process employee hours quickly and efficiently by calculating their pay/liabilities effectively, resulting in increased accuracy and productivity.
+    - that enables users to navigate with ease.
+    - that is intuitive to all users.
+
+### Personal Goal:
 - Having spent many years working in the hospitality industry and managing a food production site, I have experienced much pain whilst implementing the payroll process, such as the amount of time it can take and the risk of creating manual errors/miscalculations and their repercussions. I wish to create a painless process and excellent user experience for any user, drawing upon my familiarity of the process to provide meaningful solutions and implement an algorithm.
 
-## User Goals 
+### User Goals:
 
 - Payroll staff should find the system intuitive to navigate and easy to use.
 
@@ -70,11 +101,7 @@ Personal Goal:
 
 ---
 
-# i. Strategy <a name="strategy"></a>
-
-
-## User Stories: 
-
+## i. Strategy <a name="strategy"></a>
 
 ### Site User stories:
 1.	As a user, I  want a secure application/login to protect against unauthorised access 
@@ -95,20 +122,23 @@ Personal Goal:
 
 14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors
 	
-### [Contents table ](#home)
----
-# ii. Scope <a name="scope"></a>
+___
 
-## Strategy Trade-offs
+## ii. Scope <a name="scope"></a>
+
+### Strategy Trade-offs
 I have rated the features on a scale of 1 to 5 in terms of importance (how important is it for the project now) and viability (how realistic is that we can implement a solution)
 
 To achieve the strategy goals, the following features highlighted in dark/light green will be implemented to create a minimal viable  product due to timescale and technical ability. The additional features in red will be added at a further stage
+<details>
+    <summary>Click here to view the Strategy trade offs table</summary>
 
-![Strategy trade offs table](/docs/images/strategytradeoffs.PNG) 
+![Strategy trade offs table](/docs/images/strategytradeoffs.PNG)
+</details><br>
 
-### [Contents table ](#home)
----
-# iii. Structure <a name="structure"></a> 
+___
+
+## iii. Structure <a name="structure"></a> 
 
 The payroll system relies on user input from the menu system.  The user will navigate to the different options via the main menu system.
 
@@ -116,476 +146,84 @@ An option to return to the main menu is easily/consistently visible on each page
 
 It is important that the application is easy to navigate and provides feedback to the user to inform them at what stage/status of the process they are at.
 
+[Click on link to go to the structure](https://github.com/ccarabine/payroll/blob/main/docs/structure.md)
 
-### **1.	Welcome and security screen**
-<details>
-    <summary>Click here to view the home screen</summary>
-
-![Screenshot of Home screen](/docs/images/people_payroll_welcomescreen.PNG)
-</details><br>
-This welcomes the user to the application. To access the application the user needs to enter a (non-visible) password. The main menu will then be displayed
-
-</details>
-
-____
-
-### **2.	Main menu**
-<details>
-    <summary>Click here to view the main menu</summary>
-
-![Screenshot of main menu](/docs/images/menu/main_menu.PNG)
-</details><br>
-
-___
-### **3. Display payroll menu<br>**
-
-**User inputs** numeral 1, in the main menu to select the Display payroll menu. 
-<details>
-    <summary>Click here to view the display payroll menu</summary>
-
-![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
-</details><br>
-
-### **User inputs** numeral '1', in the ‘Display Payroll’ menu to select 'Overall employees’ pay for week selected' report . 
-
-The next step is ‘Enter Payroll Week :’<br>
-    - User enters required fiscal/calendar week by inputting the relevant numeral.<br>
-All employees's payroll details are displayed for relevant week
-
-### **User inputs** numeral 2, in the ‘Display Payroll’ menu to select 'Employee pay for week selected' report.
-
-The next step is ‘Enter Payroll Week :’<br>
-    - User enters required fiscal/calendar week by inputting the relevant numeral
-
-The next step is ‘Enter Employee Number :’<br>
-    - User enters required employee number<br> 
-
-The employees pay summary for relevant week is displayed.
-
-### **User inputs** numeral 3, in the ‘Display Payroll’ menu to select ‘Employer’s summary for the week report’
-
-Immediately the employers payment summary is displayed by week
-
-### **User inputs** numeral 4, in the ‘Display Payroll’ menu to select ‘Main menu’
-
-The main menu is displayed
-___
-### **4. Process / amend payroll menu<br>**
-
-### **User inputs** numeral 2, in main menu to select the ‘Process / amend payroll’ menu 
-
-<details>
-    <summary>Click here to view the process / amend payroll menu</summary>
-
-![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
-</details><br>
-
-### **User inputs** numeral 1, in the ‘Process / amend payroll’ menu to select 'Add Employees hours' option
-
-The next step is ‘Enter Employee Number:’ <br>
-    - User enters required employee number in numerals,
-
-The next step is ‘Enter number of hours worked :’<br>
-    - User enters required hours in numerals,
-
-The amounts are displayed to the screen
-
-The next step is 'if the amounts are correct'<br>
-    - User enters required 'y',
-
-The values are added to google sheet employee payroll sheet 
-
-### **User inputs** numeral 2, in the ‘Process / amend payroll’ menu to select 'Amend employees hours' option
-
-The next step is ‘Enter Employee Number :’ <br>
-    - User enters required employee number in numerals,
-
-The next step is ‘Enter number of hours worked :’<br>
-     - User enters required hours in numerals,
-
-The amounts are displayed to the screen
-
-The next step is 'if the amounts are correct'<br>
-    - User enters required 'y',
-
-The values are added to google sheet employee payroll sheet 
-
-### **User inputs** numeral 3, in the ‘Process / amend payroll’ menu to select 'Main menu' option
-
-The main menu is displayed
-
-___
-### **5. Add / Amend employee details<br>**
-
-### User inputs numeral 3, in main menu to select 'add amend employees details' option. 
-<details>
-    <summary>Click here to view the Add / Amend employee details menu - Future Feature</summary>
-
-![Screenshot of Add / Amend employee details menu](/docs/images/menu/add_amend_employees_details_menu.PNG)
-</details><br>
-
-Message is displayed. 'Feature in next update, returning to main menu' is displayed.
-
-___
-### **6. Close application<br>**
-
-User inputs numeral 4, in main menu to select 'close application' option
-
-The application closes.<br>
-
-### [Contents table ](#home)
 
 ---
-# iv. Skeleton / Technical design <a name="skeleton"></a> 
+## iv. Skeleton / Technical design <a name="skeleton"></a> 
 
-## Data model, application features and business logic
+### Data model, application features and business logic
 
 I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowcharts/data models for my project in order to plan out the flow of the application to manage, query and manupulate data
 
+### Click here to view the following flowcharts: 
+
 <details>
-    <summary>Click here to view flowchart - Security and menu  </summary>
+    <summary>Security and menu  </summary>
 
 ![Screenshot of flowchart - Security and menu ](/docs/images/flow_charts/menus.png)
 </details><br>
 
 <details>
-    <summary>Click here to view flowchart - display payroll option 1 </summary>
+    <summary>Display payroll option 1 </summary>
 
 ![Screenshot of flowchart - display payroll option 1](/docs/images/flow_charts/display_payroll_option_one.png)
 </details><br>
 
 <details>
-    <summary>Click here to view flowchart - display payroll option 2 </summary>
+    <summary>Display payroll option 2 </summary>
 
 ![Screenshot of flowchart - display payroll option 2 ](/docs/images/flow_charts/display_payroll_option_two.png)
 </details><br>
 
 <details>
-    <summary>Click here to view flowchart - display payroll option 3 </summary>
+    <summary>Display payroll option 3 </summary>
 
 ![Screenshot of flowchart - display payroll option 3 ](/docs/images/flow_charts/display_payroll_option_three.png)
 
 </details><br>
 
 <details>
-    <summary>Click here to view flowchart - Process payroll add / amend </summary>
+    <summary>Process payroll add / amend </summary>
 
 ![Screenshot of flowchart - Process payroll add /amend ](/docs/images/flow_charts/process_payroll_add_amend.png)
 </details><br>
 
 <details>
-    <summary>Click here to view data relationship </summary>
+    <summary>Data relationship </summary>
 
 ![Screenshot of flowchart - Data relationship ](/docs/images/flow_charts/data_relationship.png)
 </details><br>
 
 <details>
-    <summary>Click here to view the formulas and variables </summary>
+    <summary>Formulas and variables </summary>
 
 ![Screenshot of formulas ](/docs/images/flow_charts/formulas_variables.png)
 </details><br>
 
-### [Contents table ](#home)
 ___
 
-# iv. Surface <a name="surface"></a> 
+## v. Surface <a name="surface"></a> 
 
-## Visual Design
+### Visual Design
 
 As this is a terminal based application the styling is very limited so I have focused/prioritised optimizing functionality, especially in providing the user feedback required at the correct points of the application, coupled with ease of navigation.
 
+[Table of Contents ](#home)
+
 ---
+
 # 2. Features <a name="features"></a> 
 
 ## i. Current Features (short term objectives): <a name="features-current"></a>
-___
-
-### **Feature 1: Welcome Message and security**
-<details>
-    <summary>Click here to view the home screen</summary>
-
-![Screenshot of Home screen](/docs/images/people_payroll_welcomescreen.PNG)
-</details><br>
-The user is welcomed to the payroll application and prompted to enter a username and password (no password characters are visible)<br>
-If the user enters: <br>
-- the correct password, the main menu is displayed<br>
-- an incorrect password, the user will be prompted to try again 
-
-**User stories covered:**<br>
-*1.	As a user, I  want a secure application/login to protect against unauthorised access*
-___
-### **Feature 2: Menu system**
-The menu system consists of all the options required to facilitate all stages of the payroll process as follows:
-
-<details>
-    <summary>Click here to view the main menu</summary>
-
-![Screenshot of main menu](/docs/images/menu/main_menu.PNG)
-</details><br>
-
-___
-
-*Option 1* from the main menu typed , display the payroll menu
-<details>
-    <summary>Click here to view the display payroll menu</summary>
-
-![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
-</details><br>
-
-___
-*Option 2* from the main menu typed , display the process /amend payroll menu
-<details>
-    <summary>Click here to view the process / amend payroll menu</summary>
-
-![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
-</details><br>
-
-___
-If an incorrect number option is typed during any of the menu selections, the user will receive feedback: ‘Invalid data, please try again.’
-
-**User stories covered:**<br>
-*3.	As a user, I want to easily navigate through the different functions to view and process payroll<br>
-11. As a user with no formal finance training/qualifications I need simple and easy to understand terminology<br>
-13. As a user I need quick painless process, in order to free up more time to be productive in other areas of my role.<br>
-14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors<br>*
-	
-___
-### **Feature 3: Display payroll**
-From the main menu, the user will be prompted to select an option by typing the relevant numeral.
-
-*Option 1* from the main menu typed , the payroll menu will be displayed
-
-<details>
-<summary>Display Payroll menu</summary>
-
-![screenshot Display Payroll menu](/docs/images/menu/display_payroll_menu.PNG)
-</details><br>
-
-
-The user will be prompted to select an option by typing the relevant numeral
-
-*Option 1* typed from the display payroll menu (Overall employees’ pay for week selected)
-
-User will be prompted to enter the payroll week which must be before the current payroll week. 
-
-If the user inputs invalid data, they will receive feedback: 
-‘Invalid week number, please try again’
-
-After validation, the  API request is made and displays all employees payroll information for the week
-
-‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information
-
-then the display payroll menu is displayed
-<details>
-<summary>1. Overall employees’ pay for week selected report</summary>
-
-![screenshot 1. Overall employees’ pay for week selected report](/docs/images/features/feature_3_1.PNG)
-</details><br>
-
-___
-
-*Option 2* selected from the display payroll menu - 2 Employee pay for week selected <br>
-
-User will be prompted to enter the payroll week which must be before the current payroll week. After validation, the user will be then prompted to enter the employee number <br>
-If the user has entered incorrectly, an error message will be displayed ‘Invalid employee number, please try again.’<br>
-Then the user will be prompted ‘Do you want to try again? type y or n :’<br>
-If no they will be taken back to the main menu
-
-There is further validation to check if the employee number has a record in the employee detail sheet.  
-
-If the employee number has been found the employees payroll sheet for the week, the data is displayed
-
-If there is no record, a error message will be displayed
-'No payroll record found for employee number: xx in xx'
-
-‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information
-
-then the display payroll menu is displayed
-
-<details>
-<summary>2. Employee pay for week selected report</summary>
-
-![screenshot Employee pay for week selected report](/docs/images/features/feature_3_2.PNG)
-</details><br>
-
-___
-
-*Option 3* selected from the display payroll menu - 3. Employers summary for week<br>
-
-The data is summarised for each heading and grouped by week and displayed to the terminal
-
-‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information
-
-then the display payroll menu is displayed
-
-<details>
-<summary>3. Employers summary by week report</summary>
-
-![screenshot 3 Employers summary by week report](/docs/images/features/feature_3_3.PNG)
-</details><br>
-
-___
-
-*Option 4* selected from the display payroll menu -  Main menu<br>
-
-The main menu is displayed
-<details>
-<summary>4. Main menu</summary>
-
-![screenshot Main menu](/docs/images/features/feature_3_4.PNG)
-</details><br>
-
-___
-
-
-**User stories covered:**<br>
-*3. As a user, I want to easily navigate through to the different functions to view and process payroll<br>
-7. As a user, I want full visibility of all employees payment summaries for any week at any time<br>
-8. As a user, I want full visibility of an employee’s payment summary for the previous week with the ability to modify inputted hours for the previous week if required<br>
-9. As a user, I want full visibility of the business’s payment summary, consolidated by week <br>
-11. As a user with no formal finance training/qualifications I need simple and easy to understand terminology<br>
-12. As a user I need to be able to trust the application to calculate payments accurately<br>
-13. As a user I need a quick painless process, in order to free up more time to be productive in other areas of my role.*<br>
-
-**Owners stories covered:**<br>
-14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors<br>
-
-___
-### **Feature 4: Process /Amend payroll**
-___
-From the main menu, the user will be prompted to select an option by typing in the relevant numeral
-
-Option 2 from the main menu typed, the process / amend payroll menu will be displayed
-
-<details>
-    <summary>Click here to view the process / amend payroll menu</summary>
-
-![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
-</details><br>
-
-___
-The user will be prompted to select an option by typing in the relevant numeral
-
-*Option 1* typed from the 'process / amend payroll menu' to go 'Add Employee’s hours' option<br>
-The user will then be prompted to enter the employee number, validation will check if the employee number is in the google sheets employee detail sheet.  
-
-There is additional validation to ensure there is no employee record already entered into google sheets employee payroll sheet, to avoid duplicates.
-
-If there is already an existing employee record in the payroll sheet, the application will provide feedback to the user 
-
-'Employees hours already entered in wkxx, please go to option 2 to amend'
-
-‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information
-
-Providing there is no record already entered, 
-‘No entry found in payroll’ message will be displayed
-
-The user will be then prompted to enter the hours worked, validation will check if the value is a float.  If incorrect then ‘Invalid data, please try again.’ Is displayed and the user is prompted to enter the hours worked again
-
-The system will now calculate all the values for basic pay, holiday pay, NI contribution, pension contribution, net pay, employers NI contribution and employers contribution and display these values.
-
-The user will be prompted ‘Are the amounts correct?’.
-
-If the values are incorrect , the user will type ‘n’
-
-a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’
-
-If the values are correct, a message will be displayed 
-
-'Ready to upload into payroll spreadsheet' then the information uploads to google sheets. When successful ‘employeepayroll worksheet updated successfully’ message is displayed.
-
-The user will then prompted if they would like to process another employees hours which they can add or go back to the main menu
-
-<details>
-    <summary>Click here to view add employees' hours</summary>
-
-![screenshot Add employees' hours](/docs/images/features/feature_4.PNG)
-</details><br>
-
-___
-*Option 2* typed from the  'process / amend payroll menu' to go  'Amend employees hours' option<br>
-The user will be prompted to enter the employee number, validation will check if the employee number is in the google sheets employee detail sheet.  
-
-There is additional validation to ensure there is an employee record already entered into google sheets employee payroll sheet.
-
-If no record is found ‘No payroll record found for xx in week wk xx, returning to main menu.’ Will be displayed
-
-‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information and then the process /amend payroll menu will be displayed
-
-If a record is found, ‘Employment record located’ message will be displayed . This record will be deleted and the user will be prompted to enter the employees hours again .
-
-Validation will check if the value is a float.  
-
-If incorrect then ‘Invalid data, please try again.’ is displayed and the user is prompted to enter the hours worked again
-
-The system will now calculate all the values for basic pay, holiday pay, NI contribution, pension contribution, net pay, employers NI contribution and employers contribution and display these values.
-
-The user will be prompted ‘Are the amounts correct?’.
-
-If the values are incorrect , the user will type ‘n’
-
-a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’
-
-If the values are correct, a message will be displayed 
-
-'Ready to upload into payroll spreadsheet' then the information uploads to google sheets. When successful ‘employeepayroll worksheet updated successfully’ message is displayed.
-
-The user will then prompted if they would like to process another employees hours which they can add or go back to the main menu
-
-<details>
-<summary>Click here to view the results </summary>
-
-![screenshot Amend employees' hours](/docs/images/features/feature_4_2.PNG)
-</details><br>
-
-<details>
-<summary>Click here to view the data in Google sheets</summary>
-
-![screenshot Amend employees' hours -google sheets](/docs/images/features/feature_4_2_1.PNG)
-</details><br>
-
-___
-
-Option 3 typed from the  'process / amend payroll menu' to go to the 'main menu'
-
-Display the main menu
-<details>
-<summary>Click here view display the main menu</summary>
-
-![screenshot Display the main menu](/docs/images/features/feature_4_3.PNG)
-</details><br>
-
-**User stories covered:**<br>
-2.	As a user, I want a terminal based application to import/export data via google sheets<br>
-3.	As a user, I want to easily navigate through the different functions to view and process payroll<br>
-4.	As a user, I want to process employees hours and receive feedback if I duplicate data inputted already for an employee in that particular week<br>
-5.	As a user, I want an application that calculates Basic pay, Holiday pay, Employee NI contributions, Pension Contributions, Net pay, Employee NI contributions, Pension Contributions<br>
-6. As a user, I want full visibility of an employee’s payment summary before submission to payroll (send to google sheets spreadsheet)<br>
-11. As a user with no formal finance training/qualifications I need simple and easy to understand terminology<br>
-12. As a user I need to be able to trust the application to calculate payments accurately<br>
-13. As a user I need quick painless process, in order to free up more time to be productive in other areas of my role.*<br>
-
-**Owners stories covered:**<br>
-*14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors*
-	
-___	
-### **Feature 5:  Add / Amend employee details**
-___
-This is a future feature
-
-**User stories covered:**<br>
-*10. As a user I want to be able to locate an employee and their details quickly/efficiently*
-
-**Owners stories covered:**<br>
-*14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors*
-
+[Click on link to go to current features](https://github.com/ccarabine/payroll/blob/main/docs/features.md)
 
 ---
-## Features remaining to implement (long term objectives): <a name="features-toimplement"></a>
-Next update
+## ii. Features remaining to implement (long term objectives): <a name="features-toimplement"></a>
+### Next update
 - Add / amend employee details
 
-Future updates
+### Future updates
 - Statutory sick pay, maternity/paternity leave
 - Bonuses
 - Payroll for salary staff
@@ -593,232 +231,28 @@ Future updates
 - Allow different users with different access
 - Change password
 
-
-### [Contents table ](#home)
+[Table of Contents ](#home)
 
 ---
-# Testing <a name="testing"></a> 
+# 3. Testing <a name="testing"></a> 
 
-
-## User stories testing  <a name="user-stories-testing"></a>
+## i. User stories testing  <a name="user-stories-testing"></a>
 
 User stories are tested with the current features. All user stories passed the tests.
 
 [Click on link to go to user stories testing ](https://github.com/ccarabine/payroll/blob/main/docs/testing.md)
 
 ---
-## Known issues during development and testing <a name="known-issues"></a>
+## ii. Known issues during development and testing <a name="known-issues"></a>
 
-### During development the following issues were identified and corrected
+[Click on link to go to issues that were identified and corrected during development and testing](https://github.com/ccarabine/payroll/blob/main/docs/known_issues.md)
 
- - **Issue:** 
- 
-    *When i selected 'display payroll' option 2, to display employee payment details, i entered an employee number that wasn't found in google sheets, an index error occurred*
-
--	**Corrective Action:** 
-
-    *Added an except indexerror and error message "No record found"*
-___
-- **Issue:** 
-
-    *When i selected option 1, option1 "Overall employees' pay for week selected".  I then input a week with no data, this would display an error message as it only allows the previous week to be entered*
-
-- **Corrective Action:** 
-
-    *Put in a “status” for the week with “normal” and “any week” . For this function the status would be “any week”*
-
--   **I have further removed this code so they display any week**
-___
-- **Issue:** 
-
-    *Add employees hours, it would only allow the user to enter the  current week payroll when the payroll needs to be the previous week*
-
-- **Corrective Action:** 
-
-    *Add in function previous_week = current week -1*
-___
-- **Issue:** 
-
-    *On main menu screen, the user could type in “4 “*
-
-- **Corrective Action:** 
-
-    *Change maxvalue to 3*
-___
-- **Issue:** 
-
-    *The result of the employees pension contribution was incorrect as it was calculating only the basic pay  * pension % when it needs to be based on basic plus holiday pay * pension %*
-
-- **Corrective Action:** 
-
-    *Changed from employee basic pay to employee_basic_hol ( basic plus holiday)*
-___
-- **Issue:** 
-
-    *To display employees payroll record, the function would used getallvalues.  There were multiple employees with e.g."25" hours and we wanted to display all records for week "25", the data would display all the employees hours as well as matching week 25*
-
-- **Corrective Action:** 
-
-    *Get payroll week added concatenate so week is "wk34" rather than just 34 so now we can getallvalues "wk34"*
-___
-- **Issue:** 
-
-    *User entered a letter when entering the payroll week, an error would occur*
-
-- **Corrective Action:** 
-
-    *Added an if, else statement to handle, with error message*
-___
-
-- **Issue:**
-
-    *The user entered a payroll week that wasn’t in the payroll spreadsheet a keyerror occured*
-
-- **Corrective Action:** 
-
-    *Added except keyError  and error message*
-___
-
-- **Issue:** 
-
-    *Display Employee payroll for week, the data frame is empty then it would display an empty dataframe*
-
-- **Corrective Action:** 
-
-    *Created an if statement to handle if the dataframe is empty display error message and if it has data to display*
-
-___
-
-- **Issue:** 
-
-    *When selecting option 3, Employers summary for week this message is displayed*
-
-    *run.py:510: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.*
-
-- **Corrective action**
-
-    [Warning indexing with multiple keys](https://stackoverflow.com/questions/60999753/pandas-future-warning-indexing-with-multiple-keys)
-
-    Add brackets around DF selection
-___
-
-- **Issue:** 
-
-    *For add / amend employees hours, user had to enter the week ( which could only be the previous week)*
-
-- **Corrective action:**
-
-    *No user input required just added code to put the previous week into the variable payroll_week as it will always be the previous week*
-
-___
-
-### During testing the following issues were identified and corrected
-
-- **Issue:** 
-
-    *Display records in display menu options 1,2 and 3 would only show a limtied amount of fields due to the constraints of the deployment terminal is set to 80 characters*
-
-- **Corrective action:**
-
-    *Reduced the descriptions of* 
-
-    *- Employee NI & Employee Pension to EE NI & EE Pension*
-
-    *- Emplorer NI & Emplorer Pension to Er NI & Er Pension*
-
-    *- Holiday pay to Hol pay*
-
-    *- Reduced the number of fields in the reports*
-
-___
-
-- **Issue:** 
-
-    *When I entered a string  for ‘enter number of hours worked’ it returned a value error – ‘could not convert string to float’*
-
-- **Corrective action:**
-
-    *I added a ValueError statement to catch the error and provide feedback to the user that the input is invalid and  ask the user to re-enter the hours again*
- 
-___
- 
-- **Issue:** 
-
-    *Whilst further testing after implementing the corrective action above, I found an additional error, if the user typed a string  twice for the hours enter, the error would occur again*
-
-- **Corrective action:**
-
-    *I changed the code so if the user enters a string instead of a float then it will provide feedback to let the user know the input is invalid and call ‘get_employee_num’ until ‘validate_employee_num’ is true, it will then return the employees hours.*
-
-    *I also noticed that the ‘Update_worksheet’  function was running after the ‘if true’ statement due to the indent being incorrect.  I moved the line so it runs inside the function*
-
-___
-
-- **Issue:** 
-
-    *When displaying the reports, I noticed the data was not accurate due to the dataframe loading at the start of the code, resulting in inaccurate data when the user requested the report.*
-
-- **Corrective action:**
-
-    *I called the dataframe at the start of each function call when displaying data*
-
-___
-
-- **Issue:** 
-
-    *When amending the employee’s hours. I typed an incorrect employee number that was 6 characters, it displayed an error message and asked to enter  “y” or “n” to re-enter the employees number.*
-
-    *When I typed “y”, it prompted me to re-enter the employees number, I typed the correct employee number and an error occurred - it asked me to enter the employee number again instead of asking the me to enter in the hours worked. After the second time of entering the employees number, it moved on to request the hours worked*
-
-- **Corrective action:**
-
-    *1.	Removed calling the ‘get_employee_num’ from validate employee function*
-
-    *2.	I changed the code so, if the answer is true, return none, it will request the employee number at the correct point of the code*
-
-    ___
-
-- **Issue:** 
-
-    *run.py:490:0: R0914: Too many local variables (16/15) (too-many-locals) in calculate_employee_payslip_data function*
-
-    
-- **Corrective action:**
-
-    *Deleted employee_basic_hol varaible* 
-    *and put (employee_basic_pay + employee_holiday) where it was referenced in the formulas*
-
-     ___
-
-- **Issue:** 
-
-    *List of Variables doesn't conform to snake_case naming style*
-
-    
-- **Corrective action:**
-
-    *Created a .pylintrc file and added variables*
-
-   ___
-
-- **Issue:** 
-
-    *When the API fails, error messages would display and close the app*
-
-    
-- **Corrective action:**
-
-    *Put the gspread_client, sheet and work sheets into a function together with a try and except statement to catch api fails.*
-    
-    *To catch api errors where functions were calling the spreadsheet I put in further try and except statements to catch Name or Index Errors*
-
-### [Contents table ](#home)
 
 ---
-## PEP8 Online Validation Service:<a name="validation-testing"></a>
+## iii. Validation testing:<a name="validation-testing"></a>
 All Python files passed the [PEP8](http://pep8online.com/) and [Pylint](https://www.pylint.org/) tests with 0 errors.
 
-## Pylint
+### Pylint
 
 <details>
 <summary>Click here to view the results from pylint on run.py</summary>
@@ -881,7 +315,7 @@ Needed to keep the elif in, so if the user typed "n" it would return False
 
 ___
 
-## PEP8
+### PEP8
 <details>
 <summary>Click here to view the results from PEP8 on run.py</summary>
 
@@ -895,17 +329,17 @@ ___
 </details><br>
 
 ---
-##  Unfixed Bugs <a name="unfixed-bugs"></a> 
+## iv. Unfixed Bugs <a name="unfixed-bugs"></a> 
 
 No Bugs left to fix
 
-### [Contents table ](#home)
----
-# Deployment <a name="deployment"></a> 
+[Table of Contents ](#home)
 
+---
+
+# 4. Deployment <a name="deployment"></a> 
 
 ## Github
-___
 
 This is the process i took to deploy my project to the hosting platform GitHub
 1.	Open Github page up in browser
@@ -921,7 +355,7 @@ This is the process i took to deploy my project to the hosting platform GitHub
 
 ___
 ## Heroku
-___
+
 This application has been deployed from Github using Heroku. Here's how:
 
 1. Create an account at [heroku.com](https://.heroku.com/)
@@ -947,23 +381,24 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 ___
 
 ## Google API
-___
+
 Here's how you can set up your own API:
 
 1. Login or create a Google account and navigate to https://console.cloud.google.com/
 2. Create a new Project by clicking on the New Project icon
 3. Add Project name and details
 4. Under API's and services, enable the relevant API for your project (in this case Google Drive and Sheets )
-5. IF the API requires, create a credential (service account in this case) for your project
+5. If the API requires, create a credential (service account in this case) for your project
 6. Download the credential and upload it to your workspace a a json-file
 7. Under API's and services, enable the relevant API for your project (in this case Google Drive and Sheets)
 
+[Table of Contents ](#home)
+
 ---
-# Technologies Used <a name="technology-used"></a>  <a name="Home"></a>
-### Languages
+# 5. Technologies Used <a name="technology-used"></a>  <a name="Home"></a>
+## Languages
 
 - [Python 3](https://www.python.org/) - Was used solely to create this project.
-
 
 I have also utilised the following applications, platforms  and libraries:
 
@@ -980,10 +415,9 @@ I have also utilised the following applications, platforms  and libraries:
 - [PEP8 Online Validation Service](http://pep8online.com/): The PEP8 Online Validation Service was used to validate the Python document for this project and to identify any issues with the code.
 
 * [Lucid Chart](https://www.lucidchart.com/): Lucid Chart was used to create flowcharts
+___
 
-
-
-#### Python Libraries
+## Python Libraries
 A library is a collection of pre-combined codes that can be used iteratively to reduce the time required to code. They are particularly useful for accessing the pre-written frequently used codes, instead of writing them from scratch every single time. 
 
 I have used these Python and third party libraries for this project for the following reasons:
@@ -1002,7 +436,8 @@ I have used these Python and third party libraries for this project for the foll
 
 - termios: The termios module has been used to provide an interface the terminal control facilities used in wait_key function
 
-#### Third Party Libraries
+___
+## Third Party Libraries
 
 - gspread:  gspread has been used to access, update and manipulate data from Google Sheets
 
@@ -1010,11 +445,10 @@ I have used these Python and third party libraries for this project for the foll
 
 - google.oauth2.service_account: google.oauth2.service_account has been used to allow the application to access the account that the sheet is on with the credentials
 
-[Contents table ](#home)
----
-# Credits <a name="credits"></a>
+[Table of Contents ](#home)
+___
 
-
+# 6. Credits <a name="credits"></a>
 
 ## Code
 I used the following websites and videos for inspiration and code for my project
@@ -1050,9 +484,10 @@ I used the following websites and videos for inspiration and code for my project
 
 [Press any key](https://stackoverflow.com/questions/983354/how-to-make-a-script-wait-for-a-pressed-key)
 
+[Table of Contents ](#home)
+___
 
----
-# Acknowledgements <a name="acknowledgements"></a>
+# 7. Acknowledgements <a name="acknowledgements"></a>
 A big thank you to my mentor Mo for his help and guidance throughout my third project
 
 Thank you to to the following:
