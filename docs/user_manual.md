@@ -12,7 +12,7 @@ ___
 
 ## **1. Login** <a name="login"></a> 
 <details>
-    <summary>Click here to view login screen</summary>
+    <summary>Click here to view the login screen</summary>
 
 ![Screenshot of Home screen](/docs/images/people_payroll_welcomescreen.PNG)
 </details><br>
@@ -48,7 +48,7 @@ Type "1" from the main menu and press enter, the payroll menu will be displayed.
 ![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
 
-### Process / amend payroll menu
+### Process/amend payroll menu
 Type "2" from the main menu and press enter, the process / amend payroll menu will be displayed.
 <details>
     <summary>Click here to view the menu</summary>
@@ -56,7 +56,7 @@ Type "2" from the main menu and press enter, the process / amend payroll menu wi
 ![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
 
-### Add / amend employee details
+### Add/amend employee details
 
 Type "3" from the main menu and press enter, the add / amend employee details menu  will be displayed 
 <details>
@@ -92,13 +92,13 @@ Enter the payroll week
 - **Error handling:** *If the user inputs invalid data, they will receive feedback: 
 ‘Invalid week number, please try again’*
 
-The report will be displayed to the screen
+The report will be displayed on the screen
 <details>
 <summary>Click here to view the report</summary>
 
 ![screenshot 1. Overall employees’ pay for week selected report](/docs/images/features/feature_3_1.PNG)
 </details><br>
-Press any key to return to the the display payroll menu<br>
+Press any key to return to the display payroll menu<br>
 
 ___
 ### Employee pay for week selected report
@@ -118,7 +118,7 @@ Enter the employee number <br>
 
 There is further validation to check if the employee number has a record in the employee detail sheet.
 
-If the employee number has been found the employees payroll sheet for the week, the data is displayed
+If the employee number has been found on the employees' payroll sheet for the week, the data is displayed
 
 <details>
 <summary>Click here to view the report</summary>
@@ -126,7 +126,7 @@ If the employee number has been found the employees payroll sheet for the week, 
 ![screenshot Employee pay for week selected report](/docs/images/features/feature_3_2.PNG)
 </details><br>
 
-If there is no record, a error message will be displayed
+If there is no record, an error message will be displayed
 
 “No payroll record found for employee number: xx in xx”*
 
@@ -155,7 +155,7 @@ The main menu will be displayed
 </details><br>
 
 ___
-## **4.Process / Amend payroll data**
+## **4. Process / Amend payroll data**
 <a name="process_amend"></a> 
 ### Process / amend payroll menu
 Type "2" from the main menu and press enter to go to the process / amend payroll menu 
@@ -200,13 +200,13 @@ The system will now calculate all the values for basic pay, holiday pay, NI cont
 
 The user will be prompted ‘Are the amounts correct?’. 
 
-If the values are incorrect , a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’
+If the values are incorrect, a message “re-enter details’ is displayed and the user is prompted to ‘enter the hours worked’
 
 If the values are correct, type ‘y’
 
 A message will be displayed “Ready to upload into payroll spreadsheet" then the information uploads to the google sheets. When successful ‘employeepayroll worksheet updated successfully’ is displayed
 
-The user will then prompted if they would like to process another employee's hours which they can add or go back to the main menu.
+The user will then be prompted if they would like to process another employee's hours which they can add or go back to the main menu.
 
 <details>
     <summary>Click here to see an example</summary>
@@ -230,11 +230,11 @@ Validation will check if the employee number is in the google sheets employee de
 
 There is additional validation to ensure there is an employee record already entered into employee payroll Google Sheet
 
-If no record is found ‘No payroll record found for xx in week wk xx, returning to main menu.’ Will be displayed
+If no record is found ‘No payroll record found for xx in week wk xx, returning to the main menu.’ will be displayed
 
 Press any key to return to the display payroll menu
 
-If a record is found, ‘Employment record located’ message will be displayed . This record will be deleted and the user will be prompted to enter the employees hours again which will follow the add employees detail features above
+If a record is found, the ‘Employment record located’ message will be displayed. This record will be deleted and the user will be prompted to enter the employees hours again which will follow the add employees detail features above
 
 <details>
 <summary>Click here to view an example</summary>
@@ -242,15 +242,13 @@ If a record is found, ‘Employment record located’ message will be displayed 
 ![screenshot Amend employees' hours](/docs/images/features/feature_4_2.PNG)
 </details><br>
 
-
-
 ___
 ### Main menu
-Type "3" from the  process / amend payroll menu and press enter to go the main menu
+Type "3" from the  process / amend payroll menu and press enter to go to the main menu
 
 Display the main menu
 <details>
-<summary>Click here view the menu</summary>
+<summary>Click here to view the menu</summary>
 
 ![screenshot Display the main menu](/docs/images/features/feature_4_3.PNG)
 </details><br>

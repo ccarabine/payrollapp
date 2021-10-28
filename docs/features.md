@@ -1,4 +1,4 @@
-[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#features)
+[Click here to go to the Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#features)
 
 # 2. Features <a name="features"></a> 
 
@@ -30,7 +30,7 @@ The menu system consists of all the options required to facilitate all stages of
 </details><br>
 
 ___
-*Option 1* from the main menu typed , display the payroll menu
+*Option 1* from the main menu typed, display the payroll menu
 <details>
 <summary>Click here to view the display payroll menu</summary>
 
@@ -38,7 +38,7 @@ ___
 </details><br>
 
 ___
-*Option 2* from the main menu typed , display the process /amend payroll menu
+*Option 2* from the main menu typed, display the process /amend payroll menu
 <details>
 <summary>Click here to view the process / amend payroll menu</summary>
 
@@ -51,15 +51,15 @@ If an incorrect number option is typed during any of the menu selections, the us
 **User stories covered:**<br>
 *3.	As a user, I want to easily navigate through the different functions to view and process payroll<br>
 11. As a user with no formal finance training/qualifications I need simple and easy to understand terminology<br>
-13. As a user I need quick painless process, in order to free up more time to be productive in other areas of my role.<br>
-14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors<br>*
+13. As a user I need a quick painless process, to free up more time to be productive in other areas of my role.<br>
+14. I want a terminal-based application containing validated Python code that allows the user to navigate the system intuitively without returning errors<br>*
 	
 ___
 ### **Feature 3: Display payroll**
 ___
 From the main menu, the user will be prompted to select an option by typing the relevant numeral.
 
-*Option 1* from the main menu typed , the payroll menu will be displayed
+*Option 1* from the main menu typed, the payroll menu will be displayed
 
 <details>
 <summary>Display Payroll menu</summary>
@@ -71,7 +71,7 @@ The user will be prompted to select an option by typing the relevant numeral
 
 *Option 1* typed from the display payroll menu (Overall employees’ pay for week selected)
 
-User will be prompted to enter the payroll week which must be before the current payroll week. 
+The user will be prompted to enter the payroll week which must be before the current payroll week. 
 
 If the user inputs invalid data, they will receive feedback: 
 ‘Invalid week number, please try again’
@@ -90,16 +90,16 @@ then the display payroll menu is displayed
 ___
 *Option 2* selected from the display payroll menu - 2 Employee pay for week selected <br>
 
-User will be prompted to enter the payroll week which must be before the current payroll week. After validation, the user will be then prompted to enter the employee number <br>
+The user will be prompted to enter the payroll week which must be before the current payroll week. After validation, the user will be then prompted to enter the employee number <br>
 If the user has entered incorrectly, an error message will be displayed ‘Invalid employee number, please try again.’<br>
 Then the user will be prompted ‘Do you want to try again? type y or n :’<br>
 If no they will be taken back to the main menu
 
 There is further validation to check if the employee number has a record in the employee detail sheet.  
 
-If the employee number has been found the employees payroll sheet for the week, the data is displayed
+If the employee number has been found on the employees payroll sheet for the week, the data is displayed
 
-If there is no record, a error message will be displayed
+If there is no record, an error message will be displayed
 'No payroll record found for employee number: xx in xx'
 
 ‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information
@@ -115,7 +115,7 @@ then the display payroll menu is displayed
 ___
 *Option 3* selected from the display payroll menu - 3. Employers summary for week<br>
 
-The data is summarised for each heading and grouped by week and displayed to the terminal
+The data are summarised for each heading and grouped by week and displayed to the terminal
 
 ‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information
 
@@ -145,10 +145,10 @@ ___
 9. As a user, I want full visibility of the business’s payment summary, consolidated by week <br>
 11. As a user with no formal finance training/qualifications I need simple and easy to understand terminology<br>
 12. As a user I need to be able to trust the application to calculate payments accurately<br>
-13. As a user I need a quick painless process, in order to free up more time to be productive in other areas of my role.*<br>
+13. As a user I need a quick painless process, to free up more time to be productive in other areas of my role.*<br>
 
 **Owners stories covered:**<br>
-14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors<br>
+14. I want a terminal-based application containing validated Python code that allows the user to navigate the system intuitively without returning errors<br>
 
 ___
 ### **Feature 4: Process /Amend payroll**
@@ -186,15 +186,15 @@ The system will now calculate all the values for basic pay, holiday pay, NI cont
 
 The user will be prompted ‘Are the amounts correct?’.
 
-If the values are incorrect , the user will type ‘n’
+If the values are incorrect, the user will type ‘n’
 
-a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’
+a message “re-enter details’ is displayed and the user is prompted to ‘enter the hours worked’
 
 If the values are correct, a message will be displayed 
 
 'Ready to upload into payroll spreadsheet' then the information uploads to google sheets. When successful ‘employeepayroll worksheet updated successfully’ message is displayed.
 
-The user will then prompted if they would like to process another employees hours which they can add or go back to the main menu
+The user will then be prompted if they would like to process another employees hours which they can add or go back to the main menu
 
 <details>
 <summary>Click here to view add employees' hours</summary>
@@ -208,29 +208,29 @@ The user will be prompted to enter the employee number, validation will check if
 
 There is additional validation to ensure there is an employee record already entered into google sheets employee payroll sheet.
 
-If no record is found ‘No payroll record found for xx in week wk xx, returning to main menu.’ will be displayed
+If no record is found ‘No payroll record found for xx in week wk xx, returning to the main menu.’ will be displayed
 
-‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information and then the process /amend payroll menu will be displayed
+‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information and then the process /amend payroll menu will be displayed.
 
-If a record is found, ‘Employment record located’ message will be displayed . This record will be deleted and the user will be prompted to enter the employees hours again .
+If a record is found, the ‘Employment record located’ message will be displayed. This record will be deleted and the user will be prompted to enter the employees hours again.
 
 Validation will check if the value is a float.  
 
-If incorrect then ‘Invalid data, please try again.’ is displayed and the user is prompted to enter the hours worked again
+If incorrect then ‘Invalid data, please try again.’ is displayed and the user is prompted to enter the hours worked again.
 
 The system will now calculate all the values for basic pay, holiday pay, NI contribution, pension contribution, net pay, employers NI contribution and employers contribution and display these values.
 
 The user will be prompted ‘Are the amounts correct?’.
 
-If the values are incorrect , the user will type ‘n’
+If the values are incorrect, the user will type ‘n’
 
-a message “re enter details’ is displayed and the user is prompted to ‘enter the hours worked’
+a message “re-enter details’ is displayed and the user is prompted to ‘enter the hours worked’
 
 If the values are correct, a message will be displayed 
 
 'Ready to upload into payroll spreadsheet' then the information uploads to google sheets. When successful ‘employeepayroll worksheet updated successfully’ message is displayed.
 
-The user will then prompted if they would like to process another employees hours which they can add or go back to the main menu
+The user will then be prompted if they would like to process another employees hours which they can add or go back to the main menu
 
 <details>
 <summary>Click here to view the results </summary>
@@ -256,17 +256,17 @@ Display the main menu
 </details><br>
 
 **User stories covered:**<br>
-2.	As a user, I want a terminal based application to import/export data via google sheets<br>
+2.	As a user, I want a terminal-based application to import/export data via google sheets<br>
 3.	As a user, I want to easily navigate through the different functions to view and process payroll<br>
 4.	As a user, I want to process employees hours and receive feedback if I duplicate data inputted already for an employee in that particular week<br>
 5.	As a user, I want an application that calculates Basic pay, Holiday pay, Employee NI contributions, Pension Contributions, Net pay, Employee NI contributions, Pension Contributions<br>
 6. As a user, I want full visibility of an employee’s payment summary before submission to payroll (send to google sheets spreadsheet)<br>
 11. As a user with no formal finance training/qualifications I need simple and easy to understand terminology<br>
 12. As a user I need to be able to trust the application to calculate payments accurately<br>
-13. As a user I need quick painless process, in order to free up more time to be productive in other areas of my role.*<br>
+13. As a user I need a quick painless process, to free up more time to be productive in other areas of my role.*<br>
 
 **Owners stories covered:**<br>
-*14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors*
+*14. I want a terminal-based application containing validated Python code that allows the user to navigate the system intuitively without returning errors*
 	
 ___	
 ### **Feature 5:  Add / Amend employee details**
@@ -279,4 +279,4 @@ This is a future feature
 **Owners stories covered:**<br>
 *14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors*
 
-[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#features)
+[Click here to go to the Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#features)

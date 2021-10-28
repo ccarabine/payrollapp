@@ -1,6 +1,6 @@
 # People Payroll application
 
-People Payroll is a command line terminal based application providing a solution to common pain points experienced by many small business owners. The application enables employers to process employee hours, and simultaneously calculate their pay/liabilities efficiently, eliminating the risk of manual calculation errors, and resulting in increased productivity.
+People Payroll is a command-line terminal-based application providing a solution to common pain points experienced by many small business owners. The application enables employers to process employee hours, and simultaneously calculate their pay/liabilities efficiently, eliminating the risk of manual calculation errors, and resulting in increased productivity.
 
 <details>
     <summary>Click here to view the login screen</summary>
@@ -9,11 +9,11 @@ People Payroll is a command line terminal based application providing a solution
 </details><br>
 
 ___
-## Points to note when using People Payroll application for the first time:
+## Points to note when using the People Payroll application for the first time:
 
 To gain access use the following login details
 
-Username : *admin*
+Username: *admin*
 
 Password: *google1*
 
@@ -85,7 +85,7 @@ ___
     - that is intuitive to all users.
 
 ### Personal Goal:
-- Having spent many years working in the hospitality industry and managing a food production site, I have experienced much pain whilst implementing the payroll process, such as the amount of time it can take and the risk of creating manual errors/miscalculations and their repercussions. I wish to create a painless process and excellent user experience for any user, drawing upon my familiarity of the process to provide meaningful solutions and implement an algorithm.
+- Having spent many years working in the hospitality industry and managing a food production site, I have experienced much pain whilst implementing the payroll process, such as the amount of time it can take and the risk of creating manual errors/miscalculations and their repercussions. I wish to create a painless process and excellent user experience for any user, drawing upon my familiarity with the process to provide meaningful solutions and implement an algorithm.
 
 ### User Goals:
 
@@ -93,7 +93,7 @@ ___
 
 - The system should give feedback to let the user know where the program is at every stage and be able to submit the payroll via Google Sheets, ready for the ‘accountant’ to make payments.
 
-- The target audience for this terminal based application are employers who want to process their employees payroll and submit for deployment via Google Sheet.
+- The target audience for this terminal-based application are employers who want to process their employee's payroll and submit for deployment via Google Sheet.
 
 ---
 
@@ -101,7 +101,7 @@ ___
 
 ### Site User stories:
 1.	As a user, I  want a secure application/login to protect against unauthorised access 
-2.	As a user, I want a terminal based application to import/export data via google sheets
+2.	As a user, I want a terminal-based application to import/export data via google sheets
 3.	As a user, I want to easily navigate through the different functions to view and process payroll
 4.	As a user, I want to process employees hours and receive feedback if I duplicate data inputted already for an employee in that particular week
 5.	As a user, I want an application that calculates Basic pay, Holiday pay, Employee NI contributions, Pension Contributions, Net pay, Employee NI contributions, Pension Contributions
@@ -112,11 +112,11 @@ ___
 10. As a user I want to be able to locate an employee and their details quickly/efficiently
 11. As a user with no formal finance training/qualifications I need simple and easy to understand terminology
 12. As a user I need to be able to trust the application to calculate payments accurately
-13. As a user I need quick painless process, in order to free up more time to be productive in other areas of my role.
+13. As a user I need a quick painless process, to free up more time to be productive in other areas of my role.
 
 ### Site Owner Goals 
 
-14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors
+14. I want a terminal-based application containing validated Python code that allows the user to navigate the system intuitively without returning errors
 	
 ___
 ## ii. Scope <a name="scope"></a>
@@ -124,9 +124,9 @@ ___
 ### Strategy Trade-offs
 I have rated the features on a scale of 1 to 5 in terms of importance (how important is it for the project now) and viability (how realistic is that we can implement a solution)
 
-To achieve the strategy goals, the following features highlighted in dark/light green will be implemented to create a minimal viable  product due to timescale and technical ability. The additional features in red will be added at a further stage
+To achieve the strategy goals, the following features highlighted in dark/light green will be implemented to create a minimal viable  product due to the timescale and technical ability. The additional features in red will be added at a further stage
 <details>
-    <summary>Click here to view the Strategy trade offs table</summary>
+    <summary>Click here to view the Strategy trade-offs table</summary>
 
 ![Strategy trade offs table](/docs/images/strategytradeoffs.PNG)
 </details><br>
@@ -138,9 +138,9 @@ The payroll system relies on user input from the menu system.  The user will nav
 
 An option to return to the main menu is easily/consistently visible on each page.
 
-It is important that the application is easy to navigate and provides feedback to the user to inform them at what stage/status of the process they are at.
+The application must be easy to navigate and provide feedback to the user to inform them at what stage/status of the process they are at.
 
-[Click on link to go to the structure](https://github.com/ccarabine/payroll/blob/main/docs/structure.md)
+[Click on the link to go to the structure](https://github.com/ccarabine/payroll/blob/main/docs/structure.md)
 
 
 ---
@@ -148,7 +148,7 @@ It is important that the application is easy to navigate and provides feedback t
 
 ### Data model, application features and business logic
 
-I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowcharts/data models for my project in order to plan out the flow of the application to manage, query and manupulate data
+I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowcharts/data models for my project to plan out the flow of the application to manage, query and manipulate data
 
 ### Click here to view the following flowcharts: 
 
@@ -179,6 +179,7 @@ I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowchar
 </details>
 <details>
 <summary>Data relationship </summary>
+
 ![Screenshot of flowchart - Data relationship ](/docs/images/flow_charts/data_relationship.png)
 </details>
 <details>
@@ -187,7 +188,7 @@ I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowchar
 ![Screenshot of formulas ](/docs/images/flow_charts/formulas_variables.png)
 </details> <br>
 
-I have structured my program using functional programming, rather than OOP for this app. This is because, the data that is being inputted needs to be immutable and is based around having one user inputting data. 
+I have structured my program using functional programming, rather than OOP for this app. This is because the data that is being inputted needs to be immutable and is based around having one user input data. 
 There isn't a case for objects in my program as it is just interacting with the database where the data is stored. 
 
 Having collaborated with both my mentor and tutor about the use of OOP for this application, they both advised it would not be required but instead a ‘nice to have’ 
@@ -196,7 +197,7 @@ ___
 
 ### Visual Design
 
-As this is a terminal based application the styling is very limited so I have focused/prioritised optimizing functionality, especially in providing the user feedback required at the correct points of the application, coupled with ease of navigation.
+As this is a terminal-based application the styling is very limited so I have focused/prioritised optimizing functionality, especially in providing the user feedback required at the correct points of the application, coupled with ease of navigation.
 
 [Table of Contents ](#home)
 
@@ -205,7 +206,7 @@ As this is a terminal based application the styling is very limited so I have fo
 # 2. Features <a name="features"></a> 
 
 ## i. Current Features (short term objectives): <a name="features-current"></a>
-[Click on link to go to current features](https://github.com/ccarabine/payroll/blob/main/docs/features.md)
+[Click on the link to go to current features](https://github.com/ccarabine/payroll/blob/main/docs/features.md)
 
 ---
 ## ii. Features remaining to implement (long term objectives): <a name="features-toimplement"></a>
@@ -216,7 +217,7 @@ As this is a terminal based application the styling is very limited so I have fo
 - Statutory sick pay, maternity/paternity leave
 - Bonuses
 - Payroll for salary staff
-- Account managemeent
+- Account management
 
 [Table of Contents ](#home)
 
@@ -227,12 +228,12 @@ ___
 
 User stories are tested with the current features. All user stories passed the tests.
 
-[Click on link to go to user stories testing ](https://github.com/ccarabine/payroll/blob/main/docs/testing.md)
+[Click on the link to go to user stories testing ](https://github.com/ccarabine/payroll/blob/main/docs/testing.md)
 
 ---
 ## ii. Known issues during development and testing <a name="known-issues"></a>
 
-[Click on link to go to issues that were identified and corrected during development and testing](https://github.com/ccarabine/payroll/blob/main/docs/known_issues.md)
+[Click on the link to go to issues that were identified and corrected during development and testing](https://github.com/ccarabine/payroll/blob/main/docs/known_issues.md)
 
 
 ---
@@ -286,11 +287,11 @@ ___
 **Other errors**
 
 run.py:185:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements) <br>
-added "return None" to the revelent expressions
+added "return None" to the relevant expressions
 
 run.py:442:0: R0914: Too many local variables (19/15) (too-many-locals)
 
-changed the structure from a list to a dictionary and took the values straight out of the dictionary rather then assigning variables to them
+changed the structure from a list to a dictionary and took the values straight out of the dictionary rather than assigning variables to them
 
 ___
 **I have disabled the following false errors:**
@@ -300,7 +301,7 @@ pylint: disable=unused-import   import env
 unused import env  **this is used to get the username and password**
 
 pylint: disable=pointless-string-statement    Pylint states the imports docstring is pointless 
-i have used a doc string to comment all of the imports for all modules for application
+I have used a docstring to comment all of the imports for all modules for the application
 
 pylint: disable=no-else-return  Unnecessary "elif" after "return" 
 used on function  yesorno(question):
@@ -327,12 +328,12 @@ Needed to keep the elif in, so if the user typed "n" it would return False
 
 ## Github
 
-This is the process i took to deploy my project to the hosting platform GitHub
-1.	Open Github page up in browser
-2.	Log in using your username and password
-3.	Select "ccarabine/payroll" from repositories displayed on left-hand side of screen
+This is the process I took to deploy my project to the hosting platform GitHub
+1.	Open Github page up in the browser
+2.	Login using your username and password
+3.	Select "ccarabine/payroll" from repositories displayed on the left-hand side of screen
 4.	Click "settings” displayed in the navigation toolbar menu
-5.	Click “Pages” on the left hand side navigation menu
+5.	Click “Pages” on the left-hand side navigation menu
 6.	Select "Master Branch" in the dropdown under the Source heading
 7.	Finally, click “save”
 
@@ -346,7 +347,7 @@ This application has been deployed from Github using Heroku. Here's how:
 
 1. Create an account at [heroku.com](https://.heroku.com/)
 2. Create a new app, add app name and your region
-3. Click on create app
+3. Click on create an app
 4. Go to "Settings"
 5. Under Config Vars, add your sensitive data 
 creds.json for example type `CREDS` in the
@@ -355,7 +356,7 @@ You must then create another called `PORT`. Set this to `8000`
 6. For this project, I set buildpacks to `Python` and `NodeJS` in that order. Ensure python is on ontop
 7. Go to "Deploy" and at "Deployment method", click on "Connect to Github"
 8. Enter your repository name and click search, then connect
-9. Choose the branch you want to buid your app from
+9. Choose the branch you want to build your app from
 10. If desired, click on "Enable Automatic Deploys", which keeps the app up to date with your Github repository
 11. Click deploy branch
  <a href="https://people-payroll-application.herokuapp.com/">People Payroll Application </a>
@@ -367,14 +368,14 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 ___
 ## Google API
 
-Here's how you can set up your own API:
+Here's how you can set up your API:
 
 1. Login or create a Google account and navigate to https://console.cloud.google.com/
 2. Create a new Project by clicking on the New Project icon
 3. Add Project name and details
 4. Under API's and services, enable the relevant API for your project (in this case Google Drive and Sheets )
 5. If the API requires, create a credential (service account in this case) for your project
-6. Download the credential and upload it to your workspace a a json-file
+6. Download the credential and upload it to your workspace a json-file
 7. Under API's and services, enable the relevant API for your project (in this case Google Drive and Sheets)
 
 [Table of Contents ](#home)
@@ -387,13 +388,13 @@ Here's how you can set up your own API:
 
 I have also utilised the following applications, platforms  and libraries:
 
-* [GitPod](https://www.gitpod.io/) :  I used GitPod as the IDE for this project and Git has been used for Version Control.
+* [GitPod](https://www.gitpod.io/):  I used GitPod as the IDE for this project and Git has been used for Version Control.
 
-* [GitHub](https://www.github.com/) : GitHub has been used to create a repository to host the project and receive updated commits from GitPod.
+* [GitHub](https://www.github.com/): GitHub has been used to create a repository to host the project and receive updated commits from GitPod.
 
-* [Heroku](https://id.heroku.com) : Used to deploy the application.
+* [Heroku](https://id.heroku.com): Used to deploy the application.
 
-* [Google Cloud Platform](https://console.cloud.google.com/home/dashboard?project=payroll-326612) : Google Cloud Platform has been used for APIs and credentials to be able to access Google Sheets with the relevant data.
+* [Google Cloud Platform](https://console.cloud.google.com/home/dashboard?project=payroll-326612): Google Cloud Platform has been used for APIs and credentials to be able to access Google Sheets with the relevant data.
 
 - [Google Sheets](https://docs.google.com/spreadsheets/u/0/): Spreadsheet to store the data for employees details and employee payroll 
 
@@ -405,24 +406,24 @@ ___
 ## Python Libraries
 A library is a collection of pre-combined codes that can be used iteratively to reduce the time required to code. They are particularly useful for accessing the pre-written frequently used codes, instead of writing them from scratch every single time. 
 
-I have used these Python and third party libraries for this project for the following reasons:
+I have used these Python and third-party libraries for this project for the following reasons:
 
 - Getpass: getpass has been used to prompt the user for a username and password without showing the characters used in the password function.
 
 - from datetime import date: date has been used to get the current week of the year used in the payroll_weeks function
 
-- os: The OS module has ben used to provides functions for interacting with the operating system. Used for the clear function and to access the environment varaibles in the password function.
+- os: The OS module has been used to provide functions for interacting with the operating system. Used for the clear function and to access the environment variables in the password function.
 
-- system : System provides functions for interacting with the operating system, used in the clear function
+- system: System provides functions for interacting with the operating system, used in the clear function
 
-- name: name has been used in the clear function. os module provides the operating system interface from Python
+- name: name has been used in the clear function. The os module provides the operating system interface from Python
 
-- sys: sys has been used in wait_key function
+- sys: sys has been used in the wait_key function
 
-- termios: The termios module has been used to provide an interface the terminal control facilities used in wait_key function
+- termios: The termios module has been used to provide an interface the terminal control facilities used in the wait_key function
 
 ___
-## Third Party Libraries
+## Third-Party Libraries
 
 - gspread:  gspread has been used to access, update and manipulate data from Google Sheets
 
@@ -448,7 +449,7 @@ I used the following websites and videos for inspiration and code for my project
 
 [Delay printing before next function](https://www.codegrepper.com/code-examples/python/how+to+pause+after+a+print+statement+in+python)
 
-[Clearing the terminal before next function](https://www.geeksforgeeks.org/clear-screen-python/)
+[Clearing the terminal before the next function](https://www.geeksforgeeks.org/clear-screen-python/)
 
 [Use of gspread](https://docs.gspread.org/en/latest/user-guide.html)
 
@@ -458,7 +459,7 @@ I used the following websites and videos for inspiration and code for my project
 
 [Using pandas](https://kanoki.org/2020/01/21/pandas-dataframe-filter-with-multiple-conditions/)
 
-[Stack over flow – to group by and sum values using pandas](https://stackoverflow.com/questions/43745301/converting-column-from-dataframe-to-float-for-sum-usage-python-pandas)
+[Stack overflow – to group by and sum values using pandas](https://stackoverflow.com/questions/43745301/converting-column-from-dataframe-to-float-for-sum-usage-python-pandas)
 
 [Group by and sum using pandas](https://stackoverflow.com/questions/39922986/pandas-group-by-and-sum)
 

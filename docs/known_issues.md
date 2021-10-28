@@ -1,12 +1,12 @@
 ## Known issues during development and testing <a name="known-issues"></a>
 
-[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#known-issues)
+[Click here to go to the Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#known-issues)
 
-### During development the following issues were identified and corrected
+### During development, the following issues were identified and corrected
 
  - **Issue:** 
  
-    *When i selected 'display payroll' option 2, to display employee payment details, i entered an employee number that wasn't found in google sheets, an index error occurred*
+    *When I selected 'display payroll' option 2, to display employee payment details, i entered an employee number that wasn't found in google sheets, an index error occurred*
 
 -	**Corrective Action:** 
 
@@ -14,11 +14,11 @@
 ___
 - **Issue:** 
 
-    *When i selected option 1, option1 "Overall employees' pay for week selected".  I then input a week with no data, this displayed an error message as it only allows the previous week to be entered*
+    *When I selected option 1, option1 "Overall employees' pay for week selected".  I then input a week with no data, this displayed an error message as it only allows the previous week to be entered*
 
 - **Corrective Action:** 
 
-    *Put in a “status” for the week with “normal” and “any week” . For this function the status would be “any week”*
+    *Put in a “status” for the week with “normal” and “any week” for this function, the status would be “any week”*
 
 -   **I have further removed this code so they display any week**
 ___
@@ -32,7 +32,7 @@ ___
 ___
 - **Issue:** 
 
-    *On main menu screen, the user could type in “4 “*
+    *On the main menu screen, the user could type in “4 “*
 
 - **Corrective Action:** 
 
@@ -48,11 +48,11 @@ ___
 ___
 - **Issue:** 
 
-    *To display employees' payroll record, the function used getallvalues.  There were multiple employees' with e.g."25" hours and I wanted to display all records for week "25", the data displayed all the employees' hours as well as matching week 25*
+    *To display employees' payroll records, the function used getallvalues.  There were multiple employees' with e.g."25" hours and I wanted to display all records for the week "25", the data displayed all the employees' hours as well as matching week 25*
 
 - **Corrective Action:** 
 
-    *Get payroll week function, I added concatenate so week is "wk34" rather than just 34 so now we can getallvalues "wk34"*
+    *Get payroll week function, I added concatenate so the week is "wk34" rather than just 34 so now we can getallvalues "wk34"*
 ___
 - **Issue:** 
 
@@ -60,7 +60,7 @@ ___
 
 - **Corrective Action:** 
 
-    *Added an if, else statement to handle, with error message*
+    *Added an if, else statement to handle, with an error message*
 ___
 
 - **Issue:**
@@ -78,13 +78,13 @@ ___
 
 - **Corrective Action:** 
 
-    *Created an if statement to handle if the dataframe is empty display error message and if it has data to display*
+    *Created an if statement to handle if the dataframe is empty, display error message and if it has data to display*
 
 ___
 
 - **Issue:** 
 
-    *When selecting option 3, Employers summary for week this message is displayed*
+    *When selecting option 3, Employers summary for week selected, this message is displayed*
 
     *run.py:510: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.*
 
@@ -97,7 +97,7 @@ ___
 
 - **Issue:** 
 
-    *For add / amend employees hours, user had to enter the week ( which could only be the previous week)*
+    *To add/amend employees hours, The user had to enter the week ( which could only be the previous week)*
 
 - **Corrective action:**
 
@@ -105,11 +105,11 @@ ___
 
 ___
 
-### During testing the following issues were identified and corrected
+### During testing, the following issues were identified and corrected
 
 - **Issue:** 
 
-    *Display records in display menu options 1,2 and 3 would only show a limtied amount of fields due to the constraints of the deployment terminal, which is set to 80 characters*
+    *Display records in display menu options 1,2 and 3 would only show a limited amount of fields due to the constraints of the deployment terminal, which is set to 80 characters*
 
 - **Corrective action:**
 
@@ -137,7 +137,7 @@ ___
  
 - **Issue:** 
 
-    *Whilst further testing after implementing the corrective action above, I found an additional error, if the user typed a string  twice for the hours enter, the error would occur again*
+    *Whilst further testing after implementing the corrective action above, I found an additional error, if the user typed a string twice for the hours entered, the error would occur again*
 
 - **Corrective action:**
 
@@ -159,9 +159,9 @@ ___
 
 - **Issue:** 
 
-    *When amending the employee’s hours. I typed an incorrect employee number that was 6 characters, it displayed an error message and asked to enter  “y” or “n” to re-enter the employees number.*
+    *When amending the employee’s hours. I typed an incorrect employee number that was 6 characters, it displayed an error message and asked me to enter  “y” or “n” to re-enter the employee's number.*
 
-    *When I typed “y”, it prompted me to re-enter the employees number, I typed the correct employee number and an error occurred - it asked me to enter the employee number again instead of asking the me to enter in the hours worked. After the second time of entering the employees number, it moved on to request the hours worked*
+    *When I typed “y”, it prompted me to re-enter the employee's number, I typed the correct employee's number and an error occurred - it asked me to enter the employee number again instead of asking me to enter in the hours worked. After the second time of entering the employee's number, it moved on to request the hours worked*
 
 - **Corrective action:**
 
@@ -178,14 +178,14 @@ ___
     
 - **Corrective action:**
 
-    *Deleted employee_basic_hol varaible* 
+    *Deleted employee_basic_hol variable* 
     *and put (employee_basic_pay + employee_holiday) where it was referenced in the formulas*
 
      ___
 
 - **Issue:** 
 
-    *List of Variables doesn't conform to snake_case naming style*
+    *The list of Variables doesn't conform to the snake_case naming style*
 
     
 - **Corrective action:**
@@ -201,8 +201,8 @@ ___
     
 - **Corrective action:**
 
-    *Put the gspread_client, sheet and work sheets into a function together with a try and except statement to catch api fails.*
+    *Put the gspread_client, sheet and worksheets into a function together with a try and except statement to catch API fails.*
     
-    *To catch api errors where functions were calling the spreadsheet I put in further try and except statements to catch Name or Index Errors*
+    *To catch API errors where functions were calling the spreadsheet I put in further try and except statements to catch Name or Index Errors*
 
 [Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#known-issues)

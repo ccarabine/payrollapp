@@ -1,4 +1,4 @@
-[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#user-stories-testing)
+[Click here to go to the Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#user-stories-testing)
 
 ## User stories testing 
 
@@ -14,26 +14,26 @@ ___
 Test 1
 - **Action** - *User enters correct username and password*
 
-- **Expected Result** - *Main menu is displayed*
+- **Expected Result** - *The main menu is displayed*
 
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us1_1.PNG)
 </details><br>
 
 ___
 Test 2
-- **Action** - *User enters incorrect password*
+- **Action** - *User enters an incorrect password*
 
 - **Expected Result** - *Display ”Incorrect credentials, please try again.”*
 
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us1_2.PNG)
 </details><br>
@@ -47,7 +47,7 @@ Test 3
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us1_2.PNG)
 </details><br>
@@ -57,18 +57,18 @@ ___
 
 ## Testing of user story 2
 
-*“As a user, I want a terminal based application to import / exporting data form google sheets”*
+*“As a user, I want a terminal-based application to import/export data form google sheets”*
 
 **Covered by Feature 3: Display payroll & Feature 4: Process /Amend payroll**
 
 ___
 Test 1
 
-- **Action** - *From the main menu, type “2”, then “1”, user prompted to Enter Payroll Week : type “25” , then type Employee number “100017”, then Enter number of hours worked “25”*
+- **Action** - *From the main menu, type “2”, then “1”, user prompted to Enter Payroll Week: type “25”, then type Employee number “100017”, then Enter the number of hours worked “25”*
 
 Note: 
 
-**Importing** employee number to check that there is a record in google sheets to retrieve the employees rate of pay and pension %<br>
+**Importing** employee number to check that there is a record in google sheets to retrieve the employee's rate of pay and pension %<br>
 
 **Exporting** all the calculated values to google sheet
 
@@ -79,19 +79,19 @@ Letting us know that the record has been exported
 
     After the hours have been entered, the following message displayed <br>
 
-    "employeepayroll worksheet updated successfully" <br>to let use know the information has been imported to google sheets
+    "employeepayroll worksheet updated successfully" <br>to let us know the information has been imported to google sheets
 
     "Would you like to process another employees hours? type y or n :"
  
 - **Actual Result** - *Works as intended*
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us2_1.PNG)
 </details><br>
 
 <details>
-    <summary>Click here to view result- Google sheet updated</summary>
+    <summary>Click here to view the result- Google sheet updated</summary>
 
 ![Screenshot of result](/docs/images/testing/userstory2test1.png)
 </details><br>
@@ -113,10 +113,11 @@ Test 1
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to the view result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_1.PNG)
 </details><br>
+
 ___
 Test 2
 - **Action** - *User enters “0” or 5*
@@ -126,10 +127,11 @@ Test 2
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_2.PNG)
 </details><br>
+
 ___
 Test 3
 - **Action** - *User enters “1”*
@@ -138,10 +140,11 @@ Test 3
 
 - **Actual Result** - *Works as intended*
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_3.PNG)
 </details><br>
+
 ___
 Test 4
 - **Action** - *User enters “2”*
@@ -151,7 +154,7 @@ Test 4
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_4.PNG)
 </details><br>
@@ -160,13 +163,13 @@ ___
 Test 5
 - **Action** - *User enters “3”*
 
-- **Expected Result** - *Displays “Feature in next update, returning to main menu” 
-“Press any key to clear the screen and return to the Main menu”*
+- **Expected Result** - *Displays “Feature in next update, returning to the main menu” 
+“Press any key to clear the screen and return to the main menu”*
 
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_5.PNG)
 </details><br>
@@ -181,7 +184,7 @@ Test 6
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_6.PNG)
 </details><br>
@@ -195,7 +198,7 @@ Test 7
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_7.PNG)
 </details><br>
@@ -209,7 +212,7 @@ Test 8
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_8.PNG)
 </details><br>
@@ -218,12 +221,12 @@ ___
 Test 9
 - **Action** - *User enters “4”*
 
-- **Expected Result** - *main menu is displayed*
+- **Expected Result** - the *main menu is displayed*
 
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_9.PNG)
 </details><br>
@@ -237,7 +240,7 @@ Test 10
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_10.PNG)
 </details><br>
@@ -251,7 +254,7 @@ Test 11
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_11.PNG)
 </details><br>
@@ -265,7 +268,7 @@ Test 12
 - **Expected Result** - *User is prompted to enter employee number ”*
 - **Actual Result** - *Works as intended*
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_12.PNG)
 </details><br>
@@ -280,7 +283,7 @@ Test 13
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_13.PNG)
 </details><br>
@@ -289,11 +292,11 @@ ___
 Test 14
 - **Action** - *User enters “3”*
 
-- **Expected Result** - *Displays main menu*
+- **Expected Result** - *Displays the main menu*
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_14.PNG)
 </details><br>
@@ -307,7 +310,7 @@ Test 15
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_15.PNG)
 </details><br>
@@ -320,7 +323,7 @@ Test 16
 
 - **Actual Result** - *Works as intended*
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us3_16.PNG)
 </details><br>
@@ -329,7 +332,7 @@ ___
 
 ## Testing of user story 4
 
-*“As a user, I want to process employees hours and get feedback if i have entered them already”*
+*“As a user, I want to process employees hours and get feedback if I have entered them already”*
 
 **Covered by Feature  4: Process /Amend payroll**
 
@@ -343,7 +346,7 @@ Test 1
 
 - **Actual Result** - *Works as intended*
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us4_1.PNG)
 </details><br>
@@ -359,7 +362,7 @@ Test 2
 
 - **Actual Result** - *Works as intended*
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us4_2.PNG)
 </details><br>
@@ -372,23 +375,23 @@ ___
 
 ___
 Test 1
-- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”
+- **Action** - *From the main menu, type “2”, then “1” user prompted to type the Employee number “100015, enter the number of hours worked “25”
 - **Expected Result** - <br>
-Employee : 100015 - Hadley Light<br>
- Basic Pay : £525.0<br>
- Holiday Pay : £63.42<br>
+Employee: 100015 - Hadley Light<br>
+ Basic Pay: £525.0<br>
+ Holiday Pay: £63.42<br>
  NI contribution: £48.53<br>
  Pension contribution: £17.65<br>
  Net Pay: £522.24<br>
 - **Actual Result** - *Works as intended*
 <details>
-    <summary>Click here to view result</summary>
+    <summary>Click here to view the result</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us5_1.PNG)
 </details><br>
 
 <details>
-    <summary>Click here to view result in Google Sheets</summary>
+    <summary>Click here to view the result in Google Sheets</summary>
 
 ![Screenshot of result](/docs/images/testing/test_us5_2.PNG)
 </details><br>
@@ -401,34 +404,34 @@ ___
 
 ___
 Test 1
-- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”*
+- **Action** - *From the main menu, type “2”, then “1” user prompted to type the employee number “100015, enter the number of hours worked “25”*
 - **Expected Result** - <br>
-*Employee : 100015 - Hadley Light<br>
- Basic Pay : £525.0<br>
- Holiday Pay : £63.42<br>
+*Employee: 100015 - Hadley Light<br>
+ Basic Pay: £525.0<br>
+ Holiday Pay: £63.42<br>
  NI contribution: £48.53<br>
  Pension contribution: £17.65<br>
  Net Pay: £522.24*<br>
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us6_1.PNG)
 </details><br>
 
 ___
 Test 2
-- **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”, are the amount correct? “n”
+- **Action** - *From the main menu, type “2”, then “1” user prompted to type the employee number “100015, enter the number of hours worked “25”, is the amount correct? “n”
 - **Expected Result** - 
-    *Re enter details* 
+    *Re-enter details* 
 
     *Enter number of hours worked :* 
 
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us6_2.PNG)
 </details><br>
@@ -441,20 +444,20 @@ ___
 
 ___
 Test 1
-- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “26”*
+- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week: type “26”*
 - **Expected Result** - 
 *Records displayed*
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us7_1.PNG)
 </details><br>
 
 ___
 Test 2
-- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “2”*
+- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week: type “2”*
 
 - **Expected Result** - 
 Invalid week number, please try again.
@@ -462,20 +465,20 @@ Invalid week number, please try again.
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us7_2.PNG)
 </details><br>
 
 ___
 ## Testing of user story 8
-*"As a user, I want to be able to view an employee figures for a week and be able to amend them"*<br>
+*"As a user, I want to be able to view employee figures for a week and be able to amend them"*<br>
 **Covered by Feature 3: Display payroll”**<br>
 **Covered by Feature  4: Process /Amend payroll**
 
 ___
 Test 1
-- **Action to view the record** - *From the main menu, type “1”, then “2” user prompted to Enter Payroll Week : type “26”, then type Employee number “100015”*, 
+- **Action to view the record** - *From the main menu, type “1”, then “2” user prompted to Enter Payroll Week: type “26”, then type Employee number “100015”*, 
 
 - **Expected Result** - 
 *Record displayed*
@@ -483,7 +486,7 @@ Test 1
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us8_1.PNG)
 </details><br>
@@ -492,9 +495,9 @@ Test 1
 - **Action to amend the record** - *From the main menu, type “2”, then “2” type Employee number “100015”*, enter number of hours worked “27”
 
 - **Expected Result** - 
-*Employee : 100015 - Hadley Light<br>
- Basic Pay : £567.0<br>
- Holiday Pay : £68.49<br>
+*Employee: 100015 - Hadley Light<br>
+ Basic Pay: £567.0<br>
+ Holiday Pay: £68.49<br>
  NI contribution: £54.18<br>
  Pension contribution: £19.06<br>
  Net Pay: £562.25<br>
@@ -502,7 +505,7 @@ Are the amounts correct?<br>*
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us8_2.PNG)
 </details><br>
@@ -514,21 +517,21 @@ ___
 **Covered by Feature 3: Display payroll**
 
 ___
-- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week :26*
+- **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week: 26*
 
 - **Expected Result** - *Records displayed*
 
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us9_1.PNG)
 </details><br>
 
 ___
 ## Testing of user story 10
-*"As a user I want to be able to add/amend employee details"*<br>
+*"As a user, I want to be able to add/amend employee details"*<br>
 
 ___
 Future feature<br>
@@ -537,7 +540,7 @@ ___
 ## Site owner stories testing  <a name="user-stories-testing"></a>
 ___
 ## Testing of user story 11
-**"I want a terminal based application which allows the user to navigate the system intuitively without returning errors"**<br>
+**"I want a terminal-based application that allows the user to navigate the system intuitively without returning errors"**<br>
 
 **Covered by Feature 1: Welcome Message and security, <br>
 Feature 2: Menu system <br>
@@ -552,7 +555,7 @@ ___
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us11_1.PNG)
 </details><br>
@@ -566,7 +569,7 @@ ___
 - **Actual Result** - *Works as intended*
 
 <details>
-    <summary>Click here to view result </summary>
+    <summary>Click here to view the result </summary>
 
 ![Screenshot of result](/docs/images/testing/test_us11_2.png)
 </details><br>
