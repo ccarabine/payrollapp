@@ -1,7 +1,6 @@
+[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#user-stories-testing)
 
 ## User stories testing 
-
-[Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#user-stories-testing)
 
 I have tested the user/site owner stories to ensure the MPV has been achieved.
 ___
@@ -96,17 +95,13 @@ Letting us know that the record has been exported
 
 ![Screenshot of result](/docs/images/testing/userstory2test1.png)
 </details><br>
-
-
 ___
 
 ## Testing of user story 3
 
 *“As a user, I want to easily navigate through to the different functions to view and process payroll”*
 
-
 **Covered by Feature 2: Menu system**
-
 ___
 ## Main menu testing
 
@@ -122,7 +117,6 @@ Test 1
 
 ![Screenshot of result](/docs/images/testing/test_us3_1.PNG)
 </details><br>
-
 ___
 Test 2
 - **Action** - *User enters “0” or 5*
@@ -136,7 +130,6 @@ Test 2
 
 ![Screenshot of result](/docs/images/testing/test_us3_2.PNG)
 </details><br>
-
 ___
 Test 3
 - **Action** - *User enters “1”*
@@ -149,7 +142,6 @@ Test 3
 
 ![Screenshot of result](/docs/images/testing/test_us3_3.PNG)
 </details><br>
-
 ___
 Test 4
 - **Action** - *User enters “2”*
@@ -165,7 +157,6 @@ Test 4
 </details><br>
 
 ___
-
 Test 5
 - **Action** - *User enters “3”*
 
@@ -181,7 +172,6 @@ Test 5
 </details><br>
 
 ___
-
 ## Display Payroll menu testing<br>
 Test 6
 - **Action** - *User enters “1”*
@@ -197,7 +187,6 @@ Test 6
 </details><br>
 
 ____
-
 Test 7
 - **Action** - *User enters “2”*
 
@@ -211,9 +200,7 @@ Test 7
 ![Screenshot of result](/docs/images/testing/test_us3_7.PNG)
 </details><br>
 
-
 ___
-
 Test 8
 - **Action** - *User enters “3”*
 
@@ -312,7 +299,6 @@ Test 14
 </details><br>
 
 ___
-
 Test 15
 - **Action** - *User enters “0” or 4*
 
@@ -363,7 +349,6 @@ Test 1
 </details><br>
 
 ___
-
 Test 2
 
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015*
@@ -380,7 +365,6 @@ Test 2
 </details><br>
 
 ___ 
-
 ## Testing of user story 5
 
 *“As a user, I want an application that calculates	Basic pay, holiday pay, Employee NI contributions, Pension Contributions, Net pay, Employer NI contributions, Pension Contributions"*<br>
@@ -410,11 +394,11 @@ Employee : 100015 - Hadley Light<br>
 </details><br>
 
 ___
-
 ## Testing of user story 6
 *"As a user, I want to be able to view an employees figures before I submit them to the payroll(send to google sheets spreadsheet)"*<br>
 
 **Covered by Feature  4: Process /Amend payroll**
+
 ___
 Test 1
 - **Action** - *From the main menu, type “2”, then “1” user prompted to type Employee number “100015, enter number of hours worked “25”*
@@ -454,6 +438,7 @@ ___
 *"As a user, I want to be able to view all employees figures for any week"*
 
 **Covered by Feature 3: Display payroll**
+
 ___
 Test 1
 - **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week : type “26”*
@@ -483,7 +468,6 @@ Invalid week number, please try again.
 </details><br>
 
 ___
-
 ## Testing of user story 8
 *"As a user, I want to be able to view an employee figures for a week and be able to amend them"*<br>
 **Covered by Feature 3: Display payroll”**<br>
@@ -530,7 +514,6 @@ ___
 **Covered by Feature 3: Display payroll**
 
 ___
-
 - **Action** - *From the main menu, type “1”, then “1”, user prompted to Enter Payroll Week :26*
 
 - **Expected Result** - *Records displayed*
@@ -548,7 +531,6 @@ ___
 *"As a user I want to be able to add/amend employee details"*<br>
 
 ___
-
 Future feature<br>
 
 ___
@@ -563,7 +545,6 @@ Feature 3: Display payroll<br>
 Feature 4: Process /Amend payroll <br>**
 
 ___
-
 - **Action** - On load, the application welcomes the user and prompted for a password
 
 - **Expected Result** - Displays Welcome
@@ -577,7 +558,6 @@ ___
 </details><br>
 
 ___
-
 - **Action** - Api fails
 
 - **Expected Result** - Displays error message, then 'Api error occurred for gspread due to authentication'
@@ -592,7 +572,6 @@ ___
 </details><br>
 
 ___
-
 All testing above covers this user story
 
 [Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#user-stories-testing)

@@ -14,7 +14,7 @@
 ___
 - **Issue:** 
 
-    *When i selected option 1, option1 "Overall employees' pay for week selected".  I then input a week with no data, this would display an error message as it only allows the previous week to be entered*
+    *When i selected option 1, option1 "Overall employees' pay for week selected".  I then input a week with no data, this displayed an error message as it only allows the previous week to be entered*
 
 - **Corrective Action:** 
 
@@ -40,7 +40,7 @@ ___
 ___
 - **Issue:** 
 
-    *The result of the employees pension contribution was incorrect as it was calculating only the basic pay  * pension % when it needs to be based on basic plus holiday pay * pension %*
+    *The result of the employee's pension contribution was incorrect as it was calculating only the basic pay  * pension % when it needs to be based on basic plus holiday pay * pension %*
 
 - **Corrective Action:** 
 
@@ -48,15 +48,15 @@ ___
 ___
 - **Issue:** 
 
-    *To display employees payroll record, the function would used getallvalues.  There were multiple employees with e.g."25" hours and we wanted to display all records for week "25", the data would display all the employees hours as well as matching week 25*
+    *To display employees' payroll record, the function used getallvalues.  There were multiple employees' with e.g."25" hours and I wanted to display all records for week "25", the data displayed all the employees' hours as well as matching week 25*
 
 - **Corrective Action:** 
 
-    *Get payroll week added concatenate so week is "wk34" rather than just 34 so now we can getallvalues "wk34"*
+    *Get payroll week function, I added concatenate so week is "wk34" rather than just 34 so now we can getallvalues "wk34"*
 ___
 - **Issue:** 
 
-    *User entered a letter when entering the payroll week, an error would occur*
+    *User entered a letter when entering the payroll week, an error occurred*
 
 - **Corrective Action:** 
 
@@ -65,7 +65,7 @@ ___
 
 - **Issue:**
 
-    *The user entered a payroll week that wasn’t in the payroll spreadsheet a keyerror occured*
+    *The user entered a payroll week that wasn’t in the payroll spreadsheet a keyerror occurred*
 
 - **Corrective Action:** 
 
@@ -74,7 +74,7 @@ ___
 
 - **Issue:** 
 
-    *Display Employee payroll for week, the data frame is empty then it would display an empty dataframe*
+    *Display Employee payroll for week, the data frame was empty then it displayed an empty dataframe*
 
 - **Corrective Action:** 
 
@@ -109,7 +109,7 @@ ___
 
 - **Issue:** 
 
-    *Display records in display menu options 1,2 and 3 would only show a limtied amount of fields due to the constraints of the deployment terminal is set to 80 characters*
+    *Display records in display menu options 1,2 and 3 would only show a limtied amount of fields due to the constraints of the deployment terminal, which is set to 80 characters*
 
 - **Corrective action:**
 
@@ -117,7 +117,7 @@ ___
 
     *- Employee NI & Employee Pension to EE NI & EE Pension*
 
-    *- Emplorer NI & Emplorer Pension to Er NI & Er Pension*
+    *- Employer NI & Employer Pension to Er NI & Er Pension*
 
     *- Holiday pay to Hol pay*
 

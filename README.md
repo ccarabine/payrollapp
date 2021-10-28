@@ -9,10 +9,7 @@ People Payroll is a command line terminal based application providing a solution
 </details><br>
 
 ___
-
 ## Points to note when using People Payroll application for the first time:
-
-___
 
 To gain access use the following login details
 
@@ -41,7 +38,7 @@ The user can email admin@peoplepayroll.com to add additional employees until the
 
 Click here to view: 
 
-* [People Payroll application](https://people-payroll-application.herokuapp.com/), my deployed site.
+* [People Payroll application](https://people-payroll-application.herokuapp.com/), to go to my deployed site.
 
 * [User manual](https://github.com/ccarabine/payroll/blob/main/docs/user_manual.md), to operate the application.
 
@@ -50,7 +47,6 @@ Click here to view:
 
 ___
 ## Table of Contents <a name="Home"></a>
-___
 
 1. [User Experience (UX)](#ux)<br>
     i.  [Strategy](#strategy)<br>
@@ -65,7 +61,7 @@ ___
 
 3. [Testing](#testing)<br>
 
-    i. [User Stories/feature Testing](#user-stories-testing)<br>
+    i. [User Stories/feature testing](#user-stories-testing)<br>
     ii.  [Known issues during testing](#known-issues)<br>
     iii. [Validation testing  ](#validation-testing)<br>
     iv. [Unfixed bugs](#unfixed-bugs)<br>
@@ -123,7 +119,6 @@ ___
 14. I want a terminal based application containing validated Python code which allows the user to navigate the system intuitively without returning errors
 	
 ___
-
 ## ii. Scope <a name="scope"></a>
 
 ### Strategy Trade-offs
@@ -137,7 +132,6 @@ To achieve the strategy goals, the following features highlighted in dark/light 
 </details><br>
 
 ___
-
 ## iii. Structure <a name="structure"></a> 
 
 The payroll system relies on user input from the menu system.  The user will navigate to the different options via the main menu system.
@@ -159,50 +153,45 @@ I used <a href=" https://www.lucidchart.com/">Lucid Chart</a> to create flowchar
 ### Click here to view the following flowcharts: 
 
 <details>
-    <summary>Security and menu  </summary>
+<summary>Security and menu</summary>
 
 ![Screenshot of flowchart - Security and menu ](/docs/images/flow_charts/menus.png)
-</details><br>
-
+</details>
 <details>
-    <summary>Display payroll option 1 </summary>
+<summary>Display payroll option 1 </summary>
 
 ![Screenshot of flowchart - display payroll option 1](/docs/images/flow_charts/display_payroll_option_one.png)
-</details><br>
-
+</details>
 <details>
-    <summary>Display payroll option 2 </summary>
+<summary>Display payroll option 2 </summary>
 
 ![Screenshot of flowchart - display payroll option 2 ](/docs/images/flow_charts/display_payroll_option_two.png)
-</details><br>
-
+</details>
 <details>
-    <summary>Display payroll option 3 </summary>
+<summary>Display payroll option 3 </summary>
 
 ![Screenshot of flowchart - display payroll option 3 ](/docs/images/flow_charts/display_payroll_option_three.png)
-
-</details><br>
-
+</details>
 <details>
-    <summary>Process payroll add / amend </summary>
+<summary>Process payroll add / amend </summary>
 
 ![Screenshot of flowchart - Process payroll add /amend ](/docs/images/flow_charts/process_payroll_add_amend.png)
-</details><br>
-
+</details>
 <details>
-    <summary>Data relationship </summary>
-
+<summary>Data relationship </summary>
 ![Screenshot of flowchart - Data relationship ](/docs/images/flow_charts/data_relationship.png)
-</details><br>
-
+</details>
 <details>
-    <summary>Formulas and variables </summary>
+<summary>Formulas and variables </summary>
 
 ![Screenshot of formulas ](/docs/images/flow_charts/formulas_variables.png)
-</details><br>
+</details> <br>
 
+I have structured my program using functional programming, rather than OOP for this app. This is because, the data that is being inputted needs to be immutable and is based around having one user inputting data. 
+There isn't a case for objects in my program as it is just interacting with the database where the data is stored. 
+
+Having collaborated with both my mentor and tutor about the use of OOP for this application, they both advised it would not be required but instead a ‘nice to have’ 
 ___
-
 ## v. Surface <a name="surface"></a> 
 
 ### Visual Design
@@ -227,13 +216,11 @@ As this is a terminal based application the styling is very limited so I have fo
 - Statutory sick pay, maternity/paternity leave
 - Bonuses
 - Payroll for salary staff
-- Admin password to display as astericks
-- Allow different users with different access
-- Change password
+- Account managemeent
 
 [Table of Contents ](#home)
 
----
+___
 # 3. Testing <a name="testing"></a> 
 
 ## i. User stories testing  <a name="user-stories-testing"></a>
@@ -250,19 +237,31 @@ User stories are tested with the current features. All user stories passed the t
 
 ---
 ## iii. Validation testing:<a name="validation-testing"></a>
-All Python files passed the [PEP8](http://pep8online.com/) and [Pylint](https://www.pylint.org/) tests with 0 errors.
 
+### PEP8
+<details>
+<summary>Click here to view the results from PEP8 on run.py</summary>
+
+![screenshot results from PEP8 on run.py](/docs/images/testing/validation/pep8_runpy.PNG)
+</details>
+
+<details>
+<summary>Click here to view the results from PEP8 on menu.py</summary>
+
+![screenshot results from PEP8 on run.py](/docs/images/testing/validation/pep8_menupy.PNG)
+</details>
+
+___
 ### Pylint
 
 <details>
 <summary>Click here to view the results from pylint on run.py</summary>
 
 ![screenshot results from pylint on run.py](/docs/images/testing/validation/pylint_runpy.png)
-</details><br>
+</details>
 
 <details>
 <summary>Click here to view the results from pylint on menu.py</summary>
-
 ![screenshot results from pylint on run.py](/docs/images/testing/validation/pylint_menupy.png)
 </details><br>
 
@@ -282,6 +281,7 @@ Variable name em, wk, fd changed to employee, week and fd_int
 Unnecessary parens - removed them
 
 Redefining data and password - changed to data_1 and password_1
+
 ___
 **Other errors**
 
@@ -291,8 +291,8 @@ added "return None" to the revelent expressions
 run.py:442:0: R0914: Too many local variables (19/15) (too-many-locals)
 
 changed the structure from a list to a dictionary and took the values straight out of the dictionary rather then assigning variables to them
-___
 
+___
 **I have disabled the following false errors:**
 
 pylint: disable=unused-import   import env  
@@ -313,25 +313,11 @@ used on function  yesorno(question):
 
 Needed to keep the elif in, so if the user typed "n" it would return False
 
-___
-
-### PEP8
-<details>
-<summary>Click here to view the results from PEP8 on run.py</summary>
-
-![screenshot results from PEP8 on run.py](/docs/images/testing/validation/pep8_runpy.PNG)
-</details><br>
-
-<details>
-<summary>Click here to view the results from PEP8 on menu.py</summary>
-
-![screenshot results from PEP8 on run.py](/docs/images/testing/validation/pep8_menupy.PNG)
-</details><br>
-
 ---
 ## iv. Unfixed Bugs <a name="unfixed-bugs"></a> 
 
-No Bugs left to fix
+- On  Google Pixel 6 phone, chrome browser user can see their username and password when entering.
+
 
 [Table of Contents ](#home)
 
@@ -379,7 +365,6 @@ You must then create another called `PORT`. Set this to `8000`
 The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
 
 ___
-
 ## Google API
 
 Here's how you can set up your own API:
@@ -415,8 +400,8 @@ I have also utilised the following applications, platforms  and libraries:
 - [PEP8 Online Validation Service](http://pep8online.com/): The PEP8 Online Validation Service was used to validate the Python document for this project and to identify any issues with the code.
 
 * [Lucid Chart](https://www.lucidchart.com/): Lucid Chart was used to create flowcharts
-___
 
+___
 ## Python Libraries
 A library is a collection of pre-combined codes that can be used iteratively to reduce the time required to code. They are particularly useful for accessing the pre-written frequently used codes, instead of writing them from scratch every single time. 
 
@@ -446,15 +431,14 @@ ___
 - google.oauth2.service_account: google.oauth2.service_account has been used to allow the application to access the account that the sheet is on with the credentials
 
 [Table of Contents ](#home)
-___
 
+___
 # 6. Credits <a name="credits"></a>
 
 ## Code
 I used the following websites and videos for inspiration and code for my project
 
-[yes/ no function](https://gist.github.com/garrettdreyfus/8153571)
-
+[Yes/ no function](https://gist.github.com/garrettdreyfus/8153571)
 
 [To check two lists for a value](https://learncodingfast.com/how-to-find-intersection-of-two-lists-in-python/)
 
@@ -464,7 +448,7 @@ I used the following websites and videos for inspiration and code for my project
 
 [Delay printing before next function](https://www.codegrepper.com/code-examples/python/how+to+pause+after+a+print+statement+in+python)
 
-[clearing the terminal before next function](https://www.geeksforgeeks.org/clear-screen-python/)
+[Clearing the terminal before next function](https://www.geeksforgeeks.org/clear-screen-python/)
 
 [Use of gspread](https://docs.gspread.org/en/latest/user-guide.html)
 
@@ -485,8 +469,8 @@ I used the following websites and videos for inspiration and code for my project
 [Press any key](https://stackoverflow.com/questions/983354/how-to-make-a-script-wait-for-a-pressed-key)
 
 [Table of Contents ](#home)
-___
 
+___
 # 7. Acknowledgements <a name="acknowledgements"></a>
 A big thank you to my mentor Mo for his help and guidance throughout my third project
 

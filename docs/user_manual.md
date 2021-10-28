@@ -1,3 +1,5 @@
+[Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md)
+
 # User Manual for People Payroll Application
 
 ## Table of Contents <a name="Home"></a>
@@ -6,8 +8,6 @@
 3. [View reports](#reports)<br>
 4. [Process / Amend payroll data](#process_amend)<br>
 
-
-[Click to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md)
 ___
 
 ## **1. Login** <a name="login"></a> 
@@ -234,7 +234,7 @@ If no record is found ‘No payroll record found for xx in week wk xx, returning
 
 Press any key to return to the display payroll menu
 
-If an record is found, ‘Employment record located’ message will be displayed . This record will be deleted and the user will be prompted to enter the employees hours again which will follow the add employees detail features above
+If a record is found, ‘Employment record located’ message will be displayed . This record will be deleted and the user will be prompted to enter the employees hours again which will follow the add employees detail features above
 
 <details>
 <summary>Click here to view an example</summary>

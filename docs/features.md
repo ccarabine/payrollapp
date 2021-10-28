@@ -4,10 +4,10 @@
 
 ## i. Current Features (short term objectives): <a name="features-current"></a>
 ___
-
 ### **Feature 1: Welcome Message and security**
+___
 <details>
-    <summary>Click here to view the home screen</summary>
+<summary>Click here to view the home screen</summary>
 
 ![Screenshot of Home screen](/docs/images/people_payroll_welcomescreen.PNG)
 </details><br>
@@ -20,19 +20,19 @@ If the user enters: <br>
 *1.	As a user, I  want a secure application/login to protect against unauthorised access*
 ___
 ### **Feature 2: Menu system**
+___
 The menu system consists of all the options required to facilitate all stages of the payroll process as follows:
 
 <details>
-    <summary>Click here to view the main menu</summary>
+<summary>Click here to view the main menu</summary>
 
 ![Screenshot of main menu](/docs/images/menu/main_menu.PNG)
 </details><br>
 
 ___
-
 *Option 1* from the main menu typed , display the payroll menu
 <details>
-    <summary>Click here to view the display payroll menu</summary>
+<summary>Click here to view the display payroll menu</summary>
 
 ![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
@@ -40,7 +40,7 @@ ___
 ___
 *Option 2* from the main menu typed , display the process /amend payroll menu
 <details>
-    <summary>Click here to view the process / amend payroll menu</summary>
+<summary>Click here to view the process / amend payroll menu</summary>
 
 ![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
@@ -56,6 +56,7 @@ If an incorrect number option is typed during any of the menu selections, the us
 	
 ___
 ### **Feature 3: Display payroll**
+___
 From the main menu, the user will be prompted to select an option by typing the relevant numeral.
 
 *Option 1* from the main menu typed , the payroll menu will be displayed
@@ -65,7 +66,6 @@ From the main menu, the user will be prompted to select an option by typing the 
 
 ![screenshot Display Payroll menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
-
 
 The user will be prompted to select an option by typing the relevant numeral
 
@@ -88,7 +88,6 @@ then the display payroll menu is displayed
 </details><br>
 
 ___
-
 *Option 2* selected from the display payroll menu - 2 Employee pay for week selected <br>
 
 User will be prompted to enter the payroll week which must be before the current payroll week. After validation, the user will be then prompted to enter the employee number <br>
@@ -114,7 +113,6 @@ then the display payroll menu is displayed
 </details><br>
 
 ___
-
 *Option 3* selected from the display payroll menu - 3. Employers summary for week<br>
 
 The data is summarised for each heading and grouped by week and displayed to the terminal
@@ -130,7 +128,6 @@ then the display payroll menu is displayed
 </details><br>
 
 ___
-
 *Option 4* selected from the display payroll menu -  Main menu<br>
 
 The main menu is displayed
@@ -141,8 +138,6 @@ The main menu is displayed
 </details><br>
 
 ___
-
-
 **User stories covered:**<br>
 *3. As a user, I want to easily navigate through to the different functions to view and process payroll<br>
 7. As a user, I want full visibility of all employees payment summaries for any week at any time<br>
@@ -163,7 +158,7 @@ From the main menu, the user will be prompted to select an option by typing in t
 Option 2 from the main menu typed, the process / amend payroll menu will be displayed
 
 <details>
-    <summary>Click here to view the process / amend payroll menu</summary>
+<summary>Click here to view the process / amend payroll menu</summary>
 
 ![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
@@ -202,7 +197,7 @@ If the values are correct, a message will be displayed
 The user will then prompted if they would like to process another employees hours which they can add or go back to the main menu
 
 <details>
-    <summary>Click here to view add employees' hours</summary>
+<summary>Click here to view add employees' hours</summary>
 
 ![screenshot Add employees' hours](/docs/images/features/feature_4.PNG)
 </details><br>
@@ -213,7 +208,7 @@ The user will be prompted to enter the employee number, validation will check if
 
 There is additional validation to ensure there is an employee record already entered into google sheets employee payroll sheet.
 
-If no record is found ‘No payroll record found for xx in week wk xx, returning to main menu.’ Will be displayed
+If no record is found ‘No payroll record found for xx in week wk xx, returning to main menu.’ will be displayed
 
 ‘Press any key to clear the screen and return to the display payroll menu’ message will be displayed to give the user time to view the information and then the process /amend payroll menu will be displayed
 

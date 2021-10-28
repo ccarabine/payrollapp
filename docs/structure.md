@@ -1,11 +1,10 @@
-
 [Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#structure)
 
 # iii. Structure
 
-### **1.	Welcome and security screen**
+## 1.	Welcome and security screen
 <details>
-    <summary>Click here to view the home screen</summary>
+<summary>Click here to view the home screen</summary>
 
 ![Screenshot of Home screen](/docs/images/people_payroll_welcomescreen.PNG)
 </details><br>
@@ -15,19 +14,19 @@ This welcomes the user to the application. To access the application the user ne
 
 ____
 
-### **2.	Main menu**
+## 2.	Main menu
 <details>
-    <summary>Click here to view the main menu</summary>
+<summary>Click here to view the main menu</summary>
 
 ![Screenshot of main menu](/docs/images/menu/main_menu.PNG)
 </details><br>
 
 ___
-### **3. Display payroll menu<br>**
+## 3. Display payroll menu<br>
 
 **User inputs** numeral 1, in the main menu to select the Display payroll menu. 
 <details>
-    <summary>Click here to view the display payroll menu</summary>
+<summary>Click here to view the display payroll menu</summary>
 
 ![Screenshot of display payroll menu](/docs/images/menu/display_payroll_menu.PNG)
 </details><br>
@@ -56,12 +55,12 @@ Immediately the employers payment summary is displayed by week
 
 The main menu is displayed
 ___
-**4. Process / amend payroll menu<br>**
+## 4. Process / amend payroll menu<br>
 
 **User inputs** numeral 2, in main menu to select the ‘Process / amend payroll’ menu 
 
 <details>
-    <summary>Click here to view the process / amend payroll menu</summary>
+<summary>Click here to view the process / amend payroll menu</summary>
 
 ![Screenshot of process / amend payroll menu](/docs/images/menu/process_amend_menu.PNG)
 </details><br>
@@ -101,11 +100,11 @@ The values are added to google sheet employee payroll sheet
 The main menu is displayed
 
 ___
-**5. Add / Amend employee details<br>**
+## 5. Add / Amend employee details<br>
 
 **User inputs** numeral 3, in main menu to select 'add amend employees details' option. 
 <details>
-    <summary>Click here to view the Add / Amend employee details menu - Future Feature</summary>
+<summary>Click here to view the Add / Amend employee details menu - Future Feature</summary>
 
 ![Screenshot of Add / Amend employee details menu](/docs/images/menu/add_amend_employees_details_menu.PNG)
 </details><br>
@@ -113,11 +112,9 @@ ___
 Message is displayed. 'Feature in next update, returning to main menu' is displayed.
 
 ___
-### **6. Close application<br>**
+## 6. Close application<br>
 
 User inputs numeral 4, in main menu to select 'close application' option
-
 The application closes.<br>
-
 
 [Click here to go to Readme file ](https://github.com/ccarabine/payroll/blob/main/README.md#structure)
