@@ -44,7 +44,6 @@ Click here to view:
 
 * [Google Sheets](https://docs.google.com/spreadsheets/d/1Mh0WaeqPiZRDhHZpLVrVSoBcV8L4cPMKQXs2a-Z90Uo/edit?usp=sharing), to access changes made.
 
-
 ___
 ## Table of Contents <a name="Home"></a>
 
@@ -222,6 +221,7 @@ As this is a terminal-based application the styling is very limited so I have fo
 [Table of Contents ](#home)
 
 ___
+
 # 3. Testing <a name="testing"></a> 
 
 ## i. User stories testing  <a name="user-stories-testing"></a>
@@ -263,6 +263,7 @@ ___
 
 <details>
 <summary>Click here to view the results from pylint on menu.py</summary>
+
 ![screenshot results from pylint on run.py](/docs/images/testing/validation/pylint_menupy.png)
 </details><br>
 

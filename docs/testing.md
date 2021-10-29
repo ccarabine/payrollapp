@@ -95,6 +95,7 @@ Letting us know that the record has been exported
 
 ![Screenshot of result](/docs/images/testing/userstory2test1.png)
 </details><br>
+
 ___
 
 ## Testing of user story 3
